@@ -7,9 +7,6 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    //await I.waitInUrl('solicitorCreate/submit');
-
-    //NFD VERSION of URL is     solicitor-create/submit
     await I.waitInUrl('solicitor-create/submit');
     await I.runAccessibilityTest();
     await I.see('Check your answers');

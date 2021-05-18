@@ -11,7 +11,6 @@ module.exports = {
     await I.runAccessibilityTest();
     await I.see('Case submission');
     await I.see('Check your answers');
-    await I.see('I am duly authorised by Applicant1 to sign this statement.');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   }
