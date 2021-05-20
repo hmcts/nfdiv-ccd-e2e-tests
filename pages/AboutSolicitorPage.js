@@ -6,8 +6,8 @@ module.exports = {
     solicitorsName: '#applicant1SolicitorName',
     referenceNumer: '#solicitorReference',
     firmName: '#PetitionerSolicitorFirm',
-    app1SolicitorPhone: '#applicant1SolicitorPhone',
-    app1SolicitorEmail: '#applicant1SolicitorEmail',
+    applicant1SolicitorPhone: '#applicant1SolicitorPhone',
+    applicant1SolicitorEmail: '#applicant1SolicitorEmail',
     correspondenceByEmail:'#solicitorAgreeToReceiveEmails-Yes',
 
     firmDxAddress: '#derivedApplicant1SolicitorAddress',
@@ -28,10 +28,10 @@ module.exports = {
   async fillFormAndSubmit() {
     await I.fillField(this.fields.solicitorsName, 'PAPA AJASCO');
     await I.fillField(this.fields.referenceNumer, 'AWS11234');
-    await I.fillField(this.fields.app1SolicitorPhone, '02086431254');
-    await I.fillField(this.fields.app1SolicitorEmail, 'sols1@mailinator.com');
+    await I.fillField(this.fields.applicant1SolicitorPhone, '02086431254');
+    await I.fillField(this.fields.applicant1SolicitorEmail, 'sols1@mailinator.com');
     await I.click(this.fields.correspondenceByEmail);
-    await I.fillField(this.fields.firmDxAddress, '100 Reede Road, RM10 8DU');
+    //await I.fillField(this.fields.firmDxAddress, '100 Reede Road, RM10 8DU');
 
     await I.waitForElement(this.fields.searchOrganisation);
 

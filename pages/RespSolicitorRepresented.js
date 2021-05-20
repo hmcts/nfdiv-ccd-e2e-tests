@@ -5,7 +5,6 @@ module.exports = {
   fields: {
     solicitorNotRepresented: '#respondentSolicitorRepresented-No',
     applicant2_solicitorRepresented: '#applicant2SolicitorRepresented-Yes',
-    respondentHomeAddress: '#D8DerivedRespondentHomeAddress',
     respondentServiceAddress:'#D8DerivedRespondentCorrespondenceAddr',
     applicant2_solicitorName: '#applicant2SolicitorName',
     applicant2_solicitorReference: '#applicant2SolicitorReference',
@@ -29,7 +28,6 @@ module.exports = {
     await I.fillField(this.fields.applicant2_solicitorReference, '123645');
     await I.fillField(this.fields.applicant2_SolicitorPhone, '02086425142');
     await I.fillField(this.fields.applicant2_respondent_email, 'testemail@gmail.com');
-    await I.fillField(this.fields.applicant2_solicitorAddress, 'DX Address Solicitor');
     await I.click(this.fields.isNotDigitalRespondentCase);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

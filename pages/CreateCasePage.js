@@ -1,5 +1,6 @@
 const I = actor();
 const testConfig = require('../tests/config');
+const constants = require('../common/constants');
 
 const {soleOrJoint} = require('../common/constants');
 
@@ -28,7 +29,7 @@ module.exports = {
     }
     await I.waitForText('Family Divorce');
     await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
-    await I.retry(5).selectOption(this.fields.caseType, 'NO_FAULT_DIVORCE9');
+    await I.retry(5).selectOption(this.fields.caseType, constants.currentCaseType);
     await I.wait(10);
     await I.waitForText('Apply for a divorce');
     await I.retry(5).selectOption(this.fields.event, 'Apply for a divorce');

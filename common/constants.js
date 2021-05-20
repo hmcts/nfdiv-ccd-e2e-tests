@@ -13,6 +13,8 @@ const reasonsForDivorce = {
 
 const signOut = 'Sign out';
 
+const currentCaseType = 'NO_FAULT_DIVORCE10';
+
 const soleOrJoint = {
   SOLE: 'SoleApplicant',
   JOINT: 'JointApplicant'
@@ -104,5 +106,6 @@ module.exports = {
   eventDisplayName,
   stateDisplayName,
   yesorno,
-  serviceApplicationType
+  serviceApplicationType,
+  currentCaseType
 };

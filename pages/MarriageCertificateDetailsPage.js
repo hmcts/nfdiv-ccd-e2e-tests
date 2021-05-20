@@ -8,7 +8,7 @@ module.exports = {
     marriageDateYear: '#marriageDate-year',
     petitionerFullname: '#marriageApplicant1Name',
     respondentFullname: '#marriageApplicant2Name',
-    didMarriageTakePlaceInUK: '#marriedInUk-Yes',
+    didMarriageTakePlaceInUK: '#marriageMarriedInUk-Yes',
     submit: 'button[type="submit"]'
   },
 
