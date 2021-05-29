@@ -8,7 +8,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-createFinancialOrders');
+    await I.waitInUrl('solicitor-create-applicationFinancialOrders');
     await I.runAccessibilityTest();
     await I.click(this.fields.petitionerApplyForFinancialOrder);
     await I.waitForNavigationToComplete(this.fields.submit);

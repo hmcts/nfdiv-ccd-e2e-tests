@@ -208,7 +208,7 @@ module.exports = function () {
       return StatementOfTruthAndRecPage.fillFormAndSubmit(urgent);
     },
 
-    casePaymentWithFeeAccountAndSubmissionPageFormAndSubmit: function() {
+    paymentWithHelpWithFeeAccount: function() {
       return FeeAccountPaymentCaseSubmissionPage.fillFormAndSubmit();
     },
 

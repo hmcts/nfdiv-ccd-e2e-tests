@@ -7,7 +7,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-statement-of-truth-pay-submit/submit');
+    await I.waitInUrl('solicitor-submit-application/submit');
     await I.runAccessibilityTest();
     await I.see('Case submission');
     await I.see('Check your answers');

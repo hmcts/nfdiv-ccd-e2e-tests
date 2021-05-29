@@ -13,8 +13,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-createMarriageCertificateDetails');
-
+    await I.waitInUrl('solicitor-create-applicationMarriageCertificateDetails');
     await I.waitForElement(this.fields.marriageDateDay);
     await I.runAccessibilityTest();
     await I.fillField(this.fields.marriageDateDay, '09');
@@ -24,7 +23,6 @@ module.exports = {
     await I.fillField(this.fields.respondentFullname, 'Tasha St Patrick');
     await I.click(this.fields.didMarriageTakePlaceInUK);
     await I.waitForNavigationToComplete(this.fields.submit);
-    await I.wait(1);
-    await I.waitInUrl('solicitor-createOtherLegalProceedings');
+    await I.wait(2);
   }
 };

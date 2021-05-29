@@ -8,7 +8,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-createOtherLegalProceedings');
+    await I.waitInUrl('solicitor-create-applicationOtherLegalProceedings');
     await I.runAccessibilityTest();
     await I.click(this.fields.existingCourtProceedings);
     await I.waitForNavigationToComplete(this.fields.submit);

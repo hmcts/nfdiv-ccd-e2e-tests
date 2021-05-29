@@ -46,16 +46,5 @@ module.exports = {
     await I.click(this.fields.OrgSelectLink);
     await I.waitForNavigationToComplete(this.fields.submit);
 
-    // await I.fillField(this.fields.firmDxAddress, '100 Reede Road, RM10 8DU');
-    // await I.fillField(this.fields.yourReferenceNumber, 'AWS11234');
-    // await I.fillField(this.fields.phoneNumber, '07712345679');
-    // await I.fillField(this.fields.email, 'ccdsolicitorcreatecase@pettyfrance.com');
-    // await I.click(this.fields.solicitorAgree);
-    // await I.waitForText(this.fields.OrgNamesText);
-    // await I.fillField(this.fields.OrgSearchBar, 'DivPetitionerSolicitorFirm');
-    // await I.waitForElement(this.fields.OrgResultTable);
-    // await I.see('Select');
-    // await I.click('Select');
-    // await I.waitForNavigationToComplete(this.fields.submit);
   }
 };

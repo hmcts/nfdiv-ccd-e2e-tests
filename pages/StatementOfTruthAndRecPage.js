@@ -37,7 +37,7 @@ module.exports = {
   async fillFormAndSubmit(urgent) {
     //await I.waitInUrl('solicitorStatementOfTruthPaySubmit/solicitorStatementOfTruthPaySubmitSolStatementOfTruth');
     // nfdiv change in url
-    await I.waitInUrl('solicitor-statement-of-truth-pay-submit/solicitor-statement-of-truth-pay-submitSolStatementOfTruth');
+    await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
 
     await I.runAccessibilityTest();
     if (urgent === yesorno.No) {
@@ -48,6 +48,7 @@ module.exports = {
     }
 
     await I.retry().click(this.fields.serveRespondentPersonalService);
+    await I.see("After service is complete you must notify the court by completing the 'Confirm Service' form in CCD");
     await I.click(this.fields.reconciliationWithApplicant1);
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);
 

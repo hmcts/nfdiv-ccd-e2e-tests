@@ -4,20 +4,24 @@ const { reasonsForDivorce } = require('../common/constants');
 
 let caseNumber;
 
-Feature('Solicitor create case - with fee account');
+Feature('Solicitor create NFD case - with fee account');
 
+//NFD Create Case + Submit Application
 Scenario('Solicitor create case and make payment', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
-  //NFD Create Case + Submit Application - End to End Flow
-
   await I.fillCreateCaseFormAndSubmit();
-//  await I.fillSoleOrJointOptionForDivorce(soleOrJoint.SOLE);
   await I.fillSoleOrJointOptionForDivorce();
+
+  // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();
+
+  // Marriage - Irretrievably Broken Down
+  await I.marriageBrokenDown();
+
   // About Applicant1
   await I.fillAboutThePetitionerFormAndSubmit();
 
@@ -45,11 +49,9 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // Select Language
   await I.languagePreferenceSelection();
 
-  // Jurisdiction - Apply for a divorce
+  // Jurisdiction
   await I.selectJurisdictionQuestionPageAndSubmit();
 
-  // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit();
@@ -63,7 +65,7 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
-  await I.casePaymentWithFeeAccountAndSubmissionPageFormAndSubmit();
+  await I.paymentWithHelpWithFeeAccount();
 
   // HWF Reference Entered ....
   await I.casePaymentWithHWFAndSubmissionPageFormAndSubmit();
@@ -77,11 +79,10 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
-  // Add a Page to Assert EndState of Solicitor - Awaiting Payment Confirmation on Case submission
+  // Add a Assert EndState of Solicitor -
   // No draft petition should be present , but Uploaded Docs should be present
-  // /case-details/1621252499527814
 
   console.log('....... before Signing Out..........')
   await I.solAwaitingPaymentConfPageFormAndSubmit();
-  console.log('....... ALL Done . E2E Completed .. ');
+  console.log('....... ALL Done . E2E Completed for Solicitor Create Case and Submit Application.. ');
 }).retry(testconfig.TestRetryScenarios);

@@ -10,9 +10,9 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-statement-of-truth-pay-submit/solicitor-statement-of-truth-pay-submitHelpWithFees');
+    await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationHelpWithFees');
     await I.runAccessibilityTest();
-    await I.fillField(this.fields.helpWithFeesReference, 'HWF-365-425');
+    await I.fillField(this.fields.helpWithFeesReference, 'FEE001');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

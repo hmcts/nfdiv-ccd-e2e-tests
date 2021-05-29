@@ -11,7 +11,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-createUploadSupportingDocuments');
+    await I.waitInUrl('/solicitor-create-applicationUploadSupportingDocuments');
     await I.runAccessibilityTest();
     await I.see('Documents uploaded (Optional)');
     const isAttachFileSupportedBrowser = !(await I.isMicrosoftEdgeOrSafariBrowser());

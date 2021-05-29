@@ -8,7 +8,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-createClaimForCosts');
+    await I.waitInUrl('solicitor-create-applicationClaimForCosts');
     await I.runAccessibilityTest();
     await I.click(this.fields.petitionerWantsToClaimCosts);
     await I.waitForNavigationToComplete(this.fields.submit);

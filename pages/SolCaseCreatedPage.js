@@ -16,7 +16,6 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitForElement(this.fields.caseNumberDisplay);
     const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
-    const displayCaseId = await I.grabTextFrom(this.fields.caseNumberDisplay);
     await I.wait(1);
     return display;
   }

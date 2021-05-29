@@ -7,7 +7,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('solicitor-create/submit');
+    await I.waitInUrl('solicitor-create-application/submit');
     await I.runAccessibilityTest();
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
