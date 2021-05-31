@@ -71,7 +71,9 @@ const eventDisplayName = {
   DN_PRONOUNCED_BY_BULK: 'DN Pronounced by Bulk',
   TEST_EVENT_FOR_DA_DATA: 'Data required for DA',
   MAKE_ELIGIBLE_FOR_DA: 'Make eligible for DA (Pet)',
-  DA_GRANTED: 'DA Granted'
+  DA_GRANTED: 'DA Granted',
+  HWF_RESULTS:'HWF Results',
+  APPLICATION_PAID_SUBMIITED:'Application Paid and submitted'
 };
 
 const events = {

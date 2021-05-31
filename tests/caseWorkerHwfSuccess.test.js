@@ -1,13 +1,16 @@
 const { paymentType, yesorno, soleOrJoint} = require('../common/constants');
-const testconfig = require('./config');
+const testconfig = require('../../../../config');
 const { reasonsForDivorce } = require('../common/constants');
 
 let caseNumber;
 
-Feature('Solicitor create NFD case - with fee account');
+Feature('CaseWorker Validates HWF Code Successfuly for a Case');
 
-//NFD Create Case + Submit Application
-Scenario('Solicitor create case and make payment', async (I) => {
+//NFD Create Case (with Docs) + Submit Application +
+// Login as caseworker and Approve HWF Reference Code
+// This moves the STATE to 'Application Paid and Submitted'
+
+Scenario('Caseworker validate HWF Reference and moves State to Application Submitted', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -61,10 +64,6 @@ Scenario('Solicitor create case and make payment', async (I) => {
   caseNumber = caseNumber.replace(/\D/gi, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Solicitor Create Case Done ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
-
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Solicitor Submit Application  ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
-
   // Case Submission - StatementOfTruth Reconciliation Page.
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
@@ -83,29 +82,32 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
-  // No draft petition should be present , but Uploaded Docs should be present.
+  // Add a Assert EndState of Solicitor -
+  // No draft petition PDF should be present , but Uploaded Docs MUST  be present
   await I.solAwaitingPaymentConfPageFormAndSubmit();
-
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
 
   await I.wait(5);
 
   // Login as CaseWorker and Validate HWF Reference
-  console.log('....... Start ....Login as Caseworker && Validate HWF Code ..... ');
+  console.log('....... Login as Caseworker && Validate HWF Code ..... ');
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
   await I.wait(3)
   await I.shouldBeOnCaseListPage();
   await I.wait(2)
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(5);
+  await I.wait(6);
 
   await I.selectHWFReferenceValidation();
   await I.validateHWFCode();
   await I.fillHwfEventSummaryFor(caseNumber);
   await I.wait(2);
+  //await I.see('Application paid and submitted');
   await I.caseWorkerCheckStateEventAndSignOut('Application paid and submitted','Validate HWF Code');
-
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Application State Change to Submitted ...  ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
+
+
+
 
 }).retry(testconfig.TestRetryScenarios);

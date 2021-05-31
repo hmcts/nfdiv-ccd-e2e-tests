@@ -28,6 +28,7 @@ const SolCaseCreatedPage = require('./pages/SolCaseCreatedPage');
 const StatementOfTruthAndRecPage = require('./pages/StatementOfTruthAndRecPage');
 const FeeAccountPaymentCaseSubmissionPage = require('./pages/FeeAccountPaymentCaseSubmissionPage');
 const HWFPaymentCaseSubmissionPage = require('./pages/HWFPaymentCaseSubmissionPage');
+const HWFReferencePage=require('./pages/HWFReferencePage');
 const CaseSubmissionOrderSummaryPage = require('./pages/CaseSubmissionOrderSummaryPage');
 const CaseSubmissionAppCompletePage = require('./pages/CaseSubmissionAppCompletePage');
 const CaseSubmissionCheckYourAnswersPage = require('./pages/CaseSubmissionCheckYourAnswersPage');
@@ -54,6 +55,7 @@ const ServiceApplicationReceivedPage = require('./pages/ServiceApplicationReceiv
 const ConfirmServicePaymentPage = require('./pages/ConfirmServicePaymentPage');
 const IssueBailiffPackPage = require('./pages/IssueBailiffPackPage');
 const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyPage');
+const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -91,6 +93,10 @@ module.exports = function () {
 
     shouldBeOnCaseListPage: function () {
       return CaseListPage.resetFilter();
+    },
+
+    selectHWFReferenceValidation: function (){
+       return CaseListPage.checkEventAndStateAndBeginHWFValidation();
     },
 
     ShouldBeAbleToFilterAnUrgentCase: function (urgent, state, caseNum) {
@@ -216,6 +222,16 @@ module.exports = function () {
       return HWFPaymentCaseSubmissionPage.fillFormAndSubmit();
     },
 
+    validateHWFCode:function(){
+      return HWFReferencePage.fillFormAndSubmit();
+    },
+
+    fillHwfEventSummaryFor:function(caseNumber){
+      return HWFReferencePage.fillEventSummaryAndDescription(caseNumber);
+    },
+
+
+
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
       return CaseSubmissionOrderSummaryPage.fillFormAndSubmit(paymentType);
     },
@@ -230,6 +246,10 @@ module.exports = function () {
 
     solAwaitingPaymentConfPageFormAndSubmit: function() {
       return SolAwaitingPaymentConfirmationPage.checkPageAndSignOut();
+    },
+
+    caseWorkerCheckStateEventAndSignOut: function(state, event){
+      return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },
 
     ccdCaseCreatedFromJsonLandingPageFormAndSubmit: function() {

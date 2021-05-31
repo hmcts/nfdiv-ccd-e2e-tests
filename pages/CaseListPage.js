@@ -1,4 +1,4 @@
-const {yesorno} = require('../common/constants');
+const {yesorno,currentCaseType} = require('../common/constants');
 const I = actor();
 
 module.exports = {
@@ -11,7 +11,8 @@ module.exports = {
     rdcSelect: '#D8DivorceUnit',
     solicitorPaymentMethodSelect: '#SolPaymentHowToPay',
     urgentFilterYes: '#SolUrgentCase-Yes',
-    urgentFilterNo: '#SolUrgentCase-No'
+    urgentFilterNo: '#SolUrgentCase-No',
+    submit: 'button[type="submit"]'
   },
 
   async clickCreateList() {
@@ -28,13 +29,21 @@ module.exports = {
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.retry(5).selectOption(this.selectors.caseTypeSelect, 'Divorce case - v115.00');
+    await I.selectOption(this.selectors.caseTypeSelect, 'NO_FAULT_DIVORCE14');
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
-    await I.waitForElement(this.selectors.rdcSelect);
-    await I.waitForElement(this.selectors.solicitorPaymentMethodSelect);
+    //await I.waitForElement(this.selectors.rdcSelect);
+    //await I.waitForElement(this.selectors.solicitorPaymentMethodSelect);
     await I.see('Create case');
     await I.click('Apply');
+    await I.wait(6);
+  },
+
+
+  async checkEventAndStateAndBeginHWFValidation(){
+    await I.see('AwaitingHWFDecision');
+    await I.see('Case submission');
+    await I.waitForNavigationToComplete(this.selectors.submit);
   },
 
   async urgentCaseFilter(urgent, state = 'Any', caseNum) {
