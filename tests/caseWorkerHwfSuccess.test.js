@@ -1,10 +1,10 @@
 const { paymentType, yesorno, soleOrJoint} = require('../common/constants');
-const testconfig = require('../../../../config');
+const testconfig = require('./config');
 const { reasonsForDivorce } = require('../common/constants');
 
 let caseNumber;
 
-Feature('CaseWorker Validates HWF Code Successfuly for a Case');
+Feature('CaseWorker Validates HWF Code Successfully for a Case');
 
 //NFD Create Case (with Docs) + Submit Application +
 // Login as caseworker and Approve HWF Reference Code
@@ -54,7 +54,6 @@ Scenario('Caseworker validate HWF Reference and moves State to Application Submi
 
   // Jurisdiction
   await I.selectJurisdictionQuestionPageAndSubmit();
-
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit();

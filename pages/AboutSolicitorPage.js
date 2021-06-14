@@ -4,12 +4,10 @@ module.exports = {
 
   fields: {
     solicitorsName: '#applicant1SolicitorName',
-    referenceNumer: '#solicitorReference',
-    firmName: '#PetitionerSolicitorFirm',
+    referenceNumer: '#applicant1SolicitorReference',
     applicant1SolicitorPhone: '#applicant1SolicitorPhone',
     applicant1SolicitorEmail: '#applicant1SolicitorEmail',
-    correspondenceByEmail:'#solicitorAgreeToReceiveEmails-Yes',
-
+    correspondenceByEmail:'#applicant1SolicitorAgreeToReceiveEmails-Yes',
     firmDxAddress: '#derivedApplicant1SolicitorAddress',
     yourReferenceNumber: '#D8SolicitorReference',
     phoneNumber: '#PetitionerSolicitorPhone',
@@ -26,19 +24,14 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.fillField(this.fields.solicitorsName, 'PAPA AJASCO');
+    await I.waitForElement(this.fields.solicitorsName);
+    await I.fillField(this.fields.solicitorsName, 'E2E TEST SOLICITOR NAME');
     await I.fillField(this.fields.referenceNumer, 'AWS11234');
     await I.fillField(this.fields.applicant1SolicitorPhone, '02086431254');
     await I.fillField(this.fields.applicant1SolicitorEmail, 'sols1@mailinator.com');
     await I.click(this.fields.correspondenceByEmail);
-    //await I.fillField(this.fields.firmDxAddress, '100 Reede Road, RM10 8DU');
 
     await I.waitForElement(this.fields.searchOrganisation);
-
-    // Add negative scenario that will Reject any  organisation that the Applicant1 does NOT belong to.
-    //await I.fillField(this.fields.searchOrganisation, 'aat');
-    //await I.see("validation error message ");
-
     await I.fillField(this.fields.searchOrganisation, 'NFD');
     await I.waitForElement(this.fields.OrgResultTable);
 

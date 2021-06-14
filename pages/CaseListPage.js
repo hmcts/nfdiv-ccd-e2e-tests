@@ -12,6 +12,7 @@ module.exports = {
     solicitorPaymentMethodSelect: '#SolPaymentHowToPay',
     urgentFilterYes: '#SolUrgentCase-Yes',
     urgentFilterNo: '#SolUrgentCase-No',
+    caseNumber:'[CASE_REFERENCE]',
     submit: 'button[type="submit"]'
   },
 
@@ -25,23 +26,22 @@ module.exports = {
     await I.click(this.selectors.caseLink);
   },
 
-  async resetFilter() {
+  async resetFilter(caseNumber) {
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, 'NO_FAULT_DIVORCE14');
+    await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
-    //await I.waitForElement(this.selectors.rdcSelect);
-    //await I.waitForElement(this.selectors.solicitorPaymentMethodSelect);
-    await I.see('Create case');
+    //await I.waitForElement(this.selectors.caseNumber);
+    //await I.fillField(this.selectors.caseNumber, caseNumber);
+    await I.wait(3);
     await I.click('Apply');
-    await I.wait(6);
   },
 
 
   async checkEventAndStateAndBeginHWFValidation(){
-    await I.see('AwaitingHWFDecision');
+    await I.see('Application submitted and awaiting HWF decision');
     await I.see('Case submission');
     await I.waitForNavigationToComplete(this.selectors.submit);
   },

@@ -6,9 +6,9 @@ module.exports = {
     firstName: '#applicant1FirstName',
     lastName: '#applicant1LastName',
     applicant1_changedName: '#applicant1NameDifferentToMarriageCertificate-No',
-    whoIsPetitionerDivorcing: '#divorceWho',
+    whoIsApplicant1Divorcing: '#divorceWho',
     addressLine1_Building:'#applicant1HomeAddress_AddressLine1',
-    petitionerGender: '#inferredApplicant1Gender',
+    applicant1Gender: '#applicant1Gender',
     sameSex: '#marriageIsSameSexCouple-No',
     applicant1_postcode:'#applicant1HomeAddress_applicant1HomeAddress_postcodeInput',
     applicant1_selected_address:'#applicant1HomeAddress_applicant1HomeAddress_addressList',
@@ -24,11 +24,11 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitForElement(this.fields.firstName);
-    await I.fillField(this.fields.firstName, 'James');
+    await I.fillField(this.fields.firstName, 'E2E James');
     await I.fillField(this.fields.lastName, 'Patterson');
     await I.click(this.fields.applicant1_changedName);
-    await I.selectOption(this.fields.whoIsPetitionerDivorcing, 'Wife');
-    await I.selectOption(this.fields.petitionerGender, 'Male');
+    await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
+    await I.selectOption(this.fields.applicant1Gender, 'Male');
 
     await I.click(this.fields.sameSex);
 

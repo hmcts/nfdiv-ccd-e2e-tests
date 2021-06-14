@@ -34,6 +34,9 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // Marriage Certificate Details
   await I.completeMarriageCertificateDetailsPageAndSubmit();
 
+  // Jurisdiction
+  await I.selectJurisdictionQuestionPageAndSubmit();
+
   // Other Legal Proceedings
   await I.otherLegalProceedings();
 
@@ -48,9 +51,6 @@ Scenario('Solicitor create case and make payment', async (I) => {
 
   // Select Language
   await I.languagePreferenceSelection();
-
-  // Jurisdiction
-  await I.selectJurisdictionQuestionPageAndSubmit();
 
 
   // Create Application 'Save Application' and 'Check Your Answers'
@@ -86,25 +86,26 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
 
-  await I.wait(5);
+  await I.wait(8);
 
   // Login as CaseWorker and Validate HWF Reference
-  console.log('....... Start ....Login as Caseworker && Validate HWF Code ..... ');
 
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
-  await I.wait(3)
-  await I.shouldBeOnCaseListPage();
-  await I.wait(2)
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(5);
+    console.log('....... Caseworker Login to Validate HWF Code ...');
 
-  await I.selectHWFReferenceValidation();
-  await I.validateHWFCode();
-  await I.fillHwfEventSummaryFor(caseNumber);
-  await I.wait(2);
-  await I.caseWorkerCheckStateEventAndSignOut('Application paid and submitted','Validate HWF Code');
+    await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+    await I.wait(7);
+    await I.shouldBeOnCaseListPage();
+    await I.wait(5);
+    await I.amOnPage('/case-details/' + caseNumber);
+    await I.wait(5);
+
+    await I.selectHWFReferenceValidation();
+    await I.validateHWFCode();
+    await I.fillHwfEventSummaryFor(caseNumber);
+    await I.wait(2);
+    await I.cwCheckStateAndEvent('Application paid and submitted','Validate HWF Code');
 
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Application State Change to Submitted ...  ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
 

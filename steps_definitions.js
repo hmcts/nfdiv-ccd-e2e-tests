@@ -91,8 +91,8 @@ module.exports = function () {
       return CaseDetailsPage.shouldDisplayTabs();
     },
 
-    shouldBeOnCaseListPage: function () {
-      return CaseListPage.resetFilter();
+    shouldBeOnCaseListPage: function (caseNumber) {
+      return CaseListPage.resetFilter(caseNumber);
     },
 
     selectHWFReferenceValidation: function (){
@@ -230,8 +230,6 @@ module.exports = function () {
       return HWFReferencePage.fillEventSummaryAndDescription(caseNumber);
     },
 
-
-
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
       return CaseSubmissionOrderSummaryPage.fillFormAndSubmit(paymentType);
     },
@@ -248,7 +246,7 @@ module.exports = function () {
       return SolAwaitingPaymentConfirmationPage.checkPageAndSignOut();
     },
 
-    caseWorkerCheckStateEventAndSignOut: function(state, event){
+    cwCheckStateAndEvent: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },
 
