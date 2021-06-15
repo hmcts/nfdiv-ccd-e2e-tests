@@ -56,6 +56,7 @@ const ConfirmServicePaymentPage = require('./pages/ConfirmServicePaymentPage');
 const IssueBailiffPackPage = require('./pages/IssueBailiffPackPage');
 const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyPage');
 const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
+const DivorceApplicationDetailsPage = require('./pages/DivorceApplicationDetailsPage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -116,6 +117,16 @@ module.exports = function () {
     },
 
     // kasi
+    // Issue Divorce Application
+    issueDivorceApplication(){
+      return DivorceApplicationDetailsPage.fillFormAndSubmit();
+    },
+
+    fillIssueApplicationEventDetails(){
+      return DivorceApplicationDetailsPage.fillEventSummaryAndDescription();
+    },
+
+
     // How do you want to apply for Divorce Sole/Joint
     fillSoleOrJointOptionForDivorce(){
       return CreateCasePage.fillHowDoYouWantToApplyForDivorce();
@@ -246,6 +257,7 @@ module.exports = function () {
       return SolAwaitingPaymentConfirmationPage.checkPageAndSignOut();
     },
 
+    // TODO refactor to generic name checkStateAndEvent
     cwCheckStateAndEvent: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },

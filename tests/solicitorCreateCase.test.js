@@ -86,27 +86,44 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~');
+  console.log('~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~');
 
   await I.wait(8);
 
   // Login as CaseWorker and Validate HWF Reference
 
-    console.log('....... Caseworker Login to Validate HWF Code ...');
+  console.log('....... Caseworker Login to Validate HWF Code ...');
 
-    await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
-    await I.wait(7);
-    await I.shouldBeOnCaseListPage();
-    await I.wait(5);
-    await I.amOnPage('/case-details/' + caseNumber);
-    await I.wait(5);
+  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.wait(7);
+  await I.shouldBeOnCaseListPage();
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
 
-    await I.selectHWFReferenceValidation();
-    await I.validateHWFCode();
-    await I.fillHwfEventSummaryFor(caseNumber);
-    await I.wait(2);
-    await I.cwCheckStateAndEvent('Application paid and submitted','Validate HWF Code');
+  await I.selectHWFReferenceValidation();
+  await I.validateHWFCode();
+  await I.fillHwfEventSummaryFor(caseNumber);
+  await I.wait(2);
+  await I.cwCheckStateAndEvent('Application paid and submitted','Validate HWF Code');
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Application State Change to Submitted ...  ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
+  console.log('~~ HWF Code Validated and State is now Submitted');
+
+  // Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
+
+  console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
+
+  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
+  await I.wait(7);
+  await I.shouldBeOnCaseListPage();
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.selectEvent('Issue Application')
+  await I.issueDivorceApplication();
+  await I.fillIssueApplicationEventDetails();
+  await I.cwCheckStateAndEvent('Application issued','Issue Application');
+
+  console.log('~~~~~~~~~~~~~  Application Issued ~~~~~~~~~~~~ ');
 
 }).retry(testconfig.TestRetryScenarios);
