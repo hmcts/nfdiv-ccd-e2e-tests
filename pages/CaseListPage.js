@@ -13,6 +13,10 @@ module.exports = {
     urgentFilterYes: '#SolUrgentCase-Yes',
     urgentFilterNo: '#SolUrgentCase-No',
     caseNumber:'[CASE_REFERENCE]',
+    eventSummary: '#field-trigger-summary'
+  },
+  fields: {
+    selectActionDropDown: 'select[id="next-step"]',
     submit: 'button[type="submit"]'
   },
 
@@ -27,24 +31,35 @@ module.exports = {
   },
 
   async resetFilter(caseNumber) {
+    await I.waitIn
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
     await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
-    //await I.waitForElement(this.selectors.caseNumber);
-    //await I.fillField(this.selectors.caseNumber, caseNumber);
     await I.wait(3);
     await I.click('Apply');
   },
 
 
   async checkEventAndStateAndBeginHWFValidation(){
-    await I.see('Application submitted and awaiting HWF decision');
+    await I.see('Awaiting HWF decision');
     await I.see('Case submission');
-    await I.waitForNavigationToComplete(this.selectors.submit);
+    // await I.waitForElement(this.fields.selectActionDropDown);
+    // await I.selectOption(this.fields.selectActionDropDown, eventName);
+    // await I.wait(3);
+    // await I.waitForNavigationToComplete(this.fields.submit);
   },
+
+  async   clickNextStepForEvent(eventName){
+    await I.waitForElement(this.fields.selectActionDropDown);
+    await I.selectOption(this.fields.selectActionDropDown, eventName);
+    await I.wait(3);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+
 
   async urgentCaseFilter(urgent, state = 'Any', caseNum) {
     await I.waitForElement(this.selectors.jurisdictionSelect);

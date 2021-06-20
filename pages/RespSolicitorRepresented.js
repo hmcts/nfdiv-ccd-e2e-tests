@@ -11,7 +11,7 @@ module.exports = {
     applicant2SolicitorPhone: '#applicant2SolicitorPhone',
     applicant2SolicitorEmail: '#applicant2SolicitorEmail',
     applicant2SolicitorAddress: '#applicant2SolicitorAddress',
-    isDigitalRespondentCase: '#app2SolDigital-Yes',
+    isDigitalRespondentCase: '#applicant2SolicitorIsDigital-Yes',
     isNotDigitalRespondentCase: '#applicant2SolicitorIsDigital-No',
     orgNamesText: 'Organisation name and address',
     orgSearchBar: '#search-org-text',
@@ -33,6 +33,8 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   },
+
+
 
   async fillFormForRepresentedRespondentAndSubmit() {
     await I.waitInUrl('solicitorCreateRespondentServiceDetails');

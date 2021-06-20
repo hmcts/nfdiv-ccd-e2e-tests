@@ -57,6 +57,7 @@ const IssueBailiffPackPage = require('./pages/IssueBailiffPackPage');
 const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyPage');
 const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
 const DivorceApplicationDetailsPage = require('./pages/DivorceApplicationDetailsPage');
+const IssueApplicationEventSummaryDescPage = require('./pages/IssueApplicationEventSummaryDescriptionPage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -96,9 +97,14 @@ module.exports = function () {
       return CaseListPage.resetFilter(caseNumber);
     },
 
-    selectHWFReferenceValidation: function (){
+    startValidationHWFProcess: function (){
        return CaseListPage.checkEventAndStateAndBeginHWFValidation();
     },
+
+    checkNextStepForEvent: function (eventName){
+      return CaseListPage.clickNextStepForEvent(eventName);
+    },
+
 
     ShouldBeAbleToFilterAnUrgentCase: function (urgent, state, caseNum) {
       return CaseListPage.urgentCaseFilter(urgent, state, caseNum);
@@ -126,6 +132,13 @@ module.exports = function () {
       return DivorceApplicationDetailsPage.fillEventSummaryAndDescription();
     },
 
+    fillIssueApplicationMarriageDetails(){
+      return MarriageCertificateDetailsPage.fillMarriageDetails();
+    },
+
+    fillIssueApplicationEventSummaryAndDescription(){
+      return IssueApplicationEventSummaryDescPage.fillFormAndSubmit();
+    },
 
     // How do you want to apply for Divorce Sole/Joint
     fillSoleOrJointOptionForDivorce(){
@@ -238,7 +251,7 @@ module.exports = function () {
     },
 
     fillHwfEventSummaryFor:function(caseNumber){
-      return HWFReferencePage.fillEventSummaryAndDescription(caseNumber);
+      return HWFReferencePage.fillFormAndSubmit(caseNumber);
     },
 
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
@@ -258,7 +271,7 @@ module.exports = function () {
     },
 
     // TODO refactor to generic name checkStateAndEvent
-    cwCheckStateAndEvent: function(state, event){
+    checkStateAndEvent: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },
 

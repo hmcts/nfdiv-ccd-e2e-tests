@@ -13,7 +13,7 @@ const reasonsForDivorce = {
 
 const signOut = 'Sign out';
 
-const currentCaseType = 'NO_FAULT_DIVORCE17';
+const currentCaseType = 'NO_FAULT_DIVORCE18';
 
 const soleOrJoint = {
   SOLE: 'SoleApplicant',

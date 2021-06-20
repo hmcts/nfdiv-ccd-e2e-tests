@@ -15,7 +15,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitInUrl('/issue-application/issue-applicationissueApplication');
+    await I.waitInUrl('caseworker-issue-application/caseworker-issue-applicationissueApplication');
     await I.runAccessibilityTest();
     await I.fillField(this.fields.marriageDateDay, '09');
     await I.fillField(this.fields.marriageDateMonth, '04');
@@ -28,12 +28,11 @@ module.exports = {
   },
 
   async fillEventSummaryAndDescription(){
-    await I.waitInUrl('/issue-application/submit');
+    await I.waitInUrl('trigger/caseworker-hwf-application-accepted/submit');
     await I.runAccessibilityTest();
     await I.fillField(this.fields.eventSummary, 'Issue Application Event Summary');
     await I.fillField(this.fields.eventDescription, 'Issue Application Event Description');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   }
-
 };

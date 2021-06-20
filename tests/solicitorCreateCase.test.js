@@ -92,7 +92,7 @@ Scenario('Solicitor create case and make payment', async (I) => {
 
   // Login as CaseWorker and Validate HWF Reference
 
-  console.log('....... Caseworker Login to Validate HWF Code ...');
+  console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
   await I.wait(7);
@@ -100,16 +100,15 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-
-  await I.selectHWFReferenceValidation();
-  await I.validateHWFCode();
+  await I.startValidationHWFProcess();
+  await I.checkNextStepForEvent('HWF application accepted')
   await I.fillHwfEventSummaryFor(caseNumber);
   await I.wait(2);
-  await I.cwCheckStateAndEvent('Application paid and submitted','Validate HWF Code');
+  await I.checkStateAndEvent('Submitted','HWF application accepted');
 
-  console.log('~~ HWF Code Validated and State is now Submitted');
+  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
-  // Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
+  //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
 
   console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
 
@@ -119,11 +118,11 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.selectEvent('Issue Application')
-  await I.issueDivorceApplication();
-  await I.fillIssueApplicationEventDetails();
-  await I.cwCheckStateAndEvent('Application issued','Issue Application');
+  await I.checkNextStepForEvent('Application issued')
+  await I.fillIssueApplicationMarriageDetails()
+  await I.fillIssueApplicationEventSummaryAndDescription()
+  await I.checkStateAndEvent('Application issued','Issue Application');
 
-  console.log('~~~~~~~~~~~~~  Application Issued ~~~~~~~~~~~~ ');
+  console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');
 
 }).retry(testconfig.TestRetryScenarios);

@@ -9,8 +9,6 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-
-    //await I.see(labels.previousCaseId);
     await I.waitForElement(this.fields.selectActionDropDown);
     await I.selectOption(this.fields.selectActionDropDown, 'Case submission');
     await I.waitForNavigationToComplete(this.fields.submit);
