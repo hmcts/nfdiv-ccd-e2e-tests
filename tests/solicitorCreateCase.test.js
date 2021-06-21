@@ -63,9 +63,8 @@ Scenario('Solicitor create case and make payment', async (I) => {
 
   console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Solicitor Create Case Done ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
 
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Solicitor Submit Application  ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Draft to Submit   ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
 
-  // Case Submission - StatementOfTruth Reconciliation Page.
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
@@ -86,7 +85,7 @@ Scenario('Solicitor create case and make payment', async (I) => {
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
 
-  console.log('~~~~~~~~~~~~~  Solicitor Submit Application Done ~~~~~~~~');
+  console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
   await I.wait(8);
 

@@ -21,11 +21,11 @@ module.exports = {
     await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
     await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
 
-    // existing code in master
+    // // existing code in master
     if (testConfig.TestForCrossBrowser && isAttachFileSupportedBrowser) {
-      await I.click(this.fields.addNewButton);
-      await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
-      await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
+      //await I.click(this.fields.addNewButton);
+      //await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
+      //await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
     }
 
     await I.wait(2);
