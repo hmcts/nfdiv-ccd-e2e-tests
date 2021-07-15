@@ -4,7 +4,9 @@ module.exports = {
 
   fields: {
     selectActionDropDown: 'select[id="next-step"]',
-    caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-h2',
+    //caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-h2',
+    caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-span',
+
     submit: 'button[type="submit"]'
   },
 
@@ -14,6 +16,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitForElement(this.fields.caseNumberDisplay);
     const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
+    console.log('.......Inside CaseCreated page .... caseNumber is.....' + display);
     await I.wait(1);
     return display;
   }

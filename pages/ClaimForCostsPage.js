@@ -3,14 +3,14 @@ const I = actor();
 module.exports = {
 
   fields: {
-    petitionerWantsToClaimCosts: '#divorceCostsClaim-Yes',
+    petitionerWantsToClaimCostsNo: '#divorceCostsClaim_No',
     submit: 'button[type="submit"]'
   },
 
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitor-create-applicationClaimForCosts');
     await I.runAccessibilityTest();
-    await I.click(this.fields.petitionerWantsToClaimCosts);
+    await I.click(this.fields.petitionerWantsToClaimCostsNo);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   }

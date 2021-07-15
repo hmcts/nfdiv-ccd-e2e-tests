@@ -3,8 +3,8 @@ const I = actor();
 module.exports = {
 
   fields: {
-    marriageBrokenDownYes: '#applicant1ScreenHasMarriageBroken-Yes',
-    marriageBrokenDownNo: '#applicant1ScreenHasMarriageBroken-No',
+    marriageBrokenDownYes: '#applicant1ScreenHasMarriageBroken_Yes',
+    marriageBrokenDownNo: '#applicant1ScreenHasMarriageBroken_No',
     submit: 'button[type="submit"]'
   },
 

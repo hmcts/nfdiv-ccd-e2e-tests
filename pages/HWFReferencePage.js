@@ -5,7 +5,7 @@ const { paymentType,eventDisplayName } = require('../common/constants');
 module.exports = {
 
   fields: {
-    hwfReferenceOk: '#hwfCodeValidForFullAmount-Yes',
+    hwfReferenceOk: '#hwfCodeValidForFullAmount_Yes',
     hwfEventSummary:'#field-trigger-summary',
     hwfEventDescription:'#field-trigger-description',
     HWF_Message:'HWF application accepted',

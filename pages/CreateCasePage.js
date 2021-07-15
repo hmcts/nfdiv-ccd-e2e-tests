@@ -2,7 +2,7 @@ const I = actor();
 const testConfig = require('../tests/config');
 const constants = require('../common/constants');
 
-const {soleOrJoint} = require('../common/constants');
+//const { soleOrJoint } = require('../common/constants');
 
 module.exports = {
 
@@ -37,23 +37,28 @@ module.exports = {
     await I.wait(1);
   },
 
-  //kasi
-  async fillHowDoYouWantToApplyForDivorce(soleOrJoint) {
+  async fillHowDoYouWantToApplyForDivorce() {
     if (testConfig.TestForCrossBrowser) {
       await I.wait(60);
     } else {
       await I.wait(5);
     }
-    await I.waitForText('How do you want to apply for the divorce');
+    await I.waitForText('How do you want to apply for the divorce?');
     //await I.retry(5).selectOption(this.fields.caseType, 'Sole Application');
 
-    // TODO sole or joint check
-    //if(soleOrJoint  === 'SoleApplicant') {
-    //}
+   // if (soleOrJointApp === soleOrJoint.JOINT) {
+      // Joint
+      // await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
+      // await I.click(this.fields.divorceOrDissolution);
+      // await I.waitForNavigationToComplete(this.fields.submit);
+      // await I.wait(1);
 
-    await I.retry(5).selectOption(this.fields.applicationType, 'Sole Application');
-    await I.click(this.fields.divorceOrDissolution);
-    await I.waitForNavigationToComplete(this.fields.submit);
-    await I.wait(1);
+    //}else if (soleOrJointApp === soleOrJoint.SOLE) {
+      //Sole
+      await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
+      await I.click(this.fields.divorceOrDissolution);
+      await I.waitForNavigationToComplete(this.fields.submit);
+      await I.wait(1);
+    //}
   }
 };

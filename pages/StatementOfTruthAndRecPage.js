@@ -6,31 +6,25 @@ module.exports = {
   fields: {
     //caseUrgentYes: '#SolUrgentCase-Yes',
     //caseUrgentNo: '#solUrgentCase-No',
-    caseUrgentYes: '#solUrgentCase-Yes',
-    caseUrgentNo: '#solUrgentCase-No',
+    caseUrgentYes: '#solUrgentCase_Yes',
+    caseUrgentNo: '#solUrgentCase_No',
     //caseUrgentSupportingInfoTextBox: '#SolUrgentCaseSupportingInformation',
     caseUrgentSupportingInfoTextBox: '#solUrgentCaseSupportingInformation',
+    reconciliationWithApplicant1: '#solStatementOfReconciliationCertify_Yes',
 
-    reconciliationWithThePetitioner: '#SolStatementOfReconciliationCertify-Yes',
-    reconciliationWithApplicant1: '#solStatementOfReconciliationCertify-Yes',
-
-    namesAndAddressesOfPersonsQualified: '#solStatementOfReconciliationDiscussed-Yes',
-    petitionerBelievesFactsTrue: '#statementOfTruth-Yes',
-    applicant1_BelievesFactsTrue: '#statementOfTruth-Yes',
-
-    amAuthorisedByPetitionerToSign: '#solSignStatementofTruth-Yes',
-    amAuthorisedByApplicant1ToSign: '#solSignStatementOfTruth-Yes',
+    namesAndAddressesOfPersonsQualified: '#solStatementOfReconciliationDiscussed_Yes',
+    applicant1_BelievesFactsTrue: '#statementOfTruth_Yes',
+    amAuthorisedByApplicant1ToSign: '#solSignStatementOfTruth_Yes',
     yourName: '#solStatementOfReconciliationName',
     nameOfYourFirm: '#solStatementOfReconciliationFirm',
-    howToServeRespondent:'#SolServiceMethod-courtService',
+    howToServeRespondent:'#SolServiceMethod_courtService',
     serveRespondentPersonalService:'#solServiceMethod-personalService',
-    prayerHasBeenGiven:'#prayerHasBeenGiven-Yes',
+    prayerHasBeenGiven:'#prayerHasBeenGiven_Yes',
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
   },
 
   async fillFormAndSubmit(urgent) {
-    // nfdiv change in url
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
     await I.runAccessibilityTest();
 

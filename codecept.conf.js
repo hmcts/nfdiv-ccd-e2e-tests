@@ -59,7 +59,7 @@ exports.config = {
   mocha: {
     reporterOptions: {
       reportDir: testConfig.TestOutputDir,
-      reportName: 'Divorce CCD E2E Tests',
+      reportName: 'NoFaultDivorce CCD E2E Tests',
       inlineAssets: true
     }
   },

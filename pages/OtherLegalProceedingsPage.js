@@ -3,7 +3,7 @@ const I = actor();
 module.exports = {
 
   fields: {
-    existingCourtProceedings: '#legalProceedings-No',
+    existingCourtProceedings: '#legalProceedings_No',
     submit: 'button[type="submit"]'
   },
 
