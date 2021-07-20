@@ -32,6 +32,7 @@ const paymentType = {
 
 const states = {
   SUBMITTTED: 'Submitted',
+  AWAITING_HWF:'AwaitingHWFDecision',
   ISSUED: 'Issued',
   REJECTED: 'Rejected',
   DEFENDED_DIVORCE: 'DefendedDivorce',
@@ -78,6 +79,9 @@ const eventDisplayName = {
 
 const events = {
   HWF_ACCEPT_AWAIT_DECISION:'hwfApplicationAcceptedfromAwaitingHWFDecision',
+  SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
+  HWF_AWAITING_DECISION:'AwaitingHWFDecision',
+  DRAFT_TO_SUBMITTED:'Submitted',
   ISSUE_FROM_SUBMITTED:'issueFromSubmitted',
   ISSUE_AOS:'issueAos',
   START_AOS: 'startAos',

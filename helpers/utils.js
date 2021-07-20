@@ -48,6 +48,45 @@ async function getUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getSolicitorUserToken() {
+  logger.info('.........Getting Solicitor User Token');
+
+  // Setup Details
+  const username = testConfig.TestEnvSolUser;
+  const password = testConfig.TestEnvSolPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
+
 async function getUserId(authToken) {
   logger.info('Getting User Id');
 
@@ -95,9 +134,21 @@ async function getServiceToken() {
 }
 
 async function createCaseInCcd(dataLocation = 'data/ccd-basic-data.json') {
-  const saveCaseResponse = await createCaseAndFetchResponse(dataLocation).catch(error => {
+  const saveCaseResponse = await createCaseInCcd(dataLocation).catch(error => {
     console.log(error);
   });
+
+  const caseId = JSON.parse(saveCaseResponse).id;
+  logger.info('Created case with id %s', caseId);
+  return caseId;
+}
+
+
+async function createNFDCaseInCcd(dataLocation = 'data/ccd-nfdiv-case-draft.json') {
+  const saveCaseResponse = await createNFDCaseAndFetchResponse(dataLocation).catch(error => {
+    console.log(error);
+  });
+
   const caseId = JSON.parse(saveCaseResponse).id;
   logger.info('Created case with id %s', caseId);
   return caseId;
@@ -114,8 +165,8 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
   logger.info('Creating Case');
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/DIVORCE/event-triggers/hwfCreate/token`;
-  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/DIVORCE/cases`;
+  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/event-triggers/AwaitingHWFDecision/token`;
+  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases`;
 
   const startCaseOptions = {
     method: 'GET',
@@ -128,9 +179,11 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
   };
 
   const startCaseResponse = await request(startCaseOptions);
-  console.log(startCaseResponse);
+  console.log('........The StartCase Response is ' + startCaseResponse);
 
   const eventToken = JSON.parse(startCaseResponse).token;
+
+  console.log('........The eventToken  is ' + eventToken);
 
   var data = fs.readFileSync(dataLocation);
   var saveBody = {
@@ -158,9 +211,61 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
   return saveCaseResponse;
 }
 
-async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-update-data.json') {
+async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
-  const authToken = await getUserToken();
+  const authToken = await getSolicitorUserToken();
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Creating Case');
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/event-triggers/solicitor-create-application/token`;
+  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data = fs.readFileSync(dataLocation);
+  var saveBody = {
+    event: {
+      id: 'solicitor-create-application'
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  return saveCaseResponse;
+}
+
+async function updateNFDCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
+
+  const authToken = await getSolicitorUserToken();
 
   const userId = await getUserId(authToken);
 
@@ -169,8 +274,8 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-update-
   logger.info('Updating case with id %s and event %s', caseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/DIVORCE/cases/${caseId}/event-triggers/${eventId}/token`;
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/DIVORCE/cases/${caseId}/events`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases/${caseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
@@ -212,6 +317,65 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-update-
 
   return saveEventResponse;
 }
+
+
+async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-update-data.json') {
+
+  const authToken = await getUserToken();
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating case with id %s and event %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE18/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data = fs.readFileSync(dataLocation);
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating Case',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
+
+
 const getBaseUrl = () => {
   return 'manage-case.aat.platform.hmcts.net';
 };
@@ -235,8 +399,10 @@ function formatDateToCcdDisplayDate(givenDate = new Date()) {
 
 module.exports = {
   createCaseInCcd,
+  createNFDCaseInCcd,
   createCaseAndFetchResponse,
   updateCaseInCcd,
+  updateNFDCaseInCcd,
   getBaseUrl,
   datechange,
   formatDateToCcdDisplayDate,
