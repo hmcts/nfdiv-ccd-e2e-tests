@@ -11,7 +11,8 @@ const env = testConfig.TestEnv;
 const months = ['Jan', 'Feb', 'Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 async function getUserToken() {
-  logger.info('Getting User Token');
+
+  logger.info('~~~~~~~~~~~~~Getting CaseWorker User Token');
 
   // Setup Details
   const username = testConfig.TestEnvCWUser;
@@ -263,10 +264,16 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
   return saveCaseResponse;
 }
 
-async function updateNFDCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
+async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
 
-  const authToken = await getSolicitorUserToken();
+  let authToken
 
+  if(userLoggedIn == 'Solicitor'){
+    authToken = await getSolicitorUserToken();
+  }
+  if(userLoggedIn == 'Caseworker'){
+    authToken = await getUserToken();
+  }
   const userId = await getUserId(authToken);
 
   const serviceToken = await getServiceToken();
@@ -317,7 +324,6 @@ async function updateNFDCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-
 
   return saveEventResponse;
 }
-
 
 async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-update-data.json') {
 

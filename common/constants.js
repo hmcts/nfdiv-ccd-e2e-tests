@@ -77,9 +77,21 @@ const eventDisplayName = {
   APPLICATION_PAID_SUBMIITED:'Application Paid and submitted'
 };
 
+
+const user = {
+  SOLS : 'Solicitor',
+  CW : 'Caseworker',
+  LA : 'LegalAdminstrator',
+  CA : 'CourtAdmin',
+  SU : 'SuperUser',
+  RSA: 'RespondentSolicitorAdmin',
+  RS:  'RespondentSolicitor'
+};
+
 const events = {
   HWF_ACCEPT_AWAIT_DECISION:'hwfApplicationAcceptedfromAwaitingHWFDecision',
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
+  CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
   DRAFT_TO_SUBMITTED:'Submitted',
   ISSUE_FROM_SUBMITTED:'issueFromSubmitted',
@@ -107,6 +119,7 @@ module.exports = {
   reasonsForDivorce,
   states,
   events,
+  user,
   signOut,
   paymentType,
   eventDisplayName,

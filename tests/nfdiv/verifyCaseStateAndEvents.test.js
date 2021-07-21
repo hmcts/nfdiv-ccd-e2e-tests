@@ -1,5 +1,5 @@
 const { createCaseInCcd, createNFDCaseInCcd, updateCaseInCcd,updateNFDCaseInCcd} = require('../../helpers/utils');
-const { states, events } = require('../../common/constants');
+const { states, events , user} = require('../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../config');
 
@@ -11,14 +11,17 @@ let caseId;
 
 Feature('Verify NFD  Case States and Events');
 
-Scenario('Create NFD Case in CCD and verify the states and events as journey progresses ', async function (I) {
-  // Start with a case submitted
-  caseId = await createNFDCaseInCcd('data/ccd-nfdiv-draft-case.json');
+Scenario('Create NFD Case in CCD and verify the states Draft, AwaitingHWF and Submitted ', async function (I) {
 
+  caseId = await createNFDCaseInCcd('data/ccd-nfdiv-draft-case.json');
   console.log( '.....caseCreated in CCD and caseId is...... ' + caseId);
 
-  const submitted = await updateNFDCaseInCcd(caseId, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-to-submitted-state.json');
-  verifyState(submitted, states.AWAITING_HWF);
+   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseId, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-to-submitted-state.json');
+   verifyState(awaitingHWF, states.AWAITING_HWF);
+
+   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+   verifyState(hwfAccepted, states.SUBMITTTED);
+
 
   // const issued = await updateCaseInCcd(caseId, events.ISSUE_FROM_SUBMITTED);
   // verifyState(issued, states.ISSUED);
