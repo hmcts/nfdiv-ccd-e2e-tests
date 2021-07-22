@@ -5,8 +5,8 @@ module.exports = {
 
   fields: {
     addNewButton: 'button[type="button"]',
-    chooseFile: 'input[id="documentsUploaded_0_documentLink"]',
-    fileComment: '#documentsUploaded_0_documentComment',
+    chooseFile: 'input[id="applicant1DocumentsUploaded_0_documentLink"]',
+    fileComment: '#applicant1DocumentsUploaded_0_documentComment',
     submit: 'button[type="submit"]'
   },
 
@@ -20,7 +20,7 @@ module.exports = {
      await I.click(this.fields.addNewButton);
      await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
      await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
-    await I.wait(5);
+     await I.wait(5);
 
 
     // existing code in master

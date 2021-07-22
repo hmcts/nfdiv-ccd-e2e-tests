@@ -88,6 +88,44 @@ async function getSolicitorUserToken() {
 }
 
 
+async function getCourtAdminUserToken() {
+  logger.info('.........Getting CourtAdmin User Token');
+
+  // Setup Details
+  const username = testConfig.TestEnvCourtAdminUser;
+  const password = testConfig.TestEnvCourtAdminPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
 async function getUserId(authToken) {
   logger.info('Getting User Id');
 
@@ -274,6 +312,10 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   if(userLoggedIn == 'Caseworker'){
     authToken = await getUserToken();
   }
+  if(userLoggedIn == 'CourtAdmin'){
+    authToken = await getCourtAdminUserToken();
+  }
+
   const userId = await getUserId(authToken);
 
   const serviceToken = await getServiceToken();
@@ -379,8 +421,6 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 
   return saveEventResponse;
 }
-
-
 
 const getBaseUrl = () => {
   return 'manage-case.aat.platform.hmcts.net';

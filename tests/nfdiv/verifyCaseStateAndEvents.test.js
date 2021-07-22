@@ -22,12 +22,13 @@ Scenario('Create NFD Case in CCD and verify the states Draft, AwaitingHWF and Su
    const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
    verifyState(hwfAccepted, states.SUBMITTTED);
 
+   const issued = await updateNFDCaseInCcd(user.CW,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-marriage-data.json');
+   verifyState(issued, states.ISSUED);
 
-  // const issued = await updateCaseInCcd(caseId, events.ISSUE_FROM_SUBMITTED);
-  // verifyState(issued, states.ISSUED);
-  //
-  // const issueAOS = await updateCaseInCcd(caseId, events.ISSUE_AOS);
-  // verifyState(issueAOS, states.AOS_AWAITING);
+
+  const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUE_AOS,'data/ccd-update-marriage-data.json');
+  verifyState(issueAosPack, states.AOS_AWAITING);
+
   //
   // const startAOS = await updateCaseInCcd(caseId, events.START_AOS);
   // verifyState(startAOS, states.AOS_STARTED);

@@ -9,7 +9,7 @@ module.exports = {
   },
 
   async submitLogin(email, password) {
-    await I.wait(10);
+    await I.wait(30);
     await I.fillField(this.fields.email, email);
     await I.fillField(this.fields.password, password);
     await I.waitForNavigationToComplete(this.fields.submit);

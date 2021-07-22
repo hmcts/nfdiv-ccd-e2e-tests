@@ -96,7 +96,9 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
   await I.wait(7);
   await I.shouldBeOnCaseListPage();
 
-  // Add Note
+  // TODO Add Note
+
+
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
