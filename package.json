@@ -8,6 +8,7 @@
     "test:fullfunctional": "TESTS_FOR_ACCESSIBILITY='true' codeceptjs run-multiple parallel --steps --reporter mochawesome",
     "test:test-e2e-standalone": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/solicitorCreateJointApplication.test.js  -c ./ --steps",
     "test:test-verify": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/verifyCaseStateAndEvents.test.js  -c ./ --steps",
+    "test:test-shareACase": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/shareACaseAndMoveToHolding.test.js  -c ./ --steps",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",

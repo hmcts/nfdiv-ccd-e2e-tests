@@ -1,0 +1,15 @@
+{
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "marriagePlaceOfMarriage": "Point Pedro",
+  "legalProceedingsExist": "No",
+  "applicant2SolicitorAgreeToReceiveEmails": "Yes",
+  "jurisdictionAgree": "Yes",
+  "confirmReadPetition": "Yes",
+  "miniApplicationLink": {
+    "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/f77775c2-07ba-44ee-911e-f3f278d597d1",
+    "document_filename": "mini-application-1626959734462483.pdf",
+    "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/f77775c2-07ba-44ee-911e-f3f278d597d1/binary"
+  },
+  "agreeToCosts": "Yes",
+  "dateAosSubmitted": "2021-07-22T14:00:29.205"
+}

@@ -13,7 +13,8 @@ const reasonsForDivorce = {
 
 const signOut = 'Sign out';
 
-const currentCaseType = 'NO_FAULT_DIVORCE18';
+const currentCaseType = 'NFD';
+
 
 const soleOrJoint = {
   SOLE: 'SoleApplicant',
@@ -40,6 +41,7 @@ const states = {
   AOS_AWAITING_SOL: 'AosAwaitingSol',
   AOS_AWAITING: 'AwaitingAos',
   AOS_STARTED: 'AosStarted',
+  AOS_DRAFTED:'AosDrafted',
   AWAITING_ANSWER: 'AosSubmittedAwaitingAnswer',
   AWAITING_DN: 'AwaitingDecreeNisi',
   AWAITING_LA: 'AwaitingLegalAdvisorReferral',
@@ -96,6 +98,7 @@ const events = {
   DRAFT_TO_SUBMITTED:'Submitted',
   ISSUED_FROM_SUBMITTED:'caseworker-issue-application',
   ISSUE_AOS:'caseworker-issue-aos',
+  AOS_AWAITING_TO_AOS_DRAFTED:'solicitor-draft-aos',
   START_AOS: 'startAos',
   AOS_SUBMITTED_DEFENDED:'aosSubmittedDefended',
   ANSWER_NOT_RECEIVED:'answerNotReceived',

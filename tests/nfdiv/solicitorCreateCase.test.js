@@ -1,5 +1,6 @@
 const { paymentType, yesorno, soleOrJoint} = require('../../common/constants');
 const testconfig = require('./../config');
+
 const { reasonsForDivorce } = require('../../common/constants');
 
 let caseNumber;

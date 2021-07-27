@@ -37,7 +37,7 @@ module.exports = {
     await I.wait(3);
     await I.fillField(this.fields.addressLine1_Building, 'Building 007');
     await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
-    await I.fillField(this.fields.applicant1_email, 'JamesStPatrick@power.com');
+    await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
 
     await I.selectOption(this.fields.keepPetitionerContactDetails, '2: keep');
     await I.wait(2);

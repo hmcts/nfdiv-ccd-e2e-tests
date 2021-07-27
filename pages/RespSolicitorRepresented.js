@@ -11,8 +11,6 @@ module.exports = {
     applicant2SolicitorPhone: '#applicant2SolicitorPhone',
     applicant2SolicitorEmail: '#applicant2SolicitorEmail',
     applicant2SolicitorAddress: '#applicant2SolicitorAddress',
-    isDigitalRespondentCase: '#applicant2SolicitorIsDigital_Yes',
-    isNotDigitalRespondentCase: '#applicant2SolicitorIsDigital_No',
     searchOrganisation:'#search-org-text',
     orgNamesText: 'Organisation name and address',
     orgSearchBar: '#search-org-text',
@@ -29,10 +27,9 @@ module.exports = {
     await I.fillField(this.fields.applicant2SolicitorName, 'James and Co');
     await I.fillField(this.fields.applicant2SolicitorReference, '123645');
     await I.fillField(this.fields.applicant2SolicitorPhone, '02086425142');
-    await I.fillField(this.fields.applicant2SolicitorEmail, 'testemail@gmail.com');
+    await I.fillField(this.fields.applicant2SolicitorEmail, 'kasi.subramaniam@solirius.com');
     await I.fillField(this.fields.applicant2SolicitorAddress, '101 Reede Road, RM10 8DU');
 
-    await I.click(this.fields.isDigitalRespondentCase);
     await I.waitForElement(this.fields.searchOrganisation);
     await I.fillField(this.fields.searchOrganisation, 'DivRespondentSolicitorFirm');
     await I.waitForElement(this.fields.orgResultTable);
@@ -51,10 +48,8 @@ module.exports = {
 
     await I.fillField(this.fields.applicant2SolicitorName, 'MAMA AJASCO');
     await I.fillField(this.fields.applicant2SolicitorReference, 'AWS11236');
-    await I.fillField(this.fields.respondentSolicitorPhoneNumber, '07712345670');
     await I.fillField(this.fields.applicant2SolicitorEmail, 'respsolicitor@pettyfrance.com');
     await I.fillField(this.fields.applicant2SolicitorAddress, '101 Reede Road, RM10 8DU');
-    await I.click(this.fields.isNotDigitalRespondentCase);
 
     await I.waitForText(this.fields.orgNamesText);
     await I.fillField(this.fields.orgSearchBar, 'Divorce-AAT-2');

@@ -11,6 +11,7 @@ module.exports = {
     caseType: 'select[id="cc-case-type"]',
     applicationType: 'select[id="applicationType"]',
     divorceOrDissolution:'#divorceOrDissolution-divorce',
+    dissolution:'#divorceOrDissolution-dissolution',
 
     event: 'select[id="cc-event"]',
     submit: 'button[type="submit"]'
@@ -57,6 +58,9 @@ module.exports = {
       //Sole
       await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
       await I.click(this.fields.divorceOrDissolution);
+      //await I.click(this.fields.divorceOrDissolution);
+
+
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(1);
     //}

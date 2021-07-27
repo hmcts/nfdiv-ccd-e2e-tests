@@ -17,11 +17,11 @@ module.exports = {
     const isAttachFileSupportedBrowser = !(await I.isMicrosoftEdgeOrSafariBrowser());
 
     // TODO Remove , once sorted for Chromium browswer .
-     await I.click(this.fields.addNewButton);
-     await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
-     await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
-     await I.wait(5);
-
+      //await I.click(this.fields.addNewButton);
+      // await I.wait(5);
+      // await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
+      // await I.wait(8);
+      // await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
 
     // existing code in master
     if (testConfig.TestForCrossBrowser && isAttachFileSupportedBrowser) {
