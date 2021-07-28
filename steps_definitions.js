@@ -58,6 +58,7 @@ const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyP
 const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
 const DivorceApplicationDetailsPage = require('./pages/DivorceApplicationDetailsPage');
 const IssueApplicationEventSummaryDescPage = require('./pages/IssueApplicationEventSummaryDescriptionPage');
+const GeneralEmailPage = require('./pages/GeneralEmailPage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -109,6 +110,11 @@ module.exports = function () {
     ShouldBeAbleToFilterAnUrgentCase: function (urgent, state, caseNum) {
       return CaseListPage.urgentCaseFilter(urgent, state, caseNum);
     },
+
+    shouldBeAbleToFilterAndSearchByCaseNumber: function (caseNum) {
+      return CaseListPage.filterByCaseNumber(caseNum);
+    },
+
 
     clickCreateCase: function() {
       return CreateCasePage.clickCreateCase();
@@ -238,6 +244,7 @@ module.exports = function () {
       return StatementOfTruthAndRecPage.fillFormAndSubmit(urgent);
     },
 
+
     paymentWithHelpWithFeeAccount: function() {
       return FeeAccountPaymentCaseSubmissionPage.fillFormAndSubmit();
     },
@@ -254,6 +261,13 @@ module.exports = function () {
       return HWFReferencePage.fillFormAndSubmit(caseNumber);
     },
 
+    createGeneralEmailDetails:function(caseNumber){
+      return GeneralEmailPage.fillFormAndSubmit(caseNumber);
+    },
+
+    fillGeneralEmailEventSummary:function(caseNumber){
+      return GeneralEmailPage.fillEventSummaryAndDetail(caseNumber);
+    },
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
       return CaseSubmissionOrderSummaryPage.fillFormAndSubmit(paymentType);
     },

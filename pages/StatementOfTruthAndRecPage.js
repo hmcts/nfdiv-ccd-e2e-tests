@@ -13,18 +13,19 @@ module.exports = {
     reconciliationWithApplicant1: '#solStatementOfReconciliationCertify_Yes',
 
     namesAndAddressesOfPersonsQualified: '#solStatementOfReconciliationDiscussed_Yes',
-    applicant1_BelievesFactsTrue: '#statementOfTruth_Yes',
+    applicant1_BelievesFactsTrue: '#applicant1StatementOfTruth_Yes',
     amAuthorisedByApplicant1ToSign: '#solSignStatementOfTruth_Yes',
     yourName: '#solStatementOfReconciliationName',
     nameOfYourFirm: '#solStatementOfReconciliationFirm',
     howToServeRespondent:'#SolServiceMethod_courtService',
     serveRespondentPersonalService:'#solServiceMethod-personalService',
-    prayerHasBeenGiven:'#prayerHasBeenGiven_Yes',
+    prayerHasBeenGiven:'#applicant1PrayerHasBeenGiven_Yes',
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
   },
 
   async fillFormAndSubmit(urgent) {
+
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
     await I.runAccessibilityTest();
 

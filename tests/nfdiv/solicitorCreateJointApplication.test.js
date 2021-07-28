@@ -65,8 +65,8 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
   //
   // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Draft to Submit   ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
   //
-  // await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
-  //
+   // await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+
   // // Case Submission  - Help With Fees Page and Fees Reference Number.
   // await I.paymentWithHelpWithFeeAccount();
   //

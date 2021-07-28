@@ -81,5 +81,19 @@ module.exports = {
     await I.click('Last Modified');
     await I.waitForText(caseNum);
     await I.click(caseNum);
+  },
+
+  async shouldBeAbleToFilterAndSearch(caseNum) {
+    await I.waitForElement(this.selectors.jurisdictionSelect);
+    await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
+    await I.waitForElement(this.selectors.caseTypeSelect);
+    await I.retry(5).selectOption(this.selectors.caseTypeSelect, currentCaseType);
+    await I.see('Create case');
+    await I.click('Apply');
+    await I.waitForText('Last Modified');
+    await I.click('Last Modified');
+    await I.waitForText(caseNum);
+    await I.click(caseNum);
   }
+
 };
