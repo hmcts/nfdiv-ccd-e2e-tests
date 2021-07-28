@@ -1,72 +1,33 @@
 {
-  "applicant1ContactDetailsConfidential": "keep",
-  "applicationType": "jointApplication",
-  "applicant1SolicitorAgreeToReceiveEmails": "Yes",
-  "applicant1SolicitorOrganisationPolicy": {
-    "Organisation": {
-      "OrganisationID": "HEBFGBR",
-      "OrganisationName": "NFD Solicitor Organisation"
-    },
-    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
-  },
-  "marriageMarriedInUk": "Yes",
-  "marriageDate": "2011-04-09",
-  "solUrgentCase": "No",
-  "applicant2SolicitorIsDigital": "Yes",
-  "applicant1Email": "JamesStPatrick@power.com",
-   "applicant1Gender": "male",
-  "applicant2NameDifferentToMarriageCertificate": "No",
+  "solUrgentCase": "Yes",
   "solSignStatementOfTruth": "Yes",
-  "applicant2SolicitorEmail": "testemail@gmail.com",
-  "marriageIsSameSexCouple": "No",
-  "applicant2SolicitorAddress": "101 Reede Road, RM10 8DU",
   "applicant1SolicitorPhone": "02086431254",
-  "solStatementOfReconciliationName": "Prayer",
+  "labelContentApplicant2UC": "Applicant 2",
+  "solStatementOfReconciliationName": "The last of the",
   "payments": [
     {
-      "id": "72a1f784-f236-45f2-9c49-8d04dfe5eced",
+      "id": "6d9f60aa-019f-4548-bca0-73c072ba37c2",
       "value": {
+        "paymentDate": null,
         "paymentFeeId": "FEE0001",
         "paymentAmount": 55000,
         "paymentSiteId": "AA04",
         "paymentStatus": "success",
         "paymentChannel": "online",
+        "paymentReference": null,
         "paymentTransactionId": "ge7po9h5bhbtbd466424src9tk"
       }
     }
   ],
   "app2ContactMethodIsDigital": "Yes",
-  "marriageApplicant2Name": "Tasha St Patrick",
-  "divorceOrDissolution": "divorce",
   "statementOfTruth": "Yes",
-  "applicant2Gender": "female",
-  "applicant2SolicitorReference": "123645",
-  "applicant1NameDifferentToMarriageCertificate": "No",
-  "applicant2SolicitorPhone": "02086425142",
-  "applicant1FinancialOrder": "No",
-  "applicant2LastName": "St Patrick",
-  "applicant1PhoneNumber": "02086452154",
-  "applicant1ScreenHasMarriageBroken": "Yes",
   "solStatementOfReconciliationCertify": "Yes",
   "solStatementOfReconciliationFirm": "Prayer",
-  "divorceCostsClaim": "No",
   "solPaymentHowToPay": "feesHelpWith",
-  "applicant1SolicitorEmail": "sols1@mailinator.com",
-  "applicant2SolicitorOrganisationPolicy": {
-    "Organisation": {
-      "OrganisationID": "3I4PJR6",
-      "OrganisationName": "DivRespondentSolicitorFirm"
-    },
-    "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
-  },
-  "applicant2FirstName": "Tasha",
-  "applicant2LanguagePreferenceWelsh": "No",
-  "applicant1FirstName": "E2E James",
-  "applicant1SolicitorName": "E2E TEST SOLICITOR NAME",
   "applicationFeeOrderSummary": {
     "Fees": [
       {
-        "id": "b5780fa2-9da8-4bc8-b4f8-702497cdacff",
+        "id": "f14f9d57-4720-4913-a252-b739a4d4c163",
         "value": {
           "FeeCode": "FEE0002",
           "FeeAmount": "55000",
@@ -75,26 +36,9 @@
         }
       }
     ],
-    "PaymentTotal": "55000",
-    "PaymentReference": null
+    "PaymentTotal": "55000"
   },
   "prayerHasBeenGiven": "Yes",
-  "applicant2SolicitorName": "James and Co",
-  "legalProceedings": "No",
-  "applicant1LastName": "Patterson",
-  "applicant1LanguagePreferenceWelsh": "No",
-  "divorceWho": "wife",
-  "helpWithFeesReferenceNumber": "HWF-325-326",
-  "marriageApplicant1Name": "James St Patrick",
-  "selectedDivorceCentreSiteId": "AA07",
-  "solStatementOfReconciliationDiscussed": "Yes",
-  "jurisdictionLegalConnections": [
-    "I",
-    "H",
-    "G"
-  ],
-  "applicant2SolicitorRepresented": "Yes",
-  "solServiceMethod": "personalService",
-  "divorceUnit": "serviceCentre",
-  "applicant1SolicitorReference": "AWS11234"
+  "helpWithFeesReferenceNumber": "HWF-325",
+  "solStatementOfReconciliationDiscussed": "Yes"
 }
