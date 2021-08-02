@@ -53,8 +53,8 @@ async function getSolicitorUserToken() {
   logger.info('.........Getting Solicitor User Token');
 
   // Setup Details
-  const username = testConfig.TestEnvSolUser;
-  const password = testConfig.TestEnvSolPassword;
+  const username = testConfig.TestEnvSolUser2;
+  const password = testConfig.TestEnvSolPassword2;
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 

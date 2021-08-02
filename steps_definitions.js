@@ -61,7 +61,9 @@ const IssueApplicationEventSummaryDescPage = require('./pages/IssueApplicationEv
 const GeneralEmailPage = require('./pages/GeneralEmailPage');
 const GeneralOrderPage = require('./pages/GeneralOrderPage');
 const GeneralReferralPage = require('./pages/GeneralReferralPage');
-
+const CaseNotesPage = require('./pages/CaseNotesPage');
+const ChangeApplicationTypePage = require('./pages/ChangeApplicationTypePage');
+const UpdateDueDatePage = require('./pages/UpdateDueDatePage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -286,6 +288,30 @@ module.exports = function () {
 
     createGeneralReferralEventSummary:function(caseNumber){
       return GeneralReferralPage.fillEventSummaryAndDetail(caseNumber);
+    },
+
+    createAddCaseNotes:function(caseNumber){
+      return CaseNotesPage.fillFormAndSubmit(caseNumber);
+    },
+
+    createAddCaseNoteEventSummary:function(caseNumber){
+      return CaseNotesPage.fillEventSummaryAndDetail(caseNumber);
+    },
+
+    updateApplicationType:function(caseNumber){
+      return ChangeApplicationTypePage.fillFormAndSubmit(caseNumber);
+    },
+
+    updateApplicationTypeEventSummary:function(caseNumber){
+      return ChangeApplicationTypePage.fillEventSummaryAndDetail(caseNumber);
+    },
+
+    updateDueDate:function(){
+      return UpdateDueDatePage.fillFormAndSubmit();
+    },
+
+    updateDueDateEventSummary:function(caseNumber){
+      return UpdateDueDatePage.fillEventSummaryAndDetail(caseNumber);
     },
 
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
