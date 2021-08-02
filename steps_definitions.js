@@ -59,6 +59,9 @@ const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAnd
 const DivorceApplicationDetailsPage = require('./pages/DivorceApplicationDetailsPage');
 const IssueApplicationEventSummaryDescPage = require('./pages/IssueApplicationEventSummaryDescriptionPage');
 const GeneralEmailPage = require('./pages/GeneralEmailPage');
+const GeneralOrderPage = require('./pages/GeneralOrderPage');
+const GeneralReferralPage = require('./pages/GeneralReferralPage');
+
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -268,6 +271,23 @@ module.exports = function () {
     fillGeneralEmailEventSummary:function(caseNumber){
       return GeneralEmailPage.fillEventSummaryAndDetail(caseNumber);
     },
+
+    createGeneralOrderDetails:function(caseNumber){
+      return GeneralOrderPage.fillFormAndSubmit(caseNumber);
+    },
+
+    createGeneralOrderEventSummary:function(caseNumber){
+      return GeneralOrderPage.fillEventSummaryAndDetail(caseNumber);
+    },
+
+    createGeneralReferral:function(caseNumber){
+      return GeneralReferralPage.fillFormAndSubmit(caseNumber);
+    },
+
+    createGeneralReferralEventSummary:function(caseNumber){
+      return GeneralReferralPage.fillEventSummaryAndDetail(caseNumber);
+    },
+
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
       return CaseSubmissionOrderSummaryPage.fillFormAndSubmit(paymentType);
     },

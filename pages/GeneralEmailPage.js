@@ -14,9 +14,6 @@ module.exports = {
     checkInfoBelow:'Check the information below carefully.',
     eventSummary:'#field-trigger-summary',
     eventDescription:'#field-trigger-description',
-
-
-
     submit: 'button[type="submit"]'
   },
 

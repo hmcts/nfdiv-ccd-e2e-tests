@@ -60,13 +60,9 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
    caseNumber = caseNumber.replace(/\D/gi, '');
    console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-   //
-  // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~  Solicitor Create Case Done ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
   //
-  // console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Draft to Submit   ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
+  //  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
   //
-   // await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
-
   // // Case Submission  - Help With Fees Page and Fees Reference Number.
   // await I.paymentWithHelpWithFeeAccount();
   //
@@ -88,17 +84,13 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
   // console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
   //
   // await I.wait(8);
-
-  // Login as CaseWorker and Validate HWF Reference
-
+  //
+  // //Login as CaseWorker and Validate HWF Reference
   // console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
   //
   // await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
   // await I.wait(7);
   // await I.shouldBeOnCaseListPage();
-  //
-  // // TODO Add Note
-  //
   //
   // await I.shouldBeOnCaseListPage();
   // await I.wait(5);
@@ -117,7 +109,7 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
   // await I.checkStateAndEvent('Submitted','HWF application accepted');
   //
   //  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
-  //
+
   // //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
   // console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
   //
