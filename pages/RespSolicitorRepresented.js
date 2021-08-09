@@ -5,6 +5,8 @@ module.exports = {
   fields: {
     solicitorNotRepresented: '#respondentSolicitorRepresented-No',
     applicant2SolicitorRepresented: '#applicant2SolicitorRepresented_Yes',
+    applicant2SolicitorNotRepresented: '#applicant2SolicitorRepresented_No',
+
     respondentServiceAddress:'#D8DerivedRespondentCorrespondenceAddr',
     applicant2SolicitorName: '#applicant2SolicitorName',
     applicant2SolicitorReference: '#applicant2SolicitorReference',
@@ -58,5 +60,26 @@ module.exports = {
     await I.click('Select');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
+  },
+
+  async fillFormForNotRepresentedRespondent(){
+    await I.waitInUrl('solicitorCreateRespondentServiceDetails');
+    await I.runAccessibilityTest();
+    await I.click(this.fields.applicant2SolicitorNotRepresented);
+    await I.wait(1);
+
+    await I.fillField(this.fields.applicant2SolicitorName, 'MAMA AJASCO');
+    await I.fillField(this.fields.applicant2SolicitorReference, 'AWS11236');
+    await I.fillField(this.fields.applicant2SolicitorEmail, 'respsolicitor@pettyfrance.com');
+    await I.fillField(this.fields.applicant2SolicitorAddress, '101 Reede Road, RM10 8DU');
+
+    await I.waitForText(this.fields.orgNamesText);
+    await I.fillField(this.fields.orgSearchBar, 'Divorce-AAT-2');
+    await I.waitForElement(this.fields.orgResultTable);
+    await I.see('Select');
+    await I.click('Select');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(1);
   }
+
 };

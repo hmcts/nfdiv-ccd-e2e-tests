@@ -1,92 +1,61 @@
 {
-"applicant1ContactDetailsConfidential": "keep",
-"applicationType": "soleApplication",
-"labelContentTheApplicant2UC": "Applicant 2",
-"applicant1SolicitorAgreeToReceiveEmails": "Yes",
-"applicant1SolicitorOrganisationPolicy": {
-"Organisation": {
-"OrganisationID": "HEBFGBR",
-"OrganisationName": "NFD Solicitor Organisation"
-},
-"OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
-},
-"marriageMarriedInUk": "Yes",
-"marriageDate": "2011-04-09",
-"applicant1LegalProceedings": "No",
-"applicant1Email": "kasi.subramaniam@solirius.com",
-"applicant1Gender": "male",
-"labelContentUnionType": "divorce",
-"applicant2NameDifferentToMarriageCertificate": "No",
-"applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
-"marriageIsSameSexCouple": "No",
-"labelContentTheApplicant2": "applicant 2",
-"applicant2SolicitorAddress": "101 Reede Road, RM10 8DU",
-"documentsGenerated": [
-{
-"id": "c3bb11ec-8019-466d-9b0a-3ec60e4dfa7f",
-"value": {
-"documentLink": {
-"document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/d6da650d-c492-4efb-8ab3-0449941fc5e1",
-"document_filename": "draft-mini-application-1627645144698233.pdf",
-"document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/d6da650d-c492-4efb-8ab3-0449941fc5e1/binary"
-},
-"documentType": "divorceApplication",
-"documentComment": null,
-"documentFileName": "draft-mini-application-1627645144698233.pdf",
-"documentDateAdded": null,
-"documentEmailContent": null
-}
-}
-],
-"applicant1SolicitorPhone": "02086431254",
-"labelContentApplicant2UC": "Applicant 2",
-"marriageApplicant2Name": "Tasha St Patrick",
-"divorceOrDissolution": "divorce",
-"applicant2Gender": "female",
-"applicant2SolicitorReference": "123645",
-"applicant1NameDifferentToMarriageCertificate": "No",
-"applicant2SolicitorPhone": "02086425142",
-"applicant1FinancialOrder": "No",
-"applicant2LastName": "Patrick",
-"applicant1PhoneNumber": "02086452154",
-"applicant1ScreenHasMarriageBroken": "Yes",
-"labelContentApplicant2": "applicant 2",
-"divorceCostsClaim": "No",
-"applicant1SolicitorEmail": "kasi.subramaniam@hmcts.net",
-"applicant1HomeAddress": {
-"County": "",
-"Country": "",
-"PostCode": "",
-"PostTown": "",
-"AddressLine1": "Building 007",
-"AddressLine2": "",
-"AddressLine3": ""
-},
-"applicant2SolicitorOrganisationPolicy": {
-"Organisation": {
-"OrganisationID": "3I4PJR6",
-"OrganisationName": "DivRespondentSolicitorFirm"
-},
-"OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
-},
-"applicant2FirstName": "Natasha",
-"applicant2LanguagePreferenceWelsh": "No",
-"labelContentUnionTypeUC": "Divorce",
-"applicant1FirstName": "E2E SoleJames",
-"applicant1SolicitorName": "App1 SOLICITOR NAME",
-"applicant2SolicitorName": "App2 Solicitor James and Co",
-"applicant1LastName": "Patterson",
-"applicant1LanguagePreferenceWelsh": "No",
-"divorceWho": "wife",
-"applicant2MiddleName": "E2E",
-"marriageApplicant1Name": "James St Patrick",
-"selectedDivorceCentreSiteId": "AA07",
-"jurisdictionLegalConnections": [
-"H",
-"I",
-"G"
-],
-"applicant2SolicitorRepresented": "Yes",
-"divorceUnit": "serviceCentre",
-"applicant1SolicitorReference": "AWS11234"
+  "applicant1ContactDetailsConfidential": "share",
+  "applicationType": "soleApplication",
+  "labelContentTheApplicant2UC": "The respondent",
+  "applicant1SolicitorAgreeToReceiveEmails": "No",
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "HEBFGBR",
+      "OrganisationName": "NFD Solicitor Organisation"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
+  },
+  "marriageMarriedInUk": "Yes",
+  "marriageDate": "2003-10-25",
+  "applicant1MiddleName": "McKenzie James",
+  "applicant1LegalProceedings": "No",
+  "applicant1Email": "nopamak@mailinator.com",
+  "applicant1Gender": "notGiven",
+  "labelContentUnionType": "divorce",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "marriageIsSameSexCouple": "Yes",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant1SolicitorPhone": "+1 (849) 349-3413",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "Raven Knapp",
+  "divorceOrDissolution": "divorce",
+  "applicant2Gender": "female",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant1FinancialOrder": "No",
+  "applicant2LastName": "Kane",
+  "applicant1PhoneNumber": "+1 (141) 489-5191",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentApplicant2": "respondent",
+  "applicant2CorrespondenceAddress": {
+    "AddressLine1": "1",
+    "AddressLine2": "1"
+  },
+  "applicant1SolicitorEmail": "juwahi@mailinator.com",
+  "applicant1HomeAddress": {
+    "AddressLine1": "1",
+    "AddressLine2": "1"
+  },
+  "applicant2FirstName": "Jamalia",
+  "labelContentUnionTypeUC": "Divorce",
+  "applicant1FirstName": "Beatrice",
+  "applicant1SolicitorName": "Calista Barry",
+  "applicant1LastName": "Vincent",
+  "applicant1LanguagePreferenceWelsh": "No",
+  "divorceWho": "wife",
+  "applicant2MiddleName": "Jermaine Wolf",
+  "marriageApplicant1Name": "Eugenia Palmer",
+  "selectedDivorceCentreSiteId": "AA07",
+  "jurisdictionLegalConnections": [
+    "I",
+    "G",
+    "H"
+  ],
+  "applicant2SolicitorRepresented": "No",
+  "divorceUnit": "serviceCentre",
+  "applicant1SolicitorReference": "Ipsum in praesentiu"
 }

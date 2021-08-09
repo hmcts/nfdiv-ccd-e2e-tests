@@ -116,7 +116,7 @@ const setupConfig = {
       browsers: getBrowserConfig('safari')
     }
   },
-  name: 'Probate-ExpertUI Cross-Browser Tests'
+  name: 'NoFaultDivorce-ExpertUI Cross-Browser Tests'
 };
 
 exports.config = setupConfig;
