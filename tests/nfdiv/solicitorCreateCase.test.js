@@ -95,7 +95,7 @@ Scenario('Solicitor create case and make payment', async (I) => {
   console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
-  await I.wait(7);
+  await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -108,11 +108,10 @@ Scenario('Solicitor create case and make payment', async (I) => {
 
    console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
-  //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
-  console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
-
-  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
-  await I.wait(7);
+  //Re-Login as CW  and Issue the Case
+  console.log('....... Login as CW And Issue the Case ............');
+  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);

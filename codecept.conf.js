@@ -2,7 +2,7 @@ const testConfig = require('./tests/config.js');
 
 exports.config = {
   tests: testConfig.TestPathToRun,
-  timeout: 90000,
+  timeout: 10000,
   output: testConfig.TestOutputDir,
   helpers: {
     Puppeteer: {
