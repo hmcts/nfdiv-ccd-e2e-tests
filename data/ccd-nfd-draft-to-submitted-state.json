@@ -1,106 +1,16 @@
 {
-"applicant1ContactDetailsConfidential": "keep",
-"applicationType": "jointApplication",
-"labelContentTheApplicant2UC": "Applicant 2",
-"applicant1SolicitorAgreeToReceiveEmails": "Yes",
-"applicant1SolicitorOrganisationPolicy": {
-"Organisation": {
-"OrganisationID": "HEBFGBR",
-"OrganisationName": "NFD Solicitor Organisation"
-},
-"OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
-},
-"marriageMarriedInUk": "Yes",
-"marriageDate": "2011-04-09",
 "solUrgentCase": "No",
-"applicant1LegalProceedings": "No",
-"applicant1Email": "kasi.subramaniam@solirius.com",
-"applicant1Gender": "male",
-"labelContentUnionType": "divorce",
-"applicant2NameDifferentToMarriageCertificate": "No",
-"solSignStatementOfTruth": "Yes",
-"applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
-"marriageIsSameSexCouple": "No",
-"labelContentTheApplicant2": "applicant 2",
-"applicant2SolicitorAddress": "101 Reede Road, RM10 8DU",
-"applicant1SolicitorPhone": "02086431254",
-"labelContentApplicant2UC": "Applicant 2",
-"solStatementOfReconciliationName": "PrayerName",
-"payments": [
-{
-"id": "e59c2ca8-ded6-48f1-957c-24099b648e14",
-"value": {
-"paymentFeeId": "FEE0001",
-"paymentAmount": 55000,
-"paymentSiteId": "AA04",
-"paymentStatus": "success",
-"paymentChannel": "online",
-"paymentTransactionId": "ge7po9h5bhbtbd466424src9tk"
-}
-}
-],
-"app2ContactMethodIsDigital": "Yes",
-"marriageApplicant2Name": "Tasha St Patrick",
-"divorceOrDissolution": "divorce",
-"applicant2Gender": "female",
-"applicant2SolicitorReference": "123645",
-"applicant1NameDifferentToMarriageCertificate": "No",
-"applicant2SolicitorPhone": "02086425142",
-"applicant1FinancialOrder": "No",
-"applicant2LastName": "Patrick",
-"applicant1PhoneNumber": "02086452154",
-"applicant1ScreenHasMarriageBroken": "Yes",
-"solStatementOfReconciliationCertify": "Yes",
-"labelContentApplicant2": "applicant 2",
-"solStatementOfReconciliationFirm": "PrayerFirm",
-"divorceCostsClaim": "No",
-"solPaymentHowToPay": "feesHelpWith",
-"applicant1SolicitorEmail": "kasi.subramaniam@hmcts.net",
-"applicant1PrayerHasBeenGiven": "Yes",
-"applicant2SolicitorOrganisationPolicy": {
-"Organisation": {
-"OrganisationID": "3I4PJR6",
-"OrganisationName": "DivRespondentSolicitorFirm"
-},
-"OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
-},
-"applicant2FirstName": "Natasha",
-"applicant2LanguagePreferenceWelsh": "No",
-"labelContentUnionTypeUC": "Divorce",
-"applicant1FirstName": "E2E James",
-"applicant1SolicitorName": "E2E TEST SOLICITOR NAME",
-"applicationFeeOrderSummary": {
-"Fees": [
-{
-"id": "28fb116c-2b52-455f-9ce1-7517de83196a",
-"value": {
-"FeeCode": "FEE0002",
-"FeeAmount": "55000",
-"FeeVersion": "5",
-"FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution"
-}
-}
-],
-"PaymentTotal": "55000"
-},
-"applicant2SolicitorName": "James and Co",
-"applicant1LastName": "Patterson",
-"applicant1LanguagePreferenceWelsh": "No",
-"divorceWho": "wife",
-"helpWithFeesReferenceNumber": "HWF-325",
-"applicant2MiddleName": "E2E",
-"marriageApplicant1Name": "James St Patrick",
-"selectedDivorceCentreSiteId": "AA07",
-"solStatementOfReconciliationDiscussed": "Yes",
-"jurisdictionLegalConnections": [
-"H",
-"I",
-"G"
-],
-"applicant2SolicitorRepresented": "Yes",
-"applicant1StatementOfTruth": "Yes",
 "solServiceMethod": "personalService",
-"divorceUnit": "serviceCentre",
-"applicant1SolicitorReference": "AWS11234",
+"solStatementOfReconciliationDiscussed": "Yes",
+"solStatementOfReconciliationCertify": "Yes",
+"solStatementOfReconciliationDiscussed":"Yes",
+"solSignStatementOfTruth": "Yes",
+"applicant1StatementOfTruth": "Yes",
+"applicant1PrayerHasBeenGiven": "Yes",
+"solStatementOfReconciliationName": "CaseSubmissionName",
+"solStatementOfReconciliationFirm": "CaseSubmissionFirm",
+"statementOfReconciliationComments": "Some comments",
+"solPaymentHowToPay": "feesHelpWith",
+"applicant1HWFReferenceNumber": "HWF-123",
 "statementOfReconciliationComments": "CommentsSoT"
 }

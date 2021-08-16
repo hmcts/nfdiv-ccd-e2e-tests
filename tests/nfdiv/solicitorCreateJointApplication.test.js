@@ -3,9 +3,9 @@ const testconfig = require('./../config');
 
 let caseNumber;
 
-Feature('Solicitor Create Joint Application with Docs and HWF - And Submit the Case');
+Feature('Solicitor Create Sole Application ');
 
-Scenario('Solicitor Create Joint Application ', async (I) => {
+Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -41,8 +41,8 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
   // Financial Orders
   await I.financialOrdersSelectButton();
 
-  // Claim Costs
-  await I.claimForCostsSelectButton();
+  // // Claim Costs
+  // await I.claimForCostsSelectButton();
 
   // Upload the marriage certificate
   await I.uploadTheMarriageCertificateOptional();
@@ -60,54 +60,54 @@ Scenario('Solicitor Create Joint Application ', async (I) => {
    caseNumber = caseNumber.replace(/\D/gi, '');
    console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-  //
-  //  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
-  //
-  // // Case Submission  - Help With Fees Page and Fees Reference Number.
-  // await I.paymentWithHelpWithFeeAccount();
-  //
-  // // HWF Reference Entered ....
-  // await I.casePaymentWithHWFAndSubmissionPageFormAndSubmit();
-  //
-  // //Case Submission - ORDER Summary
-  // await I.caseOrderSummaryPageFormAndSubmit(paymentType.HWF);
-  //
-  // // Case Submission - Before You Submit
-  // await I.caseApplicationCompletePageFormAndSubmit();
-  //
-  // // Case Submission Check Your Answers.
-  // await I.caseCheckYourAnswersPageFormAndSubmit();
-  //
-  // // No draft petition should be present , but Uploaded Docs should be present.
-  // await I.solAwaitingPaymentConfPageFormAndSubmit();
-  //
-  // console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
-  //
-  // await I.wait(8);
-  //
+
+   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+
+  // Case Submission  - Help With Fees Page and Fees Reference Number.
+  await I.paymentWithHelpWithFeeAccount();
+
+  // HWF Reference Entered ....
+  await I.casePaymentWithHWFAndSubmissionPageFormAndSubmit();
+
+  //Case Submission - ORDER Summary
+  await I.caseOrderSummaryPageFormAndSubmit(paymentType.HWF);
+
+  // Case Submission - Before You Submit
+  await I.caseApplicationCompletePageFormAndSubmit();
+
+  // Case Submission Check Your Answers.
+  await I.caseCheckYourAnswersPageFormAndSubmit();
+
+  // No draft petition should be present , but Uploaded Docs should be present.
+  await I.solAwaitingPaymentConfPageFormAndSubmit();
+
+  console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
+
+  await I.wait(8);
+
   // //Login as CaseWorker and Validate HWF Reference
-  // console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
-  //
-  // await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
-  // await I.wait(7);
-  // await I.shouldBeOnCaseListPage();
-  //
-  // await I.shouldBeOnCaseListPage();
-  // await I.wait(5);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  // await I.wait(5);
-  // await I.checkNextStepForEvent('HWF application accepted')
-  //
-  // await I.wait(5);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  // await I.wait(5);
-  // await I.startValidationHWFProcess();
-  //
-  // await I.checkNextStepForEvent('HWF application accepted')
-  // await I.fillHwfEventSummaryFor(caseNumber);
-  // await I.wait(2);
-  // await I.checkStateAndEvent('Submitted','HWF application accepted');
-  //
+  console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
+
+  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.wait(7);
+  await I.shouldBeOnCaseListPage();
+
+  await I.shouldBeOnCaseListPage();
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.checkNextStepForEvent('HWF application accepted')
+
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.startValidationHWFProcess();
+
+  await I.checkNextStepForEvent('HWF application accepted')
+  await I.fillHwfEventSummaryFor(caseNumber);
+  await I.wait(2);
+  await I.checkStateAndEvent('Submitted','HWF application accepted');
+
   //  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
   // //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )

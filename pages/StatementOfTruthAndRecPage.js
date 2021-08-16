@@ -4,21 +4,17 @@ const I = actor();
 module.exports = {
 
   fields: {
-    //caseUrgentYes: '#SolUrgentCase-Yes',
-    //caseUrgentNo: '#solUrgentCase-No',
     caseUrgentYes: '#solUrgentCase_Yes',
     caseUrgentNo: '#solUrgentCase_No',
-    //caseUrgentSupportingInfoTextBox: '#SolUrgentCaseSupportingInformation',
     caseUrgentSupportingInfoTextBox: '#solUrgentCaseSupportingInformation',
     reconciliationWithApplicant1: '#solStatementOfReconciliationCertify_Yes',
-
     namesAndAddressesOfPersonsQualified: '#solStatementOfReconciliationDiscussed_Yes',
     applicant1_BelievesFactsTrue: '#applicant1StatementOfTruth_Yes',
     amAuthorisedByApplicant1ToSign: '#solSignStatementOfTruth_Yes',
     yourName: '#solStatementOfReconciliationName',
     nameOfYourFirm: '#solStatementOfReconciliationFirm',
-    howToServeRespondent:'#SolServiceMethod_courtService',
-    serveRespondentPersonalService:'#solServiceMethod-personalService',
+    howToServeRespondent:'#solServiceMethod-courtService',
+    servceSolicitorService:'#solServiceMethod-solicitorService',
     prayerHasBeenGiven:'#applicant1PrayerHasBeenGiven_Yes',
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
@@ -35,7 +31,7 @@ module.exports = {
       await I.click(this.fields.caseUrgentYes);
       await I.fillField(this.fields.caseUrgentSupportingInfoTextBox, 'here is the supporting information and instructions for the urgency');
     }
-    await I.retry().click(this.fields.serveRespondentPersonalService);
+    await I.retry().click(this.fields.servceSolicitorService);
     await I.see("After service is complete you must notify the court by completing the 'Confirm Service' form in CCD");
     await I.click(this.fields.reconciliationWithApplicant1);
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);

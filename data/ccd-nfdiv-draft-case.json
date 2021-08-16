@@ -88,5 +88,11 @@
 ],
 "applicant2SolicitorRepresented": "Yes",
 "divorceUnit": "serviceCentre",
-"applicant1SolicitorReference": "AWS11234"
+"applicant1SolicitorReference": "Ipsum in praesentiu",
+"applicant2": "respondent",
+"theApplicant2": "the respondent",
+"theApplicant2UC": "The respondent",
+"applicant2UC": "Respondent",
+"unionType": "marriage",
+"unionTypeUC": "Marriage"
 }
