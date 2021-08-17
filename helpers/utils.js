@@ -125,13 +125,51 @@ async function getCourtAdminUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
-async function getRespondentSolicitorUserToken() {
-
-  logger.info('.........Getting Respondent Solicitor User Token');
+async function getCourtAdminUserToken() {
+  logger.info('.........Getting CourtAdmin User Token');
 
   // Setup Details
-  const username = testConfig.TestEnvRespondentSolUser;
-  const password = testConfig.TestEnvSolPassword;
+  const username = testConfig.TestEnvCourtAdminUser;
+  const password = testConfig.TestEnvCourtAdminPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
+async function getRespondentAdminSolicitorUserToken() {
+
+  logger.info('.........Getting Respondent AdminSolicitor User Token..........');
+
+  // Setup Details
+  const username = testConfig.TestEnvRespondentSolAdminUser;
+  const password = testConfig.TestEnvRespondentSolAdminPassword;
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
@@ -352,6 +390,10 @@ async function getAuthTokenFor(userLoggedIn) {
   if (userLoggedIn == 'RespondentSolicitor') {
     authToken = await getCourtAdminUserToken();
   }
+  if (userLoggedIn == 'RespondentSolicitorAdmin') {
+    authToken = await getRespondentAdminSolicitorUserToken();
+  }
+
 
   return authToken;
 }
@@ -409,6 +451,45 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
 
   const saveEventResponse = await request(saveEventOptions);
 
+  return saveEventResponse;
+}
+
+async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
+
+  let authToken;
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdUpdateRolePath =`/cases/`+caseId+`/users/`+userId;
+
+  const data = {
+    user_id: userId,
+    case_roles: ["[APPTWOSOLICITOR]"]
+  }
+
+   var body = {
+     data: JSON.stringify(data)
+   };
+
+  console.log(`.....printing the body`, body);
+
+  const updateCaseRoleCall = {
+    method: 'PUT',
+    uri: ccdApiUrl + ccdUpdateRolePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
+
+  const saveEventResponse = await request(updateCaseRoleCall);
+  //console.log(`.....printing the response `, JSON.parse(saveEventResponse));
   return saveEventResponse;
 }
 
@@ -497,5 +578,6 @@ module.exports = {
   getBaseUrl,
   datechange,
   formatDateToCcdDisplayDate,
-  firstLetterToCaps
+  firstLetterToCaps,
+  updateRoleForCase
 };

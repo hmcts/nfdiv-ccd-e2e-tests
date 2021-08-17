@@ -1,4 +1,4 @@
-const { createCaseInCcd, createNFDCaseInCcd, updateCaseInCcd,updateNFDCaseInCcd} = require('../../helpers/utils');
+const { createCaseInCcd, createNFDCaseInCcd, updateCaseInCcd,updateNFDCaseInCcd,updateRoleForCase} = require('../../helpers/utils');
 const { states, events , user} = require('../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../config');
@@ -15,7 +15,7 @@ Feature('Verify NFD  Case States and Events');
 Scenario('NFD - Sole Divorce Case created in CCD and verify the following states Draft, AwaitingHWF,Submitted,Issued', async function (I) {
 
    caseId = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
-   console.log( '.....caseCreated in CCD and caseId is...... ' + caseId);
+   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseId);
 
    const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseId, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
    verifyState(awaitingHWF, states.AWAITING_HWF);
@@ -25,5 +25,7 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
 
    const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
    verifyState(issueAosPack, states.AOS_AWAITING);
+
+   const shareACase = await updateRoleForCase(user.CA,caseId,"APPTWOSOLICITOR");
 
 }).retry(testconfig.TestRetryScenarios);
