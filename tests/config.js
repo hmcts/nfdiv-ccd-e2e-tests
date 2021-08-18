@@ -25,6 +25,6 @@ module.exports = {
   TestEnvProfUser: process.env.PROF_USER_EMAIL || '',
   TestEnvProfPassword: process.env.PROF_USER_PASSWORD || '',
   TestForXUI: process.env.TESTS_FOR_XUI_SERVICE === 'true',
-  TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
+  //TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true'
 };
