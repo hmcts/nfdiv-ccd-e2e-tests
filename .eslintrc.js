@@ -1,5 +1,5 @@
 module.exports = {
-      "env": { "browser": true, "es6": true, "node": true },
+      "env": { "browser": true, "es7": true, "node": true },
       "extends": ["eslint:recommended"],
       "globals": { "Atomics": "readonly", "SharedArrayBuffer": "readonly" },
       "parser": "babel-eslint",
@@ -17,7 +17,7 @@ module.exports = {
       "overrides": [
         {
           "files": ["**/*.ts", "**/*.tsx"],
-          "env": { "browser": true, "es6": true, "node": true },
+          "env": { "browser": true, "es7": true, "node": true },
           "extends": [
             "eslint:recommended",
             "plugin:@typescript-eslint/eslint-recommended",
