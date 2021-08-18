@@ -11,8 +11,6 @@ module.exports = {
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/addNoteAndUpdateCase.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/shareACaseAndMoveToHolding.test.js',
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
-  TestIdamClientSecret: process.env.idam-secret || '',
-  TestS2SAuthSecret: process.env.frontend-secret || '',
   TestEnvSolUser: process.env.idam-solicitor-username || '',
   TestEnvSolPassword: process.env.idam-solicitor-password || '',
   TestEnvCWUser: process.env.idam-caseworker-username || '',
@@ -26,5 +24,7 @@ module.exports = {
   TestEnvProfPassword: process.env.PROF_USER_PASSWORD || '',
   TestForXUI: process.env.TESTS_FOR_XUI_SERVICE === 'true',
   //TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
-  TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true'
+  TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
+  TestIdamClientSecret: process.env.idam-secret || '',
+  TestS2SAuthSecret: process.env.frontend-secret || '',
 };
