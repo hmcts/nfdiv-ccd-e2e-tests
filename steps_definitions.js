@@ -104,7 +104,7 @@ module.exports = function () {
     },
 
     startValidationHWFProcess: function (){
-       return CaseListPage.checkEventAndStateAndBeginHWFValidation();
+      return CaseListPage.checkEventAndStateAndBeginHWFValidation();
     },
 
     checkNextStepForEvent: function (eventName){

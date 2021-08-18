@@ -92,9 +92,9 @@ Scenario('Caseworker validate HWF Reference and moves State to Application Submi
   console.log('....... Login as Caseworker && Validate HWF Code ..... ');
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
-  await I.wait(3)
+  await I.wait(3);
   await I.shouldBeOnCaseListPage();
-  await I.wait(2)
+  await I.wait(2);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(6);
 

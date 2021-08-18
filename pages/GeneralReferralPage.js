@@ -36,7 +36,7 @@ module.exports = {
     await I.click(this.fields.applicant);
     await I.selectOption(this.fields.typeOfReferral,'Order on filing of Answers');
     await I.fillField(this.fields.generalReferralDetails,'General Referral Details is required for Certain judges ....');
-    await I.click(this.fields.feePaymentRequired,)
+    await I.click(this.fields.feePaymentRequired);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   },

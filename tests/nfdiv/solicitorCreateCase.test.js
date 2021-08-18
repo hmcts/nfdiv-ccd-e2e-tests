@@ -101,12 +101,12 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.startValidationHWFProcess();
-  await I.checkNextStepForEvent('HWF application accepted')
+  await I.checkNextStepForEvent('HWF application accepted');
   await I.fillHwfEventSummaryFor(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
 
-   console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
+  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
   //Re-Login as CW  and Issue the Case
   console.log('....... Login as CW And Issue the Case ............');
@@ -116,9 +116,9 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.checkNextStepForEvent('Application issued')
-  await I.fillIssueApplicationMarriageDetails()
-  await I.fillIssueApplicationEventSummaryAndDescription()
+  await I.checkNextStepForEvent('Application issued');
+  await I.fillIssueApplicationMarriageDetails();
+  await I.fillIssueApplicationEventSummaryAndDescription();
   await I.checkStateAndEvent('Application issued','Issue Application');
 
   console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');

@@ -56,12 +56,11 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   // TODO ASSERT the STATE of the case here after Case Creation
   // Case Submission Steps
 
-   caseNumber = await I.solicitorCaseCreatedAndSubmit();
-   caseNumber = caseNumber.replace(/\D/gi, '');
-   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
+  caseNumber = await I.solicitorCaseCreatedAndSubmit();
+  caseNumber = caseNumber.replace(/\D/gi, '');
+  console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-
-   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();
@@ -96,14 +95,14 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.checkNextStepForEvent('HWF application accepted')
+  await I.checkNextStepForEvent('HWF application accepted');
 
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.startValidationHWFProcess();
 
-  await I.checkNextStepForEvent('HWF application accepted')
+  await I.checkNextStepForEvent('HWF application accepted');
   await I.fillHwfEventSummaryFor(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');

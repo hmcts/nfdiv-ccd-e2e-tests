@@ -45,24 +45,13 @@ module.exports = {
       await I.wait(5);
     }
     await I.waitForText('How do you want to apply for the divorce?');
-    //await I.retry(5).selectOption(this.fields.caseType, 'Sole Application');
 
-   // if (soleOrJointApp === soleOrJoint.JOINT) {
-      // Joint
-      // await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
-      // await I.click(this.fields.divorceOrDissolution);
-      // await I.waitForNavigationToComplete(this.fields.submit);
-      // await I.wait(1);
+    await I.retry(5).selectOption(this.fields.applicationType, 'Sole Application');
+    await I.click(this.fields.divorceOrDissolution);
+    //await I.click(this.fields.divorceOrDissolution);
 
-    //}else if (soleOrJointApp === soleOrJoint.SOLE) {
-      //Sole
-      await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
-      await I.click(this.fields.divorceOrDissolution);
-      //await I.click(this.fields.divorceOrDissolution);
-
-
-      await I.waitForNavigationToComplete(this.fields.submit);
-      await I.wait(1);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(1);
     //}
   }
 };

@@ -32,7 +32,7 @@ module.exports = {
       await I.fillField(this.fields.caseUrgentSupportingInfoTextBox, 'here is the supporting information and instructions for the urgency');
     }
     await I.retry().click(this.fields.servceSolicitorService);
-    await I.see("After service is complete you must notify the court by completing the 'Confirm Service' form in CCD");
+    await I.see('After service is complete you must notify the court by completing the \'Confirm Service\' form in CCD');
     await I.click(this.fields.reconciliationWithApplicant1);
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);
 

@@ -21,7 +21,7 @@ module.exports = {
     await I.fillField(this.fields.hwfEventDescription, 'Event Description for ' +caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
-  },
+  }
 
 
 };

@@ -31,7 +31,7 @@ module.exports = {
   },
 
   async resetFilter(caseNumber) {
-    await I.waitIn
+    await I.waitIn;
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);

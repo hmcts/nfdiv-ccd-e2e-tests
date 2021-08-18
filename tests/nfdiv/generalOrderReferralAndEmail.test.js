@@ -66,7 +66,6 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
 
   caseNumber = caseNumber.replace(/\D/gi, '');
 
-//  caseNumberWithHyphen = caseNumberWithHyphen.replace('#', '');
   console.log('..................... '+caseNumber+' .............');
 
   //await I.shouldBeAbleToFilterAndSearch(caseNumber);

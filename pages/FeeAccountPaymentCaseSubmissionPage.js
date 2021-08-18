@@ -15,7 +15,7 @@ module.exports = {
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
     await I.wait(this.fields.howPaymentMade);
     await I.selectOption(this.fields.howPaymentMade, paymentType.HWF);
-    await I.wait(2)
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
   }
