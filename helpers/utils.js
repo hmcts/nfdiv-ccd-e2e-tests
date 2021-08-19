@@ -201,7 +201,7 @@ async function getServiceToken() {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      microservice: 'divorce_ccd_submission',
+      microservice: 'divorce_frontend',
       oneTimePassword
     })
   });
