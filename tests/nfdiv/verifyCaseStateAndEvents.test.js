@@ -22,9 +22,9 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
-  const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
-  verifyState(issueAosPack, states.AOS_AWAITING);
-
-  const shareACase = await updateRoleForCase(user.CA,caseId,'APPTWOSOLICITOR');
+  // const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
+  // verifyState(issueAosPack, states.AOS_AWAITING);
+  //
+  // const shareACase = await updateRoleForCase(user.CA,caseId,'APPTWOSOLICITOR');
 
 }).retry(testconfig.TestRetryScenarios);

@@ -13,10 +13,11 @@ module.exports = {
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
   TestEnvSolUser: process.env.SOLICITOR_USER_NAME || '',
   TestEnvSolPassword: process.env.SOLICITOR_PASSWORD || '',
-  TestEnvCWUser: process.env.idam-caseworker-username || '',
-  TestEnvCWPassword: process.env.idam-caseworker-password || '',
-  TestEnvCourtAdminUser: process.env.idam-caseworker-username || '',
-  TestEnvCourtAdminPassword: process.env.idam-caseworker-password || '',
+  TestEnvCWUser: process.env.CASEWORKER_USER_NAME || '',
+  TestEnvCWPassword: process.env.CASEWORKER_PASSWORD || '',
+  //TODO need to add CourtAdmin  to az secrets
+  TestEnvCourtAdminUser: process.env.CASEWORKER_USER_NAME || '',
+  TestEnvCourtAdminPassword: process.env.CASEWORKER_PASSWORD || '',
   //TODO need to add RespondentSolAdminUser  to az secrets
   TestEnvRespondentSolAdminUser: process.env.CCD_CASEWORKER_E2E_EMAIL || '',
   TestEnvRespondentSolAdminPassword: process.env.CCD_CASEWORKER_E2E_PASSWORD || '',
