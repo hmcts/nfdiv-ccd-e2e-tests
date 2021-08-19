@@ -107,22 +107,22 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
 
-  //  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
+  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
-  // //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
-  // console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
-  //
-  // await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
-  // await I.wait(7);
-  // await I.shouldBeOnCaseListPage();
-  // await I.wait(5);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  // await I.wait(5);
-  // await I.checkNextStepForEvent('Application issued')
-  // await I.fillIssueApplicationMarriageDetails()
-  // await I.fillIssueApplicationEventSummaryAndDescription()
-  // await I.checkStateAndEvent('Application issued','Issue Application');
-  //
-  // console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');
+  //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
+  console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
+
+  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
+  await I.wait(7);
+  await I.shouldBeOnCaseListPage();
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.checkNextStepForEvent('Application issued');
+  await I.fillIssueApplicationMarriageDetails();
+  await I.fillIssueApplicationEventSummaryAndDescription();
+  await I.checkStateAndEvent('Application issued','Issue Application');
+
+  console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');
 
 }).retry(testconfig.TestRetryScenarios);
