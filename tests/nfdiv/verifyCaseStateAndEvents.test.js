@@ -1,7 +1,6 @@
-const { createCaseInCcd, createNFDCaseInCcd, updateCaseInCcd,updateNFDCaseInCcd,updateRoleForCase} = require('../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../helpers/utils');
 const { states, events , user} = require('../../common/constants');
 const assert = require('assert');
-const testconfig = require('./../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -22,9 +21,11 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
-  // const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
-  // verifyState(issueAosPack, states.AOS_AWAITING);
-  //
-  // const shareACase = await updateRoleForCase(user.CA,caseId,'APPTWOSOLICITOR');
+  const issueAosPack = await updateNFDCaseInCcd(user.CA,caseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
+  verifyState(issueAosPack, states.AOS_AWAITING);
 
-}).retry(testconfig.TestRetryScenarios);
+  const shareACase = await updateRoleForCase(user.CA,caseId,'APPTWOSOLICITOR');
+
+  // const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
+
+}).retry(manageOrgConfig.TestRetryScenarios);

@@ -13,7 +13,7 @@ module.exports = {
     await I.waitForText('Case submission');
     await I.runAccessibilityTest();
     if (paymentMethod === paymentType.FEE_ACCOUNT) {
-      await I.see('Your fee account reference: Next case submitted');
+      await I.see('Your fee account reference:');
     } else if (paymentMethod === paymentType.HWF) {
       await I.see('Help with fee reference: HWF-325-326');
     }

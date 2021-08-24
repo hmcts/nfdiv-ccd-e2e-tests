@@ -42,6 +42,20 @@ module.exports = {
     await I.click('Apply');
   },
 
+  async filterByCaseId(caseNumber) {
+    console.log(' inside the CaseListPage.js .....')
+    await I.waitForElement(this.selectors.jurisdictionSelect);
+    await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
+    await I.waitForElement(this.selectors.caseTypeSelect);
+    await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
+    await I.waitForElement(this.selectors.caseStateSelect);
+    await I.selectOption(this.selectors.caseStateSelect, 'Any');
+    await I.wait(5);
+    //await I.fillField(this.fields.caseNumber, caseNumber);
+    await I.wait(3);
+    await I.click('Apply');
+    await I.wait(3);
+  },
 
   async checkEventAndStateAndBeginHWFValidation(){
     await I.see('Awaiting HWF decision');

@@ -118,7 +118,6 @@ Scenario('Solicitor create case and make payment', async (I) => {
   await I.wait(5);
   await I.checkNextStepForEvent('Application issued');
   await I.fillIssueApplicationMarriageDetails();
-  await I.fillIssueApplicationEventSummaryAndDescription();
   await I.checkStateAndEvent('Application issued','Issue Application');
 
   console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');

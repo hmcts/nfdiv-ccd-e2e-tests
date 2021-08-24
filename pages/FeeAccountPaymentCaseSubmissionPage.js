@@ -5,18 +5,28 @@ const { paymentType } = require('../common/constants');
 module.exports = {
 
   fields: {
-    howPaymentMade:'select[id="solPaymentHowToPay"]',
-    submit: 'button[type="submit"]'
+    howPaymentMade:'#solPaymentHowToPay',
+    submit: 'button[type="submit"]',
+    pbaAccountNumber:'#pbaNumbers',
+    feeAccountReference:'#feeAccountReference'
   },
 
   async fillFormAndSubmit() {
     await I.runAccessibilityTest();
-    // solicitor-submit-application/solicitor-submit-applicationSolPayment
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
-    await I.wait(this.fields.howPaymentMade);
-    await I.selectOption(this.fields.howPaymentMade, paymentType.HWF);
+    await I.selectOption(this.fields.howPaymentMade, paymentType.FEE_ACCOUNT);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
+  },
+
+  async fillPbaAccountNumberAndReference() {
+    await I.runAccessibilityTest();
+    await I.wait(this.fields.pbaAccountNumber);
+    await I.selectOption(this.fields.pbaAccountNumber, 'PBA0082311');
+    await I.fillField(this.fields.feeAccountReference,'PBA-123-322');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(3);
   }
+
 };

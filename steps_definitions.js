@@ -87,6 +87,10 @@ module.exports = function () {
       return this.amOnPage('');
     },
 
+    amOnManageOrgPage: function(){
+      return this.amOnManageOrgPage('');
+    },
+
     login: function (email, password) {
       return LoginPage.submitLogin(email, password);
     },
@@ -133,8 +137,10 @@ module.exports = function () {
       return CreateCasePage.fillFormAndSubmit();
     },
 
-    // kasi
-    // Issue Divorce Application
+    filterByCaseId : function(caseNumber){
+      return CaseListPage.filterByCaseId(caseNumber)
+    },
+
     issueDivorceApplication(){
       return DivorceApplicationDetailsPage.fillFormAndSubmit();
     },
@@ -253,6 +259,12 @@ module.exports = function () {
     paymentWithHelpWithFeeAccount: function() {
       return FeeAccountPaymentCaseSubmissionPage.fillFormAndSubmit();
     },
+
+    fillPba:function() {
+      return FeeAccountPaymentCaseSubmissionPage.fillPbaAccountNumberAndReference();
+    },
+
+
 
     casePaymentWithHWFAndSubmissionPageFormAndSubmit: function() {
       return HWFPaymentCaseSubmissionPage.fillFormAndSubmit();

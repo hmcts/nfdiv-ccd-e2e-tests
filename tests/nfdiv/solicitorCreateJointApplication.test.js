@@ -41,15 +41,11 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   // Financial Orders
   await I.financialOrdersSelectButton();
 
-  // // Claim Costs
-  // await I.claimForCostsSelectButton();
-
   // Upload the marriage certificate
   await I.uploadTheMarriageCertificateOptional();
 
   // Select Language
   await I.languagePreferenceSelection();
-
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit();
@@ -91,7 +87,6 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(7);
   await I.shouldBeOnCaseListPage();
 
-  await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
@@ -120,7 +115,6 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(5);
   await I.checkNextStepForEvent('Application issued');
   await I.fillIssueApplicationMarriageDetails();
-  await I.fillIssueApplicationEventSummaryAndDescription();
   await I.checkStateAndEvent('Application issued','Issue Application');
 
   console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');

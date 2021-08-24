@@ -164,6 +164,45 @@ async function getRespondentAdminSolicitorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getRespondentSolicitorUserToken() {
+
+  logger.info('.........Getting Respondent Solicitor User Token..........');
+
+  // Setup Details
+  const username = testConfig.TestEnvRespondentSolUser;
+  const password = testConfig.TestEnvRespondentSolPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
 
 async function getUserId(authToken) {
   logger.info('Getting User Id');
@@ -350,14 +389,18 @@ async function getAuthTokenFor(userLoggedIn) {
     authToken = await getCourtAdminUserToken();
   }
   if (userLoggedIn === 'RespondentSolicitor') {
-    authToken = await getRespondentAdminSolicitorUserToken();
+    authToken = await getRespondentSolicitorUserToken();
   }
   if (userLoggedIn === 'RespondentSolicitorAdmin') {
     authToken = await getRespondentAdminSolicitorUserToken();
   }
+  if (userLoggedIn === 'RespondentSolicitor01') {
+    authToken = await getRespondentSolicitorUserToken();
+  }
 
 
-  return authToken;
+
+return authToken;
 }
 
 async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
@@ -427,6 +470,8 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdUpdateRolePath ='/cases/'+caseId+'/users/'+userId;
+
+
 
   const data = {
     user_id: userId,
@@ -510,6 +555,54 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
   return saveEventResponse;
 }
 
+async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
+
+  console.log(`.......... inside the shareCaseToRespondentSolicitor and caseId is`,caseId);
+  console.log(`.....userLoggedin is`, userLoggedIn );
+
+
+  let authToken;
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  const ccdApiUrl = `http://aac-manage-case-assignment-${env}.service.core-compute-${env}.internal`;
+  const caseAssignmentUrl = `/case-assignments`;
+
+  const data = {
+    assignee_id: "4c152236-a40a-423a-b97e-b9535dda633c",
+    case_id: caseId,
+    case_type_id: "NFD",
+  };
+
+
+  var body = {
+    data: JSON.stringify(data)
+  };
+
+  console.log('.....printing the body', body);
+
+  const shareCaseToRespondentSolicitor = {
+    method: 'POST',
+    uri: ccdApiUrl+caseAssignmentUrl,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  };
+
+  const saveEventResponse = await request(shareCaseToRespondentSolicitor);
+  console.log(`.....printing the response `, JSON.parse(saveEventResponse).pretty);
+  return saveEventResponse;
+}
+
+
+
+
 const getBaseUrl = () => {
   return 'manage-case.aat.platform.hmcts.net';
 };
@@ -541,5 +634,6 @@ module.exports = {
   datechange,
   formatDateToCcdDisplayDate,
   firstLetterToCaps,
-  updateRoleForCase
+  updateRoleForCase,
+  shareCaseToRespondentSolicitor
 };

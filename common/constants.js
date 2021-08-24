@@ -86,8 +86,8 @@ const user = {
   LA : 'LegalAdminstrator',
   CA : 'CourtAdmin',
   SU : 'SuperUser',
-  RSA: 'RespondentSolicitorAdmin',
-  RS:  'RespondentSolicitor'
+  RS:  'RespondentSolicitor',
+  RSA: 'RespondentSolicitorAdmin'
 };
 
 const events = {
