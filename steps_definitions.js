@@ -138,7 +138,7 @@ module.exports = function () {
     },
 
     filterByCaseId : function(caseNumber){
-      return CaseListPage.filterByCaseId(caseNumber)
+      return CaseListPage.filterByCaseId(caseNumber);
     },
 
     issueDivorceApplication(){

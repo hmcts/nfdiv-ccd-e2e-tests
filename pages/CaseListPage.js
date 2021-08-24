@@ -43,7 +43,6 @@ module.exports = {
   },
 
   async filterByCaseId(caseNumber) {
-    console.log(' inside the CaseListPage.js .....')
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
@@ -51,7 +50,7 @@ module.exports = {
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
     await I.wait(5);
-    //await I.fillField(this.fields.caseNumber, caseNumber);
+    //await I.fillField(this.fields.caseNumber, caseNumber); // Does nt work
     await I.wait(3);
     await I.click('Apply');
     await I.wait(3);

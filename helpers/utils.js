@@ -397,10 +397,7 @@ async function getAuthTokenFor(userLoggedIn) {
   if (userLoggedIn === 'RespondentSolicitor01') {
     authToken = await getRespondentSolicitorUserToken();
   }
-
-
-
-return authToken;
+  return authToken;
 }
 
 async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
@@ -557,9 +554,8 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 
 async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
-  console.log(`.......... inside the shareCaseToRespondentSolicitor and caseId is`,caseId);
-  console.log(`.....userLoggedin is`, userLoggedIn );
-
+  console.log('.......... inside the shareCaseToRespondentSolicitor and caseId is'+caseId);
+  console.log('.....userLoggedin is'+ userLoggedIn );
 
   let authToken;
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
@@ -568,13 +564,13 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getServiceToken();
 
-  const ccdApiUrl = `http://aac-manage-case-assignment-${env}.service.core-compute-${env}.internal`;
-  const caseAssignmentUrl = `/case-assignments`;
+  const ccdApiUrl = 'http://aac-manage-case-assignment-${env}.service.core-compute-${env}.internal';
+  const caseAssignmentUrl = '/case-assignments';
 
   const data = {
-    assignee_id: "4c152236-a40a-423a-b97e-b9535dda633c",
+    assignee_id: '4c152236-a40a-423a-b97e-b9535dda633c',
     case_id: caseId,
-    case_type_id: "NFD",
+    case_type_id: 'NFD'
   };
 
 
@@ -582,7 +578,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     data: JSON.stringify(data)
   };
 
-  console.log('.....printing the body', body);
+  console.log('.....printing the body'+ body);
 
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
@@ -596,7 +592,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   };
 
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
-  console.log(`.....printing the response `, JSON.parse(saveEventResponse).pretty);
+  console.log('.....printing the response ', JSON.parse(saveEventResponse).pretty);
   return saveEventResponse;
 }
 
