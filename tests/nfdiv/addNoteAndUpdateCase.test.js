@@ -13,65 +13,18 @@ Feature('Add Note , Update Contact, Update Language , Update DueDate and Update 
 Scenario('Create General Email , Referral , Order and verify state and events', async (I) => {
 
 
+  // Create a Case
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
+  console.log( '~~~ Case with CaseNumber ' + caseNumber + ' created in CCD ');
+
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
-  await I.clickCreateCase();
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
 
-  await I.fillCreateCaseFormAndSubmit();
-  await I.fillSoleOrJointOptionForDivorce();
-
-  // About Solicitor
-  await I.fillAboutSolicitorFormAndSubmit();
-
-  // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
-
-  // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit();
-
-  // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
-
-  // Applicant 2 Service Details
-  await I.fillAboutRespSolicitorFormAndSubmit();
-
-  // Marriage Certificate Details
-  await I.completeMarriageCertificateDetailsPageAndSubmit();
-
-  // Jurisdiction
-  await I.selectJurisdictionQuestionPageAndSubmit();
-
-  // Other Legal Proceedings
-  await I.otherLegalProceedings();
-
-  // Financial Orders
-  await I.financialOrdersSelectButton();
-
-  // Claim Costs
-  await I.claimForCostsSelectButton();
-
-  // Upload the marriage certificate
-  await I.uploadTheMarriageCertificateOptional();
-
-  // Select Language
-  await I.languagePreferenceSelection();
-
-
-  // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit();
-  // TODO ASSERT the STATE of the case here after Case Creation
-  // Case Submission Steps
-
-  caseNumber = await I.solicitorCaseCreatedAndSubmit();
-
-  caseNumber = caseNumber.replace(/\D/gi, '');
-  console.log('..................... '+caseNumber+' .............');
-
-  //await I.shouldBeAbleToFilterAndSearch(caseNumber);
-
-  console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~~~~~ Start Draft to Submit   ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ~~~~~~~~~~~~~ ');
-
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.Yes);
+  //SoT & SoR
+  await I.checkNextStepForEvent('Case submission');
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();
@@ -106,21 +59,21 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.wait(5);
   await I.createAddCaseNotes(caseNumber);
   await I.wait(2);
-  await I.createAddCaseNoteEventSummary(caseNumber);
-  await I.checkStateAndEvent('Draft','Add note');
+  //await I.createAddCaseNoteEventSummary(caseNumber);
+  await I.checkStateAndEvent('Awaiting HWF decision','Add note');
 
   // Update Application Type
   await I.wait(2);
   await I.updateApplicationType(caseNumber);
   await I.wait(2);
-  await I.updateApplicationTypeEventSummary(caseNumber);
-  await I.checkStateAndEvent('Draft','Update application type');
+ // await I.updateApplicationTypeEventSummary(caseNumber);
+  await I.checkStateAndEvent('Awaiting HWF decision','Update application type');
 
   // Update Due Date
   await I.wait(2);
   await I.updateDueDate();
   await I.wait(2);
-  await I.updateDueDateEventSummary(caseNumber);
-  await I.checkStateAndEvent('Draft','Update due date');
+  //await I.updateDueDateEventSummary(caseNumber);
+  await I.checkStateAndEvent('Awaiting HWF decision','Update due date');
 
 }).retry(testconfig.TestRetryScenarios);

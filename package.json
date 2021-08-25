@@ -13,6 +13,7 @@
     "test:draft-case": "SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/createDraftCase.test.js -c ./ --steps",
     "test:test-pba": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/submitCaseWithPbaPayment.test.js  -c ./ --steps",
     "test:draft-aos": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/draftAoSUpdateAndSubmit.test.js  -c ./ --steps",
+    "test:add-note": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/addNoteAndUpdateCase.test.js  -c ./ --steps",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
