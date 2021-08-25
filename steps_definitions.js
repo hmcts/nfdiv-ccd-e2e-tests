@@ -64,6 +64,9 @@ const GeneralReferralPage = require('./pages/GeneralReferralPage');
 const CaseNotesPage = require('./pages/CaseNotesPage');
 const ChangeApplicationTypePage = require('./pages/ChangeApplicationTypePage');
 const UpdateDueDatePage = require('./pages/UpdateDueDatePage');
+const draftAosPage = require('./pages/DraftAoSPage.js');
+const submitAosPage = require('./pages/SubmitAosPage.js');
+
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -114,7 +117,6 @@ module.exports = function () {
     checkNextStepForEvent: function (eventName){
       return CaseListPage.clickNextStepForEvent(eventName);
     },
-
 
     ShouldBeAbleToFilterAnUrgentCase: function (urgent, state, caseNum) {
       return CaseListPage.urgentCaseFilter(urgent, state, caseNum);
@@ -347,6 +349,10 @@ module.exports = function () {
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },
 
+    checkState: function(state, event){
+      return CaseworkerCheckStatAndEventPage.checkStateOnPage(state,event);
+    },
+
     ccdCaseCreatedFromJsonLandingPageFormAndSubmit: function() {
       return CcdCaseCreatedLandingPage.fillFormAndSubmit();
     },
@@ -370,6 +376,34 @@ module.exports = function () {
     // aosPackIssueTestPageFormAndSubmit: function() {
     //   AosPackIssueTestPage.fillFormAndSubmit();
     // },
+
+    draftAosContactDetails : function() {
+      return draftAosPage.fillConfirmContactDetails();
+    },
+
+    draftAoSReview :  function(caseNumber) {
+      return draftAosPage.fillReviewApplicant1_Application(caseNumber);
+    },
+
+    draftAoSDoYouAgree :  function(caseNumber) {
+      return draftAosPage.doYouAgreeJurisdiction(caseNumber);
+    },
+
+    draftAoSAnyOtherLegalProceedings: function(caseNumber){
+      return draftAosPage.anyOtherLegalProceedings(caseNumber);
+    },
+
+    draftAosCheckYourAnswers: function(caseNumber){
+      return draftAosPage.draftAosCYA(caseNumber);
+    },
+
+    submitAosSOT: function(caseNumber) {
+      return submitAosPage.fillSoTAndSoRDetails(caseNumber);
+    },
+
+    submitAosCYA : function(caseNumber) {
+      return submitAosPage.checkYourAnswers(caseNumber);
+    },
 
     aosPackIssueTestCheckYourAnswersPageFormAndSubmit: function() {
       return IssueAosPackToRespondentCheckYourAnswersPage.fillFormAndSubmit();
