@@ -9,6 +9,7 @@ module.exports = {
     hwfEventSummary:'#field-trigger-summary',
     hwfEventDescription:'#field-trigger-description',
     HWF_Message:'HWF application accepted',
+    HWF_Refused:'HWF Refused',
     submit: 'button[type="submit"]'
   },
 
@@ -21,7 +22,15 @@ module.exports = {
     await I.fillField(this.fields.hwfEventDescription, 'Event Description for ' +caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
+  },
+  async fillHwfRefusedEventNotes(caseId) {
+    await I.waitInUrl('/trigger/caseworker-hwf-refused/submit');
+    await I.wait(4);
+    await I.runAccessibilityTest();
+    await I.see(this.fields.HWF_Refused);
+    await I.fillField(this.fields.hwfEventSummary, 'Event Summary for ' +caseId) ;
+    await I.fillField(this.fields.hwfEventDescription, 'Event Description for ' +caseId);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(2);
   }
-
-
 };

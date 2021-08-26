@@ -280,6 +280,10 @@ module.exports = function () {
       return HWFReferencePage.fillFormAndSubmit(caseNumber);
     },
 
+    fillHwfRefused:function(caseNumber) {
+      return HWFReferencePage.fillHwfRefusedEventNotes(caseNumber);
+    },
+
     createGeneralEmailDetails:function(caseNumber){
       return GeneralEmailPage.fillFormAndSubmit(caseNumber);
     },

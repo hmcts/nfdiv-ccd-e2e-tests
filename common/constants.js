@@ -96,6 +96,7 @@ const events = {
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
+  HWF_REFUSED:'HWF Refused',
   DRAFT_TO_SUBMITTED:'Submitted',
   ISSUED_FROM_SUBMITTED:'caseworker-issue-application',
   ISSUE_AOS:'caseworker-issue-aos',
