@@ -4,14 +4,10 @@ const {createNFDCaseInCcd} = require('../../helpers/utils');
 const assert = require('assert');
 
 let caseNumber;
-let caseNumberWithHyphen;
-
 
 Feature('General Email , General Referral and General Order');
 
-
 Scenario('Create General Email , Referral , Order and verify state and events', async (I) => {
-
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -107,21 +103,18 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.wait(5);
   await I.createGeneralEmailDetails(caseNumber);
   await I.wait(2);
-  await I.fillGeneralEmailEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting HWF decision','Create general email');
 
   // General order
   await I.wait(2);
   await I.createGeneralOrderDetails(caseNumber);
   await I.wait(2);
-  await I.createGeneralOrderEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting HWF decision','Create general order');
 
   // General Referral
   await I.wait(2);
   await I.createGeneralReferral(caseNumber);
   await I.wait(2);
-  await I.createGeneralReferralEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting General Consideration','General referral');
 
 }).retry(testconfig.TestRetryScenarios);

@@ -59,21 +59,18 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.wait(5);
   await I.createAddCaseNotes(caseNumber);
   await I.wait(2);
-  //await I.createAddCaseNoteEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting HWF decision','Add note');
 
   // Update Application Type
   await I.wait(2);
   await I.updateApplicationType(caseNumber);
   await I.wait(2);
- // await I.updateApplicationTypeEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting HWF decision','Update application type');
 
   // Update Due Date
   await I.wait(2);
   await I.updateDueDate();
   await I.wait(2);
-  //await I.updateDueDateEventSummary(caseNumber);
   await I.checkStateAndEvent('Awaiting HWF decision','Update due date');
 
 }).retry(testconfig.TestRetryScenarios);
