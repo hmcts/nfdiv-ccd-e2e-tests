@@ -227,8 +227,8 @@ async function getServiceToken() {
 
   const serviceSecret = testConfig.TestS2SAuthSecret;
 
-  const s2sBaseUrl = `http://rpe-service-auth-provider-${env}.service.core-compute-${env}.internal`;
-  const s2sAuthPath = '/lease';
+  const s2sBaseUrl = 'http://rpe-service-auth-provider-${env}.service.core-compute-${env}.internal';
+  const s2sAuthPath = '/testing-support/lease';
   const oneTimePassword = require('otp')({
     secret: serviceSecret
   }).totp();
@@ -554,8 +554,8 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 
 async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
-  console.log('.......... inside the shareCaseToRespondentSolicitor and caseId is'+caseId);
-  console.log('.....userLoggedin is'+ userLoggedIn );
+  console.log('.......... inside the shareCaseToRespondentSolicitor and caseId is'+ caseId);
+  console.log('.....userLoggedin is '+ userLoggedIn );
 
   let authToken;
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
@@ -568,21 +568,20 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
-    assignee_id: '4c152236-a40a-423a-b97e-b9535dda633c',
-    case_id: caseId,
-    case_type_id: 'NFD'
+    assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
+    case_id:caseId,
+    case_type_id:'NFD'
   };
-
 
   var body = {
     data: JSON.stringify(data)
   };
 
-  console.log('.....printing the body'+ body);
+  console.log('.....printing the body  .....  '+ JSON.stringify(body));
 
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
-    uri: ccdApiUrl+caseAssignmentUrl,
+    uri: ccdApiUrl + caseAssignmentUrl,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,

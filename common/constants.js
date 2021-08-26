@@ -49,7 +49,8 @@ const states = {
   AWAITING_PRONOUNCEMENT: 'AwaitingPronouncement',
   AWAITING_DA: 'AwaitingDecreeAbsolute',
   DIVORCE_GRANTED: 'DivorceGranted',
-  DN_PRONOUNCED: 'DNPronounced'
+  DN_PRONOUNCED: 'DNPronounced',
+  AWAITING_GENERAL_CONSIDERATION: 'Awaiting General Consideration'
 };
 
 const stateDisplayName = {
