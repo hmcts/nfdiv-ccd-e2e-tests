@@ -160,8 +160,8 @@ module.exports = function () {
     },
 
     // How do you want to apply for Divorce Sole/Joint
-    fillSoleOrJointOptionForDivorce(soleOrJoint){
-      return CreateCasePage.fillHowDoYouWantToApplyForDivorce(soleOrJoint);
+    fillSoleOrJointOptionForDivorce(soleApp){
+      return CreateCasePage.fillHowDoYouWantToApplyForDivorce(soleApp);
     },
 
     fillAboutSolicitorFormAndSubmit() {

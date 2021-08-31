@@ -1,4 +1,4 @@
-const { paymentType,yesorno, soleOrJoint } = require('../../common/constants');
+const {paymentType,yesorno } = require('../../common/constants');
 const testconfig = require('./../config');
 
 let caseNumber;
@@ -12,7 +12,7 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
-  await I.fillSoleOrJointOptionForDivorce(soleOrJoint);
+  await I.fillSoleOrJointOptionForDivorce(yesorno.Yes); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();
