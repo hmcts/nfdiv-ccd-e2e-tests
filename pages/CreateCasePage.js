@@ -45,9 +45,9 @@ module.exports = {
     await I.waitForText('How do you want to apply for the divorce?');
 
     if(soleOrJoint === yesorno.Yes ){
-        await I.retry(5).selectOption(this.fields.applicationType, 'Sole Application');
+      await I.retry(5).selectOption(this.fields.applicationType, 'Sole Application');
     }else{
-        await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
+      await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
     }
 
     await I.click(this.fields.divorceOrDissolutionDivorce);
