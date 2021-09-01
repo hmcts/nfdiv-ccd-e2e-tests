@@ -98,7 +98,7 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.startValidationHWFProcess();
 
   await I.checkNextStepForEvent('HWF application accepted');
-  await I.fillHwfEventSummaryFor(caseNumber);
+  await I.hwfAccepted(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
 
@@ -115,8 +115,9 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(5);
   await I.checkNextStepForEvent('Application issued');
   await I.fillIssueApplicationMarriageDetails();
-  await I.checkStateAndEvent('Application issued','Issue Application');
+  await I.checkYourAnswersIssueApplication();
+  await I.checkStateAndEvent('AoS awaiting','Application issued');
 
-  console.log('~~~~~~~~~~~~~  Case State now is Application issued ~~~~~~~~~~~~ ');
+  console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
 }).retry(testconfig.TestRetryScenarios);

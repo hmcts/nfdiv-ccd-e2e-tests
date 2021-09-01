@@ -14,7 +14,7 @@ module.exports = {
   async fillFormAndSubmit() {
     await I.waitInUrl('/solicitor-create-application/solicitor-create-applicationUploadSupportingDocuments');
     //await I.runAccessibilityTest();
-    await I.see('Upload the marriage certificate');
+    await I.see('Upload Documents');
     const isAttachFileSupportedBrowser = !(await I.isMicrosoftEdgeOrSafariBrowser());
 
     // TODO Remove , once sorted for Chromium browswer .

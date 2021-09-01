@@ -57,7 +57,7 @@ const IssueBailiffPackPage = require('./pages/IssueBailiffPackPage');
 const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyPage');
 const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
 const DivorceApplicationDetailsPage = require('./pages/DivorceApplicationDetailsPage');
-const IssueApplicationEventSummaryDescPage = require('./pages/IssueApplicationEventSummaryDescriptionPage');
+const IssueApplicationCyaPage = require('./pages/IssueApplicationCyaPage');
 const GeneralEmailPage = require('./pages/GeneralEmailPage');
 const GeneralOrderPage = require('./pages/GeneralOrderPage');
 const GeneralReferralPage = require('./pages/GeneralReferralPage');
@@ -155,8 +155,8 @@ module.exports = function () {
       return MarriageCertificateDetailsPage.fillMarriageDetails();
     },
 
-    fillIssueApplicationEventSummaryAndDescription(){
-      return IssueApplicationEventSummaryDescPage.fillFormAndSubmit();
+    checkYourAnswersIssueApplication(){
+      return IssueApplicationCyaPage.verifyCyaDetails();
     },
 
     // How do you want to apply for Divorce Sole/Joint
@@ -279,6 +279,11 @@ module.exports = function () {
     fillHwfEventSummaryFor:function(caseNumber){
       return HWFReferencePage.fillFormAndSubmit(caseNumber);
     },
+
+    hwfAccepted:function(caseNumber){
+      return HWFReferencePage.hwfAcceptedSaveAndContinue(caseNumber);
+    },
+
 
     fillHwfRefused:function(caseNumber) {
       return HWFReferencePage.fillHwfRefusedEventNotes(caseNumber);
