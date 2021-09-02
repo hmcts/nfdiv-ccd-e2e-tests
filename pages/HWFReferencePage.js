@@ -39,7 +39,7 @@ module.exports = {
     await I.wait(4);
     await I.runAccessibilityTest();
     await I.see(this.fields.HWF_Message);
-    await I.see(this.fields.HWF_Application_Accepted)
+    await I.see(this.fields.HWF_Application_Accepted);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }
