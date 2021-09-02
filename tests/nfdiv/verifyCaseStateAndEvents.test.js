@@ -28,6 +28,6 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
 
   const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
 
- // const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
+//const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
 
 }).retry(testConfig.TestRetryScenarios);
