@@ -21,7 +21,7 @@
     "build": "eslint .",
     "test": "eslint .",
     "test:coverage": "eslint .",
-    "test:a11y": "esling .",
+    "test:a11y": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh"
   },
