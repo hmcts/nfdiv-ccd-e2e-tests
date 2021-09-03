@@ -58,7 +58,7 @@ async function getSolicitorUserToken() {
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
   const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
 
@@ -96,7 +96,7 @@ async function getCourtAdminUserToken() {
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
   const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
 
@@ -135,7 +135,7 @@ async function getRespondentAdminSolicitorUserToken() {
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = 'https://idam-api.${env}.platform.hmcts.net';
 
   const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
 
@@ -174,7 +174,7 @@ async function getRespondentSolicitorUserToken() {
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
   const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
 
@@ -207,7 +207,7 @@ async function getRespondentSolicitorUserToken() {
 async function getUserId(authToken) {
   logger.info('Getting User Id');
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
   const idamDetailsPath = '/details';
   const userDetails = await request.get({
@@ -227,7 +227,7 @@ async function getServiceToken() {
 
   const serviceSecret = testConfig.TestS2SAuthSecret;
 
-  const s2sBaseUrl = 'http://rpe-service-auth-provider-${env}.service.core-compute-${env}.internal';
+  const s2sBaseUrl = `http://rpe-service-auth-provider-${env}.service.core-compute-${env}.internal`;
   const s2sAuthPath = '/testing-support/lease';
   const oneTimePassword = require('otp')({
     secret: serviceSecret
@@ -402,7 +402,7 @@ async function getAuthTokenFor(userLoggedIn) {
 
 async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/ccd-nfd-draft-to-submitted-state') {
 
-  let authToken;
+  let authToken='';
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
 
   const userId = await getUserId(authToken);
@@ -595,13 +595,6 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   return saveEventResponse;
 }
 
-
-
-
-const getBaseUrl = () => {
-  return 'manage-case.aat.platform.hmcts.net';
-};
-
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
@@ -625,7 +618,6 @@ module.exports = {
   createCaseAndFetchResponse,
   updateCaseInCcd,
   updateNFDCaseInCcd,
-  getBaseUrl,
   datechange,
   formatDateToCcdDisplayDate,
   firstLetterToCaps,
