@@ -50,7 +50,7 @@
   "applicant2MiddleName": "Jermaine Wolf",
   "marriageApplicant1Name": "Eugenia Palmer",
   "selectedDivorceCentreSiteId": "AA07",
-  "jurisdictionLegalConnections": [
+  "jurisdictionConnections": [
     "I",
     "G",
     "H"

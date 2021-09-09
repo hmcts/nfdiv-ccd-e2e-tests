@@ -40,6 +40,7 @@ const states = {
   AWAITING_SERVICE: 'AwaitingService',
   AOS_AWAITING_SOL: 'AosAwaitingSol',
   AOS_AWAITING: 'AwaitingAos',
+  AWAITING_SERVICE:'AwaitingService',
   AOS_STARTED: 'AosStarted',
   AOS_DRAFTED:'AosDrafted',
   AWAITING_ANSWER: 'AosSubmittedAwaitingAnswer',

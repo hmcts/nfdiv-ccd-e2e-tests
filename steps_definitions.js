@@ -38,7 +38,6 @@ const AwaitingPetitionerPage = require('./pages/AwaitingPetitionerPage');
 const IssuePage = require('./pages/IssuePage');
 const IssueCheckYourAnswersPage = require('./pages/IssueCheckYourAnswersPage');
 const CcdCaseCreatedPetitionIssuedLandingPage = require('./pages/CcdCaseCreatedPetitionIssuedLandingPage');
-// const AosPackIssueTestPage = require('./pages/AosPackIssueTestPage');
 const IssueAosPackToRespondentCheckYourAnswersPage = require('./pages/IssueAosPackToRespondentCheckYourAnswersPage');
 const IssueAosPackToRespondentLandingPage = require('./pages/IssueAosPackToRespondentLandingPage');
 const AosStartedPage = require('./pages/AosStartedPage');
@@ -65,9 +64,7 @@ const CaseNotesPage = require('./pages/CaseNotesPage');
 const ChangeApplicationTypePage = require('./pages/ChangeApplicationTypePage');
 const UpdateDueDatePage = require('./pages/UpdateDueDatePage');
 const draftAosPage = require('./pages/DraftAoSPage.js');
-const submitAosPage = require('./pages/SubmitAosPage.js');
-
-
+const submitAosPage = require('./pages/SubmitAoSPage.js');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
 const validateAOSTabData = require ('./tabs/validateAOSTabData');

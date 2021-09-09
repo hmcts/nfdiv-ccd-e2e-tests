@@ -3,9 +3,9 @@ const I = actor();
 module.exports = {
 
   fields: {
-    legalConnections_1: '#jurisdictionLegalConnections-G',
-    legalConnections_2: '#jurisdictionLegalConnections-H',
-    legalConnections_3: '#jurisdictionLegalConnections-I',
+    legalConnections_1: '#jurisdictionConnections-G',
+    legalConnections_2: '#jurisdictionConnections-H',
+    legalConnections_3: '#jurisdictionConnections-I',
 
     submit: 'button[type="submit"]'
   },
