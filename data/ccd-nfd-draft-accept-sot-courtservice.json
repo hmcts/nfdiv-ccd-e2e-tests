@@ -1,0 +1,34 @@
+{
+"divorceOrDissolution": "divorce",
+"solUrgentCase": "No",
+"solServiceMethod": "courtService",
+"solStatementOfReconciliationDiscussed": "Yes",
+"solStatementOfReconciliationCertify": "Yes",
+"solStatementOfReconciliationDiscussed":"Yes",
+"solSignStatementOfTruth": "Yes",
+"applicant1StatementOfTruth": "Yes",
+"applicant1PrayerHasBeenGiven": "Yes",
+"solStatementOfReconciliationName": "SoR Name",
+"solStatementOfReconciliationFirm": "SoR Firm",
+"statementOfReconciliationComments": "Some comments",
+"solStatementOfReconciliationName": "MyFormOfThe",
+"solPaymentHowToPay": "feesHelpWith",
+"applicant1HWFReferenceNumber": "HWF-325-325",
+"solApplicationFeeInPounds": "550",
+"statementOfReconciliationComments": "CommentsSoT",
+  "applicationFeeOrderSummary": {
+    "PaymentTotal": "55000",
+    "PaymentReference": null,
+    "Fees": [
+      {
+        "id": null,
+        "value": {
+          "FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution",
+          "FeeVersion": "5",
+          "FeeCode": "FEE0002",
+          "FeeAmount": "55000"
+        }
+      }
+    ]
+  }
+}

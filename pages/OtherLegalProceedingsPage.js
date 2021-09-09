@@ -10,6 +10,7 @@ module.exports = {
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitor-create-applicationOtherLegalProceedings');
     await I.runAccessibilityTest();
+    await I.see('Are there any existing or previous court proceedings relating to the applicant\'s marriage?\n');
     await I.click(this.fields.existingCourtProceedings);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

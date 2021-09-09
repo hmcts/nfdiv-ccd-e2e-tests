@@ -10,23 +10,25 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('Verify NFD  Case States and Events');
+Feature('NFD Case - Court Service');
 
-Scenario('NFD - Sole Divorce Case created in CCD and verify the following states Draft, AwaitingHWF,Submitted,Issued', async function (I) {
+Scenario('NFD - Sole NFD CourtService case and verify State and Events', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
 
-  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
+  // courtService
+  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
-  verifyState(issueAosPack, states.AWAITING_SERVICE);
+  verifyState(issueAosPack, states.AOS_AWAITING);
 
   const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
+
   //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
 
 }).retry(testConfig.TestRetryScenarios);

@@ -440,6 +440,7 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
     'event_token': eventToken
   };
 
+
   const saveEventOptions = {
     method: 'POST',
     uri: ccdApiUrl + ccdSaveEventPath,
@@ -452,7 +453,6 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   };
 
   const saveEventResponse = await request(saveEventOptions);
-
   return saveEventResponse;
 }
 

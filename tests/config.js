@@ -6,6 +6,7 @@ module.exports = {
   TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/*.test.js',
   TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/verifyCaseStateAndEvents.test.js',
+  TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/verifyCaseForCourtService.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/solicitorCreateJointApplication.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/generalOrderReferralAndEmail.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/addNoteAndUpdateCase.test.js',

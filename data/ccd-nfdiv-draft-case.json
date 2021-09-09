@@ -1,6 +1,6 @@
 {
 "applicant1ContactDetailsConfidential": "keep",
-"applicationType": "jointApplication",
+"applicationType": "soleApplication",
 "labelContentTheApplicant2UC": "Applicant 2",
 "applicant1SolicitorAgreeToReceiveEmails": "Yes",
 "applicant1SolicitorOrganisationPolicy": {
