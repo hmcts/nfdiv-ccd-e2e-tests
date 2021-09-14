@@ -38,6 +38,7 @@ const states = {
   REJECTED: 'Rejected',
   DEFENDED_DIVORCE: 'DefendedDivorce',
   AWAITING_SERVICE: 'AwaitingService',
+  APPLICATION_AWAITING_SERVICE:'Application awaiting service',
   AOS_AWAITING_SOL: 'AosAwaitingSol',
   AOS_AWAITING: 'AwaitingAos',
   AWAITING_SERVICE:'AwaitingService',

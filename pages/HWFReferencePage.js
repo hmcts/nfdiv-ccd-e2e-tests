@@ -9,7 +9,6 @@ module.exports = {
     hwfEventSummary:'#field-trigger-summary',
     hwfEventDescription:'#field-trigger-description',
     HWF_Message:'HWF application accepted',
-    HWF_Application_Accepted:'Awaiting HWF decision',
     HWF_Refused:'HWF Refused',
     submit: 'button[type="submit"]'
   },
@@ -39,7 +38,6 @@ module.exports = {
     await I.wait(4);
     await I.runAccessibilityTest();
     await I.see(this.fields.HWF_Message);
-    await I.see(this.fields.HWF_Application_Accepted);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

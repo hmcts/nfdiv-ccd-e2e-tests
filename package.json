@@ -15,7 +15,7 @@
     "test:draft-aos": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/draftAoSUpdateAndSubmit.test.js  -c ./ --steps",
     "test:add-note": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/addNoteAndUpdateCase.test.js  -c ./ --steps",
     "test:hwf-refused": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/hwfRefusedByCaseWorker.test.js -c ./ --steps",
-    "test:create-sole": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/solicitorCreateSoleDivorceApplication.test.js -c ./ --steps",
+    "test:create-sole": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/solicitorCreateSoleDivorceApplication.test.js -c ./ --steps",
     "test:court-service": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyCaseForCourtService.test.js -c ./ --steps",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",

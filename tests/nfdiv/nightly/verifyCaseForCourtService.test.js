@@ -15,10 +15,10 @@ Feature('NFD Case - Court Service');
 Scenario('NFD - Sole NFD CourtService case and verify State and Events', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
-  console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
+  console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // courtService
-  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-courtservice.json');
+  // SoT solServiceMethod == courtService
+  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');

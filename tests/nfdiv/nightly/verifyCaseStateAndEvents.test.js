@@ -17,6 +17,7 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
 
+  //SoT solServiceMethod == solicitorService is chosen during  SoT
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
@@ -26,7 +27,6 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(issueAosPack, states.AWAITING_SERVICE);
 
-  const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
+  //const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
   //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
-
 }).retry(testConfig.TestRetryScenarios);
