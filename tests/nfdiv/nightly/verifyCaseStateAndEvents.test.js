@@ -3,7 +3,6 @@ const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
-
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
 };
@@ -28,5 +27,5 @@ Scenario('NFD - Sole Divorce Case created in CCD and verify the following states
   verifyState(issueAosPack, states.AWAITING_SERVICE);
 
   const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
-  const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
+  //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
 }).retry(testConfig.TestRetryScenarios);

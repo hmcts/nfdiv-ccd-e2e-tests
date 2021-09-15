@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd} =  require('../../../helpers/utils');
-const {paymentType, states,events} =require('../../../common/constants');
+const {yesorno,paymentType, states,events} =require('../../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../../config');
 
