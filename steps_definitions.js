@@ -259,6 +259,10 @@ module.exports = function () {
       return FeeAccountPaymentCaseSubmissionPage.fillFormAndSubmit();
     },
 
+    paymentWithPbaAccount: function(){
+      return FeeAccountPaymentCaseSubmissionPage.fillFormPba();
+    },
+
     fillPba:function() {
       return FeeAccountPaymentCaseSubmissionPage.fillPbaAccountNumberAndReference();
     },

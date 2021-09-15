@@ -20,6 +20,15 @@ module.exports = {
     await I.wait(3);
   },
 
+  async fillFormPba(){
+    await I.runAccessibilityTest();
+    await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
+    await I.selectOption(this.fields.howPaymentMade, paymentType.FEE_ACCOUNT);
+    await I.wait(2);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(3);
+  },
+
   async fillPbaAccountNumberAndReference() {
     await I.runAccessibilityTest();
     await I.wait(this.fields.pbaAccountNumber);

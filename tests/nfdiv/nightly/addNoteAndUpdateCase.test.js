@@ -1,6 +1,6 @@
-const { paymentType,yesorno,events } = require('../../common/constants');
-const testconfig = require('./../config');
-const {createNFDCaseInCcd} = require('../../helpers/utils');
+const { paymentType,yesorno,events } = require('../../../common/constants');
+const testconfig = require('./../../config');
+const {createNFDCaseInCcd} = require('../../../helpers/utils');
 const assert = require('assert');
 
 let caseNumber;
