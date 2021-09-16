@@ -36,8 +36,6 @@ module.exports = {
     await I.waitInUrl('trigger/caseworker-add-note/submit');
     await I.wait(4);
     await I.runAccessibilityTest();
-    await I.fillField(this.fields.eventSummary, 'Add CaseNote Event summary for '+caseId);
-    await I.fillField(this.fields.eventDescription, 'Add CaseNote  Event Desc for '+caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

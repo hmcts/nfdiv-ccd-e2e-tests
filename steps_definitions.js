@@ -294,16 +294,16 @@ module.exports = function () {
       return GeneralEmailPage.fillFormAndSubmit(caseNumber);
     },
 
-    fillGeneralEmailEventSummary:function(caseNumber){
-      return GeneralEmailPage.fillEventSummaryAndDetail(caseNumber);
+    fillGeneralEmailCya:function(){
+      return GeneralEmailPage.cyaGeneralEmail();
     },
 
     createGeneralOrderDetails:function(caseNumber){
       return GeneralOrderPage.fillFormAndSubmit(caseNumber);
     },
 
-    createGeneralOrderEventSummary:function(caseNumber){
-      return GeneralOrderPage.fillEventSummaryAndDetail(caseNumber);
+    fillGeneralOrderCya:function(caseNumber){
+      return GeneralOrderPage.fillCya(caseNumber);
     },
 
     createGeneralReferral:function(caseNumber){
@@ -311,7 +311,7 @@ module.exports = function () {
     },
 
     createGeneralReferralEventSummary:function(caseNumber){
-      return GeneralReferralPage.fillEventSummaryAndDetail(caseNumber);
+      return GeneralReferralPage.submitGeneralReferral(caseNumber);
     },
 
     createAddCaseNotes:function(caseNumber){
@@ -326,8 +326,8 @@ module.exports = function () {
       return ChangeApplicationTypePage.fillFormAndSubmit(caseNumber);
     },
 
-    updateApplicationTypeEventSummary:function(caseNumber){
-      return ChangeApplicationTypePage.fillEventSummaryAndDetail(caseNumber);
+    updateApplicationTypeSubmit:function(caseNumber){
+      return ChangeApplicationTypePage.updateApplicationTypeSubmit(caseNumber);
     },
 
     updateDueDate:function(){
@@ -335,7 +335,7 @@ module.exports = function () {
     },
 
     updateDueDateEventSummary:function(caseNumber){
-      return UpdateDueDatePage.fillEventSummaryAndDetail(caseNumber);
+      return UpdateDueDatePage.submitUpdateDueDate(caseNumber);
     },
 
     caseOrderSummaryPageFormAndSubmit: function(paymentType) {
@@ -359,6 +359,7 @@ module.exports = function () {
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
     },
 
+    // TODO checkState and checkStateAndEvent to be refactored .
     checkState: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkStateOnPage(state,event);
     },

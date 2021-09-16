@@ -32,12 +32,10 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillEventSummaryAndDetail(caseId) {
+  async updateApplicationTypeSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-update-application-type/submit');
     await I.wait(4);
     await I.runAccessibilityTest();
-    await I.fillField(this.fields.eventSummary, 'Update ApplicationType  Event summary for '+caseId);
-    await I.fillField(this.fields.eventDescription, 'Update ApplicationType Event Desc. for '+caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

@@ -7,7 +7,7 @@
     "test:test-e2e-standalone": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/solicitorCreateSoleDivorceApplication.test.js  -c ./ --steps",
     "pretest": "npm run create:type-definitions",
     "test:fullfunctional": "TESTS_FOR_ACCESSIBILITY='true' codeceptjs run-multiple parallel --steps --reporter mochawesome",
-    "test:test-gen-order": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/generalOrderReferralAndEmail.test.js  -c ./ --steps",
+    "test:test-gen-order": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/generalOrderReferralAndEmail.test.js  -c ./ --steps",
     "test:verify-state": "SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyCaseStateAndEvents.test.js  -c ./ --steps",
     "test:test-shareACase": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/shareACaseAndMoveToHolding.test.js  -c ./ --steps",
     "test:draft-case": "SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/createDraftCase.test.js -c ./ --steps",

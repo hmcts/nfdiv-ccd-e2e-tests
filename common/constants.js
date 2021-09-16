@@ -52,7 +52,8 @@ const states = {
   AWAITING_DA: 'AwaitingDecreeAbsolute',
   DIVORCE_GRANTED: 'DivorceGranted',
   DN_PRONOUNCED: 'DNPronounced',
-  AWAITING_GENERAL_CONSIDERATION: 'Awaiting General Consideration'
+  AWAITING_GENERAL_CONSIDERATION: 'Awaiting General Consideration',
+  AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting General Referral Payment'
 };
 
 const stateDisplayName = {

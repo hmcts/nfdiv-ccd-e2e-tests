@@ -40,13 +40,16 @@ module.exports = {
     await I.fillField(this.fields.nameOfJudge,'Lord Smith');
     await I.fillField(this.fields.generalOrderDetails,'General Order Details');
     await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(5);
+    //await I.waitInUrl('/caseworker-create-general-order/caseworker-create-general-ordergeneralOrderDraft');
+    await I.see('Create general order');
+    await I.see('General Order Draft');
+    await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
-    await I.waitInUrl('/trigger/caseworker-create-general-order/caseworker-create-general-ordergeneralOrderDraft');
-    await I.see(this.fields.draft);
-    await I.see('.pdf')  ; // generated .pdf file
+
   },
 
-  async fillEventSummaryAndDetail(caseId) {
+  async fillCya(caseId) {
     await I.waitInUrl('/trigger/caseworker-create-general-order/submit');
     await I.wait(4);
     await I.runAccessibilityTest();
@@ -58,8 +61,6 @@ module.exports = {
     await I.see('Name of Judge');
     await I.see('General order details');
     await I.see('General Order Draft');
-    await I.fillField(this.fields.eventSummary, 'GeneralOrder Event summary for '+caseId);
-    await I.fillField(this.fields.eventDescription, 'GeneralOrder Event Desc for '+caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

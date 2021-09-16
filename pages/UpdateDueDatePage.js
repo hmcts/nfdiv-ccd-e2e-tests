@@ -23,12 +23,10 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillEventSummaryAndDetail(caseId) {
+  async submitUpdateDueDate(caseId) {
     await I.waitInUrl('trigger/caseworker-update-due-date/submit');
     await I.wait(4);
     await I.runAccessibilityTest();
-    await I.fillField(this.fields.eventSummary, 'Update Due Date  Event summary for '+caseId);
-    await I.fillField(this.fields.eventDescription, 'Update Due Date  Event Desc for '+caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

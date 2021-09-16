@@ -40,5 +40,17 @@ module.exports = {
     await I.fillField(this.fields.eventDescription, 'event desc for '+caseId);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
+  },
+
+  async cyaGeneralEmail() {
+    await I.waitInUrl('/caseworker-create-general-email/submit');
+    await I.wait(4);
+    await I.runAccessibilityTest();
+    await I.see(this.fields.CreateGeneralEmail_Msg);
+    await I.see('Check your answers');
+    await I.see('Check the information below carefully.');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(2);
+
   }
 };
