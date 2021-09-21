@@ -13,6 +13,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.selectOption(this.fields.selectActionDropDown, 'Confirm service payment');
+
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

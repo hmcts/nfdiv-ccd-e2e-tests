@@ -57,7 +57,8 @@ const states = {
 };
 
 const stateDisplayName = {
-  SOL_AWAIT_PAYMENT_CONFIRM : 'Solicitor - Awaiting Payment Confirmation'
+  SOL_AWAIT_PAYMENT_CONFIRM : 'Solicitor - Awaiting Payment Confirmation',
+  AOS_AWAITING_NAME:'AoS awaiting'
 };
 
 const eventDisplayName = {
@@ -115,7 +116,8 @@ const events = {
   DA_GRANTED:'daGranted',
   CO_RESP_ANSWER_RECVD_AOS: 'coRespAnswerReceivedAOS',
   CO_RESP_AOS_RECEIVED_STARTED: 'co-RespAOSReceivedStarted',
-  MAKE_ELIGIBLE_FOR_DA: 'MakeEligibleForDA_Petitioner'
+  MAKE_ELIGIBLE_FOR_DA: 'MakeEligibleForDA_Petitioner',
+  SOLICITOR_CONFIRM_SERVICE:'Solicitor Confirm Service'
 };
 
 const serviceApplicationType = {

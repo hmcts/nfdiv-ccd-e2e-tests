@@ -532,6 +532,7 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
       id: eventId,
       summary: 'Updating Case',
       description: 'For CCD E2E Test'
+
     },
     'event_token': eventToken
   };
@@ -555,7 +556,7 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   console.log('.......... inside the shareCaseToRespondentSolicitor and caseId is'+ caseId);
-  console.log('.....userLoggedin is '+ userLoggedIn );
+  console.log('.....userLoggedin is ..... '+ userLoggedIn );
 
   let authToken;
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
@@ -564,8 +565,11 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getServiceToken();
 
-  const ccdApiUrl = 'http://aac-manage-case-assignment-${env}.service.core-compute-${env}.internal';
-  const caseAssignmentUrl = '/case-assignments';
+  // const ccdApiUrl = 'http://aac-manage-case-assignment-${env}.service.core-compute-${env}.internal';
+  // const caseAssignmentUrl = '/case-assignments';
+
+  const manageOrgApiUrl = 'https://manage-org.aat.platform.hmcts.net/api/caseshare';
+  const manageOrgAssignmentUrl = '/case-assignments';
 
   const data = {
     assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
@@ -573,21 +577,40 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     case_type_id:'NFD'
   };
 
+  const data2 = {
+    sharedCases: [{
+      case_id: caseId,
+      caseTitle: caseId,
+      caseTypeId: 'NFD',
+      pendingShares: [{
+        email: 'divorce_as_respondent_solicitor_01@mailinator.com',
+        firstName: 'DivRespondent',
+        idamId: '4c152236-a40a-423a-b97e-b9535dda633c',
+        lastName: 'SolicitorOne'
+      }],
+      pendingUnshares: []
+    }]
+  };
+
   var body = {
     data: JSON.stringify(data)
   };
 
-  console.log('.....printing the body  .....  '+ JSON.stringify(body));
+  var body2 = {
+    data: JSON.stringify(data2)
+  };
+
+  console.log('.....printing the body2  .....  '+ JSON.stringify(body2));
 
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
-    uri: ccdApiUrl + caseAssignmentUrl,
+    uri: manageOrgApiUrl + manageOrgAssignmentUrl,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(data)
+    body: JSON.stringify(body2)
   };
 
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);

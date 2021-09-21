@@ -52,6 +52,7 @@ const TransferBetweenRDCsPage = require('./pages/TransferBetweenRDCsPage');
 const TransferToRDCLandingPage = require('./pages/TransferToRDCLandingPage');
 const ServiceApplicationReceivedPage = require('./pages/ServiceApplicationReceivedPage');
 const ConfirmServicePaymentPage = require('./pages/ConfirmServicePaymentPage');
+const ConfirmServiceForSolicitorPage = require('./pages/ConfirmServiceForSolicitorPage');
 const IssueBailiffPackPage = require('./pages/IssueBailiffPackPage');
 const MarriageBrokenDownPage = require('./pages/MarriageBrokenDownIrretrievablyPage');
 const CaseworkerCheckStatAndEventPage = require('./pages/CaseworkerCheckStateAndEventDetailsPage');
@@ -466,6 +467,14 @@ module.exports = function () {
 
     confirmServicePaymentPageFormAndSubmit: function () {
       return ConfirmServicePaymentPage.fillFormAndSubmit();
+    },
+
+    confirmServiceForSolicitor:function (caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillServiceDetailsAndSubmit(caseNumber);
+    },
+
+    submitConfirmService: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.submitServiceDetails(caseNumber);
     },
 
     issueBailiffPackPageFormAndSubmit: function() {
