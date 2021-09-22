@@ -55,3 +55,4 @@ $ yarn test:fullfunctional (to run all the e2e tests
  ```bash
 $ yarn test:crossbrowser
  ```
+
