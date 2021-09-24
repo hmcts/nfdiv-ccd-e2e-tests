@@ -58,7 +58,8 @@ const states = {
 
 const stateDisplayName = {
   SOL_AWAIT_PAYMENT_CONFIRM : 'Solicitor - Awaiting Payment Confirmation',
-  AOS_AWAITING_NAME:'AoS awaiting'
+  AOS_AWAITING_NAME:'AoS awaiting',
+  WITHDRAWN:'Application withdrawn'
 };
 
 const eventDisplayName = {
@@ -81,7 +82,8 @@ const eventDisplayName = {
   MAKE_ELIGIBLE_FOR_DA: 'Make eligible for DA (Pet)',
   DA_GRANTED: 'DA Granted',
   HWF_RESULTS:'HWF Results',
-  APPLICATION_PAID_SUBMIITED:'Application Paid and submitted'
+  APPLICATION_PAID_SUBMIITED:'Application Paid and submitted',
+  WITHDRAWN:'Withdrawn'
 };
 
 

@@ -27,8 +27,8 @@ Scenario('NFD - Share a Case and Submit AoS', async function (I) {
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
 
-  const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
+  //const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
 
   //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
+  const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
 }).retry(testConfig.TestRetryScenarios);
