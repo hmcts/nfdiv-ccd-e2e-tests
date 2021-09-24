@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD  Share A Case');
 
-Scenario('NFD - Share a Case and Submit AoS', async function (I) {
+xScenario('NFD - Share a Case and Submit AoS', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
