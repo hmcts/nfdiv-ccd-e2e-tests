@@ -27,21 +27,15 @@ module.exports = {
     await I.click(this.fields.applicant1_changedName);
     await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
     await I.selectOption(this.fields.applicant1Gender, 'Male');
-
     await I.click(this.fields.sameSex);
-
     await I.click('I can\'t enter a UK postcode');
-
     // TODO AddressSearch and select dropdown. ( Find Address button )
-
     await I.wait(3);
     await I.fillField(this.fields.addressLine1_Building, 'Building 007');
     await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
     await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
-
-    await I.selectOption(this.fields.keepPetitionerContactDetails, '2: keep');
+    await I.click(this.fields.keepPetitionerContactDetails);
     await I.wait(2);
-
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
