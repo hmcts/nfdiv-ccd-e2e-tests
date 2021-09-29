@@ -16,7 +16,7 @@ module.exports = {
     selectAddresssDropDown: '#applicant1HomeAddress_applicant1HomeAddress_addressList',
     applicant1_phoneNumber: '#applicant1PhoneNumber',
     applicant1_email: '#applicant1Email',
-    keepPetitionerContactDetails: '#applicant1ContactDetailsConfidential',
+    keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
     submit: 'button[type="submit"]'
   },
 
