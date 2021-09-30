@@ -17,9 +17,10 @@ module.exports = {
     await I.see('Upload Documents');
     const isAttachFileSupportedBrowser = !(await I.isMicrosoftEdgeOrSafariBrowser());
 
-    // TODO Remove , once sorted for Chromium browswer .
     await I.click(this.fields.addNewButton);
     await I.wait(5);
+    await I.see('Document Url');
+    await I.wait(3);
     await I.attachFile(this.fields.chooseFile, 'data/fileupload.txt');
     await I.wait(5);
     await I.see('Applicant 1 Documents uploaded');

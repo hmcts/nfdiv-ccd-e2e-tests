@@ -1,8 +1,7 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
-const testConfig = require('./../../config');
-
+const testconfig = require('./../../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -68,4 +67,4 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,events.SUBMIT_AOS);
 
-}).retry(testConfig.TestRetryScenarios);
+}).retry(testconfig.TestRetryScenarios);
