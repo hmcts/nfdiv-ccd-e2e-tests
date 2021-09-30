@@ -250,6 +250,35 @@ async function getServiceToken() {
   return serviceToken;
 }
 
+// TODO Temporary Patch , Remove once CCD-2009 is deployed
+async function getManageOrgServiceToken() {
+  logger.info('Getting ManageOrgServiceToken ........');
+
+  const serviceSecret = testConfig.TestS2SAuthSecret;
+
+  const s2sBaseUrl = 'http://rpe-service-auth-provider-aat.service.core-compute-aat.internal';
+  const s2sAuthPath = '/testing-support/lease';
+  const oneTimePassword = require('otp')({
+    secret: serviceSecret
+  }).totp();
+
+  const serviceToken = await request({
+    method: 'POST',
+    uri: s2sBaseUrl + s2sAuthPath,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      microservice: 'xui_webapp',
+      oneTimePassword
+    })
+  });
+
+  logger.debug(serviceToken);
+
+  return serviceToken;
+}
+
 async function createCaseInCcd(dataLocation = 'data/ccd-basic-data.json') {
   const saveCaseResponse = await createCaseInCcd(dataLocation).catch(error => {
     console.log(error);
@@ -554,20 +583,15 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 }
 
 async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
-
-  console.log('.......... inside the shareCaseToRespondentSolicitor and caseId is  '+ caseId);
   console.log('.....user  is ..... '+ userLoggedIn );
-
   let authToken;
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
 
   const userId = await getUserId(authToken);
 
-  const serviceToken = await getServiceToken();
+  const serviceToken = await getManageOrgServiceToken();
 
   const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
-  //const aacHost = 'https://aac-manage-case-assignment-aat.platform.hmcts.net';
-
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
@@ -576,33 +600,11 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     case_type_id:'NFD'
   };
 
-  // const data2 = {
-  //   sharedCases:[{
-  //     case_id:caseId,
-  //     caseTitle:caseId,
-  //     caseTypeId:'NFD',
-  //     pendingShares:[{
-  //       email:'divorce_as_respondent_solicitor_01@mailinator.com',
-  //       firstName:'DivRespondent',
-  //       idamId:'4c152236-a40a-423a-b97e-b9535dda633c',
-  //       lastName:'SolicitorOne'
-  //     }],
-  //     pendingUnshares:[]
-  //   }]
-  // };
-
   var body = {
     data: JSON.stringify(data)
   };
 
-  // var body2 = {
-  //   data: JSON.stringify(data2)
-  // };
-
-  console.log('.....printing the body  .....  .....'+ JSON.stringify(body));
-
-  // const manageOrgApiUrl = 'https://manage-org.aat.platform.hmcts.net/api/caseshare';
-  // const manageOrgAssignmentUrl = '/case-assignments';
+  //console.log('.....printing the body  .....  .....'+ JSON.stringify(data));
 
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
@@ -612,17 +614,13 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
       'ServiceAuthorization':`${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
-    //body:JSON.stringify(body2)
+    body: JSON.stringify(data)
   };
 
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
-
-  console.log('........Printing the response ', JSON.parse(saveEventResponse).pretty);
-
+  //console.log('........Printing the response ', saveEventResponse);
   return saveEventResponse;
 }
-
 
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();

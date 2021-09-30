@@ -52,7 +52,8 @@ const states = {
   DIVORCE_GRANTED: 'DivorceGranted',
   DN_PRONOUNCED: 'DNPronounced',
   AWAITING_GENERAL_CONSIDERATION: 'Awaiting General Consideration',
-  AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting General Referral Payment'
+  AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting General Referral Payment',
+  TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period'
 };
 
 const stateDisplayName = {
@@ -101,6 +102,8 @@ const events = {
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   CASE_SUBMISSION:'Case submission',
+  DRAFT_AOS:'Draft AoS',
+  UPDATE_AOS:'Update AoS',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
   HWF_REFUSED:'HWF Refused',
   DRAFT_TO_SUBMITTED:'Submitted',
@@ -108,6 +111,7 @@ const events = {
   ISSUE_AOS:'caseworker-issue-aos',
   AOS_AWAITING_TO_AOS_DRAFTED:'solicitor-draft-aos',
   START_AOS: 'startAos',
+  SUBMIT_AOS:'Submit AoS',
   AOS_SUBMITTED_DEFENDED:'aosSubmittedDefended',
   ANSWER_NOT_RECEIVED:'answerNotReceived',
   DN_RECEIVED:'dnReceived',

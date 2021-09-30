@@ -35,7 +35,6 @@ module.exports = {
     await I.wait(4);
     await I.see('Review the applicant 1\'s application');
     await I.see('Link to online petition');
-    await I.see('mini-application-'+caseId+'.pdf');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -74,7 +73,6 @@ module.exports = {
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online petition');
-    await I.see('mini-application-'+caseId+'.pdf');
     await I.see('Has the respondent read the application for divorce?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see('Do legal proceedings exist (respondent)?');

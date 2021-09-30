@@ -65,6 +65,7 @@ const CaseNotesPage = require('./pages/CaseNotesPage');
 const ChangeApplicationTypePage = require('./pages/ChangeApplicationTypePage');
 const UpdateDueDatePage = require('./pages/UpdateDueDatePage');
 const draftAosPage = require('./pages/DraftAoSPage.js');
+const UpdateAosPage = require('./pages/UpdateAoSPage.js');
 const submitAosPage = require('./pages/SubmitAoSPage.js');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -409,6 +410,10 @@ module.exports = function () {
       return draftAosPage.draftAosCYA(caseNumber);
     },
 
+    updateAoS:function(caseNumber){
+      return UpdateAosPage.updateAoSDetails(caseNumber);
+    },
+
     submitAosSOT: function(caseNumber) {
       return submitAosPage.fillSoTAndSoRDetails(caseNumber);
     },
@@ -439,6 +444,10 @@ module.exports = function () {
 
     selectEvent: function(eventName) {
       return SelectEvent.fillFormAndSubmit(eventName);
+    },
+
+    signOut: function() {
+      return SelectEvent.signOut();
     },
 
     aosStartedPageFormAndSubmit: function() {

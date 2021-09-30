@@ -40,8 +40,5 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   await I.submitConfirmService(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.AOS_AWAITING_NAME, events.SOLICITOR_CONFIRM_SERVICE);
 
-
-
-
 }).retry(testConfig.TestRetryScenarios);
 

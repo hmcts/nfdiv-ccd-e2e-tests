@@ -1,3 +1,4 @@
+const {signOut} = require('../common/constants');
 const I = actor();
 
 module.exports = {
@@ -13,5 +14,11 @@ module.exports = {
     await I.selectOption(this.fields.selectActionDropDown, eventName);
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async signOut() {
+    await I.wait(2);
+    await I.click(signOut);
+    await I.wait(5);
   }
 };

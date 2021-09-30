@@ -27,8 +27,4 @@ Scenario('NFD - Sole NFD CourtService case and verify State and Events', async f
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(issueAosPack, states.AOS_AWAITING);
 
-  const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
-
-  //const caseAvailableToRespondentSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseId);
-
 }).retry(testConfig.TestRetryScenarios);
