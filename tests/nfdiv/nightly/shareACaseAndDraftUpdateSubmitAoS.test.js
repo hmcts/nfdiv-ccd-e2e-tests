@@ -58,7 +58,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.signOut();
 
   // Login as CW and check the latest Event and State of the Case
-  // When logging in as TestEnvRespondentSolUser , the CaseDetails that normally show Event and State is not present.
+  // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
