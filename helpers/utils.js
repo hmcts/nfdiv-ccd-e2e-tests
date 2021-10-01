@@ -604,8 +604,6 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     data: JSON.stringify(data)
   };
 
-  //console.log('.....printing the body  .....  .....'+ JSON.stringify(data));
-
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
     uri: aacHost + caseAssignmentUrl,
@@ -618,7 +616,6 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   };
 
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
-  //console.log('........Printing the response ', saveEventResponse);
   return saveEventResponse;
 }
 

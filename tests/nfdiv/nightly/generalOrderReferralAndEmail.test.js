@@ -40,16 +40,16 @@ Scenario('Create General Email , Referral , Order', async (I) => {
   await I.checkNextStepForEvent('General referral');
   await I.createGeneralReferral(caseNumber);
   await I.wait(3);
-  await I.checkStateAndEvent(states.AWAITING_GENERAL_REFERRAL_PAYMENT,'General referral');
+  await I.checkStateAndEvent(states.AWAITING_GENERAL_CONSIDERATION,'General referral');
 
-  // General order // TODO InvalidEvent Error seen . FIXME
-  // await I.wait(5);
-  // await I.checkNextStepForEvent('Create general order');
-  // await I.wait(3);
-  // await I.createGeneralOrderDetails(caseNumber);
-  // await I.wait(2);
-  // await I.fillGeneralOrderCya(caseNumber);
-  // await I.checkState(states.SUBMITTTED,'Create general order');
+  //General order // TODO InvalidEvent Error seen . FIXME
+  await I.wait(5);
+  await I.checkNextStepForEvent('Create general order');
+  await I.wait(3);
+  await I.createGeneralOrderDetails(caseNumber);
+  await I.wait(2);
+  await I.fillGeneralOrderCya(caseNumber);
+  await I.checkState(states.AWAITING_GENERAL_CONSIDERATION,'Create general order');
 
 }).retry(testconfig.TestRetryScenarios);
 

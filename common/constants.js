@@ -51,8 +51,8 @@ const states = {
   AWAITING_DA: 'AwaitingDecreeAbsolute',
   DIVORCE_GRANTED: 'DivorceGranted',
   DN_PRONOUNCED: 'DNPronounced',
-  AWAITING_GENERAL_CONSIDERATION: 'Awaiting General Consideration',
-  AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting General Referral Payment',
+  AWAITING_GENERAL_CONSIDERATION: 'Awaiting general consideration',
+  AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting general referral payment',
   TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period'
 };
 
