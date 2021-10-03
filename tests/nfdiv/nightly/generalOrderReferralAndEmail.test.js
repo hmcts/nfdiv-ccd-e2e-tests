@@ -1,5 +1,5 @@
 const {paymentType,yesorno,states, events , user} = require('../../../common/constants');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 const {createNFDCaseInCcd,updateNFDCaseInCcd} = require('../../../helpers/utils');
 const assert = require('assert');
 
@@ -20,7 +20,7 @@ Scenario('Create General Email , Referral , Order', async (I) => {
 
   // general Email
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(7);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
@@ -40,18 +40,18 @@ Scenario('Create General Email , Referral , Order', async (I) => {
   await I.checkNextStepForEvent('General referral');
   await I.createGeneralReferral(caseNumber);
   await I.wait(3);
-  await I.checkStateAndEvent(states.AWAITING_GENERAL_CONSIDERATION,'General referral');
+  await I.checkState(states.AWAITING_GENERAL_REFERRAL_PAYMENT,events.GENERAL_REFERRAL);
 
-  //General order // TODO InvalidEvent Error seen . FIXME
+  //General order
   await I.wait(5);
   await I.checkNextStepForEvent('Create general order');
   await I.wait(3);
   await I.createGeneralOrderDetails(caseNumber);
   await I.wait(2);
   await I.fillGeneralOrderCya(caseNumber);
-  await I.checkState(states.AWAITING_GENERAL_CONSIDERATION,'Create general order');
+  await I.checkStateAndEvent(states.AWAITING_GENERAL_REFERRAL_PAYMENT,events.CREATE_GENERAL_ORDER);
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);

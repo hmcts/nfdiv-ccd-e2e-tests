@@ -33,7 +33,7 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.see('Application awaiting service');
+  await I.see('Awaiting service');
   await I.see('Issue Solicitor Service Pack');
   await I.checkNextStepForEvent('Solicitor Confirm Service');
   await I.confirmServiceForSolicitor(caseNumber);

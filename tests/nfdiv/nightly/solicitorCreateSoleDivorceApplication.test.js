@@ -5,7 +5,7 @@ let caseNumber;
 
 Feature('Solicitor Create Sole Application ');
 
-Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', async (I) => {
+Scenario('Solicitor Create Sole Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -95,7 +95,6 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.wait(3);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(8);
-  //await I.startValidationHWFProcess();
 
   await I.checkNextStepForEvent('HWF application accepted');
   await I.hwfAccepted(caseNumber);
@@ -116,7 +115,7 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.checkNextStepForEvent('Application issued');
   await I.fillIssueApplicationMarriageDetails();
   await I.checkYourAnswersIssueApplication();
-  await I.checkStateAndEvent('Application awaiting service','Application issued');
+  await I.checkStateAndEvent('Awaiting service','Application issued');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 

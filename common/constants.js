@@ -38,7 +38,7 @@ const states = {
   REJECTED: 'Rejected',
   DEFENDED_DIVORCE: 'DefendedDivorce',
   AWAITING_SERVICE: 'AwaitingService',
-  APPLICATION_AWAITING_SERVICE:'Application awaiting service',
+  APPLICATION_AWAITING_SERVICE:'Awaiting service',
   AOS_AWAITING_SOL: 'AosAwaitingSol',
   AOS_AWAITING: 'AwaitingAos',
   AOS_STARTED: 'AosStarted',
@@ -122,7 +122,9 @@ const events = {
   CO_RESP_ANSWER_RECVD_AOS: 'coRespAnswerReceivedAOS',
   CO_RESP_AOS_RECEIVED_STARTED: 'co-RespAOSReceivedStarted',
   MAKE_ELIGIBLE_FOR_DA: 'MakeEligibleForDA_Petitioner',
-  SOLICITOR_CONFIRM_SERVICE:'Solicitor Confirm Service'
+  SOLICITOR_CONFIRM_SERVICE:'Solicitor Confirm Service',
+  GENERAL_REFERRAL:'General referral',
+  CREATE_GENERAL_ORDER:'Create general order'
 };
 
 const serviceApplicationType = {

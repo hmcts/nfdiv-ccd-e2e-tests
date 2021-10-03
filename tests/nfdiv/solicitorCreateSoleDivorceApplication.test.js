@@ -116,7 +116,7 @@ Scenario('Solicitor Create Sole Application ++ with Docs/HWF/Submit the Case ', 
   await I.checkNextStepForEvent('Application issued');
   await I.fillIssueApplicationMarriageDetails();
   await I.checkYourAnswersIssueApplication();
-  await I.checkStateAndEvent('Application awaiting service','Application issued');
+  await I.checkStateAndEvent('Awaiting service','Application issued');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
