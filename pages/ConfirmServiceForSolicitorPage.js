@@ -21,7 +21,7 @@ module.exports = {
   async fillServiceDetailsAndSubmit(caseNumber) {
     await I.waitInUrl('solicitor-confirm-service/solicitor-confirm-serviceSolConfirmService');
     await I.see('Certificate of Service - Confirm Service\n');
-    await I.see('Application awaiting service');
+    await I.see('Awaiting service');
 
     await I.fillField(this.fields.marriageDateDay, '09');
     await I.fillField(this.fields.marriageDateMonth, '12');
