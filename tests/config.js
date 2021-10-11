@@ -29,5 +29,7 @@ module.exports = {
   TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
   TestS2SAuthSecret: process.env.SERVICE_AUTH_SECRET || '',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
-  TestIdamClientSecret: process.env.IDAM_SECRET || ''
+  TestIdamClientSecret: process.env.IDAM_SECRET || '',
+  TestSystemUser:process.env.IDAM_SYSTEMUPDATE_USERNAME || '',
+  TestSystemUserPassword:process.env.IDAM_SYSTEMUPDATE_PASSWORD || ''
 };
