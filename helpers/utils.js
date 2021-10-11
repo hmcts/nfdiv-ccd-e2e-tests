@@ -49,6 +49,51 @@ async function getUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getSystemUserToken() {
+
+  logger.info('~~~~~~~~~~~~~Getting SystemUser  Token');
+
+  // Setup Details
+  // const username = 'TEST_SYSTEM_USER@mailinator.com';
+  // const password = 'genericPassword123';
+  //
+  const username=testConfig.TestSystemUser;
+  const password=testConfig.TestSystemUserPW;
+
+  console.log(`~~~~~~~~~ username .... ${username}  and password  ...${password}`);
+
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
 async function getSolicitorUserToken() {
   logger.info('.........Getting Solicitor User Token');
 
@@ -108,6 +153,7 @@ async function getCourtAdminUserToken() {
     }
   }).catch(error => {
     console.log(error);
+    return Promise.reject(error);
   });
 
   const code = JSON.parse(codeResponse).code;
@@ -147,6 +193,7 @@ async function getRespondentAdminSolicitorUserToken() {
     }
   }).catch(error => {
     console.log(error);
+    return Promise.reject(err);
   });
 
   const code = JSON.parse(codeResponse).code;
@@ -218,6 +265,7 @@ async function getUserId(authToken) {
   });
 
   logger.debug(JSON.parse(userDetails).id);
+  console.log(`........User id is ....`+JSON.parse(userDetails).id);
 
   return JSON.parse(userDetails).id;
 }
@@ -233,17 +281,22 @@ async function getServiceToken() {
     secret: serviceSecret
   }).totp();
 
-  const serviceToken = await request({
-    method: 'POST',
-    uri: s2sBaseUrl + s2sAuthPath,
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      microservice: 'nfdiv_case_api',
-      oneTimePassword
-    })
-  });
+  var serviceToken
+   try {
+     serviceToken = await request({
+      method: 'POST',
+      uri: s2sBaseUrl + s2sAuthPath,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        microservice: 'nfdiv_case_api',
+        oneTimePassword
+      })
+    });
+  } catch(e) {
+     console.log('Error occured when getting ServiceToken ', e.message)
+   }
 
   logger.debug(serviceToken);
 
@@ -444,6 +497,8 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
+
+
   const startEventOptions = {
     method: 'GET',
     uri: ccdApiUrl + ccdStartEventPath,
@@ -619,6 +674,87 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   return saveEventResponse;
 }
 
+async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.json',caseId) {
+
+  // const authToken = await getSystemUserToken();
+  // const authToken = getUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  const eventTypeId ='system-progress-held-case';
+
+  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
+
+  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventId = 'system-progress-held-case';
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  console.log('~~~~~~~~ eventToken  is ---->  ' + eventToken);
+
+  var data = fs.readFileSync(dataLocation);
+
+  //console.log('~~~~~~~~ data  payload... ---->  ' + data);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSubmitEventPath;
+  console.log('~~~~~~~~ postURL  is ---->  ' + postURL);
+
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSubmitEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  logger.info('----- Before CALL to POST / submitEvent ') ;
+
+  // const saveCaseResponse = async function xx() {
+  //   try {
+  //     await request(saveCaseOptions);
+  //   } catch (error) {
+  //     console.log('~~~~~~ Error on the POST Call ' + error);
+  //   }
+  // }
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+
+  //console.log('~~~~~~~~~ response is'  + saveCaseResponse);
+  console.log('----- After CALL to POST / submitEvent ') ;
+
+
+  return saveCaseResponse;
+}
+
+
+
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
@@ -646,5 +782,6 @@ module.exports = {
   formatDateToCcdDisplayDate,
   firstLetterToCaps,
   updateRoleForCase,
-  shareCaseToRespondentSolicitor
+  shareCaseToRespondentSolicitor,
+  moveFromHoldingToAwaitingCO
 };

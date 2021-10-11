@@ -67,6 +67,7 @@ const UpdateDueDatePage = require('./pages/UpdateDueDatePage');
 const draftAosPage = require('./pages/DraftAoSPage.js');
 const UpdateAosPage = require('./pages/UpdateAoSPage.js');
 const submitAosPage = require('./pages/SubmitAoSPage.js');
+const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
 const validateAOSTabData = require ('./tabs/validateAOSTabData');
@@ -159,8 +160,8 @@ module.exports = function () {
     },
 
     // How do you want to apply for Divorce Sole/Joint
-    fillSoleOrJointOptionForDivorce(soleApp){
-      return CreateCasePage.fillHowDoYouWantToApplyForDivorce(soleApp);
+    fillSoleOrJointOptionForDivorce(soleApp,divorceOrCivil){
+      return CreateCasePage.fillHowDoYouWantToApplyForDivorce(soleApp,divorceOrCivil);
     },
 
     fillAboutSolicitorFormAndSubmit() {
@@ -409,6 +410,34 @@ module.exports = function () {
     draftAosCheckYourAnswers: function(caseNumber){
       return draftAosPage.draftAosCYA(caseNumber);
     },
+
+    draftConditionalOrderReviewAoS:function(caseNumber) {
+      return ConditionalOrderPage.fillReviewAoS();
+    },
+
+    draftConditionalOrderReviewApplicant1Application:function(){
+      return ConditionalOrderPage.reviewApplicant1Application();
+    },
+
+    draftConditionalOrderDocuments:function() {
+      return ConditionalOrderPage.draftConditionalOrderDocuments();
+    },
+
+    draftConditionalOrderCYA:function() {
+      return ConditionalOrderPage.draftConditionalOrderCYA();
+    },
+
+    submitSoTConditionalOrderDetails:function() {
+      return ConditionalOrderPage.submitSoTDetails();
+    },
+
+    submitConditionalOrder:function() {
+      return ConditionalOrderPage.submitConditionalOrder();
+    },
+
+
+
+
 
     updateAoS:function(caseNumber){
       return UpdateAosPage.updateAoSDetails(caseNumber);

@@ -1,6 +1,6 @@
 const I = actor();
 const testConfig = require('../tests/config');
-const {currentCaseType,yesorno} = require('../common/constants');
+const {currentCaseType,yesorno,divorceOrDissolution} = require('../common/constants');
 
 module.exports = {
 
@@ -8,9 +8,8 @@ module.exports = {
     jurisdiction: 'select[id="cc-jurisdiction"]',
     caseType: 'select[id="cc-case-type"]',
     applicationType: 'select[id="applicationType"]',
-    divorceOrDissolutionDivorce:'#divorceOrDissolution-divorce',
+    divorce:'#divorceOrDissolution-divorce',
     dissolution:'#divorceOrDissolution-dissolution',
-
     event: 'select[id="cc-event"]',
     submit: 'button[type="submit"]'
   },
@@ -18,6 +17,7 @@ module.exports = {
   async clickCreateCase() {
     await I.waitForText('Create case');
     await I.click('Create case');
+
   },
 
   async fillFormAndSubmit() {
@@ -36,7 +36,7 @@ module.exports = {
     await I.wait(1);
   },
 
-  async fillHowDoYouWantToApplyForDivorce(soleOrJoint) {
+  async fillHowDoYouWantToApplyForDivorce(soleOrJoint,divorceOrCivil) {
     if (testConfig.TestForCrossBrowser) {
       await I.wait(60);
     } else {
@@ -50,8 +50,11 @@ module.exports = {
       await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
     }
 
-    await I.click(this.fields.divorceOrDissolutionDivorce);
-
+    if(divorceOrCivil === divorceOrDissolution.DIVORCE) {
+      await I.click(this.fields.divorce);
+    }else{
+      await I.click(this.fields.dissolution);
+    }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   }

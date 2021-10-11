@@ -17,6 +17,8 @@ module.exports = {
     applicant1_phoneNumber: '#applicant1PhoneNumber',
     applicant1_email: '#applicant1Email',
     keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
+    keepPetitionerContactDetailsNotConfidential: '#applicant1KeepContactDetailsConfidential_No',
+
     submit: 'button[type="submit"]'
   },
 
@@ -34,7 +36,7 @@ module.exports = {
     await I.fillField(this.fields.addressLine1_Building, 'Building 007');
     await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
     await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
-    await I.click(this.fields.keepPetitionerContactDetails);
+    await I.click(this.fields.keepPetitionerContactDetailsNotConfidential);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   }
