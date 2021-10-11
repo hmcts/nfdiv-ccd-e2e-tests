@@ -124,7 +124,8 @@ const events = {
   MAKE_ELIGIBLE_FOR_DA: 'MakeEligibleForDA_Petitioner',
   SOLICITOR_CONFIRM_SERVICE:'Solicitor Confirm Service',
   GENERAL_REFERRAL:'General referral',
-  CREATE_GENERAL_ORDER:'Create general order'
+  CREATE_GENERAL_ORDER:'Create general order',
+  APPLICATION_WITHDRAWN: 'Application withdrawn'
 };
 
 const serviceApplicationType = {

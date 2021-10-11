@@ -486,6 +486,10 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.submitServiceDetails(caseNumber);
     },
 
+    submitWithdrawnCW: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.submitWithdrawn(caseNumber);
+    },
+
     issueBailiffPackPageFormAndSubmit: function() {
       return IssueBailiffPackPage.fillFormAndSubmit();
     },

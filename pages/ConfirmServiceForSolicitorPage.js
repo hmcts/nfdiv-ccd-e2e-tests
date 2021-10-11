@@ -45,5 +45,11 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('solicitor-confirm-service/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitWithdrawn(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-withdrawn/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
