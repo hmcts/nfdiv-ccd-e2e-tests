@@ -1,5 +1,6 @@
 module.exports = {
   TestUrl: process.env.TEST_E2E_URL || 'https://manage-case.aat.platform.hmcts.net/',
+  TestManageOrgUrl: process.env.TEST_E2E_URL || 'https://manage-org.aat.platform.hmcts.net/',
   TestEnv: process.env.RUNNING_ENV || 'aat',
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
   TestRetryFeatures: 0,
@@ -17,7 +18,6 @@ module.exports = {
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/shareACaseAndDraftUpdateSubmitAoS.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH ||   'tests/nfdiv/nightly/contionalOrderDraftAndUpdate.test.js',
   TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyHoldingToConditionalOrder.test.js',
-  //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyCOTemp.test.js',
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
   TestEnvSolUser:'TEST_SOLICITOR@mailinator.com',
   TestEnvSolPassword:'genericPassword123',

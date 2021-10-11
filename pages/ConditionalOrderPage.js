@@ -4,7 +4,7 @@ module.exports = {
 
   fields: {
     applyConditionalOrderYes:'#coApplyForConditionalOrder_Yes',
-    changeOrAddAnythingToApplication:"#coChangeOrAddToApplication_Yes",
+    changeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
     everythingInPetitionTrue:'#coIsEverythingInPetitionTrue_Yes',
     addNewDocumentsNo:'#coAddNewDocuments_No',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
@@ -80,13 +80,6 @@ module.exports = {
     await I.see('Submit Conditional Order');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
-    await I.checkStateAndEvent('Awaiting legal advisor referral','Submit Conditional Order')
-
-  },
-
-
-
-
-
-
+    await I.checkStateAndEvent('Awaiting legal advisor referral','Submit Conditional Order');
+  }
 };

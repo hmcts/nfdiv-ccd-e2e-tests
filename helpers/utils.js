@@ -53,14 +53,8 @@ async function getSystemUserToken() {
 
   logger.info('~~~~~~~~~~~~~Getting SystemUser  Token');
 
-  // Setup Details
-  // const username = 'TEST_SYSTEM_USER@mailinator.com';
-  // const password = 'genericPassword123';
-  //
   const username=testConfig.TestSystemUser;
   const password=testConfig.TestSystemUserPW;
-
-  console.log(`~~~~~~~~~ username .... ${username}  and password  ...${password}`);
 
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
@@ -265,7 +259,6 @@ async function getUserId(authToken) {
   });
 
   logger.debug(JSON.parse(userDetails).id);
-  console.log(`........User id is ....`+JSON.parse(userDetails).id);
 
   return JSON.parse(userDetails).id;
 }
@@ -281,22 +274,14 @@ async function getServiceToken() {
     secret: serviceSecret
   }).totp();
 
-  var serviceToken
-   try {
-     serviceToken = await request({
-      method: 'POST',
-      uri: s2sBaseUrl + s2sAuthPath,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        microservice: 'nfdiv_case_api',
-        oneTimePassword
-      })
-    });
-  } catch(e) {
-     console.log('Error occured when getting ServiceToken ', e.message)
-   }
+  const serviceToken = await request({
+    method: 'POST',
+    uri: s2sBaseUrl + s2sAuthPath,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({microservice: 'nfdiv_case_api',oneTimePassword})})
+  ;
 
   logger.debug(serviceToken);
 
@@ -676,16 +661,12 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
 async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.json',caseId) {
 
-  // const authToken = await getSystemUserToken();
-  // const authToken = getUserToken();
+  const authToken = await getSystemUserToken();
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
-
   const eventTypeId ='system-progress-held-case';
-
   const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
-
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
   const startCaseOptions = {
@@ -698,7 +679,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
     }
   };
 
-
   const startCaseResponse = await request(startCaseOptions);
 
   const eventId = 'system-progress-held-case';
@@ -709,8 +689,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
 
   var data = fs.readFileSync(dataLocation);
 
-  //console.log('~~~~~~~~ data  payload... ---->  ' + data);
-
   var saveBody = {
     event: {
       id: eventId
@@ -720,8 +698,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   };
 
   const postURL = ccdApiUrl + ccdSubmitEventPath;
-  console.log('~~~~~~~~ postURL  is ---->  ' + postURL);
-
 
   const saveCaseOptions = {
     method: 'POST',
@@ -735,21 +711,8 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   };
 
   logger.info('----- Before CALL to POST / submitEvent ') ;
-
-  // const saveCaseResponse = async function xx() {
-  //   try {
-  //     await request(saveCaseOptions);
-  //   } catch (error) {
-  //     console.log('~~~~~~ Error on the POST Call ' + error);
-  //   }
-  // }
-
   const saveCaseResponse =  await request(saveCaseOptions);
-
-  //console.log('~~~~~~~~~ response is'  + saveCaseResponse);
-  console.log('----- After CALL to POST / submitEvent ') ;
-
-
+  console.log('~~~~~~~~~~~~----- After CALL to POST / submitEvent  :: Response is ' +  saveCaseResponse) ;
   return saveCaseResponse;
 }
 
