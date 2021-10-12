@@ -244,6 +244,7 @@ async function getRespondentSolicitorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+//TODO this will eventually replace the multiple getUserTokenXXX() methods above
 async function getUserTokenFor(user) {
 
   logger.info('~~~~~~~~~~~~~Getting User Token for ~~~'+ user);
