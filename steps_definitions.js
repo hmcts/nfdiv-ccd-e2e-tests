@@ -490,6 +490,18 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.submitWithdrawn(caseNumber);
     },
 
+    submitServiceApplicationReceived: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceived(caseNumber);
+    },
+
+    submitServiceApplicationPayment: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationPayment(caseNumber);
+    },
+
+    submitApproveServiceApplication: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillApproveServiceApplication(caseNumber);
+    },
+
     issueBailiffPackPageFormAndSubmit: function() {
       return IssueBailiffPackPage.fillFormAndSubmit();
     },

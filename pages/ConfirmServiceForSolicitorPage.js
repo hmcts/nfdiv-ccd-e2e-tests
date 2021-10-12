@@ -15,7 +15,14 @@ module.exports = {
     solicitorName:'#solServiceServiceSotName',
     solicitorFirmName:'#solServiceServiceSotFirm',
     serviceLocationServed:'#solServiceLocationServed',
-    submit: 'button[type="submit"]'
+    submit: 'button[type="submit"]',
+    applicationDateDay: 'receivedServiceApplicationDate-day',
+    applicationDateMonth: 'receivedServiceApplicationDate-month',
+    applicationDateYear: 'receivedServiceApplicationDate-year',
+    serviceAppGranted: 'serviceApplicationGranted_Yes',
+    deemedDateDay: 'deemedServiceDate-day',
+    deemedDateMonth: 'deemedServiceDate-month',
+    deemedDateYear: 'deemedServiceDate-year'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -51,5 +58,33 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-withdrawn/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationReceived(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
+    await I.fillField(this.fields.applicationDateDay, '27');
+    await I.fillField(this.fields.applicationDateMonth, '09');
+    await I.fillField(this.fields.applicationDateYear, '2022');
+    await I.selectOption(this.fields.serviceApplicationType,'Deemed as served');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationPayment(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
+    await I.selectOption(this.fields.serviceApplicationType,'Telephone');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillApproveServiceApplication(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/legal-advisor-service-decision/legal-advisor-service-decisionmakeServiceDecision');
+    await I.click(this.fields.serviceAppGranted);
+    await I.fillField(this.fields.deemedDateDay, '01');
+    await I.fillField(this.fields.deemedDateMonth, '04');
+    await I.fillField(this.fields.deemedDateYear, '2022');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
+
 };
