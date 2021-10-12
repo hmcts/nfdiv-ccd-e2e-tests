@@ -101,7 +101,8 @@ const user = {
   CA : 'CourtAdmin',
   SU : 'SuperUser',
   RS:  'RespondentSolicitor',
-  RSA: 'RespondentSolicitorAdmin'
+  RSA: 'RespondentSolicitorAdmin',
+  SYS: 'SystemUser'
 };
 
 const events = {

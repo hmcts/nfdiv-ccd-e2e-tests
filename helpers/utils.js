@@ -244,6 +244,71 @@ async function getRespondentSolicitorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getUserTokenFor(user) {
+
+  logger.info('~~~~~~~~~~~~~Getting User Token for ~~~'+ user);
+
+  var username;
+  var password;
+
+  if(user === user.SYS){
+    username = testConfig.TestSystemUser;
+    password = testConfig.TestSystemUserPW;
+  }else if(user === user.CW){
+    username = testConfig.TestEnvCWUser;
+    password = testConfig.TestEnvCWPassword;
+  }else if(user === user.SOLS){
+    username = testConfig.TestEnvSolUser;
+    password = testConfig.TestEnvSolPassword;
+  }else if(user === user.CA){
+    username = testConfig.TestEnvCourtAdminUser;
+    password = testConfig.TestEnvCourtAdminPassword;
+  }else if(user === user.RSA){
+    username = testConfig.TestEnvRespondentSolAdminUser;
+    password = testConfig.TestEnvRespondentSolAdminPassword;
+  }else if(user === user.RS){
+    username = testConfig.TestEnvRespondentSolUser;
+    password = testConfig.TestEnvRespondentSolPassword;
+  }else if(user === user.LA){
+    // username = testConfig.TestEnv;
+    // password = testConfig.TestSystemUserPW;
+  }else {
+    console.error('~~~~~ UNKNOWN USER Passed into method');
+  }
+
+  // Setup Details
+
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
 
 async function getUserId(authToken) {
   logger.info('Getting User Id');
@@ -394,6 +459,7 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
 async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
   const authToken = await getSolicitorUserToken();
+  //const authToken = await getUserTokenFor(user.SOLS);
 
   const userId = await getUserId(authToken);
 
