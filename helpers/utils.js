@@ -49,6 +49,45 @@ async function getUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getSystemUserToken() {
+
+  logger.info('~~~~~~~~~~~~~Getting SystemUser  Token');
+
+  const username=testConfig.TestSystemUser;
+  const password=testConfig.TestSystemUserPW;
+
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
 async function getSolicitorUserToken() {
   logger.info('.........Getting Solicitor User Token');
 
@@ -108,6 +147,7 @@ async function getCourtAdminUserToken() {
     }
   }).catch(error => {
     console.log(error);
+    return Promise.reject(error);
   });
 
   const code = JSON.parse(codeResponse).code;
@@ -147,6 +187,7 @@ async function getRespondentAdminSolicitorUserToken() {
     }
   }).catch(error => {
     console.log(error);
+    return Promise.reject(err);
   });
 
   const code = JSON.parse(codeResponse).code;
@@ -203,6 +244,72 @@ async function getRespondentSolicitorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+//TODO this will eventually replace the multiple getUserTokenXXX() methods above
+async function getUserTokenFor(user) {
+
+  logger.info('~~~~~~~~~~~~~Getting User Token for ~~~'+ user);
+
+  var username;
+  var password;
+
+  if(user === user.SYS){
+    username = testConfig.TestSystemUser;
+    password = testConfig.TestSystemUserPW;
+  }else if(user === user.CW){
+    username = testConfig.TestEnvCWUser;
+    password = testConfig.TestEnvCWPassword;
+  }else if(user === user.SOLS){
+    username = testConfig.TestEnvSolUser;
+    password = testConfig.TestEnvSolPassword;
+  }else if(user === user.CA){
+    username = testConfig.TestEnvCourtAdminUser;
+    password = testConfig.TestEnvCourtAdminPassword;
+  }else if(user === user.RSA){
+    username = testConfig.TestEnvRespondentSolAdminUser;
+    password = testConfig.TestEnvRespondentSolAdminPassword;
+  }else if(user === user.RS){
+    username = testConfig.TestEnvRespondentSolUser;
+    password = testConfig.TestEnvRespondentSolPassword;
+  }else if(user === user.LA){
+    // username = testConfig.TestEnv;
+    // password = testConfig.TestSystemUserPW;
+  }else {
+    console.error('~~~~~ UNKNOWN USER Passed into method');
+  }
+
+  // Setup Details
+
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
 
 async function getUserId(authToken) {
   logger.info('Getting User Id');
@@ -239,11 +346,8 @@ async function getServiceToken() {
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({
-      microservice: 'nfdiv_case_api',
-      oneTimePassword
-    })
-  });
+    body: JSON.stringify({microservice: 'nfdiv_case_api',oneTimePassword})})
+  ;
 
   logger.debug(serviceToken);
 
@@ -356,6 +460,7 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
 async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
   const authToken = await getSolicitorUserToken();
+  //const authToken = await getUserTokenFor(user.SOLS);
 
   const userId = await getUserId(authToken);
 
@@ -443,6 +548,8 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+
 
   const startEventOptions = {
     method: 'GET',
@@ -619,6 +726,65 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   return saveEventResponse;
 }
 
+async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.json',caseId) {
+
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+  const eventTypeId ='system-progress-held-case';
+  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
+  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventId = 'system-progress-held-case';
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  console.log('~~~~~~~~ eventToken  is ---->  ' + eventToken);
+
+  var data = fs.readFileSync(dataLocation);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSubmitEventPath;
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSubmitEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  logger.info('----- Before CALL to POST / submitEvent ') ;
+  const saveCaseResponse =  await request(saveCaseOptions);
+  console.log('~~~~~~~~~~~~----- After CALL to POST / submitEvent  :: Response is ' +  saveCaseResponse) ;
+  return saveCaseResponse;
+}
+
+
+
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
@@ -646,5 +812,6 @@ module.exports = {
   formatDateToCcdDisplayDate,
   firstLetterToCaps,
   updateRoleForCase,
-  shareCaseToRespondentSolicitor
+  shareCaseToRespondentSolicitor,
+  moveFromHoldingToAwaitingCO
 };

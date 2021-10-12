@@ -3,7 +3,6 @@ const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
-
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
 };
