@@ -9,12 +9,12 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD  - 20 Week Holding to Conditional Order[CO - earlier known as (Decree Nisi)]');
+Feature('NFD - Move case From Conditional Order to Awaiting Pronouncement [start of FinalOrder]');
 
-// TODO Test works locally but fails on pipeline . This is because of the ShareACase using http instead of https.
-// Pipeline expects https.
+// TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
+// Pipeline expects https . HTTP works when tests are run locally ,but they fail on pipeline.
 
-Scenario('NFD - Share a Case and Draft AoS', async function (I) {
+Scenario('NFD - Process ConditionalOrder and move case Awaiting Pronouncement', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -36,43 +36,23 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
+  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
+  verifyState(draftAoS, states.AOS_DRAFTED);
 
-  // TODO Draft ,Update and Submit AOS should be made into a script here as the Page Flows are tested as part of the shareACaseAndDraftUpdateSubmitAoS.test
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_SUBMIT_AOS,'data/ccd-submit-aos.json');
+  verifyState(submitAoS, states.HOLDING);
 
-  // //Draft AoS
-  // await I.amOnHomePage();
-  // await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
-  // await I.filterByCaseId(caseNumber);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  //
-  // await I.checkNextStepForEvent(events.DRAFT_AOS);
-  // await I.draftAosContactDetails();
-  // await I.draftAoSReview(caseNumber);
-  // await I.draftAoSDoYouAgree(caseNumber);
-  // await I.draftAoSAnyOtherLegalProceedings(caseNumber);
-  // await I.draftAosCheckYourAnswers(caseNumber);
-  // await I.see('AoS drafted');
-  //
-  // // Update AoS
-  // await I.checkNextStepForEvent(events.UPDATE_AOS);
-  // await I.updateAoS(caseNumber);
-  // await I.see('AoS drafted');
-  //
-  // // Submit AoS
-  // await I.checkNextStepForEvent('Submit AoS');
-  // await I.submitAosSOT(caseNumber);
-  // await I.submitAosCYA(caseNumber);
-  //
-  // await I.signOut();
-  //
   // // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
-  // // and set the dueDate to null .
-  // // see SystemProgressHeldCasesTask in nfdiv-case-api
-  //
-  // console.log('~~~~~~~~~~~~ about to Call the moveFromHoldingToAwaitingCO ..~~~~~ ');
-  //
-  // const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
-  // assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
+  // // and set the dueDate to null ..See SystemProgressHeldCasesTask in nfdiv-case-api
+
+  console.log('~~~~~~~~~~~~ about to Call the moveFromHoldingToAwaitingCO ..~~~~~ ');
+  const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
+  assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
+
+  const draftConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_DRAFT_CO,'data/ccd-draft-co.json');
+  verifyState(draftConditionalOrder, states.CONDITIONAL_ORDER_DRAFTED);
+
+  const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_SUBMIT_CO,'data/ccd-submit-co.json');
+  verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
 }).retry(testconfig.TestRetryScenarios);
-

@@ -698,7 +698,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getManageOrgServiceToken();
 
-  const aacHost = 'https://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
