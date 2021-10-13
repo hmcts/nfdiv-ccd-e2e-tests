@@ -65,7 +65,10 @@ const states = {
 const stateDisplayName = {
   SOL_AWAIT_PAYMENT_CONFIRM : 'Solicitor - Awaiting Payment Confirmation',
   AOS_AWAITING_NAME:'AoS awaiting',
-  WITHDRAWN:'Application withdrawn'
+  WITHDRAWN:'Application withdrawn',
+  AWAITING_SERVICE_PAYMENT: 'Awaiting service payment',
+  AWAITING_SERVICE_CONSIDERATION: 'Awaiting Service Consideration',
+  TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period'
 };
 
 const eventDisplayName = {
@@ -135,7 +138,10 @@ const events = {
   SOLICITOR_CONFIRM_SERVICE:'Solicitor Confirm Service',
   GENERAL_REFERRAL:'General referral',
   CREATE_GENERAL_ORDER:'Create general order',
-  APPLICATION_WITHDRAWN: 'Application withdrawn'
+  APPLICATION_WITHDRAWN: 'Application withdrawn',
+  SERVICE_APPLICATION_RECEIVED: 'Service application received',
+  CONFIRM_SERVICE_PAYMENT: 'Confirm Service Payment',
+  MAKE_SERVICE_DECISION: 'Make service decision'
 };
 
 const serviceApplicationType = {
