@@ -719,8 +719,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
       'ServiceAuthorization':`${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    rejectUnauthorized: false,
-    insecure: true,
+    strictSSL: false,
     body: JSON.stringify(data)
   };
 
