@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD Case - Verify Service Decision');
 
-Scenario('NFD - Service Application , Service Payment and  Service Decision', async function (I) {
+xScenario('NFD - Service Application , Service Payment and  Service Decision', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -38,16 +38,20 @@ Scenario('NFD - Service Application , Service Payment and  Service Decision', as
   await I.see('Application issued');
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceived(caseNumber);
-  await I.checkStateAndEvent(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
+  await I.submitServiceApplicationReceivedCYA(caseNumber);
+  await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Confirm Service Payment');
   await I.submitServiceApplicationPayment(caseNumber);
-  await I.checkStateAndEvent(stateDisplayName.AWAITING_SERVICE_CONSIDERATION, events.CONFIRM_SERVICE_PAYMENT);
+  await I.submitServiceApplicationPaymentCYA(caseNumber);
+  await I.submitServiceApplicationPaymentSubmit(caseNumber);
+  await I.checkState(stateDisplayName.AWAITING_SERVICE_CONSIDERATION, events.CONFIRM_SERVICE_PAYMENT);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Make service decision');
   await I.submitApproveServiceApplication(caseNumber);
-  await I.checkStateAndEvent(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
+  await I.submitApproveServiceApplicationCYA(caseNumber);
+  await I.checkState(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
 
 }).retry(testConfig.TestRetryScenarios);

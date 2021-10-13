@@ -19,10 +19,12 @@ module.exports = {
     applicationDateDay: 'receivedServiceApplicationDate-day',
     applicationDateMonth: 'receivedServiceApplicationDate-month',
     applicationDateYear: 'receivedServiceApplicationDate-year',
-    serviceAppGranted: 'serviceApplicationGranted_Yes',
-    deemedDateDay: 'deemedServiceDate-day',
-    deemedDateMonth: 'deemedServiceDate-month',
-    deemedDateYear: 'deemedServiceDate-year'
+    selectAlternativeServiceType: '#alternativeServiceType',
+    selectPaymentMethod: '#paymentMethod',
+    serviceAppGranted: '#serviceApplicationGranted_Yes',
+    deemedDateDay: '#deemedServiceDate-day',
+    deemedDateMonth: '#deemedServiceDate-month',
+    deemedDateYear: '#deemedServiceDate-year'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -66,14 +68,33 @@ module.exports = {
     await I.fillField(this.fields.applicationDateDay, '27');
     await I.fillField(this.fields.applicationDateMonth, '09');
     await I.fillField(this.fields.applicationDateYear, '2022');
-    await I.selectOption(this.fields.serviceApplicationType,'Deemed as served');
+    await I.selectOption(this.fields.selectAlternativeServiceType,'Deemed as served');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
+
+  async fillServiceApplicationReceivedCYA(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-received/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
 
   async fillServiceApplicationPayment(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
-    await I.selectOption(this.fields.serviceApplicationType,'Telephone');
+    await I.selectOption(this.fields.selectPaymentMethod,'Telephone');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationPaymentCYA(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentAltPaymentSummary');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationPaymentSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-payment/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -84,6 +105,12 @@ module.exports = {
     await I.fillField(this.fields.deemedDateDay, '01');
     await I.fillField(this.fields.deemedDateMonth, '04');
     await I.fillField(this.fields.deemedDateYear, '2022');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillApproveServiceApplicationCYA(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-payment/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 
