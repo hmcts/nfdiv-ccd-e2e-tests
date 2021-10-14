@@ -7,6 +7,7 @@ exports.config = {
   helpers: {
     Puppeteer: {
       url: testConfig.TestUrl,
+      moUrl:testConfig.TestManageOrgUrl,
       show: testConfig.TestShowBrowserWindow,
       waitForNavigation: ['domcontentloaded'],
       restart: true,

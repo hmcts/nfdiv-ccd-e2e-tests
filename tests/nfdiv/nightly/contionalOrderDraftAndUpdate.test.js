@@ -1,7 +1,7 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
-const { states, events , user} = require('../../../common/constants');
+const { states, events , user, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -9,10 +9,10 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD  Share A Case via Manage Org so that AoS can be progressed on Case');
+Feature('NFD - From 20 week Holding to  Conditional Order Tests');
 
-// TODO Test works locally but fails on pipeline
-xScenario('NFD - Share a Case and Draft AoS', async function (I) {
+// TODO Once case State is in 'AwaitingConditionalOrder' , DraftCO , UpdateCO can be done etc...
+xScenario('Draft CO - Conditional Order Draft', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -32,11 +32,11 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
-  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
+  console.log('~~~~~~~~~ Case with Id' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
   //Draft AoS
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
+  await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
@@ -64,10 +64,31 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
 
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
   await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,events.SUBMIT_AOS);
 
-}).retry(testconfig.TestRetryScenarios);
+  //TODO : Ensure system progress held case cron is triggerred here
+
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.filterByCaseId(caseNumber);
+
+  // Draft Conditional Order
+  await I.amOnPage('/case-details/'+caseNumber);
+  await I.wait(3);
+  await I.checkNextStepForEvent(events.DRAFT_CONDITIONAL_ORDER);
+  await I.draftConditionalOrderReviewAoS();
+  await I.draftConditionalOrderReviewApplicant1Application();
+  await I.draftConditionalOrderDocuments();
+  await I.draftConditionalOrderCYA();
+  await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.DRAFT_CONDITIONAL_ORDER);
+
+  // Submit ConditionalOrder (CO)
+  await I.amOnPage('/case-details/1633520717473920');
+  await I.wait(3);
+  await I.checkStateAndEvent(states.AWAITING_LEGAL_ADVISOR_REFERRAL,eventDisplayName.SUBMIT_CONDITIONAL_ORDER);
+
+}).retry(testConfig.TestRetryScenarios);

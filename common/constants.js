@@ -15,6 +15,10 @@ const signOut = 'Sign out';
 
 const currentCaseType = 'NFD';
 
+const divorceOrDissolution = {
+  DIVORCE: 'Divorce',
+  DISSOLUTION: 'Dissolution'
+};
 
 const soleOrJoint = {
   SOLE: 'SoleApplicant',
@@ -36,6 +40,8 @@ const states = {
   AWAITING_HWF:'AwaitingHWFDecision',
   ISSUED: 'Issued',
   REJECTED: 'Rejected',
+  CONDITIONAL_ORDER_DRAFTED:'Conditional order drafted',
+  AWAITING_LEGAL_ADVISOR_REFERRAL:'Awaiting legal advisor referral',
   DEFENDED_DIVORCE: 'DefendedDivorce',
   AWAITING_SERVICE: 'AwaitingService',
   APPLICATION_AWAITING_SERVICE:'Awaiting service',
@@ -73,6 +79,7 @@ const eventDisplayName = {
   ISSUE: 'Issue',
   ISSUE_AOS_TO_RESP: 'Issue AOS pack to respondent',
   AOS_STARTED: 'AOS started',
+  CONDITIONAL_ORDER_SUBMIT:'Submit Conditional Order',
   AOS_RECVD_UNDEFENDED: 'AOS Received (undefended)',
   REFUND: 'Refund',
   TRANSFER_BETWEEN_RDC: 'Transfer between RDCs',
@@ -97,7 +104,8 @@ const user = {
   CA : 'CourtAdmin',
   SU : 'SuperUser',
   RS:  'RespondentSolicitor',
-  RSA: 'RespondentSolicitorAdmin'
+  RSA: 'RespondentSolicitorAdmin',
+  SYS: 'SystemUser'
 };
 
 const events = {
@@ -105,6 +113,8 @@ const events = {
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   CASE_SUBMISSION:'Case submission',
+  DRAFT_CONDITIONAL_ORDER:'Draft Conditional Order',
+  SUBMIT_CONDITIONAL_ORDER:'Submit Conditional Order',
   DRAFT_AOS:'Draft AoS',
   UPDATE_AOS:'Update AoS',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
@@ -150,6 +160,7 @@ module.exports = {
   eventDisplayName,
   stateDisplayName,
   yesorno,
+  divorceOrDissolution,
   serviceApplicationType,
   currentCaseType
 };

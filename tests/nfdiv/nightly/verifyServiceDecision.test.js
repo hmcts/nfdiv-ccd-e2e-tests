@@ -12,7 +12,9 @@ let caseNumber;
 
 Feature('NFD Case - Verify Service Decision');
 
+
 Scenario('NFD - Service Application , Service Payment and  Service Decision', async function (I) {
+
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
