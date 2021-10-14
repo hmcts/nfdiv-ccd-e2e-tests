@@ -110,7 +110,7 @@ module.exports = {
 
   async fillApproveServiceApplicationCYA(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/submit');
+    await I.waitInUrl('trigger/legal-advisor-service-decision/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 
