@@ -526,6 +526,10 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedBailiff(caseNumber);
     },
 
+    submitServiceApplicationReceivedDispensed: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedDispensed(caseNumber);
+    },
+
     submitServiceApplicationReceivedCYABailiff: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedCYA(caseNumber);
     },

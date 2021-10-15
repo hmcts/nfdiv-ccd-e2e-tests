@@ -27,10 +27,10 @@ module.exports = {
     deemedDateDay: '#deemedServiceDate-day',
     deemedDateMonth: '#deemedServiceDate-month',
     deemedDateYear: '#deemedServiceDate-year',
-    localCourtName: 'localCourtName',
-    localCourtEmail: 'localCourtEmail',
-    selectRejectReason: 'rejectReason_rejectReasonType',
-    rejectDetailsTextBox: 'rejectReason_rejectDetails'
+    localCourtName: '#localCourtName',
+    localCourtEmail: '#localCourtEmail',
+    selectRejectReason: '#rejectReason_rejectReasonType',
+    rejectDetailsTextBox: '#rejectReason_rejectDetails'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -86,7 +86,8 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-upload-document/caseworker-upload-documentuploadDocument');
     await I.waitForNavigationToComplete(this.fields.addNew);
-    await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    // await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.wait(5);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -100,7 +101,7 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-upload-confidential-document/caseworker-upload-confidential-documentuploadConfidentialDocuments');
     await I.waitForNavigationToComplete(this.fields.addNew);
-    await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    // await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -117,6 +118,16 @@ module.exports = {
     await I.fillField(this.fields.applicationDateMonth, '09');
     await I.fillField(this.fields.applicationDateYear, '2022');
     await I.selectOption(this.fields.selectAlternativeServiceType,'Deemed as served');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationReceivedDispensed(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
+    await I.fillField(this.fields.applicationDateDay, '27');
+    await I.fillField(this.fields.applicationDateMonth, '09');
+    await I.fillField(this.fields.applicationDateYear, '2022');
+    await I.selectOption(this.fields.selectAlternativeServiceType,'Dispensed with service');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 

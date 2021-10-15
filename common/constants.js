@@ -64,6 +64,7 @@ const stateDisplayName = {
   AWAITING_SERVICE_CONSIDERATION: 'Awaiting Service Consideration',
   TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period',
   AWAITING_BAILIFF_REFERRAL: 'Awaiting bailiff referral',
+  AWAITING_BAILIFF_SERVICE: 'Awaiting bailiff service',
   ISSUED_TO_BAILIFF: 'Issued To bailiff',
   SUBMITTED: 'Submitted',
   APPLICATION_REJECT: 'Application rejected'
