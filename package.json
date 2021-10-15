@@ -23,6 +23,7 @@
     "test:bailiff-journey": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyBailiffJourney.test.js -c ./ --steps",
     "test:CWupload-doc": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyCWuploadDoc.test.js -c ./ --steps",
     "test:CWupload-ConfidentialDoc": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyCWuploadConfidentialDoc.test.js -c ./ --steps",
+    "test:CW-reject": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyCWreject.test.js -c ./ --steps",
     "test:share-case": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/shareACaseAndDraftUpdateSubmitAoS.test.js -c ./ --steps",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",

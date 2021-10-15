@@ -28,7 +28,9 @@ module.exports = {
     deemedDateMonth: '#deemedServiceDate-month',
     deemedDateYear: '#deemedServiceDate-year',
     localCourtName: 'localCourtName',
-    localCourtEmail: 'localCourtEmail'
+    localCourtEmail: 'localCourtEmail',
+    selectRejectReason: 'rejectReason_rejectReasonType',
+    rejectDetailsTextBox: 'rejectReason_rejectDetails'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -63,6 +65,20 @@ module.exports = {
   async submitWithdrawn(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-withdrawn/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillRejectSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-rejected/caseworker-rejectedreject');
+    await I.selectOption(this.fields.selectRejectReason,'No information');
+    await I.fillField(this.fields.rejectDetailsTextBox, 'Script Reject Details');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitReject(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-rejected/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -120,13 +136,6 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillServiceApplicationReceivedCYABaillif(caseNumber) {
-    await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-received/submit');
-    await I.waitForNavigationToComplete(this.fields.submit);
-  },
-
-
   async fillServiceApplicationPayment(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
@@ -141,25 +150,6 @@ module.exports = {
   },
 
   async fillServiceApplicationPaymentSubmit(caseNumber) {
-    await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/submit');
-    await I.waitForNavigationToComplete(this.fields.submit);
-  },
-
-  async fillServiceApplicationPaymentBailiff(caseNumber) {
-    await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
-    await I.selectOption(this.fields.selectPaymentMethod,'Telephone');
-    await I.waitForNavigationToComplete(this.fields.submit);
-  },
-
-  async fillServiceApplicationPaymentCYABailiff(caseNumber) {
-    await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentAltPaymentSummary');
-    await I.waitForNavigationToComplete(this.fields.submit);
-  },
-
-  async fillServiceApplicationPaymentSubmitBailiff(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-payment/submit');
     await I.waitForNavigationToComplete(this.fields.submit);

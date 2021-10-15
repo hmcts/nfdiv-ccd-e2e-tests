@@ -490,6 +490,14 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.submitWithdrawn(caseNumber);
     },
 
+    submitRejectCW: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillRejectSubmit(caseNumber);
+    },
+
+    submitRejectCWSubmit: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.submitReject(caseNumber);
+    },
+
     submitUploadDocCW: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillUploadDocCW(caseNumber);
     },
@@ -519,7 +527,7 @@ module.exports = function () {
     },
 
     submitServiceApplicationReceivedCYABailiff: function(caseNumber){
-      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedCYABaillif(caseNumber);
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedCYA(caseNumber);
     },
 
     submitServiceApplicationPayment: function(caseNumber){
