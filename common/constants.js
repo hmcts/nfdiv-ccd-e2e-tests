@@ -62,7 +62,9 @@ const stateDisplayName = {
   WITHDRAWN:'Application withdrawn',
   AWAITING_SERVICE_PAYMENT: 'Awaiting service payment',
   AWAITING_SERVICE_CONSIDERATION: 'Awaiting Service Consideration',
-  TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period'
+  TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period',
+  AWAITING_BAILIFF_REFERRAL: 'Awaiting bailiff referral',
+  ISSUED_TO_BAILIFF: 'Issued To bailiff'
 };
 
 const eventDisplayName = {
@@ -131,7 +133,9 @@ const events = {
   APPLICATION_WITHDRAWN: 'Application withdrawn',
   SERVICE_APPLICATION_RECEIVED: 'Service application received',
   CONFIRM_SERVICE_PAYMENT: 'Confirm Service Payment',
-  MAKE_SERVICE_DECISION: 'Make service decision'
+  MAKE_SERVICE_DECISION: 'Make service decision',
+  MAKE_BAILIFF_DECISION: 'Make Bailiff Decision',
+  ISSUED_BAILIFF_PACK: 'Issue bailiff pack'
 };
 
 const serviceApplicationType = {

@@ -498,6 +498,14 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedCYA(caseNumber);
     },
 
+    submitServiceApplicationReceivedBailiff: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedBailiff(caseNumber);
+    },
+
+    submitServiceApplicationReceivedCYABailiff: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationReceivedCYABaillif(caseNumber);
+    },
+
     submitServiceApplicationPayment: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillServiceApplicationPayment(caseNumber);
     },
@@ -510,12 +518,40 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.fillServiceApplicationPaymentSubmit(caseNumber);
     },
 
+    submitServiceApplicationPaymentBailiff: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationPayment(caseNumber);
+    },
+
+    submitServiceApplicationPaymentCYABailiff: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationPaymentCYA(caseNumber);
+    },
+
+    submitServiceApplicationPaymentSubmitBailiff: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillServiceApplicationPaymentSubmit(caseNumber);
+    },
+
     submitApproveServiceApplication: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillApproveServiceApplication(caseNumber);
     },
 
     submitApproveServiceApplicationCYA: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillApproveServiceApplicationCYA(caseNumber);
+    },
+
+    submitMakeBailiffDecision: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillMakeBailiffDecision(caseNumber);
+    },
+
+    submitMakeBailiffDecisionCYA: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillMakeBailiffDecisionCYA(caseNumber);
+    },
+
+    submitIssueBailiffPack: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillIssueBailiffPack(caseNumber);
+    },
+
+    submitIssueBailiffPackCYA: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillIssueBailiffPackCYA(caseNumber);
     },
 
     issueBailiffPackPageFormAndSubmit: function() {
