@@ -64,7 +64,8 @@ const stateDisplayName = {
   AWAITING_SERVICE_CONSIDERATION: 'Awaiting Service Consideration',
   TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period',
   AWAITING_BAILIFF_REFERRAL: 'Awaiting bailiff referral',
-  ISSUED_TO_BAILIFF: 'Issued To bailiff'
+  ISSUED_TO_BAILIFF: 'Issued To bailiff',
+  SUBMITTED: 'Submitted'
 };
 
 const eventDisplayName = {
@@ -135,7 +136,9 @@ const events = {
   CONFIRM_SERVICE_PAYMENT: 'Confirm Service Payment',
   MAKE_SERVICE_DECISION: 'Make service decision',
   MAKE_BAILIFF_DECISION: 'Make Bailiff Decision',
-  ISSUED_BAILIFF_PACK: 'Issue bailiff pack'
+  ISSUED_BAILIFF_PACK: 'Issue bailiff pack',
+  UPLOAD_DOCUMENT: 'Upload document',
+  UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document'
 };
 
 const serviceApplicationType = {

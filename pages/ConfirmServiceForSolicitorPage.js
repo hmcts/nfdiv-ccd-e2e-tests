@@ -16,6 +16,8 @@ module.exports = {
     solicitorFirmName:'#solServiceServiceSotFirm',
     serviceLocationServed:'#solServiceLocationServed',
     submit: 'button[type="submit"]',
+    addNew: 'button[type="button"]',
+    documentUpload: 'input[id="documentsUploaded_0_documentLink"]',
     applicationDateDay: 'receivedServiceApplicationDate-day',
     applicationDateMonth: 'receivedServiceApplicationDate-month',
     applicationDateYear: 'receivedServiceApplicationDate-year',
@@ -61,6 +63,34 @@ module.exports = {
   async submitWithdrawn(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-withdrawn/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadDocCW(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-document/caseworker-upload-documentuploadDocument');
+    await I.waitForNavigationToComplete(this.fields.addNew);
+    await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadDocCWSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-document/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadConfidentialDocCW(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-confidential-document/caseworker-upload-confidential-documentuploadConfidentialDocuments');
+    await I.waitForNavigationToComplete(this.fields.addNew);
+    await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadConfidentialDocCWSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-confidential-document/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 

@@ -490,6 +490,22 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.submitWithdrawn(caseNumber);
     },
 
+    submitUploadDocCW: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillUploadDocCW(caseNumber);
+    },
+
+    submitUploadDocCWSubmit: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillUploadDocCWSubmit(caseNumber);
+    },
+
+    submitUploadConfidentialDocCW: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillUploadConfidentialDocCW(caseNumber);
+    },
+
+    submitUploadConfidentialDocCWSubmit: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillUploadConfidentialDocCWSubmit(caseNumber);
+    },
+
     submitServiceApplicationReceived: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillServiceApplicationReceived(caseNumber);
     },
