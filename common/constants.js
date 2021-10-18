@@ -68,7 +68,9 @@ const stateDisplayName = {
   AOS_AWAITING_NAME:'AoS awaiting',
   WITHDRAWN:'Application withdrawn',
   AWAITING_LA_REFERRAL:'Awaiting legal advisor referral',
-  AWAITING_CLARIFICATION:'Awaiting clarification'
+  AWAITING_CLARIFICATION:'Awaiting clarification',
+  CONDITIONAL_ORDER_DRAFTED:'ConditionalOrderDrafted'
+
 };
 
 const eventDisplayName = {

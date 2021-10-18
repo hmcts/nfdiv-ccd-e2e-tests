@@ -249,8 +249,8 @@ async function getLegalAdvisorUserToken() {
   logger.info('.........Legal Advisor User Token ............');
 
   // Setup Details
-  const username = testConfig.TestLegalAdvisorUser;
-  const password = testConfig.TestLegalAdvisorUserPassword;
+  const username = testConfig.TestEnvLegalAdvisorUser;
+  const password = testConfig.TestEnvLegalAdvisorPassword;
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
