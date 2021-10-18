@@ -22,7 +22,10 @@
     "test:share-case": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/shareACaseAndDraftUpdateSubmitAoS.test.js -c ./ --steps",
     "test:conditional-order": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/contionalOrderDraftAndUpdate.test.js -c ./ --steps",
     "test:20week-to-conditional": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyHoldingToConditionalOrder.test.js -c ./ --steps",
-    "test:awaiting-pronoun": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps",
+    "test:awaiting-pronoun": "NODE_TLS_REJECT_UNAUTHORIZED=0 SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps",
+    "test:concurrently": "concurrently 'SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps','SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps','SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps','SHOW_BROWSER_WINDOW=no NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps'",
+    "test:co-journey": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/contionalOrderJourneys.test.js -c ./ --steps",
+    "test:load-bulk": "concurrently 'yarn tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps' 'yarn tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps' 'yarn tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps'",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
@@ -52,7 +55,8 @@
     "mochawesome": "^4.1.0",
     "puppeteer": "^5.4.1",
     "webdriverio": "^6.11.3",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "concurrently": "^6.3.0"
   },
   "resolutions": {
     "axios": ">=0.21.1"

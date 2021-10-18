@@ -40,7 +40,7 @@ const states = {
   AWAITING_HWF:'AwaitingHWFDecision',
   ISSUED: 'Issued',
   REJECTED: 'Rejected',
-  CONDITIONAL_ORDER_DRAFTED:'ConditionalOrderDrafted',
+  CONDITIONAL_ORDER_DRAFTED:'Conditional order drafted',
   AWAITING_LEGAL_ADVISOR_REFERRAL:'AwaitingLegalAdvisorReferral',
   DEFENDED_DIVORCE: 'DefendedDivorce',
   AWAITING_SERVICE: 'AwaitingService',
@@ -66,7 +66,9 @@ const states = {
 const stateDisplayName = {
   SOL_AWAIT_PAYMENT_CONFIRM : 'Solicitor - Awaiting Payment Confirmation',
   AOS_AWAITING_NAME:'AoS awaiting',
-  WITHDRAWN:'Application withdrawn'
+  WITHDRAWN:'Application withdrawn',
+  AWAITING_LA_REFERRAL:'Awaiting legal advisor referral',
+  AWAITING_CLARIFICATION:'Awaiting clarification'
 };
 
 const eventDisplayName = {
@@ -78,6 +80,7 @@ const eventDisplayName = {
   ISSUE_AOS_TO_RESP: 'Issue AOS pack to respondent',
   AOS_STARTED: 'AOS started',
   CONDITIONAL_ORDER_SUBMIT:'Submit Conditional Order',
+  UPDATE_CONDITIONAL_ORDER:'Update Conditional Order',
   AOS_RECVD_UNDEFENDED: 'AOS Received (undefended)',
   REFUND: 'Refund',
   TRANSFER_BETWEEN_RDC: 'Transfer between RDCs',
@@ -91,7 +94,9 @@ const eventDisplayName = {
   DA_GRANTED: 'DA Granted',
   HWF_RESULTS:'HWF Results',
   APPLICATION_PAID_SUBMIITED:'Application Paid and submitted',
-  WITHDRAWN:'Withdrawn'
+  WITHDRAWN:'Withdrawn',
+  DRAFT_CO: 'Draft Conditional Order',
+  REQUEST_CLARIFICATION:'Request clarification'
 };
 
 
@@ -103,7 +108,8 @@ const user = {
   SU : 'SuperUser',
   RS:  'RespondentSolicitor',
   RSA: 'RespondentSolicitorAdmin',
-  SYS: 'SystemUser'
+  SYS: 'SystemUser',
+  LAD: 'LegalAdvisor'
 };
 
 const events = {
@@ -112,11 +118,14 @@ const events = {
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   CASE_SUBMISSION:'Case submission',
   DRAFT_CONDITIONAL_ORDER:'Draft Conditional Order',
+  UPDATE_CONDITIONAL_ORDER:'Update Conditional Order',
   SUBMIT_CONDITIONAL_ORDER:'Submit Conditional Order',
+  CO_REQUEST_CLARIFICATION:'Request clarification',
   SOLS_DRAFT_AOS:'solicitor-draft-aos',
   SOLS_SUBMIT_AOS:'solicitor-submit-aos',
   SOLS_SUBMIT_CO:'solicitor-submit-conditional-order',
   SOLS_DRAFT_CO:'solicitor-draft-conditional-order',
+  LA_GRANT_CONDITIONAL_ORDER:'legal-advisor-grant-conditional-order',
   UPDATE_AOS:'Update AoS',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
   HWF_REFUSED:'HWF Refused',

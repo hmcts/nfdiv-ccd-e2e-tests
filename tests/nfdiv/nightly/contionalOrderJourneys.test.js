@@ -1,5 +1,7 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
-const { states, events , user, eventDisplayName} = require('../../../common/constants');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,
+  moveFromHoldingToAwaitingCO
+} = require('../../../helpers/utils');
+const { states, events , user, stateDisplayName,eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -9,10 +11,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - From 20 week Holding to  Conditional Order Tests');
+Feature('NFD - Conditional Order (CO) journey');
 
-// TODO Once case State is in 'AwaitingConditionalOrder' , DraftCO , UpdateCO can be done etc...
-xScenario('Draft CO - Conditional Order Draft', async function (I) {
+Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COClarification->COGranted by LegalAdvisor', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -34,31 +35,11 @@ xScenario('Draft CO - Conditional Order Draft', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  //Draft AoS
-  await I.amOnHomePage();
-  await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
-  await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
+  verifyState(draftAoS, states.AOS_DRAFTED);
 
-  await I.checkNextStepForEvent(events.DRAFT_AOS);
-  await I.draftAosContactDetails();
-  await I.draftAoSReview(caseNumber);
-  await I.draftAoSDoYouAgree(caseNumber);
-  await I.draftAoSAnyOtherLegalProceedings(caseNumber);
-  await I.draftAosCheckYourAnswers(caseNumber);
-  await I.see('AoS drafted');
-
-  // Update AoS
-  await I.checkNextStepForEvent(events.UPDATE_AOS);
-  await I.updateAoS(caseNumber);
-  await I.see('AoS drafted');
-
-  // Submit AoS
-  await I.checkNextStepForEvent('Submit AoS');
-  await I.submitAosSOT(caseNumber);
-  await I.submitAosCYA(caseNumber);
-
-  await I.signOut();
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_SUBMIT_AOS,'data/ccd-submit-aos.json');
+  verifyState(submitAoS, states.HOLDING);
 
   // Login as CW and check the latest Event and State of the Case
   // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
@@ -70,13 +51,16 @@ xScenario('Draft CO - Conditional Order Draft', async function (I) {
 
   await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,events.SUBMIT_AOS);
 
-  //TODO : Ensure system progress held case cron is triggerred here
+  console.log('~~~~~~~~~~~~ about to Call the moveFromHoldingToAwaitingCO ..~~~~~ ');
+  const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
+  assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
+
 
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
 
-  // Draft Conditional Order
+  // Draft CO
   await I.amOnPage('/case-details/'+caseNumber);
   await I.wait(3);
   await I.checkNextStepForEvent(events.DRAFT_CONDITIONAL_ORDER);
@@ -84,11 +68,41 @@ xScenario('Draft CO - Conditional Order Draft', async function (I) {
   await I.draftConditionalOrderReviewApplicant1Application();
   await I.draftConditionalOrderDocuments();
   await I.draftConditionalOrderCYA();
-  await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.DRAFT_CONDITIONAL_ORDER);
+  await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.DRAFT_CO);
 
-  // Submit ConditionalOrder (CO)
-  await I.amOnPage('/case-details/1633520717473920');
+  // Update CO
+  await I.amOnPage('/case-details/'+caseNumber);
+  await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
+  await I.updateCOReviewAoS();
+  await I.updateCOReviewApplication();
+  await I.updateCODocuments();
+  await I.updateCOAndSave();
+  await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.UPDATE_CONDITIONAL_ORDER);
+
+  //Submit CO
+  await I.amOnPage('/case-details/'+caseNumber);
   await I.wait(3);
-  await I.checkStateAndEvent(states.AWAITING_LEGAL_ADVISOR_REFERRAL,eventDisplayName.SUBMIT_CONDITIONAL_ORDER);
+  await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
+  await I.submitSoTConditionalOrderDetails();
+  await I.submitConditionalOrder();
+  //await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CONDITIONAL_ORDER);
+  await I.signOut();
+
+
+  //CO - Request - Clarification -> Awaiting Clarification ->
+  await I.amOnHomePage();
+  await I.wait(3);
+  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/'+caseNumber);
+  await I.wait(3);
+  await I.checkNextStepForEvent(events.CO_REQUEST_CLARIFICATION);
+  await I.conditionalOrderClarification();
+  await I.wait(3);
+  await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
+
+  //CO - SUBMIT Clarification as a Solicitor
+
+
 
 }).retry(testConfig.TestRetryScenarios);

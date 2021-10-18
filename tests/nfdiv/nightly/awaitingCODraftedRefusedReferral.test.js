@@ -9,7 +9,7 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Script to create Sole Divorce case and take it all the way upto Awaiting Pronouncement [start of FinalOrder]');
+Feature('NFD - Move case From Conditional Order to Awaiting Pronouncement [start of FinalOrder]');
 
 // TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
 // Pipeline expects https . HTTP works when tests are run locally ,but they fail on pipeline.
@@ -43,7 +43,7 @@ Scenario('NFD - Process ConditionalOrder and move case Awaiting Pronouncement', 
   verifyState(submitAoS, states.HOLDING);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
-  // and set the dueDate to null ..See SystemProgressHeldCasesTask in nfdiv-case-api
+  // and set the dueDate to null ..(See SystemProgressHeldCasesTask in nfdiv-case-api)
 
   console.log('~~~~~~~~~~~~ about to Call the moveFromHoldingToAwaitingCO ..~~~~~ ');
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
@@ -54,10 +54,5 @@ Scenario('NFD - Process ConditionalOrder and move case Awaiting Pronouncement', 
 
   const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_SUBMIT_CO,'data/ccd-submit-co.json');
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
-
-  // legalAdvisor Role
-  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_GRANT_CONDITIONAL_ORDER,'data/ccd-submit-co.json');
-  verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
-
 
 }).retry(testconfig.TestRetryScenarios);
