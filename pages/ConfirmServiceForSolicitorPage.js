@@ -111,6 +111,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
+
   async fillServiceApplicationReceived(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
@@ -140,6 +141,7 @@ module.exports = {
     await I.selectOption(this.fields.selectAlternativeServiceType,'Bailiff application');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
+
 
   async fillServiceApplicationReceivedCYA(caseNumber) {
     await I.wait(2);
@@ -208,5 +210,4 @@ module.exports = {
     await I.waitInUrl('trigger/caseworker-issue-bailiff-pack/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
-
 };
