@@ -10,10 +10,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD Case - Verify Service Decision');
+Feature('NFD Case - Verify Bailiff Journey');
 
-
-Scenario('NFD - Service Application , Service Payment and  Service Decision', async function (I) {
+Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -38,21 +37,28 @@ Scenario('NFD - Service Application , Service Payment and  Service Decision', as
   await I.see('AoS awaiting');
   await I.see('Application issued');
   await I.checkNextStepForEvent('Service application received');
-  await I.submitServiceApplicationReceived(caseNumber);
+  await I.submitServiceApplicationReceivedBailiff(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Confirm Service Payment');
-  await I.submitServiceApplicationPayment(caseNumber);
-  await I.submitServiceApplicationPaymentCYA(caseNumber);
-  await I.submitServiceApplicationPaymentSubmit(caseNumber);
-  await I.checkState(stateDisplayName.AWAITING_SERVICE_CONSIDERATION, events.CONFIRM_SERVICE_PAYMENT);
+  await I.submitServiceApplicationPaymentBailiff(caseNumber);
+  await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
+  await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
+  await I.checkState(stateDisplayName.AWAITING_BAILIFF_REFERRAL, events.CONFIRM_SERVICE_PAYMENT);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Make service decision');
-  await I.submitApproveServiceApplication(caseNumber);
-  await I.submitApproveServiceApplicationCYA(caseNumber);
-  await I.checkState(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
+  await I.checkNextStepForEvent('Make Bailiff Decision');
+  await I.submitMakeBailiffDecision(caseNumber);
+  await I.submitMakeBailiffDecisionCYA(caseNumber);
+  // await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
+  await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
+
+  await I.wait(3);
+  await I.checkNextStepForEvent('Issue bailiff pack');
+  await I.submitIssueBailiffPack(caseNumber);
+  await I.submitIssueBailiffPackCYA(caseNumber);
+  await I.checkState(stateDisplayName.ISSUED_TO_BAILIFF, events.ISSUED_BAILIFF_PACK);
 
 }).retry(testConfig.TestRetryScenarios);

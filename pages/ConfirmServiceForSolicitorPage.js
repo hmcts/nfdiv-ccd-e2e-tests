@@ -16,6 +16,8 @@ module.exports = {
     solicitorFirmName:'#solServiceServiceSotFirm',
     serviceLocationServed:'#solServiceLocationServed',
     submit: 'button[type="submit"]',
+    addNew: 'button[type="button"]',
+    documentUpload: 'input[id="documentsUploaded_0_documentLink"]',
     applicationDateDay: 'receivedServiceApplicationDate-day',
     applicationDateMonth: 'receivedServiceApplicationDate-month',
     applicationDateYear: 'receivedServiceApplicationDate-year',
@@ -24,7 +26,11 @@ module.exports = {
     serviceAppGranted: '#serviceApplicationGranted_Yes',
     deemedDateDay: '#deemedServiceDate-day',
     deemedDateMonth: '#deemedServiceDate-month',
-    deemedDateYear: '#deemedServiceDate-year'
+    deemedDateYear: '#deemedServiceDate-year',
+    localCourtName: '#localCourtName',
+    localCourtEmail: '#localCourtEmail',
+    selectRejectReason: '#rejectReason_rejectReasonType',
+    rejectDetailsTextBox: '#rejectReason_rejectDetails'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -62,6 +68,50 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
+  async fillRejectSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-rejected/caseworker-rejectedreject');
+    await I.selectOption(this.fields.selectRejectReason,'No information');
+    await I.fillField(this.fields.rejectDetailsTextBox, 'Script Reject Details');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitReject(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-rejected/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadDocCW(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-document/caseworker-upload-documentuploadDocument');
+    await I.waitForNavigationToComplete(this.fields.addNew);
+    // await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.wait(5);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadDocCWSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-document/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadConfidentialDocCW(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-confidential-document/caseworker-upload-confidential-documentuploadConfidentialDocuments');
+    await I.waitForNavigationToComplete(this.fields.addNew);
+    // await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillUploadConfidentialDocCWSubmit(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-upload-confidential-document/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+
   async fillServiceApplicationReceived(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
@@ -72,12 +122,32 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
+  async fillServiceApplicationReceivedDispensed(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
+    await I.fillField(this.fields.applicationDateDay, '27');
+    await I.fillField(this.fields.applicationDateMonth, '09');
+    await I.fillField(this.fields.applicationDateYear, '2022');
+    await I.selectOption(this.fields.selectAlternativeServiceType,'Dispensed with service');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillServiceApplicationReceivedBailiff(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-service-received/caseworker-service-receivedserviceApplicationReceived');
+    await I.fillField(this.fields.applicationDateDay, '27');
+    await I.fillField(this.fields.applicationDateMonth, '09');
+    await I.fillField(this.fields.applicationDateYear, '2022');
+    await I.selectOption(this.fields.selectAlternativeServiceType,'Bailiff application');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+
   async fillServiceApplicationReceivedCYA(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-service-received/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
-
 
   async fillServiceApplicationPayment(caseNumber) {
     await I.wait(2);
@@ -112,6 +182,32 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/legal-advisor-service-decision/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
-  }
+  },
 
+  async fillMakeBailiffDecision(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-bailiff-decision/caseworker-bailiff-decisionmakeBailiffDecision-1');
+    await I.click(this.fields.serviceAppGranted);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillMakeBailiffDecisionCYA(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-bailiff-decision/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillIssueBailiffPack(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-issue-bailiff-pack/caseworker-issue-bailiff-packissueBailiffPack');
+    await I.fillField(this.fields.localCourtName, 'Script Court Name');
+    await I.fillField(this.fields.localCourtEmail, 'ScriptCourtEmail@mailinator.com');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillIssueBailiffPackCYA(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-issue-bailiff-pack/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  }
 };

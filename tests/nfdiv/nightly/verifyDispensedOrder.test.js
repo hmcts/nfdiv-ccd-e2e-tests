@@ -10,10 +10,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD Case - Verify Service Decision');
+Feature('NFD Case - Verify Dispensed Order');
 
-
-Scenario('NFD - Service Application , Service Payment and  Service Decision', async function (I) {
+Scenario('NFD - Dispensed order to Holding state', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -38,7 +37,7 @@ Scenario('NFD - Service Application , Service Payment and  Service Decision', as
   await I.see('AoS awaiting');
   await I.see('Application issued');
   await I.checkNextStepForEvent('Service application received');
-  await I.submitServiceApplicationReceived(caseNumber);
+  await I.submitServiceApplicationReceivedDispensed(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
