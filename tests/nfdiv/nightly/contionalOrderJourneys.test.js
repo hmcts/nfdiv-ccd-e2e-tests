@@ -13,7 +13,7 @@ let caseNumber;
 
 Feature('NFD - Conditional Order (CO) journey');
 
-Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COClarification->COGranted by LegalAdvisor', async function (I) {
+xScenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COClarification->COGranted by LegalAdvisor', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -88,8 +88,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   //await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CONDITIONAL_ORDER);
   await I.signOut();
 
-
-  //CO - Request - Clarification -> Awaiting Clarification ->
+  //CO - Request - Clarification -> Awaiting Clarification :: as a LegalAdvisor.
   await I.amOnHomePage();
   await I.wait(3);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
@@ -102,7 +101,11 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
 
   //CO - SUBMIT Clarification as a Solicitor
-
-
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.checkNextStepForEvent(events.SUBMIT_CLARIFICATION);
+  await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.REQUEST_CLARIFICATION);
 
 }).retry(testConfig.TestRetryScenarios);

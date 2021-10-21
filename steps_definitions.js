@@ -456,6 +456,10 @@ module.exports = function () {
       return ConditionalOrderPage.requestClarification();
     },
 
+    conditionalOrderSubmitClarification:function() {
+      return ConditionalOrderPage.submitClarification();
+    },
+
 
     updateAoS:function(caseNumber){
       return UpdateAosPage.updateAoSDetails(caseNumber);

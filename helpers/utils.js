@@ -504,7 +504,7 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
 
   const userId = await getUserId(authToken);
 
-  const serviceToken = await getServiceToken();
+  const serviceToken = await getServiceToken(); // S2S Auth
 
   logger.info('Creating Case');
 

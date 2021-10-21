@@ -98,9 +98,9 @@ const eventDisplayName = {
   APPLICATION_PAID_SUBMIITED:'Application Paid and submitted',
   WITHDRAWN:'Withdrawn',
   DRAFT_CO: 'Draft Conditional Order',
-  REQUEST_CLARIFICATION:'Request clarification'
+  REQUEST_CLARIFICATION:'Request clarification',
+  SUBMIT_CLARIFICATION:'Submit clarification'
 };
-
 
 const user = {
   SOLS : 'Solicitor',
@@ -123,6 +123,7 @@ const events = {
   UPDATE_CONDITIONAL_ORDER:'Update Conditional Order',
   SUBMIT_CONDITIONAL_ORDER:'Submit Conditional Order',
   CO_REQUEST_CLARIFICATION:'Request clarification',
+  SUBMIT_CLARIFICATION:'Submit clarification',
   SOLS_DRAFT_AOS:'solicitor-draft-aos',
   SOLS_SUBMIT_AOS:'solicitor-submit-aos',
   SOLS_SUBMIT_CO:'solicitor-submit-conditional-order',

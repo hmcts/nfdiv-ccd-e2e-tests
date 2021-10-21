@@ -120,6 +120,12 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('/legal-advisor-request-clarification/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitClarification(){
+    await I.wait(2);
+    await I.waitInUrl('/solicitor-submit-clarification/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
 
 };
