@@ -12,6 +12,10 @@ module.exports = {
     legalProceedingsDescription:'#legalProceedingsDescription',
     sotSolicitorName:'#coSolicitorName',
     sotSolicitorFirm:'#coSolicitorFirm',
+    reviewAoSYes:'#coApplyForConditionalOrder_Yes',
+    updateChangeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
+    updateEverythingInPetitionTrue:'#coIsEverythingInPetitionTrue_Yes',
+    updateAddNewDocumentsNo:'#coAddNewDocuments_No',
     sotSolicitorAdditionalComments:'#coSolicitorAdditionalComments',
     submit: 'button[type="submit"]'
   },
@@ -62,24 +66,66 @@ module.exports = {
 
   async submitSoTDetails(){
     await I.wait(2);
-    await I.waitInUrl('solicitor-submit-conditional-order/solicitor-submit-conditional-orderConditionalOrderSoT');
+
+    await I.waitInUrl('/solicitor-submit-conditional-order/solicitor-submit-conditional-orderConditionalOrderSoT');
     await I.see('Statement of Truth - submit conditional order');
     await I.see('The applicant believes that the facts stated in the application for a conditional order are true');
-
-    await I.fillField(this.fields.sotSolicitorName,'Solicitor Smith ');
-    await I.fillField(this.fields.legalAdvisorName, 'Legal Advisor Porter');
-    await I.fillField(this.fields.sotSolicitorAdditionalComments,'Additional Comments');
-
+    await I.fillField(this.fields.sotSolicitorName,'Robin Smith');
+    await I.fillField(this.fields.sotSolicitorFirm, 'Sam Solicitors');
+    await I.fillField(this.fields.sotSolicitorAdditionalComments, 'Additional comments ');
     await I.waitForNavigationToComplete(this.fields.submit);
-    await I.wait(2);
+    await I.wait(3);
   },
 
   async submitConditionalOrder(){
     await I.wait(2);
-    await I.waitInUrl('solicitor-submit-conditional-order/submit');
+    await I.waitInUrl('/solicitor-submit-conditional-order/submit');
     await I.see('Submit Conditional Order');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
-    await I.checkStateAndEvent('Awaiting legal advisor referral','Submit Conditional Order');
+  },
+
+  async updateCOAoSReview(){
+    await I.wait(2);
+    await I.waitInUrl('solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderReviewAoS');
+    await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
+    await I.click(this.fields.reviewAoSYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async updateCOReviewApplication(){
+    await I.wait(2);
+    await I.waitInUrl('solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderReviewApplicant1');
+    await I.see('Link to online petition');
+    await I.click(this.fields.updateChangeOrAddAnythingToApplication);
+    await I.click(this.fields.updateEverythingInPetitionTrue);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async updateCODocuments(){
+    await I.wait(2);
+    await I.waitInUrl('/solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderNewDocuments');
+    await I.see('Do you need to upload any other documents?');
+    await I.click(this.fields.updateAddNewDocumentsNo);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async updateSubmit(){
+    await I.wait(2);
+    await I.waitInUrl('/trigger/solicitor-update-conditional-order/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async requestClarification(){
+    await I.wait(2);
+    await I.waitInUrl('/legal-advisor-request-clarification/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitClarification(){
+    await I.wait(2);
+    await I.waitInUrl('/solicitor-submit-clarification/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
+
 };

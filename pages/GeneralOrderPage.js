@@ -17,6 +17,7 @@ module.exports = {
     judge:'#generalOrderJudgeType',
     nameOfJudge:'#generalOrderJudgeName',
     legalAdvisorName:'#generalOrderLegalAdvisorName',
+    coSolicitorFirm:'#coSolicitorFirm',
     generalOrderDetails:'#generalOrderDetails',
     eventSummary:'#field-trigger-summary',
     eventDescription:'#field-trigger-description',

@@ -427,12 +427,37 @@ module.exports = function () {
       return ConditionalOrderPage.draftConditionalOrderCYA();
     },
 
+    updateCOReviewAoS:function() {
+      return ConditionalOrderPage.updateCOAoSReview();
+    },
+
+    updateCOReviewApplication:function() {
+      return ConditionalOrderPage.updateCOReviewApplication();
+    },
+
+    updateCODocuments:function() {
+      return ConditionalOrderPage.updateCODocuments();
+    },
+
+    updateCOAndSave:function() {
+      return ConditionalOrderPage.updateSubmit();
+    },
+
+
     submitSoTConditionalOrderDetails:function() {
       return ConditionalOrderPage.submitSoTDetails();
     },
 
     submitConditionalOrder:function() {
       return ConditionalOrderPage.submitConditionalOrder();
+    },
+
+    conditionalOrderClarification:function() {
+      return ConditionalOrderPage.requestClarification();
+    },
+
+    conditionalOrderSubmitClarification:function() {
+      return ConditionalOrderPage.submitClarification();
     },
 
     updateAoS:function(caseNumber){

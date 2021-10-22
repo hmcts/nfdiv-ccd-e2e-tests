@@ -244,6 +244,46 @@ async function getRespondentSolicitorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
+async function getLegalAdvisorUserToken() {
+
+  logger.info('.........Legal Advisor User Token ............');
+
+  // Setup Details
+  const username = testConfig.TestEnvLegalAdvisorUser;
+  const password = testConfig.TestEnvLegalAdvisorPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
+
 //TODO this will eventually replace the multiple getUserTokenXXX() methods above
 async function getUserTokenFor(user) {
 
@@ -464,7 +504,7 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
 
   const userId = await getUserId(authToken);
 
-  const serviceToken = await getServiceToken();
+  const serviceToken = await getServiceToken(); // S2S Auth
 
   logger.info('Creating Case');
 
@@ -531,6 +571,10 @@ async function getAuthTokenFor(userLoggedIn) {
   if (userLoggedIn === 'RespondentSolicitor01') {
     authToken = await getRespondentSolicitorUserToken();
   }
+  if (userLoggedIn === 'LegalAdvisor') {
+    authToken = await getLegalAdvisorUserToken();
+  }
+
   return authToken;
 }
 
@@ -698,7 +742,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getManageOrgServiceToken();
 
-  const aacHost = 'https://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
@@ -753,8 +797,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
 
   const eventToken = JSON.parse(startCaseResponse).token;
 
-  console.log('~~~~~~~~ eventToken  is ---->  ' + eventToken);
-
   var data = fs.readFileSync(dataLocation);
 
   var saveBody = {
@@ -780,7 +822,7 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
 
   logger.info('----- Before CALL to POST / submitEvent ') ;
   const saveCaseResponse =  await request(saveCaseOptions);
-  console.log('~~~~~~~~~~~~----- After CALL to POST / submitEvent  :: Response is ' +  saveCaseResponse) ;
+  console.log('~~~~~~~~~~~~----- After CALL to POST / submitEvent  ' + postURL);
   return saveCaseResponse;
 }
 
