@@ -18,6 +18,9 @@ module.exports = {
     submit: 'button[type="submit"]',
     addNew: 'button[type="button"]',
     documentUpload: 'input[id="documentsUploaded_0_documentLink"]',
+    confidentialDocumentUpload:'input[id="confidentialDocumentsUploaded_0_documentLink"]',
+    confidentialDocumentComment:'#confidentialDocumentsUploaded_0_documentComment',
+    confidentialDocumentType:'#confidentialDocumentsUploaded_0_confidentialDocumentsReceived',
     applicationDateDay: 'receivedServiceApplicationDate-day',
     applicationDateMonth: 'receivedServiceApplicationDate-month',
     applicationDateYear: 'receivedServiceApplicationDate-year',
@@ -93,15 +96,22 @@ module.exports = {
 
   async fillUploadDocCWSubmit(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-upload-document/submit');
+    await I.waitInUrl('/caseworker-upload-document/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillUploadConfidentialDocCW(caseNumber) {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-upload-confidential-document/caseworker-upload-confidential-documentuploadConfidentialDocuments');
-    await I.waitForNavigationToComplete(this.fields.addNew);
-    // await I.attachFile(this.fields.documentUpload, 'data/fileupload.txt');
+    await I.wait(3);
+    I.click(locate('.button').withText('Add new'));
+    //await I.waitForNavigationToComplete(this.fields.addNew);
+    await I.wait(3);
+    await I.attachFile(this.fields.confidentialDocumentUpload, 'data/fileupload.txt');
+    await I.wait(5);
+    await I.see('Confidential documents uploaded');
+    await I.fillField(this.fields.confidentialDocumentComment, 'Uploading a dummy file');
+    await I.selectOption(this.fields.confidentialDocumentType,'Marriage Certificate');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
