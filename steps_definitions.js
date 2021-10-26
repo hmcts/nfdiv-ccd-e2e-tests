@@ -68,6 +68,8 @@ const draftAosPage = require('./pages/DraftAoSPage.js');
 const UpdateAosPage = require('./pages/UpdateAoSPage.js');
 const submitAosPage = require('./pages/SubmitAoSPage.js');
 const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
+const BulkCasePage = require('./pages/BulkCasePage.js');
+
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
 const validateAOSTabData = require ('./tabs/validateAOSTabData');
@@ -142,6 +144,11 @@ module.exports = function () {
     filterByCaseId : function(caseNumber){
       return CaseListPage.filterByCaseId(caseNumber);
     },
+
+    filterByBulkCaseReference : function(bulkCaseReferenceId){
+      return CaseListPage.filterByBulkCaseReference(bulkCaseReferenceId);
+    },
+
 
     issueDivorceApplication(){
       return DivorceApplicationDetailsPage.fillFormAndSubmit();
@@ -634,6 +641,10 @@ module.exports = function () {
 
     issueBailiffPackPageFormAndSubmit: function() {
       return IssueBailiffPackPage.fillFormAndSubmit();
+    },
+
+    linkWithBulkCase: function(caseNumber) {
+      return BulkCasePage.submitLinkWithBulkCase(caseNumber);
     },
 
     validatePetitionTabData: function(reason,verifyContent) {

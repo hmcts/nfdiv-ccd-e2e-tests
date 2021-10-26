@@ -56,6 +56,18 @@ module.exports = {
     await I.wait(3);
   },
 
+  async filterByBulkCaseReference(caseNumber) {
+    await I.waitForElement(this.selectors.jurisdictionSelect);
+    await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
+    await I.waitForElement(this.selectors.caseTypeSelect);
+    await I.selectOption(this.selectors.caseTypeSelect, 'NO_FAULT_DIVORCE_BulkAction');
+    await I.waitForElement(this.selectors.caseStateSelect);
+    await I.selectOption(this.selectors.caseStateSelect, 'Any');
+    await I.wait(5);
+    await I.click('Apply');
+    await I.wait(3);
+  },
+
   async checkEventAndStateAndBeginHWFValidation(){
     await I.see('Awaiting HWF decision');
     await I.see('Case submission');

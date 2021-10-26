@@ -827,6 +827,65 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
 }
 
 
+async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) {
+
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+  const eventTypeId ='create-bulk-list';
+  const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
+
+  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
+  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventId = 'create-bulk-list';
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('caseIdToBeReplaced',caseId);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSubmitEventPath;
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSubmitEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
+  console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
+  return bulkCaseReferenceId;
+}
+
+
 
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
@@ -856,5 +915,6 @@ module.exports = {
   firstLetterToCaps,
   updateRoleForCase,
   shareCaseToRespondentSolicitor,
-  moveFromHoldingToAwaitingCO
+  moveFromHoldingToAwaitingCO,
+  moveCaseToBulk
 };
