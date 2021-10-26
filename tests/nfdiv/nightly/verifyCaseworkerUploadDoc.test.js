@@ -36,6 +36,4 @@ Scenario('NFD - Adding a doc as CW in Submitted state', async function (I) {
   await I.submitUploadDocCW(caseNumber);
   await I.submitUploadDocCWSubmit(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.SUBMITTED, events.UPLOAD_DOCUMENT);
-
-
 }).retry(testConfig.TestRetryScenarios);
