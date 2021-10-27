@@ -77,7 +77,8 @@ const stateDisplayName = {
   AWAITING_BAILIFF_SERVICE: 'Awaiting bailiff service',
   ISSUED_TO_BAILIFF: 'Issued To bailiff',
   SUBMITTED: 'Submitted',
-  APPLICATION_REJECT: 'Application rejected'
+  APPLICATION_REJECT: 'Application rejected',
+  APPLICATION_AWAITING_SERVICE:'Awaiting service'
 };
 
 const eventDisplayName = {
@@ -166,7 +167,8 @@ const events = {
   ISSUED_BAILIFF_PACK: 'Issue bailiff pack',
   UPLOAD_DOCUMENT: 'Upload document',
   UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document',
-  REJECT: 'Reject'
+  REJECT: 'Reject',
+  REISSUED: 'Reissued'
 };
 
 const serviceApplicationType = {

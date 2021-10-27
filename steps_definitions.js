@@ -539,6 +539,22 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.fillServiceDetailsAndSubmit(caseNumber);
     },
 
+    reissueDivorceApplicationDigital:function (caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillReissueDivorceApplicationDigital(caseNumber);
+    },
+
+    reissueDivorceApplicationOffline:function (caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillReissueDivorceApplicationOffline(caseNumber);
+    },
+
+    reissueDivorceApplication:function (caseNumber) {
+      return ConfirmServiceForSolicitorPage. fillReissueDivorceApplication(caseNumber);
+    },
+
+    submitReissue:function (caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillSubmitReissue(caseNumber);
+    },
+
     submitConfirmService: function(caseNumber){
       return ConfirmServiceForSolicitorPage.submitServiceDetails(caseNumber);
     },
