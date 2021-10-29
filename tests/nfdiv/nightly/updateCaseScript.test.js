@@ -1,7 +1,7 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO} = require('../../../helpers/utils');
-const { states, events , user} = require('../../../common/constants');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk} = require('../../../helpers/utils');
+const { states, events , user, stateDisplayName} = require('../../../common/constants');
 const assert = require('assert');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -9,21 +9,21 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Move case From Conditional Order to Awaiting Pronouncement [start of FinalOrder]');
+Feature('NFD - Move Case to a Bulk Pack');
 
 // TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
 // Pipeline expects https . HTTP works when tests are run locally ,but they fail on pipeline.
 
-xScenario('NFD - Process ConditionalOrder and move case Awaiting Pronouncement', async function (I) {
+xScenario('NFD - Verify Bulk Case ', async function (I) {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
   // SoT solServiceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -50,9 +50,13 @@ xScenario('NFD - Process ConditionalOrder and move case Awaiting Pronouncement',
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
   const draftConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_DRAFT_CO,'data/ccd-draft-co.json');
-  verifyState(draftConditionalOrder, states.CONDITIONAL_ORDER_DRAFTED);
+  verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
   const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
-}).retry(testconfig.TestRetryScenarios);
+  // faulty case
+  await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-update-faulty-case.json');
+
+
+}).retry(testConfig.TestRetryScenarios);

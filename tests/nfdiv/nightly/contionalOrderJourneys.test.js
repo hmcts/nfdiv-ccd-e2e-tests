@@ -38,7 +38,7 @@ xScenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->CO
   const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
   verifyState(draftAoS, states.AOS_DRAFTED);
 
-  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_SUBMIT_AOS,'data/ccd-submit-aos.json');
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
 
   // Login as CW and check the latest Event and State of the Case

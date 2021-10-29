@@ -39,7 +39,7 @@ xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (
   const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
   verifyState(draftAoS, states.AOS_DRAFTED);
 
-  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_SUBMIT_AOS,'data/ccd-submit-aos.json');
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
@@ -52,7 +52,7 @@ xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (
   const draftConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_DRAFT_CO,'data/ccd-draft-co.json');
   verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
-  const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLS_SUBMIT_CO,'data/ccd-submit-co.json');
+  const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   // legalAdvisor Role
