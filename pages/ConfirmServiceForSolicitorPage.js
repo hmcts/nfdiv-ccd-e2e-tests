@@ -33,7 +33,10 @@ module.exports = {
     localCourtName: '#localCourtName',
     localCourtEmail: '#localCourtEmail',
     selectRejectReason: '#rejectReason_rejectReasonType',
-    rejectDetailsTextBox: '#rejectReason_rejectDetails'
+    rejectDetailsTextBox: '#rejectReason_rejectDetails',
+    digitalAoS: '#reissueOption-digitalAos',
+    offlineAoS: '#reissueOption-offlineAos',
+    reissueCase: '#reissueOption-reissueCase'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -219,5 +222,33 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-issue-bailiff-pack/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillReissueDivorceApplicationDigital(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('/trigger/caseworker-reissue-application/caseworker-reissue-applicationreissueApplication');
+    await I.click(this.fields.digitalAoS);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillReissueDivorceApplicationOffline(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('/trigger/caseworker-reissue-application/caseworker-reissue-applicationreissueApplication');
+    await I.click(this.fields.offlineAoS);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillReissueDivorceApplication(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('/trigger/caseworker-reissue-application/caseworker-reissue-applicationreissueApplication');
+    await I.click(this.fields.reissueCase);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillSubmitReissue(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-reissue-application/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
+
 };
