@@ -4,7 +4,8 @@
       "id": "6c3a37a0-67af-49cf-bbc7-6f87cca1d9d2",
       "value": {
         "caseParties": "E2E App1 FN1 LN1 App2 FN2 LN2",
-        "decisionDate": "decisionDateToBeReplaced",
+        "decisionDate": null,
+        "decisionDate": null,
         "caseReference": {
           "CaseReference": "caseIdToBeReplaced"
         }

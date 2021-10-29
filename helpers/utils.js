@@ -860,8 +860,8 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
   data = data.replace('caseIdToBeReplaced',caseId);
 
-  var decisionDate = datechange(45);
-  data.replace('decisionDateToBeReplaced',decisionDate)
+//   var decisionDate = datechange(45);
+//   data.replace('decisionDateToBeReplaced',decisionDate)
 
   var saveBody = {
     event: {

@@ -53,6 +53,7 @@ xScenario('NFD - Verify Bulk Case ', async function (I) {
   verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
   const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
+  
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   // get case ready for bulk
