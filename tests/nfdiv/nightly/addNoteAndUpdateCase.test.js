@@ -42,15 +42,7 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.createAddCaseNoteEventSummary(caseNumber);
   await I.checkState('Submitted','Add note');
 
-  // Update Application Type
-  await I.wait(2);
-  await I.checkNextStepForEvent('Update application type');
-  await I.updateApplicationType(caseNumber);
-  await I.updateApplicationTypeSubmit(caseNumber);
-  await I.wait(2);
-  await I.checkState('Submitted','Update application type');
-
-  // // Update Due Date
+  //Update Due Date
   await I.wait(2);
   await I.checkNextStepForEvent('Update due date');
   await I.updateDueDate();
@@ -58,8 +50,5 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.updateDueDateEventSummary(caseNumber);
   await I.checkState('Submitted','Update due date');
 
-  // TODO
-  // upload Confidential Document
-  // upload Document as caseworker.
 
 }).retry(testconfig.TestRetryScenarios);

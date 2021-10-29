@@ -20,11 +20,11 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
-  verifyState(awaitingService, states.AWAITING_SERVICE);
+  verifyState(awaitingService, states.AOS_AWAITING);
 
   // await I.amOnHomePage();
   // await I.wait(5);
@@ -41,4 +41,3 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   // await I.checkStateAndEvent(stateDisplayName.AOS_AWAITING_NAME, events.SOLICITOR_CONFIRM_SERVICE);
 
 }).retry(testConfig.TestRetryScenarios);
-

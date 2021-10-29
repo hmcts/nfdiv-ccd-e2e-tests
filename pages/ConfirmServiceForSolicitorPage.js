@@ -163,27 +163,27 @@ module.exports = {
   },
 
   async fillServiceApplicationPayment(caseNumber) {
-    await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
+    await I.wait(5);
+    await I.waitInUrl(`/case-details/${caseNumber}/trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment`);
     await I.selectOption(this.fields.selectPaymentMethod,'Telephone');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillServiceApplicationPaymentCYA(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentAltPaymentSummary');
+    await I.waitInUrl('/caseworker-service-payment/caseworker-service-paymentAltPaymentSummary');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillServiceApplicationPaymentSubmit(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-service-payment/submit');
+    await I.waitInUrl('/caseworker-service-payment/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillApproveServiceApplication(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('trigger/legal-advisor-service-decision/legal-advisor-service-decisionmakeServiceDecision');
+    await I.waitInUrl('/legal-advisor-service-decision/legal-advisor-service-decisionmakeServiceDecision');
     await I.click(this.fields.serviceAppGranted);
     await I.fillField(this.fields.deemedDateDay, '01');
     await I.fillField(this.fields.deemedDateMonth, '04');
