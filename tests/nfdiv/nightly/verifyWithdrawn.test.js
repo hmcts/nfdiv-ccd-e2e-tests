@@ -9,9 +9,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('Verify NFD Confirm Service');
+Feature('Verify NFD Case Withdrawn Service');
 
-Scenario('NFD - Move case to ConfirmService State', async function (I) {
+Scenario('NFD - Withdraw case moves state to Application withdrawn State', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
@@ -20,7 +20,7 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -34,7 +34,7 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('Awaiting service');
-  await I.see('Issue Solicitor Service Pack');
+  await I.see('Issue solicitor service pack');
   await I.checkNextStepForEvent('Withdrawn');
   await I.submitWithdrawnCW(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.WITHDRAWN, events.APPLICATION_WITHDRAWN);
