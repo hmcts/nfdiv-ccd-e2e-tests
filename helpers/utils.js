@@ -95,7 +95,6 @@ async function getSolicitorUserToken() {
   const username = testConfig.TestEnvSolUser;
   const password = testConfig.TestEnvSolPassword;
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-                      // https://probate-frontend-aat-sandbox.service.core-compute-aat.internal/authenticated
 
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
@@ -859,9 +858,6 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
   data = data.replace('caseIdToBeReplaced',caseId);
-
-//   var decisionDate = datechange(45);
-//   data.replace('decisionDateToBeReplaced',decisionDate)
 
   var saveBody = {
     event: {
