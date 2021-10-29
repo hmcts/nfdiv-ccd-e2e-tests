@@ -39,7 +39,7 @@ xScenario('NFD - Script - Case creation to Awaiting Conditional Order', async fu
   const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
   verifyState(draftAoS, states.AOS_DRAFTED);
 
-  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_SUBMIT_AOS,'data/ccd-submit-aos.json');
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
