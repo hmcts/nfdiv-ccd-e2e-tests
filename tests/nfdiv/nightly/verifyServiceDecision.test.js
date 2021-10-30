@@ -43,7 +43,7 @@ Scenario('NFD - Service Application , Service Payment and  Service Decision', as
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Confirm Service Payment');
+  await I.checkNextStepForEvent('Confirm service payment');
   await I.submitServiceApplicationPayment(caseNumber);
   await I.submitServiceApplicationPaymentCYA(caseNumber);
   await I.submitServiceApplicationPaymentSubmit(caseNumber);

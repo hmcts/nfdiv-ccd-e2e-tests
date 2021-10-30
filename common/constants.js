@@ -162,7 +162,7 @@ const events = {
   CREATE_GENERAL_ORDER:'Create general order',
   APPLICATION_WITHDRAWN: 'Application withdrawn',
   SERVICE_APPLICATION_RECEIVED: 'Service application received',
-  CONFIRM_SERVICE_PAYMENT: 'Confirm Service Payment',
+  CONFIRM_SERVICE_PAYMENT: 'Confirm service payment',
   MAKE_SERVICE_DECISION: 'Make service decision',
   MAKE_BAILIFF_DECISION: 'Make Bailiff Decision',
   ISSUED_BAILIFF_PACK: 'Issue bailiff pack',

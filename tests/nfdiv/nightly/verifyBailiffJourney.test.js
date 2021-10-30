@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD Case - Verify Bailiff Journey');
 
-Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
+xScenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -42,7 +42,7 @@ Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Confirm Service Payment');
+  await I.checkNextStepForEvent('Confirm service payment');
   await I.submitServiceApplicationPaymentBailiff(caseNumber);
   await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
   await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);

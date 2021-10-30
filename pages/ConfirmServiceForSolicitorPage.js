@@ -164,7 +164,7 @@ module.exports = {
 
   async fillServiceApplicationPayment(caseNumber) {
     await I.wait(5);
-    await I.waitInUrl(`/case-details/${caseNumber}/trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment`);
+    await I.waitInUrl('trigger/caseworker-service-payment/caseworker-service-paymentalternativeServicePayment');
     await I.selectOption(this.fields.selectPaymentMethod,'Telephone');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
