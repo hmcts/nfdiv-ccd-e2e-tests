@@ -140,7 +140,7 @@ const events = {
   LA_GRANT_CONDITIONAL_ORDER:'legal-advisor-grant-conditional-order',
   UPDATE_AOS:'Update AoS',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
-  HWF_REFUSED:'HWF Refused',
+  HWF_REFUSED:'HWF refused',
   DRAFT_TO_SUBMITTED:'Submitted',
   ISSUED_FROM_SUBMITTED:'caseworker-issue-application',
   ISSUE_AOS:'caseworker-issue-aos',
