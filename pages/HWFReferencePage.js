@@ -9,7 +9,7 @@ module.exports = {
     hwfEventSummary:'#field-trigger-summary',
     hwfEventDescription:'#field-trigger-description',
     HWF_Message:'HWF application accepted',
-    HWF_Refused:'HWF Refused',
+    HWF_Refused:'HWF refused',
     submit: 'button[type="submit"]'
   },
 

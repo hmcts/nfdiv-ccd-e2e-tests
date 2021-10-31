@@ -26,7 +26,7 @@ Scenario('HWF Refused by Caseworker', async function (I) {
   await I.fillHwfRefused();
 
   // check event/state and SignOut
-  await I.checkStateAndEvent('Awaiting applicant','HWF Refused');
+  await I.checkStateAndEvent('Awaiting applicant','HWF refused');
 
   console.log('~~~~~~~~~~~~~  Successfull HWF Refused by Caseworker ~~~~~');
 
