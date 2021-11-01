@@ -21,7 +21,7 @@ Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -42,14 +42,14 @@ Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Confirm Service Payment');
+  await I.checkNextStepForEvent('Confirm service payment');
   await I.submitServiceApplicationPaymentBailiff(caseNumber);
   await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
   await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_REFERRAL, events.CONFIRM_SERVICE_PAYMENT);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Make Bailiff Decision');
+  await I.checkNextStepForEvent('Make bailiff decision');
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   // await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
