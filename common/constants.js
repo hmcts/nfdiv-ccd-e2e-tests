@@ -164,7 +164,7 @@ const events = {
   SERVICE_APPLICATION_RECEIVED: 'Service application received',
   CONFIRM_SERVICE_PAYMENT: 'Confirm service payment',
   MAKE_SERVICE_DECISION: 'Make service decision',
-  MAKE_BAILIFF_DECISION: 'Make Bailiff Decision',
+  MAKE_BAILIFF_DECISION: 'Make bailiff decision',
   ISSUED_BAILIFF_PACK: 'Issue bailiff pack',
   UPLOAD_DOCUMENT: 'Upload document',
   UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document',

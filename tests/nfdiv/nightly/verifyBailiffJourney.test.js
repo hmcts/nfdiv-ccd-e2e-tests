@@ -49,7 +49,7 @@ xScenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailif
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_REFERRAL, events.CONFIRM_SERVICE_PAYMENT);
 
   await I.wait(3);
-  await I.checkNextStepForEvent('Make Bailiff Decision');
+  await I.checkNextStepForEvent('Make bailiff decision');
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   // await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
