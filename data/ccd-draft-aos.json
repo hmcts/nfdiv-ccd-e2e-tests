@@ -5,8 +5,7 @@
   "applicant2SolicitorAgreeToReceiveEmails": "Yes",
   "confirmReadPetition": "Yes",
   "jurisdictionAgree": "Yes",
-  "legalProceedingsExist": "Yes",
-  "jurisdictionAgree": "Yes",
-  "jurisdictionAgree": "Yes",
-  "legalProceedingsDescription": "Legal Proceedings description"
+  "applicant2LegalProceedings": "Yes",
+  "applicant2LegalProceedingsDetails": "App2 Legal Proceedings description"
+
 }
