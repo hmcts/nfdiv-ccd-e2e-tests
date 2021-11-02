@@ -17,16 +17,13 @@ module.exports = {
   },
 
   async fillSoTAndSoRDetails() {
-    await I.waitInUrl('trigger/solicitor-submit-aos/solicitor-submit-aosApplicant2SolStatementOfTruth');
+    await I.waitInUrl('trigger/submit-aos/submit-aosApplicant2SolStatementOfTruth');
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Statement of truth and reconciliation');
     await I.see('Review the answers in your Acknowledgement of Service below. If you wish to change any of your answers, please go back and use the \'Update AoS\' action');
     await I.see('Has the respondent read the application for divorce?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see('Reason respondent disagreed to claimed jurisdiction');
-    await I.see('Legal proceedings details (respondent)');
-    await I.see('Statement of truth');
     await I.click(this.fields.soT_Yes);
     await I.click(this.fields.prayer_Yes);
     await I.wait(2);
@@ -34,9 +31,10 @@ module.exports = {
   },
 
   async checkYourAnswers(caseId) {
-    await I.waitInUrl('trigger/solicitor-submit-aos/submit');
+    await I.waitInUrl('trigger/submit-aos/submit');
     await I.wait(4);
-    await I.see('Check your answers\n');
+    await I.see('Check your answers');
+    await I.see('Check the information below carefully.');
     await I.see('I am duly authorised by the respondent to sign this statement.');
     await I.see('The respondent has given their "prayer".');
     await I.runAccessibilityTest();
@@ -76,10 +74,8 @@ module.exports = {
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online petition');
-    await I.see('mini-application-'+caseId+'.pdf');
     await I.see('Has the respondent read the application for divorce?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see('Do legal proceedings exist (respondent)?');
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);

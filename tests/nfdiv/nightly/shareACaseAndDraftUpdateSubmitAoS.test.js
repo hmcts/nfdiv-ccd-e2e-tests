@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
-const { states, events , user} = require('../../../common/constants');
+const { states, events , eventDisplayName,user} = require('../../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../../config');
 
@@ -21,7 +21,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -40,7 +40,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
-  await I.checkNextStepForEvent(events.DRAFT_AOS);
+  await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
   await I.draftAoSReview(caseNumber);
   await I.draftAoSDoYouAgree(caseNumber);
@@ -49,12 +49,12 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.see('AoS drafted');
 
   // Update AoS
-  await I.checkNextStepForEvent(events.UPDATE_AOS);
+  await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
   await I.updateAoS(caseNumber);
   await I.see('AoS drafted');
 
   // Submit AoS
-  await I.checkNextStepForEvent('Submit AoS');
+  await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
   await I.submitAosSOT(caseNumber);
   await I.submitAosCYA(caseNumber);
 
@@ -63,11 +63,12 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   // Login as CW and check the latest Event and State of the Case
   // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
 
+  await I.wait(5);
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
-  await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,events.SUBMIT_AOS);
+  await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,eventDisplayName.SUBMIT_AOS);
 
 }).retry(testconfig.TestRetryScenarios);

@@ -9,12 +9,13 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Script to create Sole Divorce case and take it all the way upto Awaiting Pronouncement [start of FinalOrder]');
+Feature('NFD - Script - Case in State of Awaiting Pronouncement [start of FinalOrder]');
 
 // TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
-// Pipeline expects https . HTTP works when tests are run locally ,but they fail on pipeline.
+// Pipeline expects HTTPS.
+// HTTP works when tests are run locally but  fail on pipeline.
 
-xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
+Scenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -23,7 +24,7 @@ xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -36,8 +37,8 @@ xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
-  verifyState(draftAoS, states.AOS_DRAFTED);
+  const aosDrafted = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
+  verifyState(aosDrafted, states.AOS_DRAFTED);
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
@@ -55,9 +56,8 @@ xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (
   const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
-  // legalAdvisor Role
+  // Moves case to Listed;AwaitingPronouncement state
   const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_GRANT_CONDITIONAL_ORDER,'data/ccd-grant-co.json');
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
-
 
 }).retry(testconfig.TestRetryScenarios);

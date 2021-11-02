@@ -36,7 +36,7 @@ xScenario('NFD - Verify Bulk Case ', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SOLS_DRAFT_AOS,'data/ccd-draft-aos.json');
+  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
   verifyState(draftAoS, states.AOS_DRAFTED);
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
