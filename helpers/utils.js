@@ -788,7 +788,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getManageOrgServiceToken();
 
-  const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  const aacHost = 'https://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
@@ -813,7 +813,10 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     body: JSON.stringify(data)
   };
 
+  console.log('~~~~~~~~~~~~  About to  Call  ..... '+ aacHost + caseAssignmentUrl  );
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
+  console.log('~~~~~~~~~~~~  Call returned with  response ..... '+ JSON.parse(saveCaseResponse));
+
   return saveEventResponse;
 }
 

@@ -30,6 +30,7 @@
     "test:cw-reissue-offline": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyReissueOffline.test.js -c ./ --steps",
     "test:cw-reissue": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyReissue.test.js -c ./ --steps",
     "test:share-case": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/shareACaseAndDraftUpdateSubmitAoS.test.js -c ./ --steps",
+    "test:share-case-script": "NODE_TLS_REJECT_UNAUTHORIZED=0 SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/shareACaseAndDraftAoS.test.js -c ./ --steps",
     "test:conditional-order": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/contionalOrderDraftAndUpdate.test.js -c ./ --steps",
     "test:20week-to-conditional": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyHoldingToConditionalOrder.test.js -c ./ --steps",
     "test:awaiting-pronoun": "NODE_TLS_REJECT_UNAUTHORIZED=0 SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js -c ./ --steps",
