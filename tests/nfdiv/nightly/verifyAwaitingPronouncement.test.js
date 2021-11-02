@@ -15,7 +15,7 @@ Feature('NFD - Script - Case in State of Awaiting Pronouncement [start of FinalO
 // Pipeline expects HTTPS.
 // HTTP works when tests are run locally but  fail on pipeline.
 
-Scenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
+xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
