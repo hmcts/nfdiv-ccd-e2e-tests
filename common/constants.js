@@ -150,7 +150,6 @@ const events = {
   ISSUE_AOS:'caseworker-issue-aos',
   AOS_AWAITING_TO_AOS_DRAFTED:'solicitor-draft-aos',
   START_AOS: 'startAos',
-  SUBMIT_AOS:'Submit AoS',
   AOS_SUBMITTED_DEFENDED:'aosSubmittedDefended',
   ANSWER_NOT_RECEIVED:'answerNotReceived',
   DN_RECEIVED:'dnReceived',
