@@ -149,7 +149,6 @@ module.exports = function () {
       return CaseListPage.filterByBulkCaseReference(bulkCaseReferenceId);
     },
 
-
     issueDivorceApplication(){
       return DivorceApplicationDetailsPage.fillFormAndSubmit();
     },

@@ -1,4 +1,4 @@
-const {yesorno,currentCaseType} = require('../common/constants');
+const {yesorno,currentCaseType,bulkCaseReferenceCaseType} = require('../common/constants');
 const I = actor();
 
 module.exports = {
@@ -60,7 +60,7 @@ module.exports = {
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, 'NO_FAULT_DIVORCE_BulkAction');
+    await I.selectOption(this.selectors.caseTypeSelect, bulkCaseReferenceCaseType);
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
     await I.wait(5);

@@ -15,6 +15,8 @@ const signOut = 'Sign out';
 
 const currentCaseType = 'NFD';
 
+const bulkCaseReferenceCaseType='NO_FAULT_DIVORCE_BulkAction';
+
 const divorceOrDissolution = {
   DIVORCE: 'Divorce',
   DISSOLUTION: 'Dissolution'
@@ -193,5 +195,6 @@ module.exports = {
   yesorno,
   divorceOrDissolution,
   serviceApplicationType,
-  currentCaseType
+  currentCaseType,
+  bulkCaseReferenceCaseType
 };
