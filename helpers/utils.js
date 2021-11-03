@@ -781,11 +781,7 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
 
 async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   console.log('.....user  is ..... '+ userLoggedIn );
-  let authToken;
-  authToken = await getAuthTokenFor(userLoggedIn, authToken);
-
-  const userId = await getUserId(authToken);
-
+  const authToken = await getAuthTokenFor(userLoggedIn);
   const serviceToken = await getManageOrgServiceToken();
 
   const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
@@ -805,14 +801,10 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
       'ServiceAuthorization':`${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    strictSSL: false,
     body: JSON.stringify(data)
   };
 
-  console.log('~~~~~~~~~~~~  About to  Call  ..... '+ aacHost + caseAssignmentUrl  );
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
-  console.log('~~~~~~~~~~~~  Call returned with  response ..... '+ JSON.parse(saveEventResponse));
-
   return saveEventResponse;
 }
 
