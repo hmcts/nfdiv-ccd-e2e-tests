@@ -788,17 +788,13 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   const serviceToken = await getManageOrgServiceToken();
 
-  const aacHost = 'https://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
     assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
     case_id:caseId,
     case_type_id:'NFD'
-  };
-
-  var body = {
-    data: JSON.stringify(data)
   };
 
   const shareCaseToRespondentSolicitor = {
@@ -815,7 +811,7 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
 
   console.log('~~~~~~~~~~~~  About to  Call  ..... '+ aacHost + caseAssignmentUrl  );
   const saveEventResponse = await request(shareCaseToRespondentSolicitor);
-  console.log('~~~~~~~~~~~~  Call returned with  response ..... '+ JSON.parse(saveCaseResponse));
+  console.log('~~~~~~~~~~~~  Call returned with  response ..... '+ JSON.parse(saveEventResponse));
 
   return saveEventResponse;
 }
