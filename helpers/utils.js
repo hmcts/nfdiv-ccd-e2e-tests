@@ -793,11 +793,6 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
     case_type_id:'NFD'
   };
 
-  console.log({
-    'Authorization':`Bearer ${authToken}`,
-    'ServiceAuthorization':`${serviceToken}`
-  });
-
   const shareCaseToRespondentSolicitor = {
     method: 'POST',
     uri: aacHost + caseAssignmentUrl,
