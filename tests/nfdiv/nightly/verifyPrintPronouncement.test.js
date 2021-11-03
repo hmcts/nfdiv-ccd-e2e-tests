@@ -75,14 +75,14 @@ Scenario('NFD - Verify Bulk Case ', async function (I) {
   await I.submitScheduleCases(caseNumber);
   await I.submitScheduleCasesCYA(caseNumber);
   await I.checkStateAndEvent('Bulk case list created','Create bulk list');
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING;
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');
   await I.submitPrintForPronouncement(caseNumber);
   await I.fillSPrintForPronouncementCYA(caseNumber);
   await I.checkStateAndEvent('Bulk case list created','Print for pronouncement');
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.PRINT_FOR_PRONOUNCEMENT;
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.PRINT_FOR_PRONOUNCEMENT);
 
 
 }).retry(testConfig.TestRetryScenarios);
