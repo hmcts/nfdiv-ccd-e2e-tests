@@ -36,7 +36,18 @@ module.exports = {
     rejectDetailsTextBox: '#rejectReason_rejectDetails',
     digitalAoS: '#reissueOption-digitalAos',
     offlineAoS: '#reissueOption-offlineAos',
-    reissueCase: '#reissueOption-reissueCase'
+    reissueCase: '#reissueOption-reissueCase',
+    courtName: '#courtName-serviceCentre',
+    hearingDateDay: 'dateAndTimeOfHearing-day',
+    hearingDateMonth: 'dateAndTimeOfHearing-month',
+    hearingDateYear: 'dateAndTimeOfHearing-year',
+    hearingDateHour: 'dateAndTimeOfHearing-hour',
+    hearingDateMinute: 'dateAndTimeOfHearing-minute',
+    hearingDateSecond: 'dateAndTimeOfHearing-second',
+    LADecisionDateDateDay: 'decisionDate-day',
+    LADecisionDateDateMonth: 'decisionDate-month',
+    LADecisionDateDateYear: 'decisionDate-year'
+
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -248,6 +259,40 @@ module.exports = {
   async fillSubmitReissue(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-reissue-application/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillScheduleCases(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-schedule-case/caseworker-schedule-casescheduleForListing');
+    await I.click(this.fields.courtName);
+    await I.fillField(this.fields.hearingDateDay, '01');
+    await I.fillField(this.fields.hearingDateMonth, '04');
+    await I.fillField(this.fields.hearingDateYear, '2023');
+    await I.fillField(this.fields.hearingDateHour, '00');
+    await I.fillField(this.fields.hearingDateMinute, '00');
+    await I.fillField(this.fields.hearingDateSecond, '00');
+    await I.fillField(this.fields.LADecisionDateDateDay, '01');
+    await I.fillField(this.fields.LADecisionDateDateMonth, '04');
+    await I.fillField(this.fields.LADecisionDateDateYear, '2022');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillScheduleCasesCYA(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-schedule-case/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillSPrintForPronouncement(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-print-for-pronouncement/caseworker-print-for-pronouncementprintPronouncement');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillSPrintForPronouncementCYA(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-print-for-pronouncement/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 

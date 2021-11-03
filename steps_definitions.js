@@ -708,6 +708,19 @@ module.exports = function () {
 
     validateLinkedCaseTabData: function(verifyContent) {
       return validateLinkedCaseTabData(verifyContent);
+    },
+
+    submitScheduleCases: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillScheduleCases(caseNumber);
+    },
+
+    submitScheduleCasesCYA: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillScheduleCasesCYA(caseNumber);
+    },
+
+    submitPrintForPronouncement: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillSPrintForPronouncement(caseNumber);
     }
+
   });
 };
