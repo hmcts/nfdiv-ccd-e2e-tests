@@ -35,10 +35,12 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
   //Draft AoS
+  await I.wait(8);
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
+
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
