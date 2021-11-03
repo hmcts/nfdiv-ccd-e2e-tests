@@ -29,12 +29,16 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
 
-  console.log('~~~~~~~~~ Before calling aac-manage-case-assignment to share a case  ------');
+  console.log('~~~~~~~~~ Before calling aac-manage-case-assignment to Share a case ---------');
+
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
+
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
+
+  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  by Respondent Solicitior Admin');
 
   //Draft AoS
+  await I.wait(5)
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
