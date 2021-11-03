@@ -85,7 +85,6 @@ xScenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->CO
   await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
   await I.submitSoTConditionalOrderDetails();
   await I.submitConditionalOrder();
-  //await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CONDITIONAL_ORDER);
   await I.signOut();
 
   //CO - Request - Clarification -> Awaiting Clarification :: as a LegalAdvisor.
