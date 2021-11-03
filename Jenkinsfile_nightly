@@ -18,7 +18,7 @@ def secrets = [
     secret('idam-solicitor-password', 'PROF_USER_PASSWORD'),
     secret('idam-caseworker-username', 'CCD_CASEWORKER_E2E_EMAIL'),
     secret('idam-caseworker-password', 'CCD_CASEWORKER_E2E_PASSWORD'),
-    secret('s2s-case-api-secret', 'SERVICE_AUTH_SECRET'),
+    secret('s2s-case-api-secret', 'SERVICE_SECRET'),
     secret('idam-secret', 'IDAM_SECRET'),
     secret('idam-solicitor-username', 'SOLICITOR_USER_NAME'),
     secret('idam-solicitor-password', 'SOLICITOR_PASSWORD'),
