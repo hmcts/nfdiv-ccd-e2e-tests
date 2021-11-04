@@ -80,7 +80,9 @@ const stateDisplayName = {
   ISSUED_TO_BAILIFF: 'Issued To bailiff',
   SUBMITTED: 'Submitted',
   APPLICATION_REJECT: 'Application rejected',
-  APPLICATION_AWAITING_SERVICE:'Awaiting service'
+  APPLICATION_AWAITING_SERVICE:'Awaiting service',
+  BULK_CASE_LISTED_CREATED: 'Bulk case list created',
+  BULK_CASE_LISTED: 'Bulk case listed'
 };
 
 const eventDisplayName = {
@@ -174,7 +176,11 @@ const events = {
   UPLOAD_DOCUMENT: 'Upload document',
   UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document',
   REJECT: 'Reject',
-  REISSUED: 'Reissued'
+  REISSUED: 'Reissued',
+  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
+  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
+  SYSTEM_UPDATE_CASE: 'System update case',
+  CREATE_BULK_LIST: 'Create bulk list'
 };
 
 const serviceApplicationType = {
