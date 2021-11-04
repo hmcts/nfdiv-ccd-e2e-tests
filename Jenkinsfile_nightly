@@ -16,8 +16,8 @@ def secrets = [
   'nfdiv-${env}': [
     secret('idam-solicitor-username', 'PROF_USER_EMAIL'),
     secret('idam-solicitor-password', 'PROF_USER_PASSWORD'),
-    secret('idam-respondent-solicitor-admin-username', 'RESP_SOLS_ADMIN_USERNAME'),
-    secret('idam-respondent-solicitor-admin-password', 'RESP_SOLS_ADMIN_PASSWORD'),
+    secret('idam-respondent-solicitor-admin-username', 'CCD_CASEWORKER_E2E_EMAIL'),
+    secret('idam-respondent-solicitor-admin-password', 'CCD_CASEWORKER_E2E_PASSWORD'),
     secret('idam-respondent-solicitor-1-username', 'RESPONDENT_SOLICITOR_1_USERNAME'),
     secret('idam-respondent-solicitor-1-password', 'RESPONDENT_SOLICITOR_1_PASSWORD'),
     secret('idam-systemupdate-username', 'SYSTEMUPDATE_USERNAME'),
