@@ -22,7 +22,7 @@ module.exports = {
   TestEnvCourtAdminUser: process.env.CASEWORKER_USER_NAME || '',
   TestEnvCourtAdminPassword: process.env.CASEWORKER_PASSWORD || '',
   TestEnvRespondentSolAdminUser: process.env.RESP_SOLS_ADMIN_USERNAME || '',
-  TestEnvRespondentSolAdminPassword: process.env.RESP_SOLS_ADMIN_USERNAME || '',
+  TestEnvRespondentSolAdminPassword: process.env.RESP_SOLS_ADMIN_PASSWORD || '',
   TestEnvRespondentSolUser:process.env.RESPONDENT_SOLICITOR_1_USERNAME || '',
   TestEnvRespondentSolPassword:process.env.RESPONDENT_SOLICITOR_1_PASSWORD || '',
   TestEnvSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
