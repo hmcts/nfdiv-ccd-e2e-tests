@@ -490,6 +490,14 @@ module.exports = function () {
       return AosReceivedUndefendedMoveToDN.fillFormAndSubmit();
     },
 
+    aosUpdateJurisdiction:function(caseNumber){
+      return UpdateAosPage.updateAoSJurisdiction(caseNumber);
+    },
+
+    aosUpdateLegal:function(caseNumber){
+      return UpdateAosPage.updateAoSLegalProceedings(caseNumber);
+    },
+
     setTestDataForDA: function() {
       return SetTestDataForDA.fillFormAndSubmit();
     },
