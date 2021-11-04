@@ -724,6 +724,14 @@ module.exports = function () {
 
     submitPrintForPronouncementCYA: function(caseNumber) {
       return ConfirmServiceForSolicitorPage.fillPrintForPronouncementCYA(caseNumber);
+    },
+
+    submitPronounceList: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillPronounceList(caseNumber);
+    },
+
+    submitPronounceListCYA: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillPronounceListCYA(caseNumber);
     }
 
   });
