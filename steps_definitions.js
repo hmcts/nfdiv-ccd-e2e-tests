@@ -719,7 +719,11 @@ module.exports = function () {
     },
 
     submitPrintForPronouncement: function(caseNumber) {
-      return ConfirmServiceForSolicitorPage.fillSPrintForPronouncement(caseNumber);
+      return ConfirmServiceForSolicitorPage.fillPrintForPronouncement(caseNumber);
+    },
+
+    submitPrintForPronouncementCYA: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.fillPrintForPronouncementCYA(caseNumber);
     }
 
   });

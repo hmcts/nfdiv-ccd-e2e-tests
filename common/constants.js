@@ -81,6 +81,7 @@ const stateDisplayName = {
   SUBMITTED: 'Submitted',
   APPLICATION_REJECT: 'Application rejected',
   APPLICATION_AWAITING_SERVICE:'Awaiting service',
+  BULK_CASE_LISTED_CREATED: 'Bulk case list created',
   BULK_CASE_LISTED: 'Bulk case listed'
 };
 
@@ -177,7 +178,9 @@ const events = {
   REJECT: 'Reject',
   REISSUED: 'Reissued',
   SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
-  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement'
+  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
+  SYSTEM_UPDATE_CASE: 'System update case',
+  CREATE_BULK_LIST: 'Create bulk list'
 };
 
 const serviceApplicationType = {

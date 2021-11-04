@@ -284,13 +284,14 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillSPrintForPronouncement(caseNumber){
+  async fillPrintForPronouncement(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-print-for-pronouncement/caseworker-print-for-pronouncementprintPronouncement');
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillSPrintForPronouncementCYA(caseNumber){
+  async fillPrintForPronouncementCYA(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-print-for-pronouncement/submit');
     await I.waitForNavigationToComplete(this.fields.submit);

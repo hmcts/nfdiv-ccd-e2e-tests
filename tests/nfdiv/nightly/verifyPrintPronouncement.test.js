@@ -9,12 +9,11 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Create a single Case and move it to a Bulk List');
+Feature('NFD - Create a single Case and move it to a Bulk Listed');
 
-// TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
-// Pipeline expects https . HTTP works when tests are run locally ,but they fail on pipeline.
 
-Scenario('NFD - Verify Bulk Case ', async function (I) {
+
+Scenario('NFD - Verify Bulk Case & print for pronouncement event', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -68,21 +67,19 @@ Scenario('NFD - Verify Bulk Case ', async function (I) {
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   await I.wait(5);
-  await I.checkStateAndEvent('Bulk case list created','Create bulk list');
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
-  await I.submitScheduleCases(caseNumber);
-  await I.submitScheduleCasesCYA(caseNumber);
-  await I.checkStateAndEvent('Bulk case list created','Create bulk list');
+  await I.submitScheduleCases(bulkCaseReferenceId);
+  await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');
-  await I.submitPrintForPronouncement(caseNumber);
-  await I.fillSPrintForPronouncementCYA(caseNumber);
-  await I.checkStateAndEvent('Bulk case list created','Print for pronouncement');
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.PRINT_FOR_PRONOUNCEMENT);
+  await I.submitPrintForPronouncement(bulkCaseReferenceId);
+  await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
 
 
 }).retry(testConfig.TestRetryScenarios);
