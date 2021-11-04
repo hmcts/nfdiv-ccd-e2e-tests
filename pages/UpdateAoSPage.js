@@ -27,17 +27,25 @@ module.exports = {
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
+  },
+
+  async updateAoSJurisdiction() {
     await I.waitInUrl('/update-aos/update-aosApplicant2SolAosjurisdiction');
     await I.wait(2);
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
+    await I .wait(3);
+  },
 
+  async updateAoSLegalProceedings() {
     await I.waitInUrl('update-aos/update-aosApplicant2SolAosOtherProceedings');
     await I.wait(3);
     await I.click(this.fields.legalProceedingsExistsYes);
     await I.fillField(this.fields.legalProceedingsDescription,'Updates  to  legal proceedings');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
 
+  async updateAoSCya(){
     await I.waitInUrl('update-aos/submit');
     await I.wait(3);
     await I.see('Check your answers');
@@ -50,4 +58,5 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }
+
 };
