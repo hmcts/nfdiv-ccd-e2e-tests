@@ -53,8 +53,11 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   // Submit CO
   const awaitingLegalAdvisorReferral = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
-
   verifyState(awaitingLegalAdvisorReferral, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
+
+  // Moves case to Listed;AwaitingPronouncement state
+  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_GRANT_CONDITIONAL_ORDER,'data/ccd-grant-co.json');
+  verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
