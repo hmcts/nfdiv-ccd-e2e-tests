@@ -28,14 +28,8 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   verifyState(awaitingService, states.AOS_AWAITING);
 
   const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
-
-  console.log('~~~~~~~~~ Before calling aac-manage-case-assignment to Share a case ---------');
-
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-
-  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  by Respondent Solicitior Admin');
 
   //Draft AoS
   await I.amOnHomePage();
@@ -52,27 +46,22 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.draftAosCheckYourAnswers(caseNumber);
   await I.see('AoS drafted');
 
-  // Update AoS
+  //Update AoS
   await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
   await I.updateAoS(caseNumber);
+  await I.aosUpdateJurisdiction(caseNumber);
+  await I.aosUpdateLegal(caseNumber);
   await I.see('AoS drafted');
 
   // Submit AoS
+  await I.amOnPage('/cases/case-details/' + caseNumber);
+  await I.wait(5);
   await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
   await I.submitAosSOT(caseNumber);
   await I.submitAosCYA(caseNumber);
 
-  await I.signOut();
-
-  // Login as CW and check the latest Event and State of the Case
-  // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
-
   await I.wait(5);
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
-  await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
-
-  await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,eventDisplayName.SUBMIT_AOS);
+  await I.see('20 week holding period');
 
 }).retry(testconfig.TestRetryScenarios);
