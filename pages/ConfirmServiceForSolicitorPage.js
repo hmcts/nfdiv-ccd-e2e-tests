@@ -46,7 +46,8 @@ module.exports = {
     hearingDateSecond: 'dateAndTimeOfHearing-second',
     LADecisionDateDateDay: 'decisionDate-day',
     LADecisionDateDateMonth: 'decisionDate-month',
-    LADecisionDateDateYear: 'decisionDate-year'
+    LADecisionDateDateYear: 'decisionDate-year',
+    judgePronouncedYes: '#hasJudgePronounced_Yes'
 
   },
 
@@ -287,13 +288,25 @@ module.exports = {
   async fillPrintForPronouncement(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-print-for-pronouncement/caseworker-print-for-pronouncementprintPronouncement');
-    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillPrintForPronouncementCYA(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-print-for-pronouncement/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillPronounceList(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-pronounce-list/caseworker-pronounce-listpronounceList');
+    await I.click(this.fields.judgePronouncedYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillPronounceListCYA(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-pronounce-list/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 
