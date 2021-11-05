@@ -11,11 +11,7 @@ let caseNumber;
 
 Feature('NFD - Script - Case in State of Awaiting Pronouncement [start of FinalOrder]');
 
-// TODO Test works locally but fails on pipeline . This is because of the ShareACase uses http instead of https.
-// Pipeline expects HTTPS.
-// HTTP works when tests are run locally but  fail on pipeline.
-
-xScenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
+Scenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);

@@ -11,9 +11,7 @@ let caseNumber;
 
 Feature('NFD - Create a single Case and move it to bulk case pronounced state');
 
-
-
-xScenario('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);

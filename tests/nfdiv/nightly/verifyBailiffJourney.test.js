@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD Case - Verify Bailiff Journey');
 
-xScenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
+Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
