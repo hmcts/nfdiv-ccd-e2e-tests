@@ -11,7 +11,7 @@ let caseNumber;
 
 Feature('Reissue Application');
 
-xScenario('Reissue - Digital , Offline and Reissue AoS', async function (I) {
+Scenario('Reissue - Digital , Offline and Reissue AoS', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);

@@ -13,7 +13,7 @@ let caseNumber;
 
 Feature('NFD - Conditional Order (CO) journey');
 
-xScenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COClarification->COGranted by LegalAdvisor', async function (I) {
+Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COClarification->COGranted by LegalAdvisor', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
