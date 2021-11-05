@@ -36,6 +36,6 @@ module.exports = {
   TestS2SAuthSecret: process.env.SERVICE_AUTH_SECRET || '',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
   TestIdamClientSecret: process.env.IDAM_SECRET || '',
-  TestSystemUser:process.env.IDAM_SYSTEMUPDATE_USERNAME || '',
-  TestSystemUserPassword:process.env.IDAM_SYSTEMUPDATE_PASSWORD || ''
+  TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
+  TestSystemUserPassword:process.env.SYSTEMUPDATE_PASSWORD || ''
 };
