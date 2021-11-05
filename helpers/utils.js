@@ -54,7 +54,7 @@ async function getSystemUserToken() {
   logger.info('~~~~~~~~~~~~~Getting SystemUser  Token');
 
   const username=testConfig.TestSystemUser;
-  const password=testConfig.TestSystemUserPW;
+  const password=testConfig.TestSystemUserPassword;
 
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
