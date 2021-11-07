@@ -116,7 +116,8 @@ const eventDisplayName = {
   WITHDRAWN:'Withdrawn',
   DRAFT_CO: 'Draft Conditional Order',
   REQUEST_CLARIFICATION:'Request clarification',
-  SUBMIT_CLARIFICATION:'Submit clarification'
+  SUBMIT_CLARIFICATION:'Submit clarification',
+  SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service'
 };
 
 const user = {

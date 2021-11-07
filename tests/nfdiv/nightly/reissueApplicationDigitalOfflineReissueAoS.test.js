@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd} = require('../../../helpers/utils');
-const {states,events,user,stateDisplayName} = require('../../../common/constants');
+const {states,events,user,stateDisplayName,eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -35,10 +35,10 @@ Scenario('Reissue - Digital , Offline and Reissue AoS', async function (I) {
   await I.wait(5);
   await I.see('Awaiting service');
   await I.see('Issue solicitor service pack');
-  await I.checkNextStepForEvent('Solicitor Confirm Service');
+  await I.checkNextStepForEvent('Solicitor confirm service');
   await I.confirmServiceForSolicitor(caseNumber);
   await I.submitConfirmService(caseNumber);
-  await I.checkStateAndEvent(stateDisplayName.AOS_AWAITING_NAME, events.SOLICITOR_CONFIRM_SERVICE);
+  await I.checkStateAndEvent(stateDisplayName.AOS_AWAITING_NAME, eventDisplayName.SOLICITOR_CONFIRM_SERVICE);
 
 }).retry(testConfig.TestRetryScenarios);
 
