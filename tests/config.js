@@ -25,8 +25,6 @@ module.exports = {
   TestEnvRespondentSolAdminPassword: process.env.CCD_CASEWORKER_E2E_PASSWORD || '',
   TestEnvRespondentSolUser:process.env.RESPONDENT_SOLICITOR_1_USERNAME || '',
   TestEnvRespondentSolPassword:process.env.RESPONDENT_SOLICITOR_1_PASSWORD || '',
-  TestEnvSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
-  TestEnvSystemUserPassword:process.env.SYSTEMUPDATE_PASSWORD || '',
   TestEnvLegalAdvisorUser:process.env.LEGAL_ADVISOR_USERNAME || '',
   TestEnvLegalAdvisorPassword:process.env.LEGAL_ADVISOR_PASSWORD || '',
   TestEnvProfUser: process.env.PROF_USER_EMAIL || '',
@@ -37,5 +35,5 @@ module.exports = {
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
   TestIdamClientSecret: process.env.IDAM_SECRET || '',
   TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
-  TestSystemUserPassword:process.env.SYSTEMUPDATE_PASSWORD || ''
+  TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || ''
 };

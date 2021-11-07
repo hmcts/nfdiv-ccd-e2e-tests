@@ -16,9 +16,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitForElement(this.fields.caseNumberDisplay);
     const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
-    console.log('.......Inside CaseCreated page .... caseNumber is.....' + display);
     await I.wait(1);
     return display;
   }
-
 };

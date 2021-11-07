@@ -51,8 +51,6 @@ async function getUserToken() {
 
 async function getSystemUserToken() {
 
-  logger.info('~~~~~~~~~~~~~Getting SystemUser  Token');
-
   const username=testConfig.TestSystemUser;
   const password=testConfig.TestSystemUserPW;
 
@@ -207,9 +205,6 @@ async function getRespondentAdminSolicitorUserToken() {
 }
 
 async function getRespondentSolicitorUserToken() {
-
-  logger.info('.........Getting Respondent Solicitor User Token..........');
-
   // Setup Details
   const username = testConfig.TestEnvRespondentSolUser;
   const password = testConfig.TestEnvRespondentSolPassword;
@@ -717,9 +712,7 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
     },
     body: JSON.stringify(data)
   };
-
   const saveEventResponse = await request(updateCaseRoleCall);
-  //console.log(`.....printing the response `, JSON.parse(saveEventResponse));
   return saveEventResponse;
 }
 
