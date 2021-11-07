@@ -52,7 +52,7 @@ module.exports = {
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
-    await I.waitInUrl('solicitor-confirm-service/solicitor-confirm-serviceSolConfirmService');
+    await I.waitInUrl('confirm-service/solicitor-confirm-serviceSolConfirmService');
     await I.see('Certificate of Service - Confirm Service\n');
     await I.see('Awaiting service');
 
@@ -76,7 +76,7 @@ module.exports = {
 
   async submitServiceDetails(caseNumber) {
     await I.wait(2);
-    await I.waitInUrl('solicitor-confirm-service/submit');
+    await I.waitInUrl('confirm-service/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 

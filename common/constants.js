@@ -72,6 +72,7 @@ const stateDisplayName = {
   AWAITING_LA_REFERRAL:'Awaiting legal advisor referral',
   AWAITING_CLARIFICATION:'Awaiting clarification',
   CONDITIONAL_ORDER_DRAFTED:'ConditionalOrderDrafted',
+  COND_ORDER_DRAFTED:'Conditional order drafted',
   AWAITING_SERVICE_PAYMENT: 'Awaiting service payment',
   AWAITING_SERVICE_CONSIDERATION: 'Awaiting Service Consideration',
   TWENTY_WEEK_HOLDING_PERIOD: '20 week holding period',

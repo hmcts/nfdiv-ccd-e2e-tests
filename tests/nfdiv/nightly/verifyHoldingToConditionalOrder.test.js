@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO} = require('../../../helpers/utils');
-const { states, events , user} = require('../../../common/constants');
+const { states, events , eventDisplayName,user} = require('../../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../../config');
 
@@ -46,7 +46,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
-  await I.checkNextStepForEvent(events.DRAFT_AOS);
+  await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
   await I.draftAoSReview(caseNumber);
   await I.draftAoSDoYouAgree(caseNumber);
@@ -55,12 +55,12 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.see('AoS drafted');
 
   // Update AoS
-  await I.checkNextStepForEvent(events.UPDATE_AOS);
+  await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
   await I.updateAoS(caseNumber);
   await I.see('AoS drafted');
 
   // Submit AoS
-  await I.checkNextStepForEvent('Submit AoS');
+  await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
   await I.submitAosSOT(caseNumber);
   await I.submitAosCYA(caseNumber);
 
