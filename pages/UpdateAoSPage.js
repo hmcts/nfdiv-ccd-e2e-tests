@@ -8,6 +8,8 @@ module.exports = {
     respSolicitorEmail:'#applicant2SolicitorEmail',
     acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmails_Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
+    confirmReadPetitionYes:'#confirmReadPetition_Yes',
+
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     jurisdictionDisagreeReason:'#jurisdictionDisagreeReason',
@@ -30,7 +32,7 @@ module.exports = {
   },
 
   async updateAoSJurisdiction() {
-    await I.waitInUrl('/update-aos/update-aosApplicant2SolAosjurisdiction');
+    await I.waitInUrl('update-aos/update-aosApplicant2SolAosjurisdiction');
     await I.wait(2);
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -44,6 +46,14 @@ module.exports = {
     await I.fillField(this.fields.legalProceedingsDescription,'Updates  to  legal proceedings');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
+
+  async updateAoSReviewApplication() {
+    await I.waitInUrl('update-aos/update-aosApplicant2SolUpdateAosApplicant1Application');
+    await I.wait(3);
+    await I.click(this.fields.confirmReadPetitionYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
 
   async updateAoSCya(){
     await I.waitInUrl('update-aos/submit');

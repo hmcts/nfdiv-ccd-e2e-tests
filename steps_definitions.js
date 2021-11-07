@@ -494,8 +494,16 @@ module.exports = function () {
       return UpdateAosPage.updateAoSJurisdiction(caseNumber);
     },
 
+    aosUpdateReviewApplicant1Application:function(caseNumber){
+      return UpdateAosPage.updateAoSReviewApplication(caseNumber);
+    },
+
     aosUpdateLegal:function(caseNumber){
       return UpdateAosPage.updateAoSLegalProceedings(caseNumber);
+    },
+
+    aosUpdateCYA:function(caseNumber){
+      return UpdateAosPage.updateAoSCya(caseNumber);
     },
 
     setTestDataForDA: function() {

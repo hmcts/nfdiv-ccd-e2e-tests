@@ -9,10 +9,7 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD  - 20 Week Holding to Conditional Order[CO - earlier known as (Decree Nisi)]');
-
-// TODO Test works locally but fails on pipeline . This is because of the ShareACase using http instead of https.
-// Pipeline expects https.
+Feature('NFD  - 20 Week Holding to Conditional Order [CO]');
 
 Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
@@ -23,7 +20,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -36,10 +33,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-
-  // TODO Draft ,Update and Submit AOS should be made into a script here as the Page Flows are tested as part of the
-  // shareACaseAndDraftUpdateSubmitAoS.test
-
+  // TODO Draft ,Update and Submit AOS should be made into a script here as the Page Flows are already tested as part of the shareACaseAndDraftUpdateSubmitAoS.test.js
   //Draft AoS
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
@@ -56,22 +50,24 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   // Update AoS
   await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
-  await I.updateAoS(caseNumber);
+  await I.aosUpdateReviewApplicant1Application(caseNumber);
+  await I.aosUpdateJurisdiction(caseNumber);
+  await I.aosUpdateLegal(caseNumber);
+  await I.aosUpdateCYA(caseNumber);
   await I.see('AoS drafted');
 
   // Submit AoS
   await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
   await I.submitAosSOT(caseNumber);
   await I.submitAosCYA(caseNumber);
-
+  await I.see('20 week holding period');
   await I.signOut();
+  await I.wait(3);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
-  // and set the dueDate to null .
-  // see SystemProgressHeldCasesTask in nfdiv-case-api
+  // and set the dueDate to null ..See SystemProgressHeldCasesTask.java  in nfdiv-case-api
 
   const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
   assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
 
 }).retry(testconfig.TestRetryScenarios);
-
