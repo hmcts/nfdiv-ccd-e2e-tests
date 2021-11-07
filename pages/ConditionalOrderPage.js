@@ -21,7 +21,7 @@ module.exports = {
   },
 
   async fillReviewAoS(){
-    await I.waitInUrl('solicitor-draft-conditional-order/solicitor-draft-conditional-orderConditionalOrderReviewAoS');
+    await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderReviewAoS');
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
@@ -32,7 +32,7 @@ module.exports = {
 
   async reviewApplicant1Application() {
     await I.wait(2);
-    await I.waitInUrl('solicitor-draft-conditional-order/solicitor-draft-conditional-orderConditionalOrderReviewApplicant1');
+    await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderReviewApplicant1');
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Review the applicant\'s application - Draft Conditional Order Application');
@@ -44,7 +44,8 @@ module.exports = {
 
   async draftConditionalOrderDocuments() {
     await I.wait(2);
-    await I.waitInUrl('solicitor-draft-conditional-order/solicitor-draft-conditional-orderConditionalOrderNewDocuments');
+    await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderNewDocuments');
+
     await I.see('Documents - Draft Conditional Order Application');
     await I.click(this.fields.addNewDocumentsNo);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -52,7 +53,7 @@ module.exports = {
   },
 
   async draftConditionalOrderCYA() {
-    await I.waitInUrl('/solicitor-draft-conditional-order/submit');
+    await I.waitInUrl('/draft-conditional-order/submit');
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.see('Check your answers');
@@ -67,7 +68,7 @@ module.exports = {
   async submitSoTDetails(){
     await I.wait(2);
 
-    await I.waitInUrl('/solicitor-submit-conditional-order/solicitor-submit-conditional-orderConditionalOrderSoT');
+    await I.waitInUrl('/submit-conditional-order/submit-conditional-orderConditionalOrderSoT');
     await I.see('Statement of Truth - submit conditional order');
     await I.see('The applicant believes that the facts stated in the application for a conditional order are true');
     await I.fillField(this.fields.sotSolicitorName,'Robin Smith');
@@ -79,7 +80,7 @@ module.exports = {
 
   async submitConditionalOrder(){
     await I.wait(2);
-    await I.waitInUrl('/solicitor-submit-conditional-order/submit');
+    await I.waitInUrl('/submit-conditional-order/submit');
     await I.see('Submit Conditional Order');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
@@ -87,7 +88,7 @@ module.exports = {
 
   async updateCOAoSReview(){
     await I.wait(2);
-    await I.waitInUrl('solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderReviewAoS');
+    await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewAoS');
     await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
     await I.click(this.fields.reviewAoSYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -95,7 +96,7 @@ module.exports = {
 
   async updateCOReviewApplication(){
     await I.wait(2);
-    await I.waitInUrl('solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderReviewApplicant1');
+    await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewApplicant1');
     await I.see('Link to online petition');
     await I.click(this.fields.updateChangeOrAddAnythingToApplication);
     await I.click(this.fields.updateEverythingInPetitionTrue);
@@ -104,7 +105,7 @@ module.exports = {
 
   async updateCODocuments(){
     await I.wait(2);
-    await I.waitInUrl('/solicitor-update-conditional-order/solicitor-update-conditional-orderConditionalOrderNewDocuments');
+    await I.waitInUrl('/update-conditional-order/update-conditional-orderConditionalOrderNewDocuments');
     await I.see('Do you need to upload any other documents?');
     await I.click(this.fields.updateAddNewDocumentsNo);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -112,7 +113,7 @@ module.exports = {
 
   async updateSubmit(){
     await I.wait(2);
-    await I.waitInUrl('/trigger/solicitor-update-conditional-order/submit');
+    await I.waitInUrl('/trigger/update-conditional-order/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -124,7 +125,7 @@ module.exports = {
 
   async submitClarification(){
     await I.wait(2);
-    await I.waitInUrl('/solicitor-submit-clarification/submit');
+    await I.waitInUrl('/submit-clarification/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 
