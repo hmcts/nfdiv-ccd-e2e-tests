@@ -1272,7 +1272,63 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
     },
     body: JSON.stringify(saveBody)
   };
+async function updateAoSToAoSOverdue(dataLocation = 'data/aos-overdue.json',caseId) {
 
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+  const eventTypeId ='system-progress-to-aos-overdue';
+
+  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/${eventTypeId}/token`;
+  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventId = 'system-progress-to-aos-overdue';
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  var fortnightAgo = datechange(-15); // 14 days in the past ... Check this
+  data = data.replace('dueDate',fortnightAgo);
+
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSubmitEventPath;
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSubmitEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  console.log( '...... response from CCD is ' + saveCaseResponse);
+  return saveCaseResponse;
+}
   const saveEventResponse = await request(saveEventOptions);
 
   return saveEventResponse;
@@ -1355,5 +1411,8 @@ module.exports = {
   bulkCaseListSchedule,
   bulkCaseListPronounced,
   moveCaseToConditionalOderPronounced,
-  getCaseDetailsFor
+  getCaseDetailsFor,
+  moveCaseToBulk,
+  updateAoSToAoSOverdue
+
 };
