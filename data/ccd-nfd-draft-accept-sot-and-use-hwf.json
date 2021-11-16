@@ -1,34 +1,15 @@
 {
-"divorceOrDissolution": "divorce",
 "solUrgentCase": "No",
 "solServiceMethod": "solicitorService",
-"solStatementOfReconciliationDiscussed": "Yes",
-"solStatementOfReconciliationCertify": "Yes",
-"solStatementOfReconciliationDiscussed":"Yes",
-"solSignStatementOfTruth": "Yes",
-"applicant1StatementOfTruth": "Yes",
-"applicant1PrayerHasBeenGiven": "Yes",
-"solStatementOfReconciliationName": "SoR Name",
-"solStatementOfReconciliationFirm": "SoR Firm",
-"statementOfReconciliationComments": "Some comments",
-"solStatementOfReconciliationName": "MyFormOfThe",
-"solPaymentHowToPay": "feesHelpWith",
-"applicant1HWFReferenceNumber": "HWF-325-325",
-"solApplicationFeeInPounds": "550",
-"statementOfReconciliationComments": "CommentsSoT",
-  "applicationFeeOrderSummary": {
-    "PaymentTotal": "55000",
-    "PaymentReference": null,
-    "Fees": [
-      {
-        "id": null,
-        "value": {
-          "FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution",
-          "FeeVersion": "5",
-          "FeeCode": "FEE0002",
-          "FeeAmount": "55000"
-        }
-      }
-    ]
-  }
+  "solStatementOfReconciliationCertify": "Yes",
+  "solStatementOfReconciliationDiscussed": "Yes",
+  "applicant1PrayerHasBeenGivenCheckbox":["Yes"],
+  "applicant1StatementOfTruth": "Yes",
+  "solSignStatementOfTruth": "Yes",
+  "solStatementOfReconciliationName": "SoR Name",
+  "solStatementOfReconciliationFirm": "SoR Firm",
+  "statementOfReconciliationComments": "Some comments",
+  "solPaymentHowToPay": "feesHelpWith",
+  "applicant1HWFReferenceNumber": "HWF-325-325",
+  "statementOfReconciliationComments": "CommentsSoT"
 }
