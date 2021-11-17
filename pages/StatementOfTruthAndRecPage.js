@@ -15,7 +15,7 @@ module.exports = {
     nameOfYourFirm: '#solStatementOfReconciliationFirm',
     howToServeRespondent:'#solServiceMethod-courtService',
     servceSolicitorService:'#solServiceMethod-solicitorService',
-    prayerHasBeenGiven:'#applicant1PrayerHasBeenGiven_Yes',
+    prayerHasBeenGiven:'#applicant1PrayerHasBeenGivenCheckbox-Yes',
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
   },

@@ -409,6 +409,10 @@ module.exports = function () {
       return draftAosPage.doYouAgreeJurisdiction(caseNumber);
     },
 
+    draftAoSDoYouAgreeCourts :  function(caseNumber) {
+      return draftAosPage.doYouAgreeCourts(caseNumber);
+    },
+
     draftAoSAnyOtherLegalProceedings: function(caseNumber){
       return draftAosPage.anyOtherLegalProceedings(caseNumber);
     },
@@ -490,8 +494,12 @@ module.exports = function () {
       return AosReceivedUndefendedMoveToDN.fillFormAndSubmit();
     },
 
-    aosUpdateJurisdiction:function(caseNumber){
-      return UpdateAosPage.updateAoSJurisdiction(caseNumber);
+    aosUpdateDispute:function(caseNumber){
+      return UpdateAosPage.updateAoSDispute(caseNumber);
+    },
+
+    aosUpdateDoYouAgreeCourts:function(caseNumber){
+      return UpdateAosPage.updateDoYouAgreeCourts(caseNumber);
     },
 
     aosUpdateReviewApplicant1Application:function(caseNumber){

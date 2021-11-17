@@ -44,6 +44,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.draftAosContactDetails();
   await I.draftAoSReview(caseNumber);
   await I.draftAoSDoYouAgree(caseNumber);
+  await I.draftAoSDoYouAgreeCourts(caseNumber);
   await I.draftAoSAnyOtherLegalProceedings(caseNumber);
   await I.draftAosCheckYourAnswers(caseNumber);
   await I.see('AoS drafted');
@@ -51,7 +52,8 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   // Update AoS
   await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
   await I.aosUpdateReviewApplicant1Application(caseNumber);
-  await I.aosUpdateJurisdiction(caseNumber);
+  await I.aosUpdateDispute(caseNumber);
+  await I.aosUpdateDoYouAgreeCourts(caseNumber);
   await I.aosUpdateLegal(caseNumber);
   await I.aosUpdateCYA(caseNumber);
   await I.see('AoS drafted');

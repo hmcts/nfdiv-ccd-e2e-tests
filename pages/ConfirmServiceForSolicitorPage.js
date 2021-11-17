@@ -37,7 +37,7 @@ module.exports = {
     digitalAoS: '#reissueOption-digitalAos',
     offlineAoS: '#reissueOption-offlineAos',
     reissueCase: '#reissueOption-reissueCase',
-    courtName: '#courtName-serviceCentre',
+    courtNameBirmingham: '#court-birmingham',
     hearingDateDay: 'dateAndTimeOfHearing-day',
     hearingDateMonth: 'dateAndTimeOfHearing-month',
     hearingDateYear: 'dateAndTimeOfHearing-year',
@@ -266,7 +266,7 @@ module.exports = {
   async fillScheduleCases(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-schedule-case/caseworker-schedule-casescheduleForListing');
-    await I.click(this.fields.courtName);
+    await I.click(this.fields.courtNameBirmingham);
     await I.fillField(this.fields.hearingDateDay, '01');
     await I.fillField(this.fields.hearingDateMonth, '04');
     await I.fillField(this.fields.hearingDateYear, '2023');
