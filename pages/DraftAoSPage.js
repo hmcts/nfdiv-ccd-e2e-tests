@@ -8,6 +8,8 @@ module.exports = {
     respSolicitorEmail:'#applicant2SolicitorEmail',
     acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmails_Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
+    disputeAgreeYes:'#howToRespondApplication-disputeDivorce',
+    disputeAgreeNo:'#howToRespondApplication-withoutDisputeDivorce',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     legalProceedingsExistsYes:'#applicant2LegalProceedings_Yes',
@@ -42,16 +44,30 @@ module.exports = {
   },
 
   async doYouAgreeJurisdiction(caseId) {
+    await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
+    await I.wait(4);
+    await I.see('How does the applicant want to respond to the application?');
+    await I.see('How do you want to respond ?');
+    await I.see(caseId);
+    await I.runAccessibilityTest();
+    await I.click(this.fields.disputeAgreeNo);
+    await I.see('Continue without disputing the divorce');
+    await I.wait(2);
+    // await I.click(this.fields.disputeAgreeYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async doYouAgreeCourts(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolAosjurisdiction');
     await I.wait(4);
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see(caseId);
     await I.runAccessibilityTest();
-    await I.click(this.fields.jurisdictionAgreeNo);
-    await I.see('Reason respondent disagreed to claimed jurisdiction');
-    await I.wait(2);
     await I.click(this.fields.jurisdictionAgreeYes);
+    await I.see('Yes');
+    await I.wait(2);
+    // await I.click(this.fields.disputeAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
