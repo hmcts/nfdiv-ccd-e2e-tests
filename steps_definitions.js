@@ -756,6 +756,10 @@ module.exports = function () {
 
     submitPronounceListCYA: function(caseNumber) {
       return ConfirmServiceForSolicitorPage.fillPronounceListCYA(caseNumber);
+    },
+
+    dropBulkCaseEvent: function(caseNumber) {
+      return ConfirmServiceForSolicitorPage.dropBulkCaseEvent(caseNumber);
     }
 
   });
