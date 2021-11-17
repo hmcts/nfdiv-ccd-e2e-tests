@@ -308,6 +308,12 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-pronounce-list/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async dropBulkCaseEvent(caseNumber){
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-drop-case/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
 
 };
