@@ -478,6 +478,10 @@ module.exports = function () {
       return submitAosPage.fillSoTAndSoRDetails(caseNumber);
     },
 
+    submitAOSSotSolicitorDetails:function(caseNumber) {
+      return submitAosPage.fillSolicitorDetails(caseNumber);
+    },
+
     submitAosCYA : function(caseNumber) {
       return submitAosPage.checkYourAnswers(caseNumber);
     },

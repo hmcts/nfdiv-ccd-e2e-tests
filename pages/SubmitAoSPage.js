@@ -6,7 +6,9 @@ module.exports = {
     respSolicitorName:'#applicant2SolicitorName',
     respSolicitorPhone:'#applicant2SolicitorPhone',
     respSolicitorEmail:'#applicant2SolicitorEmail',
-    soT_Yes:'#statementOfTruth_Yes',
+    sotYES:'#statementOfTruth_Yes',
+    solicitorAddress:'#applicant2SolicitorAddress',
+    additionalComments:'#additionalComments',
     prayer_Yes:'#prayerHasBeenGiven_Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
@@ -24,8 +26,8 @@ module.exports = {
     await I.see('Review the answers in your Acknowledgement of Service below. If you wish to change any of your answers, please go back and use the \'Update AoS\' action');
     await I.see('Has the respondent read the application for divorce?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.click(this.fields.soT_Yes);
-    await I.click(this.fields.prayer_Yes);
+    await I.see('Are there any existing or previous court proceedings relating to the marriage?');
+    await I.see('Updates  to  legal proceedings');
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
@@ -34,9 +36,10 @@ module.exports = {
     await I.waitInUrl('trigger/submit-aos/submit');
     await I.wait(4);
     await I.see('Check your answers');
-    await I.see('Check the information below carefully.');
-    await I.see('I am duly authorised by the respondent to sign this statement.');
-    await I.see('The respondent has given their "prayer".');
+    //await I.see('Check the information below carefully.');
+    //await I.see('I am duly authorised by the respondent to sign this statement.');
+    //await I.see('Solicitor’s firm/ DX address');
+    //await I.see('Additional Comments');
     await I.runAccessibilityTest();
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
@@ -79,5 +82,13 @@ module.exports = {
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillSolicitorDetails(caseId) {
+    await I.waitInUrl('submit-aos/submit-aosSubmitAos');
+    await I.see('Statement of truth');
+    await I.click(this.fields.sotYES);
+    await I.fillField(this.fields.solicitorAddress,'Lind Road, Redhill');
+    await I.fillField(this.fields.additionalComments,'Solicitors Additional Comments');
   }
 };

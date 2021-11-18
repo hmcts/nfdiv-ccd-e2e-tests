@@ -60,6 +60,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.wait(5);
   await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
   await I.submitAosSOT(caseNumber);
+  await I.submitAOSSotSolicitorDetails(caseNumber);
   await I.submitAosCYA(caseNumber);
 
   await I.wait(5);
