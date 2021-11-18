@@ -5,7 +5,7 @@ module.exports = {
   fields: {
     applyConditionalOrderYes:'#coApplyForConditionalOrder_Yes',
     changeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
-    everythingInPetitionTrue:'#coIsEverythingInPetitionTrue_Yes',
+    everythingInPetitionTrue:'#coIsEverythingInApplicationTrue_Yes',
     addNewDocumentsNo:'#coAddNewDocuments_No',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     legalProceedingsExistsYes:'#legalProceedingsExist_Yes',
@@ -13,8 +13,9 @@ module.exports = {
     sotSolicitorName:'#coSolicitorName',
     sotSolicitorFirm:'#coSolicitorFirm',
     reviewAoSYes:'#coApplyForConditionalOrder_Yes',
+    coAppSoTYes:'#coApplicantStatementOfTruth_Yes',
     updateChangeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
-    updateEverythingInPetitionTrue:'#coIsEverythingInPetitionTrue_Yes',
+    updateEverythingInPetitionTrue:'#coIsEverythingInApplicationTrue_Yes',
     updateAddNewDocumentsNo:'#coAddNewDocuments_No',
     sotSolicitorAdditionalComments:'#coSolicitorAdditionalComments',
     submit: 'button[type="submit"]'
@@ -45,7 +46,6 @@ module.exports = {
   async draftConditionalOrderDocuments() {
     await I.wait(2);
     await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderNewDocuments');
-
     await I.see('Documents - Draft Conditional Order Application');
     await I.click(this.fields.addNewDocumentsNo);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -59,9 +59,9 @@ module.exports = {
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to respondent answers');
+    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
     await I.see('Do you need to change your application or add anything?');
-    await I.see('Is everything stated in this divorce petition true?');
-    await I.see('Do you need to upload any other documents?');
+    await I.see('Is everything stated in this divorce application true?');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -70,7 +70,9 @@ module.exports = {
 
     await I.waitInUrl('/submit-conditional-order/submit-conditional-orderConditionalOrderSoT');
     await I.see('Statement of Truth - submit conditional order');
-    await I.see('The applicant believes that the facts stated in the application for a conditional order are true');
+    await I.see('The applicant believes that the facts stated in this application are true.');
+
+    await I.click(this.fields.coAppSoTYes);
     await I.fillField(this.fields.sotSolicitorName,'Robin Smith');
     await I.fillField(this.fields.sotSolicitorFirm, 'Sam Solicitors');
     await I.fillField(this.fields.sotSolicitorAdditionalComments, 'Additional comments ');
@@ -81,7 +83,7 @@ module.exports = {
   async submitConditionalOrder(){
     await I.wait(2);
     await I.waitInUrl('/submit-conditional-order/submit');
-    await I.see('Submit Conditional Order');
+    await I.see('Conditional order drafted');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   },
@@ -114,6 +116,7 @@ module.exports = {
   async updateSubmit(){
     await I.wait(2);
     await I.waitInUrl('/trigger/update-conditional-order/submit');
+    await I.see('Conditional order drafted');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
