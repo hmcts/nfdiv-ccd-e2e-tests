@@ -1,6 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,
-  moveFromHoldingToAwaitingCO
-} = require('../../../helpers/utils');
+  moveFromHoldingToAwaitingCO} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName,eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -22,7 +21,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -55,7 +54,6 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
-
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
@@ -66,7 +64,6 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.DRAFT_CONDITIONAL_ORDER);
   await I.draftConditionalOrderReviewAoS();
   await I.draftConditionalOrderReviewApplicant1Application();
-  await I.draftConditionalOrderDocuments();
   await I.draftConditionalOrderCYA();
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.DRAFT_CO);
 
@@ -75,7 +72,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
   await I.updateCOReviewAoS();
   await I.updateCOReviewApplication();
-  await I.updateCODocuments();
+  //await I.updateCODocuments();
   await I.updateCOAndSave();
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.UPDATE_CONDITIONAL_ORDER);
 
@@ -85,7 +82,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
   await I.submitSoTConditionalOrderDetails();
   await I.submitConditionalOrder();
-  await I.signOut();
+  await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
 
   //CO - Request - Clarification -> Awaiting Clarification :: as a LegalAdvisor.
   await I.amOnHomePage();

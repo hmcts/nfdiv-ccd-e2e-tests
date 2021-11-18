@@ -99,8 +99,8 @@ const eventDisplayName = {
   SUBMIT_AOS:'Submit AoS',
   ISSUE_AOS_TO_RESP: 'Issue AOS pack to respondent',
   AOS_STARTED: 'AOS started',
-  CONDITIONAL_ORDER_SUBMIT:'Submit Conditional Order',
-  UPDATE_CONDITIONAL_ORDER:'Update Conditional Order',
+  CONDITIONAL_ORDER_SUBMIT:'Submit conditional order',
+  UPDATE_CONDITIONAL_ORDER:'Update conditional order',
   AOS_RECVD_UNDEFENDED: 'AOS Received (undefended)',
   REFUND: 'Refund',
   TRANSFER_BETWEEN_RDC: 'Transfer between RDCs',
@@ -115,10 +115,11 @@ const eventDisplayName = {
   HWF_RESULTS:'HWF Results',
   APPLICATION_PAID_SUBMIITED:'Application Paid and submitted',
   WITHDRAWN:'Withdrawn',
-  DRAFT_CO: 'Draft Conditional Order',
+  DRAFT_CO: 'Draft conditional order',
   REQUEST_CLARIFICATION:'Request clarification',
   SUBMIT_CLARIFICATION:'Submit clarification',
-  SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service'
+  SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service',
+  SUBMIT_CO:'Submit Conditional Order'
 };
 
 const user = {
@@ -139,8 +140,8 @@ const events = {
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
   CASE_SUBMISSION:'Case submission',
-  DRAFT_CONDITIONAL_ORDER:'Draft Conditional Order',
-  UPDATE_CONDITIONAL_ORDER:'Update Conditional Order',
+  DRAFT_CONDITIONAL_ORDER:'Draft conditional order',
+  UPDATE_CONDITIONAL_ORDER:'Update conditional order',
   SUBMIT_CONDITIONAL_ORDER:'Submit Conditional Order',
   CO_REQUEST_CLARIFICATION:'Request clarification',
   SUBMIT_CLARIFICATION:'Submit clarification',
