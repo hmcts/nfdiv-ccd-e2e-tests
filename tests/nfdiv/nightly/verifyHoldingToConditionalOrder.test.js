@@ -60,20 +60,21 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   //TODO Uncomment and test .
 
-  // Submit AoS
-  // await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
-  // await I.submitAosSOT(caseNumber);
-  // await I.submitAOSSotSolicitorDetails(caseNumber);
-  // await I.submitAosCYA(caseNumber);
-  //
-  // await I.see('20 week holding period');
-  // await I.signOut();
-  // await I.wait(3);
-  //
-  // // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
-  // // and set the dueDate to null ..See SystemProgressHeldCasesTask.java  in nfdiv-case-api
-  //
-  // const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
-  // assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
+  await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
+  await I.submitAosSOT(caseNumber);
+  await I.submitAOSSotSolicitorDetails(caseNumber);
+  await I.submitAosCYA(caseNumber);
+
+
+  await I.wait(25);
+  await I.see('20 week holding period');
+  await I.signOut();
+  await I.wait(3);
+
+  // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
+  // and set the dueDate to null ..See SystemProgressHeldCasesTask.java  in nfdiv-case-api
+
+  const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
+  assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
 
 }).retry(testconfig.TestRetryScenarios);

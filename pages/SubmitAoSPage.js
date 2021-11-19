@@ -7,6 +7,8 @@ module.exports = {
     respSolicitorPhone:'#applicant2SolicitorPhone',
     respSolicitorEmail:'#applicant2SolicitorEmail',
     sotYES:'#statementOfTruth_Yes',
+    solicitorNameSOT:'#solicitorName',
+    solicitorFirmSOT: '#solicitorFirm',
     solicitorAddress:'#applicant2SolicitorAddress',
     additionalComments:'#additionalComments',
     prayer_Yes:'#prayerHasBeenGiven_Yes',
@@ -88,7 +90,9 @@ module.exports = {
     await I.waitInUrl('submit-aos/submit-aosSubmitAos');
     await I.see('Statement of truth');
     await I.click(this.fields.sotYES);
-    await I.fillField(this.fields.solicitorAddress,'Lind Road, Redhill');
-    await I.fillField(this.fields.additionalComments,'Solicitors Additional Comments');
+    await I.fillField(this.fields.solicitorNameSOT,'Sol Name');
+    await I.fillField(this.fields.solicitorFirmSOT,'Sol Firm');
+    // await I.fillField(this.fields.additionalComments,'Solicitors Additional Comments');
+    await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
