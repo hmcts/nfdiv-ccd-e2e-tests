@@ -10,7 +10,7 @@ module.exports = {
     month:'#generalApplicationReferralDate-month',
     year:'#generalApplicationReferralDate-year',
     furtherDetailsJudge:'#generalReferralJudgeDetails',
-    furtherDetailsLegalAdvisor:'#generalReferralLegalAdvisorDetails',
+    furtherDetailsLegalAdvisor:'#generalReferralJudgeOrLegalAdvisorDetails',
     typeOfReferral:'#generalReferralType',
     generalReferralDetails:'#generalReferralDetails',
     feePaymentRequired:'#generalReferralFeeRequired_Yes',
@@ -37,7 +37,6 @@ module.exports = {
     await I.fillField(this.fields.month, '07');
     await I.fillField(this.fields.year, '2021');
     await I.selectOption(this.fields.typeOfReferral,'Order on filing of Answers');
-    await I.fillField(this.fields.furtherDetailsJudge, 'Judge Further Details 2021');
     await I.fillField(this.fields.furtherDetailsLegalAdvisor, 'Legal Advisor Further Details 2021');
     await I.click(this.fields.feePaymentRequired);
     await I.waitForNavigationToComplete(this.fields.submit);
