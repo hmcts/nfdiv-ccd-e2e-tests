@@ -5,14 +5,14 @@ let caseNumber;
 
 Feature('Create Sole Application ');
 
-xScenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
-  await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.divorce); // 'Yes' for Sole, 'No' for Joint.
+  await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();
@@ -62,6 +62,8 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   await I.paymentWithHelpWithFeeAccount();
 
   // HWF Reference Entered ....
+
+  // Start here ....
   await I.casePaymentWithHWFAndSubmissionPageFormAndSubmit();
 
   //Case Submission - ORDER Summary
@@ -121,7 +123,7 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
 
 }).retry(testconfig.TestRetryScenarios);
 
-xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -130,7 +132,7 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.fillCreateCaseFormAndSubmit();
 
   // Sole &&  Dissolution
-  await I.fillSoleOrJointOptionForDivorce(yesorno.Yes,divorceOrDissolution.DIVORCE);
+  await I.fillSoleOrJointOptionForDivorce(yesorno.Yes,divorceOrDissolution.DISSOLUTION);
 
   // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();

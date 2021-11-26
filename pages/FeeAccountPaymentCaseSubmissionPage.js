@@ -13,6 +13,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.runAccessibilityTest();
+    await I.wait(3);
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
     await I.selectOption(this.fields.howPaymentMade, paymentType.HWF);
     await I.wait(2);
