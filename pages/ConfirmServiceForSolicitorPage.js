@@ -267,21 +267,28 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-schedule-case/caseworker-schedule-casescheduleForListing');
     await I.click(this.fields.courtNameBirmingham);
-    await I.fillField(this.fields.hearingDateDay, '01');
-    await I.fillField(this.fields.hearingDateMonth, '04');
-    await I.fillField(this.fields.hearingDateYear, '2023');
-    await I.fillField(this.fields.hearingDateHour, '00');
-    await I.fillField(this.fields.hearingDateMinute, '00');
-    await I.fillField(this.fields.hearingDateSecond, '00');
-    await I.fillField(this.fields.LADecisionDateDateDay, '01');
-    await I.fillField(this.fields.LADecisionDateDateMonth, '04');
-    await I.fillField(this.fields.LADecisionDateDateYear, '2022');
+
+    let currentDateTime = new Date();
+    let dateAWeekAgo = new Date();
+    dateAWeekAgo = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(-7)));
+    datePlus15Days = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(15)));
+
+    await I.fillField(this.fields.hearingDateDay, dateAWeekAgo.getDate());
+    await I.fillField(this.fields.hearingDateMonth, dateAWeekAgo.getMonth()+1);
+    await I.fillField(this.fields.hearingDateYear, dateAWeekAgo.getFullYear());
+    await I.fillField(this.fields.hearingDateHour, '09');
+    await I.fillField(this.fields.hearingDateMinute, '05');
+    await I.fillField(this.fields.hearingDateSecond, '06');
+    await I.fillField(this.fields.LADecisionDateDateDay, dateAWeekAgo.getDate());
+    await I.fillField(this.fields.LADecisionDateDateMonth, dateAWeekAgo.getMonth()+1);
+    await I.fillField(this.fields.LADecisionDateDateYear, dateAWeekAgo.getFullYear());
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillScheduleCasesCYA(caseNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-schedule-case/submit');
+
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
