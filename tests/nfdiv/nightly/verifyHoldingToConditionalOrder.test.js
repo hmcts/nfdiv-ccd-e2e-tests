@@ -52,6 +52,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   // Update AoS
   await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
   await I.aosUpdateReviewApplicant1Application(caseNumber);
+  await I.aosUpdateReviewApplicant1ApplicationRes(caseNumber);
   await I.aosUpdateDispute(caseNumber);
   await I.aosUpdateDoYouAgreeCourts(caseNumber);
   await I.aosUpdateLegal(caseNumber);
@@ -66,7 +67,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.submitAosCYA(caseNumber);
 
 
-  await I.wait(25);
+  await I.wait(10);
   await I.see('20 week holding period');
   await I.signOut();
   await I.wait(3);
