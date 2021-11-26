@@ -5,8 +5,9 @@ module.exports = {
   fields: {
     selectActionDropDown: 'select[id="next-step"]',
     //caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-h2',
-    caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-h2',
-
+    //caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page .heading-h2',
+    //caseNumberDisplay: 'ccd-case-edit ccd-case-edit-page ccd-markdown[class="ng-star-inserted"] heading-h2',
+    caseNumberDisplay: 'markdown[class="markdown"] h1',
     submit: 'button[type="submit"]'
   },
 

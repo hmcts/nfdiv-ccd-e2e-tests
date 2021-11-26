@@ -51,9 +51,11 @@ module.exports = {
     }
 
     if(divorceOrCivil === divorceOrDissolution.DIVORCE) {
-      await I.click(this.fields.divorce);
-    }else{
-      await I.click(this.fields.dissolution);
+      await I.retry(5).click(this.fields.divorce);
+      console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Divorce Chosen');
+    }else {
+      console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
+      await I.retry(5).click(this.fields.dissolution);
     }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

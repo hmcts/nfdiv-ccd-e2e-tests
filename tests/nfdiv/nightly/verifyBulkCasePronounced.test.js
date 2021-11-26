@@ -55,7 +55,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   // Moves case to Listed;AwaitingPronouncement state
   const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_GRANT_CONDITIONAL_ORDER,'data/ccd-grant-co.json');
-  verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
+  verifyState(listedAwaitingPronouncement, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
@@ -76,7 +76,8 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
 
-  // TODO , Uncomment and fix once the hearingDate issue is sorted.
+  // TODO Change here .... Make hearing date in the past etc ...
+  // TODO , Uncomment and fix once the hearingDate (date in past)  issue is sorted.
 
   // await I.wait(3);
   // await I.checkNextStepForEvent('Print for pronouncement');
