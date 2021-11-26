@@ -510,6 +510,10 @@ module.exports = function () {
       return UpdateAosPage.updateAoSReviewApplication(caseNumber);
     },
 
+    aosUpdateReviewApplicant1ApplicationRes:function(caseNumber){
+      return UpdateAosPage.updateAoSReviewApplicationRes(caseNumber);
+    },
+
     aosUpdateLegal:function(caseNumber){
       return UpdateAosPage.updateAoSLegalProceedings(caseNumber);
     },

@@ -35,7 +35,7 @@ module.exports = {
   async fillReviewApplicant1_Application(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolReviewApplicant1Application');
     await I.wait(4);
-    await I.see('Review the applicant 1\'s application');
+    await I.see('Review application');
     await I.see('Link to online petition');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
@@ -89,8 +89,8 @@ module.exports = {
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online petition');
-    await I.see('Has the respondent read the application for divorce?');
-    await I.see('Respondent agreed to claimed jurisdiction?');
+    await I.see('Has the respondent read the application ?');
+    // await I.see('Respondent agreed to claimed jurisdiction?');
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);

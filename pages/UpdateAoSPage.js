@@ -63,9 +63,16 @@ module.exports = {
   },
 
   async updateAoSReviewApplication() {
-    await I.waitInUrl('update-aos/update-aosApplicant2SolUpdateAosApplicant1Application');
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.wait(3);
-    await I.click(this.fields.confirmReadPetitionYes);
+    // await I.click(this.fields.confirmReadPetitionYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async updateAoSReviewApplicationRes() {
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
+    await I.wait(3);
+    // await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -76,7 +83,8 @@ module.exports = {
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online petition');
-    await I.see('Has the respondent read the application for divorce?');
+    await I.see('Has the respondent read the application ?');
+    await I.see('How do you want to respond ?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
     await I.see('Legal proceeding details');
