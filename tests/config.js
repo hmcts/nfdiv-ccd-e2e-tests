@@ -4,8 +4,8 @@ module.exports = {
   TestEnv: process.env.RUNNING_ENV  || 'aat',
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
   TestRetryFeatures: 0,
-  TestRetryScenarios: process.env.RETRY_SCENARIOS || 0,
-  //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/*.test.js',
+  TestRetryScenarios: process.env.RETRY_SCENARIOS || 2,
+  TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/*.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyCaseStateAndEvents.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyCaseForCourtService.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/solicitorCreateJointApplication.test.js',
@@ -13,8 +13,7 @@ module.exports = {
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/addNoteAndUpdateCase.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/shareACaseAndMoveToHolding.test.js',
   //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/shareACaseAndDraftUpdateSubmitAoS.test.js',
-  TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyAwaitingPronouncement.test.js',
-
+  //TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/verifyHoldingToConditionalOrder.test.js',
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
   TestEnvSolUser:'TEST_SOLICITOR@mailinator.com',
   TestEnvSolPassword:'genericPassword123',
@@ -32,9 +31,9 @@ module.exports = {
   TestEnvProfPassword: process.env.PROF_USER_PASSWORD || '',
   TestForXUI: process.env.TESTS_FOR_XUI_SERVICE === 'true',
   TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
+  TestS2SAuthSecret: process.env.SERVICE_AUTH_SECRET || '',
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
-  TestSystemUser:process.env.IDAM_SYSTEMUPDATE_USERNAME || 'TEST_SYSTEM_USER@mailinator.com',
-  TestSystemUserPW:process.env.IDAM_SYSTEMUPDATE_PASSWORD || 'genericPassword123',
-  TestIdamClientSecret: process.env.IDAM_CLIENT_SECRET || 'thUphEveC2Ekuqedaneh4jEcRuba4t2t',
-  TestS2SAuthSecret: process.env.SERVICE_SECRET || 'HDNIOOGINKEIB5ZZ'
+  TestIdamClientSecret: process.env.IDAM_SECRET || '',
+  TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
+  TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || ''
 };
