@@ -99,7 +99,7 @@ module.exports = {
   async updateCOReviewApplication(){
     await I.wait(2);
     await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewApplicant1');
-    await I.see('Link to online petition');
+    await I.see('Link to online application');
     await I.click(this.fields.updateChangeOrAddAnythingToApplication);
     await I.click(this.fields.updateEverythingInPetitionTrue);
     await I.waitForNavigationToComplete(this.fields.submit);
