@@ -20,14 +20,16 @@ module.exports = {
     submit: 'button[type="submit"]'
   },
 
-  async updateAoSDetails() {
-    await I.waitInUrl('/update-aos/update-aosApplicant2SolUpdateAosApplicant1Application');
+  async updateAoSContactDetails() {
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Update AoS');
-    await I.see('Review the applicant 1\'s application');
+    await I.see('Confirm contact details');
     await I.wait(2);
-    await I.click(this.fields.confirmReadPetitionYes);
+    await I.fillField(this.fields.respSolicitorName,'Respondent Name');
+    await I.fillField(this.fields.respSolicitorPhone,'02031241245');
+    await I.click(this.fields.acceptServiceRadioYes);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
   },
@@ -35,7 +37,7 @@ module.exports = {
   async updateAoSDispute() {
     await I.waitInUrl('trigger/update-aos/update-aosapplicant2HowToResponseToApplication');
     await I.wait(2);
-    await I.click(this.fields.disputeAgreeYes);
+    await I.click(this.fields.disputeAgreeNo);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I .wait(3);
   },
@@ -55,6 +57,13 @@ module.exports = {
   },
 
   async updateAoSLegalProceedings() {
+    await I.waitInUrl('update-aos/update-aosApplicant2SolAosjurisdiction');
+    await I.wait(3);
+    await I.click(this.fields.jurisdictionAgreeYes);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async updateAosOtherLegalProceedings() {
     await I.waitInUrl('update-aos/update-aosApplicant2SolAosOtherProceedings');
     await I.wait(3);
     await I.click(this.fields.legalProceedingsExistsYes);
@@ -69,10 +78,13 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async updateAoSReviewApplicationRes() {
+  async updateAoSReviewApplicationRes(caseNumber) {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
     await I.wait(3);
-    // await I.click(this.fields.confirmReadPetitionYes);
+    await I.see('Link to online application');
+    await I.see('Reference number');
+    await I.see(caseNumber);
+    await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -82,7 +94,7 @@ module.exports = {
     await I.wait(3);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
-    await I.see('Link to online petition');
+    await I.see('Link to online application');
     await I.see('Has the respondent read the application ?');
     await I.see('How do you want to respond ?');
     await I.see('Respondent agreed to claimed jurisdiction?');

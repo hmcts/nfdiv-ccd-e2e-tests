@@ -118,6 +118,7 @@ module.exports = function () {
 
     checkNextStepForEvent: function (eventName){
       return CaseListPage.clickNextStepForEvent(eventName);
+
     },
 
     ShouldBeAbleToFilterAnUrgentCase: function (urgent, state, caseNum) {
@@ -470,8 +471,13 @@ module.exports = function () {
       return ConditionalOrderPage.submitClarification();
     },
 
-    updateAoS:function(caseNumber){
-      return UpdateAosPage.updateAoSDetails(caseNumber);
+    updateAoSConfirmContactDetails:function(caseNumber){
+      return UpdateAosPage.updateAoSContactDetails(caseNumber);
+    },
+
+    // updateAoSConfirmContactDetails
+    updateReviewAoS : function(caseNumber){
+      return UpdateAosPage.updateAoSReviewApplication(caseNumber);
     },
 
     submitAosSOT: function(caseNumber) {
@@ -516,6 +522,10 @@ module.exports = function () {
 
     aosUpdateLegal:function(caseNumber){
       return UpdateAosPage.updateAoSLegalProceedings(caseNumber);
+    },
+
+    aosUpdateLegalProceedings:function(caseNumber){
+      return UpdateAosPage.updateAosOtherLegalProceedings(caseNumber);
     },
 
     aosUpdateCYA:function(caseNumber){

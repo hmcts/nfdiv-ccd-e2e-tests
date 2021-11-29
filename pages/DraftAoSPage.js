@@ -9,13 +9,14 @@ module.exports = {
     acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmails_Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
     disputeAgreeYes:'#howToRespondApplication-disputeDivorce',
-    disputeAgreeNo:'#howToRespondApplication-withoutDisputeDivorce',
+    continueWithoutDisputingTheDivorce:'#howToRespondApplication-withoutDisputeDivorce',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     legalProceedingsExistsYes:'#applicant2LegalProceedings_Yes',
     legalProceedingsDescription:'#applicant2LegalProceedingsDetails',
     submit: 'button[type="submit"]'
   },
+
 
   async fillConfirmContactDetails() {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolConfirmContactDetails');
@@ -36,7 +37,7 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolReviewApplicant1Application');
     await I.wait(4);
     await I.see('Review application');
-    await I.see('Link to online petition');
+    await I.see('Link to online application');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -47,13 +48,13 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
     await I.wait(4);
     await I.see('How does the applicant want to respond to the application?');
-    await I.see('How do you want to respond ?');
     await I.see(caseId);
+    await I.see('The applicant can only dispute the application if: (one or more of the following)');
+    await I.see('How do you want to respond ?');
     await I.runAccessibilityTest();
-    await I.click(this.fields.disputeAgreeNo);
+    await I.click(this.fields.continueWithoutDisputingTheDivorce);
     await I.see('Continue without disputing the divorce');
     await I.wait(2);
-    // await I.click(this.fields.disputeAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -62,20 +63,16 @@ module.exports = {
     await I.wait(4);
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see(caseId);
     await I.runAccessibilityTest();
     await I.click(this.fields.jurisdictionAgreeYes);
-    await I.see('Yes');
     await I.wait(2);
-    // await I.click(this.fields.disputeAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async anyOtherLegalProceedings(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolAosOtherProceedings');
-    await I.wait(4);
-    await I.see('Are there any other legal proceedings outside of England and Wales?');
     await I.see(caseId);
+    await I.see('Are there any existing or previous court proceedings relating to the marriage?');
     await I.runAccessibilityTest();
     await I.click(this.fields.legalProceedingsExistsYes);
     await I.wait(2);
@@ -88,9 +85,11 @@ module.exports = {
     await I.see(caseId);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
-    await I.see('Link to online petition');
+    await I.see('Link to online application');
     await I.see('Has the respondent read the application ?');
-    // await I.see('Respondent agreed to claimed jurisdiction?');
+    await I.see('Respondent agreed to claimed jurisdiction?');
+    await I.see('Are there any existing or previous court proceedings relating to the marriage?');
+    await I.see('Legal proceeding details');
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);

@@ -39,10 +39,11 @@ module.exports = {
     await I.waitInUrl('trigger/submit-aos/submit');
     await I.wait(4);
     await I.see('Check your answers');
-    //await I.see('Check the information below carefully.');
-    //await I.see('I am duly authorised by the respondent to sign this statement.');
-    //await I.see('Solicitor’s firm/ DX address');
-    //await I.see('Additional Comments');
+    await I.see('Check the information below carefully.');
+    await I.see('I am duly authorised by the respondent to sign this statement.');
+    await I.see('Solicitor’s name');
+    await I.see('Solicitor’s firm');
+    await I.see('Additional Comments');
     await I.runAccessibilityTest();
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
@@ -93,7 +94,7 @@ module.exports = {
     await I.click(this.fields.sotYES);
     await I.fillField(this.fields.solicitorNameSOT,'Sol Name');
     await I.fillField(this.fields.solicitorFirmSOT,'Sol Firm');
-    // await I.fillField(this.fields.additionalComments,'Solicitors Additional Comments');
+    await I.fillField(this.fields.additionalComments,'Solicitors Additional Comments');
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
