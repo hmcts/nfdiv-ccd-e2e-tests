@@ -54,7 +54,7 @@ Scenario('NFD - Verify Bulk Case ', async function (I) {
   verifyState(awaitingLegalAdvisorReferral, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   // Moves case to Listed;AwaitingPronouncement state
-  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-legal-advisor-make-decision.json');
+  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
 
