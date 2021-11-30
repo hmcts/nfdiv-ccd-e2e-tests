@@ -70,7 +70,6 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.caseOrderSummaryPageFormAndSubmit(paymentType.HWF);
 
   // Case Submission - Before You Submit
-  await I.caseApplicationCompletePageFormAndSubmit();
 
   // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();
@@ -188,7 +187,6 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.caseOrderSummaryPageFormAndSubmit(paymentType.HWF);
 
   // Case Submission - Before You Submit
-  await I.caseApplicationCompletePageFormAndSubmit();
 
   // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();

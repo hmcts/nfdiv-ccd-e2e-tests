@@ -6,10 +6,6 @@ let caseNumber;
 
 Feature('CaseWorker Validates HWF Code Successfully for a Case');
 
-//NFD Create Case (with Docs) + Submit Application +
-// Login as caseworker and Approve HWF Reference Code
-// This moves the STATE to 'Application Paid and Submitted'
-
 Scenario('Caseworker validate HWF Reference and moves State to Application Submitted', async (I) => {
 
   await I.amOnHomePage();
