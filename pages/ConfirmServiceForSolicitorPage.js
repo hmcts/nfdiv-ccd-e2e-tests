@@ -269,26 +269,29 @@ module.exports = {
     await I.click(this.fields.courtNameBirmingham);
 
     let currentDateTime = new Date();
-    let dateAWeekAgo = new Date();
-    dateAWeekAgo = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(-7)));
-    datePlus15Days = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(15)));
+    let todayDate = new Date();
+    todayDate = new Date(todayDate.setDate(currentDateTime.getDate()));
+    todayDate.getHours();
+    todayDate.getMinutes();
+    todayDate.getSeconds();
+    // let plusOneExtraMinute  = todayDate.getMinutes(todayDate.getMinutes() + 1 );
 
-    await I.fillField(this.fields.hearingDateDay, dateAWeekAgo.getDate());
-    await I.fillField(this.fields.hearingDateMonth, dateAWeekAgo.getMonth()+1);
-    await I.fillField(this.fields.hearingDateYear, dateAWeekAgo.getFullYear());
-    await I.fillField(this.fields.hearingDateHour, '09');
-    await I.fillField(this.fields.hearingDateMinute, '05');
-    await I.fillField(this.fields.hearingDateSecond, '06');
-    await I.fillField(this.fields.LADecisionDateDateDay, dateAWeekAgo.getDate());
-    await I.fillField(this.fields.LADecisionDateDateMonth, dateAWeekAgo.getMonth()+1);
-    await I.fillField(this.fields.LADecisionDateDateYear, dateAWeekAgo.getFullYear());
+
+    await I.fillField(this.fields.hearingDateDay, todayDate.getDate());
+    await I.fillField(this.fields.hearingDateMonth, todayDate.getMonth());
+    await I.fillField(this.fields.hearingDateYear, todayDate.getFullYear());
+    await I.fillField(this.fields.hearingDateHour, todayDate.getHours());
+    await I.fillField(this.fields.hearingDateMinute, todayDate.getMinutes()+2);
+    await I.fillField(this.fields.hearingDateSecond, todayDate.getSeconds());
+    await I.fillField(this.fields.LADecisionDateDateDay, '24');
+    await I.fillField(this.fields.LADecisionDateDateMonth, '5');
+    await I.fillField(this.fields.LADecisionDateDateYear, '2014');
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillScheduleCasesCYA(caseNumber){
-    await I.wait(2);
     await I.waitInUrl('trigger/caseworker-schedule-case/submit');
-
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
