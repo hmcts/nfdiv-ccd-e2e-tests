@@ -150,7 +150,7 @@ const events = {
   SUBMIT_CO:'submit-conditional-order',
   SOLS_DRAFT_CO:'draft-conditional-order',
   UPDATE_CO:'update-conditional-order',
-  LA_GRANT_CONDITIONAL_ORDER:'legal-advisor-grant-conditional-order',
+  LA_MAKE_DECISION:'legal-advisor-make-decision',
   UPDATE_AOS:'Update AoS',
   HWF_AWAITING_DECISION:'AwaitingHWFDecision',
   HWF_REFUSED:'HWF refused',

@@ -53,7 +53,7 @@ Scenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I
   verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   //Moves case to Listed;AwaitingPronouncement state
-  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_GRANT_CONDITIONAL_ORDER,'data/ccd-grant-co.json');
+  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LA_MAKE_DECISION,'data/ccd-grant-co.json');
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
 }).retry(testconfig.TestRetryScenarios);
