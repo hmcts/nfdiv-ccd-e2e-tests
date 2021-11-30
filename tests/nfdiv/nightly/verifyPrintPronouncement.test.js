@@ -72,8 +72,9 @@ Scenario('NFD - Verify Bulk Case & print for pronouncement event', async functio
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+  await I.wait(30);
 
-  await I.wait(3);
+  await I.wait(40);
   await I.checkNextStepForEvent('Print for pronouncement');
   await I.submitPrintForPronouncement(bulkCaseReferenceId);
   await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
