@@ -25,9 +25,6 @@
   "applicant2MiddleName": "Middle name(s)",
   "applicant2LastName": "Last name",
   "applicant2NameDifferentToMarriageCertificate_No":"Have they changed their name since they got married?",
-  //Who is the applicant divorcing?
-  "divorceWho": "Who is the applicant divorcing?",
-
   "applicant2SolicitorName": "Solicitor’s name",
   "applicant2SolicitorEmail": "Solicitor’s Email",
   //Firm address/DX address
@@ -42,7 +39,7 @@
 
   "jurisdictionConnections": "Legal connections",
 
-//  Are there any existing or previous court proceedings relating to the marriage?
+  "applicant1LegalProceedings_No": "Are there any existing or previous court proceedings relating to the marriage?",
 //  Do they wish to apply for a financial order?
 //  Does this case require urgent issue due to jurisdiction or other financial matters?
 //  Additional comments
@@ -55,7 +52,7 @@
   "solServiceMethod-solicitorService": "How would you like the respondent to be served?",
 
 
-  "name",: "Application",
+  "name": "Application",
   "familyManRefNumber": "FamilyMan reference",
   "createdDate": "Date submitted to HMCTS",
   "issueDate": "Date when the petition was issued",
