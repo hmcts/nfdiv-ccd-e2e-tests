@@ -70,6 +70,7 @@ const submitAosPage = require('./pages/SubmitAoSPage.js');
 const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
 const BulkCasePage = require('./pages/BulkCasePage.js');
 
+const validateApplicationTabData = require ('./tabs/nfdiv/validateApplicationTabData');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
 const validateAOSTabData = require ('./tabs/validateAOSTabData');
@@ -367,6 +368,10 @@ module.exports = function () {
     // TODO refactor to generic name checkStateAndEvent
     checkStateAndEvent: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
+    },
+
+    validateApplicationTabData: function(reason,verifyContent) {
+      return validateApplicationTabData(reason,verifyContent);
     },
 
     // TODO checkState and checkStateAndEvent to be refactored .

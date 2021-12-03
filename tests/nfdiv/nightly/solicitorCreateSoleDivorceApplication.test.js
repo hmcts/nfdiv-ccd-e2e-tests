@@ -1,5 +1,7 @@
 const {paymentType,yesorno,divorceOrDissolution } = require('../../../common/constants');
 const testconfig = require('./../../config');
+const {reasonsForDivorce} = require('../common/constants');
+const verifyContent = require('../data/ccdDesertionCase.json');
 
 let caseNumber;
 
@@ -101,6 +103,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.hwfAccepted(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
+  await I.validateApplicationTabData(reasonsForDivorce.DESERTIONDISPLAY, verifyContent);
 
   console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
@@ -218,6 +221,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.hwfAccepted(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
+
 
   console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
