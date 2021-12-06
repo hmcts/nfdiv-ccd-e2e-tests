@@ -12,6 +12,8 @@ module.exports = {
     continueWithoutDisputingTheDivorce:'#howToRespondApplication-withoutDisputeDivorce',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
+    reasonForNoJurisdiction:'#reasonCourtsOfEnglandAndWalesHaveNoJurisdiction',
+    whereIsYourLifeBased:'#inWhichCountryIsYourLifeMainlyBased',
     legalProceedingsExistsYes:'#applicant2LegalProceedings_Yes',
     legalProceedingsDescription:'#applicant2LegalProceedingsDetails',
     submit: 'button[type="submit"]'
@@ -38,7 +40,6 @@ module.exports = {
     await I.wait(4);
     await I.see('Review application');
     await I.see('Link to online application');
-    // await I.see('Respond to');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -66,6 +67,19 @@ module.exports = {
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.runAccessibilityTest();
     await I.click(this.fields.jurisdictionAgreeYes);
+    await I.wait(2);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async doYouAgreeCourtsNo(caseId) {
+    await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolAosjurisdiction');
+    await I.wait(4);
+    await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
+    await I.see('Respondent agreed to claimed jurisdiction?');
+    await I.runAccessibilityTest();
+    await I.click(this.fields.jurisdictionAgreeNo);
+    await I.fillField(this.fields.reasonForNoJurisdiction,'Reason for no jurisdiction');
+    await I.fillField(this.fields.whereIsYourLifeBased,'Sunny Australia');
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },

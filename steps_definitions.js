@@ -414,6 +414,10 @@ module.exports = function () {
       return draftAosPage.doYouAgreeCourts(caseNumber);
     },
 
+    draftAoSDoNotAgreeCourts :  function(caseNumber) {
+      return draftAosPage.doYouAgreeCourtsNo(caseNumber);
+    },
+
     draftAoSAnyOtherLegalProceedings: function(caseNumber){
       return draftAosPage.anyOtherLegalProceedings(caseNumber);
     },
