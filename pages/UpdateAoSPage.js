@@ -79,7 +79,7 @@ module.exports = {
   },
 
   async updateAoSReviewApplicationRes(caseNumber) {
-    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.wait(3);
     await I.see('Link to online application');
     await I.see('Reference number');

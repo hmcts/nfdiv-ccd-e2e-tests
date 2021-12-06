@@ -31,7 +31,7 @@ module.exports = {
     await I.retry(5).selectOption(this.fields.caseType, currentCaseType);
     await I.wait(5);
     await I.waitForText('Apply for a divorce');
-    await I.retry(5).selectOption(this.fields.event, 'Apply for a divorce');
+    await I.retry(5).selectOption(this.fields.event, 'Apply:divorce or dissolution');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   },

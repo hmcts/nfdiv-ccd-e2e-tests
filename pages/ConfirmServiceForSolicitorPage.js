@@ -269,19 +269,19 @@ module.exports = {
     await I.click(this.fields.courtNameBirmingham);
 
     let currentDateTime = new Date();
-    let dateAWeekAgo = new Date();
-    dateAWeekAgo = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(-7)));
-    datePlus15Days = new Date(dateAWeekAgo.setDate(currentDateTime.getDate()+(15)));
+    let dateOneWeekFromToday = new Date();
+    dateOneWeekFromToday = new Date(dateOneWeekFromToday.setDate(currentDateTime.getDate()+(7)));
+    datePlus15Days = new Date(dateOneWeekFromToday.setDate(currentDateTime.getDate()+(15)));
 
-    await I.fillField(this.fields.hearingDateDay, dateAWeekAgo.getDate());
-    await I.fillField(this.fields.hearingDateMonth, dateAWeekAgo.getMonth()+1);
-    await I.fillField(this.fields.hearingDateYear, dateAWeekAgo.getFullYear());
+    await I.fillField(this.fields.hearingDateDay, dateOneWeekFromToday.getDate());
+    await I.fillField(this.fields.hearingDateMonth, dateOneWeekFromToday.getMonth()+1);
+    await I.fillField(this.fields.hearingDateYear, dateOneWeekFromToday.getFullYear());
     await I.fillField(this.fields.hearingDateHour, '09');
     await I.fillField(this.fields.hearingDateMinute, '05');
     await I.fillField(this.fields.hearingDateSecond, '06');
-    await I.fillField(this.fields.LADecisionDateDateDay, dateAWeekAgo.getDate());
-    await I.fillField(this.fields.LADecisionDateDateMonth, dateAWeekAgo.getMonth()+1);
-    await I.fillField(this.fields.LADecisionDateDateYear, dateAWeekAgo.getFullYear());
+    await I.fillField(this.fields.LADecisionDateDateDay, dateOneWeekFromToday.getDate());
+    await I.fillField(this.fields.LADecisionDateDateMonth, dateOneWeekFromToday.getMonth()+1);
+    await I.fillField(this.fields.LADecisionDateDateYear, dateOneWeekFromToday.getFullYear());
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
