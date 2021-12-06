@@ -53,7 +53,6 @@ module.exports = {
     //await I.fillField(this.fields.caseNumber, caseNumber); // Does nt work
     await I.wait(3);
     await I.click('Apply');
-    await I.wait(3);
   },
 
   async filterByBulkCaseReference(caseNumber) {

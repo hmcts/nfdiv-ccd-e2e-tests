@@ -80,6 +80,8 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
 
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
+  // verifyTab
+
   await I.wait(8);
 
   // //Login as CaseWorker and Validate HWF Reference

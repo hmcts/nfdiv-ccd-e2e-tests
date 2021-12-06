@@ -27,7 +27,7 @@ Scenario('NFD - Script - Case creation to Awaiting Conditional Order', async fun
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
 
-  const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
+  const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
