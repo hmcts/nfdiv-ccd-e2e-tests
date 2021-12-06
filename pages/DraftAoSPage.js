@@ -38,6 +38,7 @@ module.exports = {
     await I.wait(4);
     await I.see('Review application');
     await I.see('Link to online application');
+    // await I.see('Respond to');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
