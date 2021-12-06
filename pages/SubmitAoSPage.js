@@ -28,7 +28,7 @@ module.exports = {
     await I.see('Review the answers in your Acknowledgement of Service below. If you wish to change any of your answers, please go back and use the \'Update AoS\' action');
     await I.see('Has the respondent read the application ?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see('Reason respondent disagreed to claimed jurisdiction');
+    // await I.see('Reason respondent disagreed to claimed jurisdiction');
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
     await I.see('Updates  to  legal proceedings');
     await I.wait(2);

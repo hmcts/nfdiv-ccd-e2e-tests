@@ -29,7 +29,7 @@ module.exports = {
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
     await I.fillField(this.fields.respSolicitorPhone,'02031241245');
-    await I.click(this.fields.acceptServiceRadioYes);
+    // await I.click(this.fields.acceptServiceRadioYes);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
   },
@@ -79,12 +79,12 @@ module.exports = {
   },
 
   async updateAoSReviewApplicationRes(caseNumber) {
-    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
     await I.wait(3);
-    await I.see('Link to online application');
-    await I.see('Reference number');
-    await I.see(caseNumber);
-    await I.click(this.fields.confirmReadPetitionYes);
+    // await I.see('Link to online application');
+    // await I.see('Reference number');
+    // await I.see(caseNumber);
+    // await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
