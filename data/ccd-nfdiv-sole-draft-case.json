@@ -3,6 +3,7 @@
   "applicationType": "soleApplication",
   "labelContentTheApplicant2UC": "The respondent",
   "applicant1SolicitorAgreeToReceiveEmails": "No",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
   "applicant1SolicitorOrganisationPolicy": {
     "Organisation": {
       "OrganisationID": "HEBFGBR",
