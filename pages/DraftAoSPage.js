@@ -6,7 +6,7 @@ module.exports = {
     respSolicitorName:'#applicant2SolicitorName',
     respSolicitorPhone:'#applicant2SolicitorPhone',
     respSolicitorEmail:'#applicant2SolicitorEmail',
-    acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmails_Yes',
+    acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmailsCheckbox-Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
     disputeAgreeYes:'#howToRespondApplication-disputeDivorce',
     continueWithoutDisputingTheDivorce:'#howToRespondApplication-withoutDisputeDivorce',

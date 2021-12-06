@@ -2,7 +2,7 @@
   "applicant2SolicitorName": "Applicant 2 Solicitor",
   "applicant2SolicitorPhone": "0203121214545",
   "applicant2SolicitorEmail": "draftAoS@mailinator.com",
-  "applicant2SolicitorAgreeToReceiveEmails": "Yes",
+  "applicant2SolicitorAgreeToReceiveEmailsCheckbox": ["Yes"],
   "confirmReadPetition": "Yes",
   "jurisdictionAgree": "Yes",
   "applicant2LegalProceedings": "Yes",

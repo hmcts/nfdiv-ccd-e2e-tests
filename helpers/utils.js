@@ -789,8 +789,9 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
-    //assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
-    assignee_id:'51087730-dfc0-4c1c-a44d-0ee8e75c3c43', // this is the id of the RS2
+    assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
+    // linus fix for RS 2
+    //assignee_id:'51087730-dfc0-4c1c-a44d-0ee8e75c3c43', // this is the id of the RS2
     case_id:caseId,
     case_type_id:'NFD'
   };

@@ -26,19 +26,17 @@ Scenario('NFD - Move Case upto Listed;Awaiting Pronouncement', async function (I
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
 
-  const shareACase = await updateRoleForCase(user.RS2,caseNumber,'APPTWOSOLICITOR');
+  const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
+  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior' + user.RS);
 
-
-  console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior 2 ');
-
-  const aosDrafted = await updateNFDCaseInCcd(user.RS2,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
+  const aosDrafted = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
   verifyState(aosDrafted, states.AOS_DRAFTED);
 
-  const submitAoS = await updateNFDCaseInCcd(user.RS2,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
+  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.

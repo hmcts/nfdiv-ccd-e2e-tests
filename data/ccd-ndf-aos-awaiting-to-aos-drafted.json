@@ -2,7 +2,7 @@
   "applicant1ScreenHasMarriageBroken": "Yes",
   "marriagePlaceOfMarriage": "Point Pedro",
   "legalProceedingsExist": "No",
-  "applicant2SolicitorAgreeToReceiveEmails": "Yes",
+  "applicant2SolicitorAgreeToReceiveEmailsCheckbox": ["Yes"],
   "jurisdictionAgree": "Yes",
   "confirmReadPetition": "Yes",
   "miniApplicationLink": {
