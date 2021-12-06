@@ -7,7 +7,7 @@ module.exports = {
     referenceNumber: '#applicant1SolicitorReference',
     applicant1SolicitorPhone: '#applicant1SolicitorPhone',
     applicant1SolicitorEmail: '#applicant1SolicitorEmail',
-    applicant1SolicitorAgreeToReceiveEmail:'#applicant1SolicitorAgreeToReceiveEmails_Yes',
+    applicant1SolicitorAgreeToReceiveEmail:'#applicant1SolicitorAgreeToReceiveEmailsCheckbox-Yes',
     firmDxAddress: '#derivedApplicant1SolicitorAddress',
     yourReferenceNumber: '#D8SolicitorReference',
     phoneNumber: '#PetitionerSolicitorPhone',
