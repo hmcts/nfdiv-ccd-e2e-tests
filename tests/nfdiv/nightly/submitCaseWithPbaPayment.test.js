@@ -16,9 +16,11 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
-
+  await I.wait(5);
+  await I.amOnPage('case-details/' + caseNumber);
+  await I.wait(7);
   await I.checkNextStepForEvent('Case submission');
+  await I.wait(5);
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // - PBA Account
@@ -31,9 +33,6 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   await I.caseOrderSummaryPageFormAndSubmit(paymentType.FEE_ACCOUNT);
 
   // Case Submission - Before You Submit
-  await I.caseApplicationCompletePageFormAndSubmit();
-
-  // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
   await I.checkStateAndEvent(states.SUBMITTTED,events.CASE_SUBMISSION);

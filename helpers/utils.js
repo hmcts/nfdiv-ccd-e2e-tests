@@ -687,14 +687,22 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
   const serviceToken = await getServiceToken();
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdUpdateRolePath ='/cases/'+caseId+'/users/'+userId;
+  const ccdUpdateRolePath ='/case-users';
 
-
+  // const data = {
+  //   user_id: userId,
+  //   case_roles: ['[APPTWOSOLICITOR]']
+  // };
 
   const data = {
-    user_id: userId,
-    case_roles: ['[APPTWOSOLICITOR]']
+    'case_users':[
+      { 'case_id':caseId,
+        'user_id':userId,
+        'case_role':'[APPTWOSOLICITOR]'
+      }
+    ]
   };
+
 
   var body = {
     data: JSON.stringify(data)
@@ -703,7 +711,7 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
   console.log('.....printing the body', body);
 
   const updateCaseRoleCall = {
-    method: 'PUT',
+    method: 'POST',
     uri: ccdApiUrl + ccdUpdateRolePath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
@@ -781,7 +789,8 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
-    assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
+    //assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
+    assignee_id:'51087730-dfc0-4c1c-a44d-0ee8e75c3c43', // this is the id of the RS2
     case_id:caseId,
     case_type_id:'NFD'
   };

@@ -1,7 +1,7 @@
 {
   "name": "Petition",
   "familyManRefNumber": "FamilyMan reference",
-  "createdDate": "Created date",
+  "createdDate": "Date when the application was created",
   "issueDate": "Date when the petition was issued",
   "rdc": "RDC",
   "courtName": "Courts and Tribunals Service Centre",

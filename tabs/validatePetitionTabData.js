@@ -8,7 +8,7 @@ const { reasonsForDivorce } = require('../common/constants');
 module.exports = async (reason, verifyContent) => {
   await I.clickTab(labels.name);
   await I.see(labels.rdc);
-  await I.see(labels.courtName);
+  await I.see(labels.courtName); //"Courts and Tribunals Service Centre",
   await I.see(labels.petitionerFName);
   await I.see(verifyContent.D8PetitionerFirstName);
   await I.see(labels.petitionerLName);
