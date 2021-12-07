@@ -688,9 +688,17 @@ module.exports = function () {
       return ConfirmServiceForSolicitorPage.fillMakeBailiffDecision(caseNumber);
     },
 
+    submitMakeBailiffDecisionNo: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillMakeBailiffDecisionNo(caseNumber);
+    },
+    submitMakeBailiffDecisionNoReason: function(caseNumber){
+      return ConfirmServiceForSolicitorPage.fillMakeBailiffDecisionNoReason(caseNumber);
+    },
+
     submitMakeBailiffDecisionCYA: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillMakeBailiffDecisionCYA(caseNumber);
     },
+
 
     submitIssueBailiffPack: function(caseNumber){
       return ConfirmServiceForSolicitorPage.fillIssueBailiffPack(caseNumber);
