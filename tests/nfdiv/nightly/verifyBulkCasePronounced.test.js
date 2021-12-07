@@ -76,21 +76,17 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
 
-  // TODO Change here .... Make hearing date in the past etc ...
-  // TODO , Uncomment and fix once the hearingDate (date in past)  issue is sorted.
+  await I.wait(3);
+  await I.checkNextStepForEvent('Print for pronouncement');
+  await I.submitPrintForPronouncement(bulkCaseReferenceId);
+  await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
 
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Print for pronouncement');
-  // await I.submitPrintForPronouncement(bulkCaseReferenceId);
-  // await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
+  await I.wait(3);
+  await I.checkNextStepForEvent('Pronounce list');
+  await I.submitPronounceList(bulkCaseReferenceId);
 
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Pronounce list');
-  // await I.submitPronounceList(bulkCaseReferenceId);
-  //
-  // await I.submitPronounceListCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
-
+  await I.submitPronounceListCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
 }).retry(testConfig.TestRetryScenarios);
