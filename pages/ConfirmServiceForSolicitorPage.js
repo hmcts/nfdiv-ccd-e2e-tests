@@ -27,6 +27,8 @@ module.exports = {
     selectAlternativeServiceType: '#alternativeServiceType',
     selectPaymentMethod: '#paymentMethod',
     serviceAppGranted: '#serviceApplicationGranted_Yes',
+    serviceAppGrantedNo: '#serviceApplicationGranted_No',
+    bailiffRefusalReason: '#serviceApplicationRefusalReason',
     deemedDateDay: '#deemedServiceDate-day',
     deemedDateMonth: '#deemedServiceDate-month',
     deemedDateYear: '#deemedServiceDate-year',
@@ -213,6 +215,20 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-bailiff-decision/caseworker-bailiff-decisionmakeBailiffDecision-1');
     await I.click(this.fields.serviceAppGranted);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillMakeBailiffDecisionNo(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-bailiff-decision/caseworker-bailiff-decisionmakeBailiffDecision-1');
+    await I.click(this.fields.serviceAppGrantedNo);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async fillMakeBailiffDecisionNoReason(caseNumber) {
+    await I.wait(2);
+    await I.waitInUrl('trigger/caseworker-bailiff-decision/caseworker-bailiff-decisionmakeBailiffDecision-2');
+    await I.fillField(this.fields.bailiffRefusalReason, 'Some reason for bailiff refusal');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 

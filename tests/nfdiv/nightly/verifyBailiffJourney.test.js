@@ -55,6 +55,15 @@ Scenario('NFD - Service Received , Service Payment, Bailiff Decision and Bailiff
   // await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
 
+  //Uncomment for MakeBailiffDecisionNo
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Make bailiff decision');
+  // await I.submitMakeBailiffDecisionNo(caseNumber);
+  // await I.submitMakeBailiffDecisionNoReason(caseNumber);
+  // await I.submitMakeBailiffDecisionCYA(caseNumber);
+  // await I.checkState(stateDisplayName.AOS_AWAITING_NAME, events.MAKE_BAILIFF_DECISION);
+
+  //Comment for MakeBailiffDecisionNo
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);
