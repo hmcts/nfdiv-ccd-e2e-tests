@@ -46,14 +46,10 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
   // Upload the marriage certificate
   await I.uploadTheMarriageCertificateOptional();
 
-  // Select Language
-  await I.languagePreferenceSelection();
-
   // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit();
-  // TODO ASSERT the STATE of the case here after Case Creation
-  // Case Submission Steps
+  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DIVORCE);
 
+  // Case Submission Steps
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
   caseNumber = caseNumber.replace(/\D/gi, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
@@ -169,13 +165,12 @@ xScenario('Dissolution Application (Joint) with Documents, HWF accepted and Subm
   await I.uploadTheMarriageCertificateOptional();
 
   // Select Language
-  await I.languagePreferenceSelection();
+  //await I.languagePreferenceSelection();
 
   // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit();
-  // TODO ASSERT the STATE of the case here after Case Creation
-  // Case Submission Steps
+  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DISSOLUTION);
 
+  // Case Submission Steps
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
   caseNumber = caseNumber.replace(/\D/gi, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);

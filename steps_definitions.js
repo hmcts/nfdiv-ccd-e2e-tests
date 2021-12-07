@@ -252,8 +252,8 @@ module.exports = function () {
       return SolCreateLanguagePrefPage.fillFormAndSubmit();
     },
 
-    solicitorCreateCheckYourAnswerAndSubmit: function() {
-      return SolCreateCheckYourAnswersPage.fillFormAndSubmit();
+    solicitorCreateCheckYourAnswerAndSubmit: function(union) {
+      return SolCreateCheckYourAnswersPage.fillFormAndSubmit(union);
     },
 
     solicitorCaseCreatedAndSubmit: function() {

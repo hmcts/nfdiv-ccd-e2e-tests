@@ -1,4 +1,4 @@
-const {paymentType,yesorno,divorceOrDissolution } = require('../../../common/constants');
+const {paymentType,yesorno,divorceOrDissolution} = require('../../../common/constants');
 const testconfig = require('./../../config');
 
 let caseNumber;
@@ -44,11 +44,8 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   // Upload the marriage certificate
   await I.uploadTheMarriageCertificateOptional();
 
-  // Select Language
-  await I.languagePreferenceSelection();
-
   // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit();
+  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DIVORCE);
   // TODO ASSERT the STATE of the case here after Case Creation
   // Case Submission Steps
 
@@ -163,11 +160,8 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   // Upload the marriage certificate
   await I.uploadTheMarriageCertificateOptional();
 
-  // Select Language
-  await I.languagePreferenceSelection();
-
   // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit();
+  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DISSOLUTION);
   // TODO ASSERT the STATE of the case here after Case Creation
   // Case Submission Steps
 

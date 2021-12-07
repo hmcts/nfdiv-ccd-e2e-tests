@@ -289,15 +289,15 @@ module.exports = {
     dateInImmediateFuture = new Date(dateInImmediateFuture.setDate(currentDateTime.getDate()));
 
     await I.fillField(this.fields.hearingDateDay, dateInImmediateFuture.getDate());
-    await I.fillField(this.fields.hearingDateMonth, dateInImmediateFuture.getMonth()+1); // JS dates start from 0 and not 1
+    await I.fillField(this.fields.hearingDateMonth, parseInt(dateInImmediateFuture.getMonth()+ parseInt(1)));
     await I.fillField(this.fields.hearingDateYear, dateInImmediateFuture.getFullYear());
     await I.fillField(this.fields.hearingDateHour, dateInImmediateFuture.getHours());
     await I.fillField(this.fields.hearingDateMinute, dateInImmediateFuture.getMinutes());
-    const plus15secs = dateInImmediateFuture.getSeconds() + 15;
+    const plus15secs = dateInImmediateFuture.getSeconds() + parseInt(15);
     await I.fillField(this.fields.hearingDateSecond,plus15secs );
 
     console.log('Hearing Date must be in Future .... making it 15 seconds ahead');
-    console.log('DD MM YYYY is '  + dateInImmediateFuture.getDate() + ' ' + dateInImmediateFuture.getMonth()+1 + '  ' + dateInImmediateFuture.getFullYear());
+    console.log('DD MM YYYY is '  + dateInImmediateFuture.getDate() + ' ' + dateInImmediateFuture.getMonth()+ parseInt(1) + '  ' + dateInImmediateFuture.getFullYear());
     console.log('HH MM +15 Seconds is  == '  + dateInImmediateFuture.getHours() + '  ' + dateInImmediateFuture.getMinutes() + '  ' + plus15secs);
 
     await I.fillField(this.fields.LADecisionDateDateDay, dateInImmediateFuture.getDate());

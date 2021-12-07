@@ -36,7 +36,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   // TODO
   // Draft ,Update and Submit AOS UI page flows are superflous.
-  // They should be made into a script here as the Page Flows are already
+  // They should be made into a script here as the UI Page Flows are already
   // tested as part of the shareACaseAndDraftUpdateSubmitAoS.test.js
 
   //Draft AoS

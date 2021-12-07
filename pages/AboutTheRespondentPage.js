@@ -22,7 +22,6 @@ module.exports = {
     await I.fillField(this.fields.lastName, 'Patrick');
     await I.click(this.fields.respondentChangedName);
     await I.selectOption(this.fields.respondentGender, 'Female');
-    //await I.click(this.fields.applicant2DocumentInWelshNo);
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);
   }
