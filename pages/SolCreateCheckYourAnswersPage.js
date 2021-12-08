@@ -9,13 +9,13 @@ module.exports = {
   },
 
   async fillFormAndSubmit(union) {
-    var upperCased;
+    var unionUpperCase;
     if(union === divorceOrDissolution.DIVORCE){
-      upperCased = union.toUpperCase();
-      await I.waitInUrl(`/${upperCased}/NFD/solicitor-create-application/submit`);
-    }else if ( union === divorceOrDissolutionCaps.DISSOLUTION){
-      upperCased = union.toUpperCase();
-      await I.waitInUrl(`/${upperCased}/NFD/solicitor-create-application/submit`);
+      unionUpperCase = union.toUpperCase();
+      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
+    }else if ( union === divorceOrDissolution.DISSOLUTION){
+      unionUpperCase = union.toUpperCase();
+      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
     }
     await I.runAccessibilityTest();
     await I.see('Apply: divorce or dissolution');

@@ -286,19 +286,25 @@ module.exports = {
 
     let currentDateTime = new Date();
     let dateInImmediateFuture = new Date();
-    dateInImmediateFuture = new Date(dateInImmediateFuture.setDate(currentDateTime.getDate()));
+    dateInImmediateFuture.setTime(dateInImmediateFuture.getTime() + 500 * 60);
 
-    await I.fillField(this.fields.hearingDateDay, dateInImmediateFuture.getDate());
-    await I.fillField(this.fields.hearingDateMonth, parseInt(dateInImmediateFuture.getMonth()+ parseInt(1)));
-    await I.fillField(this.fields.hearingDateYear, dateInImmediateFuture.getFullYear());
-    await I.fillField(this.fields.hearingDateHour, dateInImmediateFuture.getHours());
-    await I.fillField(this.fields.hearingDateMinute, dateInImmediateFuture.getMinutes());
-    const plus15secs = dateInImmediateFuture.getSeconds() + parseInt(15);
-    await I.fillField(this.fields.hearingDateSecond,plus15secs );
+    const hearingDate = dateInImmediateFuture.getDate();
+    const hearingMonth =  parseInt(dateInImmediateFuture.getMonth()+ 1);
+    const hearingYear = dateInImmediateFuture.getFullYear();
+    const hearingTimeHours = dateInImmediateFuture.getHours();
+    const hearingTimeMinutes = dateInImmediateFuture.getMinutes();
+    const hearingTimeSeconds = dateInImmediateFuture.getSeconds();
 
-    console.log('Hearing Date must be in Future .... making it 15 seconds ahead');
-    console.log('DD MM YYYY is '  + dateInImmediateFuture.getDate() + ' ' + dateInImmediateFuture.getMonth()+ parseInt(1) + '  ' + dateInImmediateFuture.getFullYear());
-    console.log('HH MM +15 Seconds is  == '  + dateInImmediateFuture.getHours() + '  ' + dateInImmediateFuture.getMinutes() + '  ' + plus15secs);
+
+    await I.fillField(this.fields.hearingDateDay, hearingDate);
+    await I.fillField(this.fields.hearingDateMonth,  hearingMonth );
+    await I.fillField(this.fields.hearingDateYear,  hearingYear );
+    await I.fillField(this.fields.hearingDateHour, hearingTimeHours);
+    await I.fillField(this.fields.hearingDateMinute, hearingTimeMinutes);
+    await I.fillField(this.fields.hearingDateSecond,hearingTimeSeconds);
+
+    console.log('Hearing Date must be in Future.......');
+    console.log('DD MM YYYY hh:mm:ss === '  + hearingDate  + ' ' + hearingMonth + '  ' + hearingYear + '  ' + hearingTimeHours + '  ' + hearingTimeMinutes + '  ' + hearingTimeSeconds);
 
     await I.fillField(this.fields.LADecisionDateDateDay, dateInImmediateFuture.getDate());
     await I.fillField(this.fields.LADecisionDateDateMonth, dateInImmediateFuture.getMonth()+1);
@@ -308,8 +314,7 @@ module.exports = {
 
   async fillScheduleCasesCYA(caseNumber){
     await I.wait(2);
-    await I.waitInUrl('trigger/caseworker-schedule-case/submit');
-
+    await I.waitInUrl('/caseworker-schedule-case/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
