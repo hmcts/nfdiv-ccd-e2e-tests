@@ -15,7 +15,8 @@ module.exports = {
       await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
     }else if ( union === divorceOrDissolution.DISSOLUTION){
       unionUpperCase = union.toUpperCase();
-      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
+      // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
+      await I.waitInUrl(`/DIVORCE/NFD/solicitor-create-application/submit`);
     }
     await I.runAccessibilityTest();
     await I.see('Apply: divorce or dissolution');
