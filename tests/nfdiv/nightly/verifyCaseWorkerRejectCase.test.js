@@ -32,7 +32,7 @@ Scenario('NFD - Caseworker rejects case from Submitted state', async function (I
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('Submitted');
-  await I.see('Case submission');
+  await I.see('HWF application accepted');
   await I.checkNextStepForEvent('Reject');
   await I.submitRejectCW(caseNumber);
   await I.submitRejectCWSubmit(caseNumber);
