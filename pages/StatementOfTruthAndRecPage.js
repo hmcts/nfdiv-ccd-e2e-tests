@@ -22,7 +22,7 @@ module.exports = {
 
   async fillFormAndSubmit(urgent) {
 
-    await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
+    await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
     await I.runAccessibilityTest();
 
     if (urgent === yesorno.No) {

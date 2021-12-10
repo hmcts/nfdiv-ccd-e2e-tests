@@ -31,7 +31,7 @@ Scenario('NFD - Adding a confidential doc as CW in Submitted state', async funct
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('Submitted');
-  await I.see('Case submission');
+  await I.see('HWF application accepted');
   await I.checkNextStepForEvent('Upload confidential document');
   await I.submitUploadConfidentialDocCW(caseNumber);
   await I.submitUploadConfidentialDocCWSubmit(caseNumber);

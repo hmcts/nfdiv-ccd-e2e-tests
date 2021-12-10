@@ -19,7 +19,7 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   await I.wait(5);
   await I.amOnPage('case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('Case submission');
+  await I.checkNextStepForEvent('Sign and submit');
   await I.wait(5);
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
