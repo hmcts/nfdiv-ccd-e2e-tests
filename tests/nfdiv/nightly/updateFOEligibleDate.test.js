@@ -16,7 +16,8 @@ xScenario('NFD - Verify Bulk Case ', async function (I) {
   // caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   // console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  await updateNFDCaseInCcd(user.CA,'1638983039263228', "system-progress-case-awaiting-final-order",'data/ccd-nfd-eligibledate.json');
+  // hack for arbitary caseId.
+  await updateNFDCaseInCcd(user.CA,'1638983039263228', 'system-progress-case-awaiting-final-order','data/ccd-nfd-eligibledate.json');
 
 
 }).retry(testConfig.TestRetryScenarios);
