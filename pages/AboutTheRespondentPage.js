@@ -7,7 +7,7 @@ module.exports = {
     lastName: '#applicant2LastName',
     middleName: '#applicant2MiddleName',
     respondentChangedName: '#applicant2NameDifferentToMarriageCertificate_No',
-    respondentGender: '#applicant2Gender',
+    respondentGender: '#applicant2Gender-female',
     applicant2DocumentInWelsh: '#applicant2WelshLanguagePreference-Yes',
     applicant2DocumentInWelshNo:'#applicant2LanguagePreferenceWelsh_No',
 
@@ -21,7 +21,7 @@ module.exports = {
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
     await I.click(this.fields.respondentChangedName);
-    await I.selectOption(this.fields.respondentGender, 'Female');
+    await I.click(this.fields.respondentGender);
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);
   }

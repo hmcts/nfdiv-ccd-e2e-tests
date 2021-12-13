@@ -9,7 +9,7 @@ module.exports = {
   },
 
   async hasMarriageBrokenDown() {
-    await I.waitForText('Has the marriage irretrievably broken down (it cannot be saved)?');
+    await I.waitForText('Has the applicant\'s marriage broken down irretrievably?');
     await I.runAccessibilityTest();
     await I.click(this.fields.marriageBrokenDownYes);
 
