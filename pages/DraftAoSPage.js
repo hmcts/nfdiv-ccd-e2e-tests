@@ -104,7 +104,7 @@ module.exports = {
     await I.see('Has the respondent read the application ?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
-    await I.see('Legal proceeding details');
+    await I.see('Provide details of the other legal proceedings');
     await I.runAccessibilityTest();
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);

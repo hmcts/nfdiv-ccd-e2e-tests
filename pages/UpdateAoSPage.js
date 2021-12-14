@@ -93,7 +93,7 @@ module.exports = {
     await I.see('How do you want to respond ?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
-    await I.see('Legal proceeding details');
+    await I.see('Provide details of the other legal proceedings');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }
