@@ -5,7 +5,7 @@ let caseNumber;
 
 Feature('Create Sole Application ');
 
-xScenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -18,13 +18,13 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
+  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
 
   // About Applicant1
   await I.fillAboutThePetitionerFormAndSubmit();
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -36,7 +36,7 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedings();
+  await I.otherLegalProceedingsDiv();
 
   // Financial Orders
   await I.financialOrdersSelectButton();
@@ -135,13 +135,13 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
+  await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant1
   await I.fillAboutThePetitionerFormAndSubmit();
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -153,7 +153,7 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedings();
+  await I.otherLegalProceedingsCivil();
 
   // Financial Orders
   await I.financialOrdersSelectButton();

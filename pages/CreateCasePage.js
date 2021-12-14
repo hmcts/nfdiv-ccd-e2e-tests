@@ -7,7 +7,8 @@ module.exports = {
   fields: {
     jurisdiction: 'select[id="cc-jurisdiction"]',
     caseType: 'select[id="cc-case-type"]',
-    applicationType: 'select[id="applicationType"]',
+    applicationTypeSole: '#applicationType-soleApplication',
+    applicationTypeJoint: '#applicationType-jointApplication',
     divorce:'#divorceOrDissolution-divorce',
     dissolution:'#divorceOrDissolution-dissolution',
     event: 'select[id="cc-event"]',
@@ -41,13 +42,7 @@ module.exports = {
     } else {
       await I.wait(5);
     }
-    await I.waitForText('How do you want to apply for the divorce?');
-
-    if(soleOrJoint === yesorno.Yes ){
-      await I.retry(5).selectOption(this.fields.applicationType, 'Sole Application');
-    }else{
-      await I.retry(5).selectOption(this.fields.applicationType, 'Joint Application');
-    }
+    await I.waitForText('Is this a divorce or dissolution application?');
 
     if(divorceOrCivil === divorceOrDissolution.DIVORCE) {
       await I.retry(5).click(this.fields.divorce);
@@ -56,6 +51,14 @@ module.exports = {
       console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
       await I.retry(5).click(this.fields.dissolution);
     }
+
+    if(soleOrJoint === yesorno.Yes ){
+      await I.waitForText('Application type');
+      await I.retry(5).click(this.fields.applicationTypeSole);
+    }else{
+      await I.retry(5).click(this.fields.applicationTypeJoint);
+    }
+
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   }
