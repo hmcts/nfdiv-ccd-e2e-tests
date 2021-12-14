@@ -13,12 +13,12 @@ module.exports = {
     var unionUpperCase;
     if(union === divorceOrDissolution.DIVORCE){
       unionUpperCase = union.toUpperCase();
-      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2`);
+      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/solicitor-create-applicationMarriageIrretrievablyBroken`);
       await I.waitForText('Has the applicant\'s marriage broken down irretrievably?');
     }else if ( union === divorceOrDissolution.DISSOLUTION){
       unionUpperCase = union.toUpperCase();
       // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
-      await I.waitInUrl('/DIVORCE/NFD/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2');
+      await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/solicitor-create-applicationMarriageIrretrievablyBroken');
       await I.waitForText('Has the applicant\'s civil partnership broken down irretrievably?');
     }
     // await I.waitForText('Has the applicant\'s marriage broken down irretrievably?');
