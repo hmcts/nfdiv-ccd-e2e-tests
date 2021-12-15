@@ -934,7 +934,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   return saveCaseResponse;
 }
 
-
 async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) {
 
   const authToken = await getSystemUserToken();
