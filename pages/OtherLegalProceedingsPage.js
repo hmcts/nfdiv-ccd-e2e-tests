@@ -7,10 +7,19 @@ module.exports = {
     submit: 'button[type="submit"]'
   },
 
-  async fillFormAndSubmit() {
+  async fillFormAndSubmitDiv() {
     await I.waitInUrl('solicitor-create-application/solicitor-create-applicationOtherLegalProceedings');
     await I.runAccessibilityTest();
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
+    await I.click(this.fields.existingCourtProceedings);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(1);
+  },
+
+  async fillFormAndSubmitCivil() {
+    await I.waitInUrl('solicitor-create-application/solicitor-create-applicationOtherLegalProceedings');
+    await I.runAccessibilityTest();
+    await I.see('Are there any existing or previous court proceedings relating to the civil partnership?');
     await I.click(this.fields.existingCourtProceedings);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
