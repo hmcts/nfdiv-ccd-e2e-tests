@@ -18,13 +18,13 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
+  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
 
   // About Applicant1
   await I.fillAboutThePetitionerFormAndSubmit();
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -36,7 +36,7 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedings();
+  await I.otherLegalProceedingsDiv();
 
   // Financial Orders
   await I.financialOrdersSelectButton();
@@ -50,9 +50,12 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   // Case Submission Steps
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
-  caseNumber = caseNumber.replace(/\D/gi, '');
+  caseNumber = caseNumber.toString();
+  //THIS NEED FIXING
+  caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
+  //screen needs to fixed to run successfully
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
@@ -134,13 +137,13 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
+  await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant1
   await I.fillAboutThePetitionerFormAndSubmit();
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -152,7 +155,7 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedings();
+  await I.otherLegalProceedingsCivil();
 
   // Financial Orders
   await I.financialOrdersSelectButton();
@@ -166,7 +169,9 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   // Case Submission Steps
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
-  caseNumber = caseNumber.replace(/\D/gi, '');
+  caseNumber = caseNumber.toString();
+  //THIS NEED FIXING
+  caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);

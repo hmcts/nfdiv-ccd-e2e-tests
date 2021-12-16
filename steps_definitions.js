@@ -180,8 +180,8 @@ module.exports = function () {
       return AboutThePetitionerPage.fillFormAndSubmit();
     },
 
-    fillAboutTheRespondentFormAndSubmit() {
-      return AboutTheRespondentPage.fillFormAndSubmit();
+    fillAboutTheRespondentFormAndSubmit: function(union) {
+      return AboutTheRespondentPage.fillFormAndSubmit(union);
     },
 
     fillAboutRespSolicitorFormAndSubmit() {
@@ -200,8 +200,8 @@ module.exports = function () {
       return JurisdictionPage.selectLegalActionsAndSubmit();
     },
 
-    marriageBrokenDown: function () {
-      return MarriageBrokenDownPage.hasMarriageBrokenDown();
+    marriageBrokenDown: function (union) {
+      return MarriageBrokenDownPage.hasMarriageBrokenDown(union);
     },
 
 
@@ -233,8 +233,11 @@ module.exports = function () {
       return LivedApartPage.fillFormAndSubmit(reason);
     },
 
-    otherLegalProceedings: function() {
-      return OtherLegalProceedingsPage.fillFormAndSubmit();
+    otherLegalProceedingsDiv: function() {
+      return OtherLegalProceedingsPage.fillFormAndSubmitDiv();
+    },
+    otherLegalProceedingsCivil: function() {
+      return OtherLegalProceedingsPage.fillFormAndSubmitCivil();
     },
 
     financialOrdersSelectButton: function() {

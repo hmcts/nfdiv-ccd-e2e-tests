@@ -38,6 +38,7 @@ module.exports = {
     await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
+    // await I.fillField(this.fields.caseNumber, caseNumber);
     await I.wait(3);
     await I.click('Apply');
   },
