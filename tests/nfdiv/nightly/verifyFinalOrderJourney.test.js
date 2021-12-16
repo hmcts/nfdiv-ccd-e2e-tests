@@ -64,14 +64,14 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
-  //these will need to made into a script
+  // TODO - Bulk case events need to be scripts
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  // const scheduleBulkList = await bulkCaseListSchedule(user.CA, caseNumber, events.CREATE_BULK_LIST, 'data/bulk-case-list-schedule-data.json');
+  // const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
   // verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
-  // const pronounceBulkList = await bulkCaseListPronounced(user.CA, caseNumber, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
+  // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
   // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
@@ -95,7 +95,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.submitPronounceList(bulkCaseReferenceId);
 
   await I.submitPronounceListCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
   //system-pronounce-case cron
 
