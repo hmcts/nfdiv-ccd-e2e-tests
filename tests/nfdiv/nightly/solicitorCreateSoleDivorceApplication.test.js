@@ -5,7 +5,7 @@ let caseNumber;
 
 Feature('Create Sole Application ');
 
-xScenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -51,7 +51,6 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
   caseNumber = caseNumber.toString();
-  //THIS NEED FIXING
   caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
@@ -170,7 +169,6 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
   caseNumber = caseNumber.toString();
-  //THIS NEED FIXING
   caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
@@ -230,6 +228,7 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issued');
+  // TODO - need to chnage below methods for civil partnership
   await I.fillIssueApplicationMarriageDetails();
   await I.checkYourAnswersIssueApplication();
   await I.checkStateAndEvent('Awaiting service','Application issued');
