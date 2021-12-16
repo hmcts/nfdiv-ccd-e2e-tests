@@ -1,4 +1,4 @@
-const {divorceOrDissolution} = require("../common/constants");
+const {divorceOrDissolution} = require('../common/constants');
 const I = actor();
 
 module.exports = {
