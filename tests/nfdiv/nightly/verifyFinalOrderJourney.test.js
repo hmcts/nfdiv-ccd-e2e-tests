@@ -12,9 +12,9 @@ const verifyState = (eventResponse, state) => {
 let caseNumber;
 let bulkCaseReferenceId;
 
-Feature('NFD - Create a single Case and move it to bulk case pronounced state');
+Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
-Scenario('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -53,24 +53,24 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
   // Submit CO
-  const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
-  verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
+  const awaitingLegalAdvisorReferral = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
+  verifyState(awaitingLegalAdvisorReferral, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   // Moves case to Listed;AwaitingPronouncement state
   const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
-  bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
+  const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
-  // TODO - Bulk case events need to be scripts
+  //these will need to made into a script
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  const scheduleBulkList = await updateCaseInCcd(bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
-  verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
+  // const scheduleBulkList = await bulkCaseListSchedule(user.CA, caseNumber, events.CREATE_BULK_LIST, 'data/bulk-case-list-schedule-data.json');
+  // verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
-  // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
+  // const pronounceBulkList = await bulkCaseListPronounced(user.CA, caseNumber, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
   // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
