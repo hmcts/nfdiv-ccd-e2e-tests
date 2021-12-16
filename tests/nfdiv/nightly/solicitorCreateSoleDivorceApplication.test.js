@@ -50,9 +50,10 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
   // Case Submission Steps
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
+  caseNumber = caseNumber.toString();
   //THIS NEED FIXING
-  // caseNumber = caseNumber.replace(/\D/gi, '');
-  // console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
+  caseNumber = caseNumber.replace(/\D/g, '');
+  console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   //screen needs to fixed to run successfully
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
@@ -121,7 +122,7 @@ xScenario('Divorce Application with Documents, HWF accepted and Submit the Case 
 
 }).retry(testconfig.TestRetryScenarios);
 
-xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -168,8 +169,9 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   // Case Submission Steps
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
-  //NEEDS TO BE FIXED
-  // caseNumber = caseNumber.replace(/\D/gi, '');
+  caseNumber = caseNumber.toString();
+  //THIS NEED FIXING
+  caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
