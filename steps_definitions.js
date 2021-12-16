@@ -69,6 +69,7 @@ const UpdateAosPage = require('./pages/UpdateAoSPage.js');
 const submitAosPage = require('./pages/SubmitAoSPage.js');
 const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
 const BulkCasePage = require('./pages/BulkCasePage.js');
+const FinalOrderPage = require('./pages/FinalOrderPage.js');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -793,6 +794,22 @@ module.exports = function () {
 
     dropBulkCaseEvent: function(caseNumber) {
       return ConfirmServiceForSolicitorPage.dropBulkCaseEvent(caseNumber);
+    },
+
+    submitApplyForFinalOrder: function(caseNumber) {
+      return FinalOrderPage.fillApplyForFinalOrder(caseNumber);
+    },
+
+    submitApplyForFinalOrderCYA: function(caseNumber) {
+      return FinalOrderPage.fillApplyForFinalOrderCYA(caseNumber);
+    },
+
+    submitGrantFinalOrder: function(caseNumber) {
+      return FinalOrderPage.fillGrantFinalOrder(caseNumber);
+    },
+
+    submitGrantFinalOrderCYA: function(caseNumber) {
+      return FinalOrderPage.fillGrantFinalOrderCYA(caseNumber);
     }
 
   });

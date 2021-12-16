@@ -13,9 +13,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Create a single Case and move it to bulk case pronounced state');
+Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
-Scenario('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -104,5 +104,36 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
 
   //final order pages
+  await I.wait(5);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.wait(5);
+  await I.filterByBulkCaseReference(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_FINAL_ORDER, events.ALERT_APPLICANT);
+
+  await I.wait(5);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.wait(5);
+  await I.wait(3);
+  await I.checkNextStepForEvent('Apply for final order');
+  await I.submitApplyForFinalOrder(caseNumber);
+  await I.submitApplyForFinalOrderCYA(caseNumber);
+  await I.checkState(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
+
+  await I.wait(3);
+  await I.checkNextStepForEvent('Apply for final order');
+  await I.submitApplyForFinalOrder(caseNumber);
+  await I.submitApplyForFinalOrderCYA(caseNumber);
+  await I.checkState(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
+
+  await I.wait(3);
+  await I.checkNextStepForEvent('Grant Final order');
+  await I.submitGrantFinalOrder(caseNumber);
+  await I.submitGrantFinalOrderCYA(caseNumber);
+  await I.checkState(stateDisplayName.FINAL_ORDER_COMPLETED, events.GRANT_FINAL_ORDER);
+
 
 }).retry(testConfig.TestRetryScenarios);

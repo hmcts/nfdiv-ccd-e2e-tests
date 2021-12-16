@@ -85,7 +85,10 @@ const stateDisplayName = {
   BULK_CASE_LISTED_CREATED: 'Bulk case list created',
   BULK_CASE_LISTED: 'Bulk case listed',
   BULK_CASE_PRONOUNCED: 'Bulk case pronounced',
-  BULK_CASE_DROPPED: 'Bulk case dropped'
+  BULK_CASE_DROPPED: 'Bulk case dropped',
+  AWAITING_FINAL_ORDER: 'Awaiting Final Order',
+  FINAL_ORDER_REQUESTED: 'Final order requested',
+  FINAL_ORDER_COMPLETED: 'Final order complete'
 };
 
 const eventDisplayName = {
@@ -188,7 +191,11 @@ const events = {
   SYSTEM_UPDATE_CASE: 'System update case',
   CREATE_BULK_LIST: 'Create bulk list',
   PRONOUNCE_LIST: 'Pronounce list',
-  AWAITING_FO:'AwaitingFinalOrder'
+  AWAITING_FO:'AwaitingFinalOrder',
+  PRONOUNCE_LIST: 'Pronounce list',
+  ALERT_APPLICANT: 'Alert Applicant 1',
+  APPLY_FOR_FINAL_ORDER :'Apply for final order',
+  GRANT_FINAL_ORDER: 'Grant Final order'
 };
 
 const serviceApplicationType = {
