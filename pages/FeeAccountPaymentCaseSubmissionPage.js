@@ -6,6 +6,7 @@ module.exports = {
 
   fields: {
     howPaymentMade:'#solPaymentHowToPay-feesHelpWith',
+    howPaymentMadePBA:'#solPaymentHowToPay-feePayByAccount',
     submit: 'button[type="submit"]',
     pbaAccountNumber:'#pbaNumbers',
     feeAccountReference:'#feeAccountReference'
@@ -24,7 +25,7 @@ module.exports = {
   async fillFormPba(){
     await I.runAccessibilityTest();
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
-    await I.selectOption(this.fields.howPaymentMade, paymentType.FEE_ACCOUNT);
+    await I.click(this.fields.howPaymentMadePBA);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
