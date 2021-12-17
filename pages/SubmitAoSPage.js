@@ -54,7 +54,7 @@ module.exports = {
     await I.wait(4);
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.runAccessibilityTest();
     await I.click(this.fields.jurisdictionAgreeNo);
     await I.see('Reason respondent disagreed to claimed jurisdiction');
@@ -67,7 +67,7 @@ module.exports = {
     await I.waitInUrl('trigger/solicitor-draft-aos/solicitor-draft-aosApplicant2SolAosOtherProceedings');
     await I.wait(4);
     await I.see('Are there any other legal proceedings outside of England and Wales?');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.runAccessibilityTest();
     await I.click(this.fields.legalProceedingsExistsYes);
     await I.wait(2);
@@ -77,7 +77,7 @@ module.exports = {
 
   async draftAosCYA(caseId) {
     await I.waitInUrl('trigger/solicitor-draft-aos/submit');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online petition');

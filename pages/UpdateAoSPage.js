@@ -47,7 +47,7 @@ module.exports = {
     await I.wait(4);
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.runAccessibilityTest();
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.see('Yes');
@@ -90,7 +90,7 @@ module.exports = {
     await I.see('Check the information below carefully.');
     await I.see('Link to online application');
     await I.see('Has the respondent read the application ?');
-    await I.see('How do you want to respond ?');
+    await I.see('How do you want to respond?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
     await I.see('Provide details of the other legal proceedings');
