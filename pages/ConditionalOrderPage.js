@@ -3,29 +3,30 @@ const I = actor();
 module.exports = {
 
   fields: {
-    applyConditionalOrderYes:'#coApplyForConditionalOrder_Yes',
-    changeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
-    everythingInPetitionTrue:'#coIsEverythingInApplicationTrue_Yes',
+    applyConditionalOrderYes:'#coApplicant1ApplyForConditionalOrder_Yes',
+    changeOrAddAnythingToApplication:'#coApplicant1ChangeOrAddToApplication_No',
+    everythingInPetitionTrue:'#coApplicant1IsEverythingInApplicationTrue_Yes',
     addNewDocumentsNo:'#coAddNewDocuments_No',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     legalProceedingsExistsYes:'#legalProceedingsExist_Yes',
     legalProceedingsDescription:'#legalProceedingsDescription',
     sotSolicitorName:'#coSolicitorName',
     sotSolicitorFirm:'#coSolicitorFirm',
-    reviewAoSYes:'#coApplyForConditionalOrder_Yes',
-    coAppSoTYes:'#coApplicantStatementOfTruth_Yes',
-    updateChangeOrAddAnythingToApplication:'#coChangeOrAddToApplication_Yes',
-    updateEverythingInPetitionTrue:'#coIsEverythingInApplicationTrue_Yes',
+    reviewAoSYes:'#coApplicant1ApplyForConditionalOrder_Yes',
+    coAppSoTYes:'#coApplicant1StatementOfTruth_Yes',
+    updateChangeOrAddAnythingToApplication:'#coApplicant1ChangeOrAddToApplication_No',
+    updateEverythingInPetitionTrue:'#coApplicant1IsEverythingInApplicationTrue_Yes',
     updateAddNewDocumentsNo:'#coAddNewDocuments_No',
     sotSolicitorAdditionalComments:'#coSolicitorAdditionalComments',
     submit: 'button[type="submit"]'
   },
 
   async fillReviewAoS(){
-    await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderReviewAoS');
+    await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewAoS');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    // await I.runAccessibilityTest();
     await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
+    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
     await I.click(this.fields.applyConditionalOrderYes);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -33,10 +34,10 @@ module.exports = {
 
   async reviewApplicant1Application() {
     await I.wait(2);
-    await I.waitInUrl('draft-conditional-order/draft-conditional-orderConditionalOrderReviewApplicant1');
+    await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewApplicant1');
     await I.wait(2);
     await I.runAccessibilityTest();
-    await I.see('Review the applicant\'s application - Draft Conditional Order Application');
+    await I.see('Review the applicant\'s application - Draft Conditional Order Application\n');
     await I.click(this.fields.changeOrAddAnythingToApplication);
     await I.click(this.fields.everythingInPetitionTrue);
     await I.wait(2);
