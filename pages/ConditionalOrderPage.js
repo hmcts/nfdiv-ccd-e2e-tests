@@ -83,7 +83,7 @@ module.exports = {
   async submitConditionalOrder(){
     await I.wait(2);
     await I.waitInUrl('/submit-conditional-order/submit');
-    await I.see('Conditional order drafted');
+    // await I.see('Conditional order drafted');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   },
@@ -116,7 +116,7 @@ module.exports = {
   async updateSubmit(){
     await I.wait(2);
     await I.waitInUrl('/trigger/update-conditional-order/submit');
-    await I.see('Conditional order drafted');
+    // await I.see('Conditional order drafted');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
