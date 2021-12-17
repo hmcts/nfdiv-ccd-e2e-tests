@@ -74,7 +74,8 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.submitAosCYA(caseNumber);
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.see('20 week holding period');
+  // await I.wait(20);
+  // await I.see('20 week holding period');
 
   await I.signOut();
   await I.wait(3);

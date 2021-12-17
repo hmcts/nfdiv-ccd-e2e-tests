@@ -51,7 +51,7 @@ module.exports = {
     await I.see('How does the applicant want to respond to the application?');
     // await I.see(caseId);
     await I.see('The applicant can only dispute the application if: (one or more of the following)');
-    await I.see('How do you want to respond ?');
+    await I.see('How do you want to respond?');
     await I.runAccessibilityTest();
     await I.click(this.fields.continueWithoutDisputingTheDivorce);
     await I.see('Continue without disputing the divorce');
@@ -85,7 +85,7 @@ module.exports = {
 
   async anyOtherLegalProceedings(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolAosOtherProceedings');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.see('Are there any existing or previous court proceedings relating to the marriage?');
     await I.runAccessibilityTest();
     await I.click(this.fields.legalProceedingsExistsYes);
@@ -96,7 +96,7 @@ module.exports = {
 
   async draftAosCYA(caseId) {
     await I.waitInUrl('trigger/draft-aos/submit');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
     await I.see('Link to online application');
