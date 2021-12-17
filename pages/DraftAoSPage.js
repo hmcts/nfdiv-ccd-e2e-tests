@@ -49,7 +49,7 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
     await I.wait(4);
     await I.see('How does the applicant want to respond to the application?');
-    await I.see(caseId);
+    // await I.see(caseId);
     await I.see('The applicant can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond ?');
     await I.runAccessibilityTest();
