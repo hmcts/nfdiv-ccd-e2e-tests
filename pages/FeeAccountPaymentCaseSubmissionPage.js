@@ -5,7 +5,7 @@ const { paymentType } = require('../common/constants');
 module.exports = {
 
   fields: {
-    howPaymentMade:'#solPaymentHowToPay',
+    howPaymentMade:'#solPaymentHowToPay-feesHelpWith',
     submit: 'button[type="submit"]',
     pbaAccountNumber:'#pbaNumbers',
     feeAccountReference:'#feeAccountReference'
@@ -15,7 +15,7 @@ module.exports = {
     await I.runAccessibilityTest();
     await I.wait(3);
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPayment');
-    await I.selectOption(this.fields.howPaymentMade, paymentType.HWF);
+    await I.click(this.fields.howPaymentMade);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
