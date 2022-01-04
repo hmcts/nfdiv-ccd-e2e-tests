@@ -14,7 +14,8 @@ module.exports = {
     yourName: '#solStatementOfReconciliationName',
     nameOfYourFirm: '#solStatementOfReconciliationFirm',
     howToServeRespondent:'#solServiceMethod-courtService',
-    servceSolicitorService:'#solServiceMethod-solicitorService',
+    serviceSolicitorService:'#solServiceMethod-solicitorService',
+    serviceCourtService:'#solServiceMethod-courtService',
     prayerHasBeenGiven:'#applicant1PrayerHasBeenGivenCheckbox-Yes',
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
@@ -31,7 +32,7 @@ module.exports = {
       await I.click(this.fields.caseUrgentYes);
       await I.fillField(this.fields.caseUrgentSupportingInfoTextBox, 'here is the supporting information and instructions for the urgency');
     }
-    await I.retry().click(this.fields.servceSolicitorService);
+    await I.retry().click(this.fields.serviceCourtService);
     //await I.see('After service is complete you must notify the court by completing the \'Confirm Service\' form in CCD.Refer to the notification that will be sent upon the issuing of the the case');
     await I.click(this.fields.reconciliationWithApplicant1);
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);
