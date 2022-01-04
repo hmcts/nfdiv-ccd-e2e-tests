@@ -14,9 +14,9 @@ module.exports = {
     applicant:'#generalOrderDivorceParties-applicant',
     respondent:'#generalOrderDivorceParties-respondent',
     recital:'#generalOrderRecitals',
-    judge:'#generalOrderJudgeType',
-    nameOfJudge:'#generalOrderJudgeName',
-    legalAdvisorName:'#generalOrderLegalAdvisorName',
+    judge:'#generalOrderJudgeOrLegalAdvisorType',
+    nameOfJudge:'#generalOrderJudgeOrLegalAdvisorName',
+    legalAdvisorName:'#generalOrderJudgeOrLegalAdvisorName',
     coSolicitorFirm:'#coSolicitorFirm',
     generalOrderDetails:'#generalOrderDetails',
     eventSummary:'#field-trigger-summary',
@@ -27,9 +27,9 @@ module.exports = {
     labelCourtOrderDate:'Court order date',
     labelRecitals:'Recitals',
     labelGeneralOrderForWho:'Who is the general order for?',
-    labelSelectJudge:'Select Judge',
-    labelJudgeName:'Name of Judge',
-    labelLegalAdvisorName:'Name of Legal Advisor',
+    labelSelectJudge:'Select Judge or Legal Advisor',
+    labelJudgeName:'Name Of Judge or Legal Advisor',
+    // labelLegalAdvisorName:'Name of Legal Advisor',
     labelGenOrderDetails:'General order details',
     labelGeneralOrderDraft:'General Order Draft',
     submit: 'button[type="submit"]'
@@ -69,10 +69,11 @@ module.exports = {
     await I.see(this.fields.labelRecitals);
     await I.see(this.fields.labelSelectJudge);
     await I.see(this.fields.labelJudgeName);
-    await I.see(this.fields.labelLegalAdvisorName);
+    // await I.see(this.fields.labelLegalAdvisorName);
     await I.see(this.fields.labelGenOrderDetails);
     await I.see(this.fields.labelGeneralOrderDraft);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
+
   }
 };
