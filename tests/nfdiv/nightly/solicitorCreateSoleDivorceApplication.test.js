@@ -113,15 +113,15 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issued');
-  await I.fillIssueApplicationMarriageDetails();
-  await I.checkYourAnswersIssueApplication();
+  await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);
+  await I.checkYourAnswersIssueApplication(divorceOrDissolution.DIVORCE);
   await I.checkStateAndEvent('Awaiting service','Application issued');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
 }).retry(testconfig.TestRetryScenarios);
 
-xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -228,9 +228,8 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issued');
-  // TODO - need to chnage below methods for civil partnership
-  await I.fillIssueApplicationMarriageDetails();
-  await I.checkYourAnswersIssueApplication();
+  await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);
+  await I.checkYourAnswersIssueApplication(divorceOrDissolution.DISSOLUTION);
   await I.checkStateAndEvent('Awaiting service','Application issued');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
