@@ -158,12 +158,12 @@ module.exports = function () {
       return DivorceApplicationDetailsPage.fillEventSummaryAndDescription();
     },
 
-    fillIssueApplicationMarriageDetails(){
-      return MarriageCertificateDetailsPage.fillMarriageDetails();
+    fillIssueApplicationMarriageDetails: function(union){
+      return MarriageCertificateDetailsPage.fillMarriageDetails(union);
     },
 
-    checkYourAnswersIssueApplication(){
-      return IssueApplicationCyaPage.verifyCyaDetails();
+    checkYourAnswersIssueApplication: function(union){
+      return IssueApplicationCyaPage.verifyCyaDetails(union);
     },
 
     // How do you want to apply for Divorce Sole/Joint
