@@ -67,7 +67,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  // const scheduleBulkList = await updateCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
+  // const scheduleBulkList = await bulkCaseListSchedule(user.CA, caseNumber, events.CREATE_BULK_LIST, 'data/bulk-case-list-schedule-data.json');
   // verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
   // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
