@@ -1241,51 +1241,8 @@ function datechange(numberOfDaysToAdd){
   let newDate = new Date();
   newDate = new Date(newDate.setDate(currentDateTime.getDate()+numberOfDaysToAdd));
   let formattedDate = newDate.getDate() + ' ' + months[newDate.getMonth()] + ' ' + newDate.getFullYear();
-  console.log( 'Date is ' +  formattedDate);
   return formattedDate;
 };
-
-function dateYYYYMMDD(numberOfDaysToAdd){
-  let currentDateTime = new Date();
-  let newDate = new Date();
-  newDate = new Date(newDate.setDate(currentDateTime.getDate()+numberOfDaysToAdd));
-
-  // Padding with leading zero's for MM and DD
-  var month = newDate.getMonth()+1;
-  if(month <= 9){
-    month = '0'+month;
-  }
-
-  var day= newDate.getDate();
-  if(day <= 9){
-    day = '0'+day;
-  }
-  return  newDate.getFullYear() +'-'+month +'-'+day;
-}
-
-function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
-  console.log(' within the finalOrderEligbileToRespondentDate() ..... ');
-  console.log(' dateFinalOrderEligibleFrom  passed in as a paremter to this Function is :: ' + dateFinalOrderEligibleFrom);
-
-  let currentDateTime = new Date();
-  let newDate = new Date();;
-  var foEligibleForRespDate = new Date(newDate.setDate(currentDateTime.getDate()+47)) ; // 47 days from today
-
-  console.log(' FinalOrderEligibleForRespondentDate = Today LESS dateFinalOrderEligibleFrom(ie 43 days )  PLUS  90 days , ie 47 days from today  ==' + foEligibleForRespDate ) ;
-
-  var month = foEligibleForRespDate.getMonth()+1;
-
-  // Padding with leading zero's for MM and DD
-  if(month <= 9){
-    month = '0'+month;
-  }
-
-  var day= foEligibleForRespDate.getDate();
-  if(day <= 9)
-    day = '0'+day;
-
-  return  foEligibleForRespDate.getFullYear() +'-'+month +'-'+day;
-}
 
 function formatDateToCcdDisplayDate(givenDate = new Date()) {
   let formattedDate = givenDate.getDate() + ' ' + months[givenDate.getMonth()] + ' ' + givenDate.getFullYear();
