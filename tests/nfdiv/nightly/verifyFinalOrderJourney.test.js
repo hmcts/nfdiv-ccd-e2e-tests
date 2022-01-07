@@ -1,7 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
-  bulkCaseListCreated,
-  bulkCaseListSchedule,
-  bulkCaseListPronounced
+  updateCaseInCcd
 } = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName} = require('../../../common/constants');
 const assert = require('assert');
@@ -12,6 +10,7 @@ const verifyState = (eventResponse, state) => {
 };
 
 let caseNumber;
+let bulkCaseReferenceId;
 
 Feature('NFD - Create a single Case and move it to bulk case pronounced state');
 
@@ -62,13 +61,13 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
-  const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
+  bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
   // TODO - Bulk case events need to be scripts
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  const scheduleBulkList = await updateNFDCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
+  const scheduleBulkList = await updateCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
   verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
   // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
