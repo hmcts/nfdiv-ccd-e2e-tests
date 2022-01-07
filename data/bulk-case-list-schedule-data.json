@@ -1,10 +1,12 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "sourceMap": true
-  },
-  "exclude": [
-    "node_modules"
-  ]
+  "court-birmingham": "Birmingham Civil and Family Justice Centre",
+  "dateAndTimeOfHearing-day": "07",
+  "dateAndTimeOfHearing-month": "01",
+  "dateAndTimeOfHearing-year": "2022",
+  "dateAndTimeOfHearing-hour": "16",
+  "dateAndTimeOfHearing-minute": "20",
+  "dateAndTimeOfHearing-second": "00",
+  "decisionDate-day": "20",
+  "decisionDate-month": "03",
+  "decisionDate-year": "2021"
 }

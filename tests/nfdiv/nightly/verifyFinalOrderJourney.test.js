@@ -54,8 +54,8 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
   // Submit CO
-  const awaitingLegalAdvisorReferral = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
-  verifyState(awaitingLegalAdvisorReferral, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
+  const submitConditionalOrder = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SUBMIT_CO,'data/ccd-submit-co.json');
+  verifyState(submitConditionalOrder, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
   // Moves case to Listed;AwaitingPronouncement state
   const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
@@ -68,34 +68,34 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  // const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
-  // verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
+  const scheduleBulkList = await updateNFDCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
+  verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
   // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
   // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
-  await I.wait(5);
-  await I.amOnHomePage();
-  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(5);
-  await I.filterByBulkCaseReference(bulkCaseReferenceId);
-  await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-  await I.wait(5);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
-
-  await I.wait(3);
-  await I.checkNextStepForEvent('Schedule cases for listing');
-  await I.submitScheduleCases(bulkCaseReferenceId);
-  await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
-
-  await I.wait(3);
-  await I.checkNextStepForEvent('Pronounce list');
-  await I.submitPronounceList(bulkCaseReferenceId);
-
-  await I.submitPronounceListCYA(bulkCaseReferenceId);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  // await I.wait(5);
+  // await I.amOnHomePage();
+  // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
+  // await I.wait(5);
+  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
+  // await I.wait(5);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  //
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Schedule cases for listing');
+  // await I.submitScheduleCases(bulkCaseReferenceId);
+  // await I.submitScheduleCasesCYA(bulkCaseReferenceId);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+  //
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Pronounce list');
+  // await I.submitPronounceList(bulkCaseReferenceId);
+  //
+  // await I.submitPronounceListCYA(bulkCaseReferenceId);
+  // await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
   //system-pronounce-case cron
 
