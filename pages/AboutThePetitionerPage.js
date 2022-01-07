@@ -6,9 +6,9 @@ module.exports = {
     firstName: '#applicant1FirstName',
     lastName: '#applicant1LastName',
     applicant1_changedName: '#applicant1NameDifferentToMarriageCertificate_No',
-    // whoIsApplicant1Divorcing: '#divorceWho',
+    whoIsApplicant1Divorcing: '#divorceWho',
     addressLine1_Building:'#applicant1HomeAddress__detailAddressLine1',
-    applicant1Gender: '#applicant1Gender-male',
+    // applicant1Gender: '#applicant1Gender-male',
     sameSex: '#marriageFormationType-oppositeSexCouple',
     applicant1_postcode:'#applicant1HomeAddress__detailPostCode',
     applicant1_selected_address:'#applicant1HomeAddress_applicant1HomeAddress_addressList',
@@ -27,8 +27,8 @@ module.exports = {
     await I.fillField(this.fields.firstName, 'E2E James');
     await I.fillField(this.fields.lastName, 'Patterson');
     await I.click(this.fields.applicant1_changedName);
-    // await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
-    await I.click(this.fields.applicant1Gender);
+    await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
+    // await I.click(this.fields.applicant1Gender);
     await I.click(this.fields.sameSex);
     await I.click('I can\'t enter a UK postcode');
     // TODO AddressSearch and select dropdown. ( Find Address button )
