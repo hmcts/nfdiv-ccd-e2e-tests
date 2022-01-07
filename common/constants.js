@@ -122,7 +122,11 @@ const eventDisplayName = {
   REQUEST_CLARIFICATION:'Request clarification',
   SUBMIT_CLARIFICATION:'Submit clarification',
   SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service',
-  SUBMIT_CO:'Submit Conditional Order'
+  SUBMIT_CO:'Submit Conditional Order',
+  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
+  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
+  SYSTEM_UPDATE_CASE: 'System update case',
+  CREATE_BULK_LIST: 'Create bulk list'
 };
 
 const user = {
@@ -142,7 +146,6 @@ const events = {
   HWF_ACCEPT_AWAIT_DECISION:'hwfApplicationAcceptedfromAwaitingHWFDecision',
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
-  AWAITING_FINAL_ORDER:'system-progress-case-awaiting-final-order',
   CASE_SUBMISSION:'Sign and submit',
   DRAFT_CONDITIONAL_ORDER:'Draft conditional order',
   UPDATE_CONDITIONAL_ORDER:'Update conditional order',
