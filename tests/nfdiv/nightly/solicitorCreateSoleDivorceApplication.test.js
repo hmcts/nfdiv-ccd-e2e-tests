@@ -21,7 +21,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit();
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // About Applicant2
   await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
@@ -121,7 +121,8 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
 }).retry(testconfig.TestRetryScenarios);
 
-Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+
+Scenario('Dissolution Scenario ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -139,7 +140,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit();
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant2
   await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
