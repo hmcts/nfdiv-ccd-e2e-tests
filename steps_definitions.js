@@ -175,8 +175,8 @@ module.exports = function () {
       return AboutSolicitorPage.fillFormAndSubmit();
     },
 
-    fillAboutThePetitionerFormAndSubmit() {
-      return AboutThePetitionerPage.fillFormAndSubmit();
+    fillAboutThePetitionerFormAndSubmit(union) {
+      return AboutThePetitionerPage.fillFormAndSubmit(union);
     },
 
     fillAboutTheRespondentFormAndSubmit: function(union) {

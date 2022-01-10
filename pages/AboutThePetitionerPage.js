@@ -1,4 +1,6 @@
 const I = actor();
+const {divorceOrDissolution} = require('../common/constants');
+
 
 module.exports = {
 
@@ -8,8 +10,8 @@ module.exports = {
     applicant1_changedName: '#applicant1NameDifferentToMarriageCertificate_No',
     whoIsApplicant1Divorcing: '#divorceWho',
     addressLine1_Building:'#applicant1HomeAddress__detailAddressLine1',
-    // applicant1Gender: '#applicant1Gender-male',
-    sameSex: '#marriageFormationType-oppositeSexCouple',
+    applicant1Gender: '#applicant1Gender-male',
+    oppositeSex: '#marriageFormationType-oppositeSexCouple',
     applicant1_postcode:'#applicant1HomeAddress__detailPostCode',
     applicant1_selected_address:'#applicant1HomeAddress_applicant1HomeAddress_addressList',
     findAddressButton:'button[type="button" ]',
@@ -18,18 +20,28 @@ module.exports = {
     applicant1_email: '#applicant1Email',
     keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
     keepPetitionerContactDetailsNotConfidential: '#applicant1ContactDetailsType-public',
-
     submit: 'button[type="submit"]'
   },
 
-  async fillFormAndSubmit() {
+  async fillFormAndSubmit(unionType) {
+    console.log (' .. Within  AboutThePetitionerPage.js . Union Type is ==' + unionType);
     await I.waitForElement(this.fields.firstName);
     await I.fillField(this.fields.firstName, 'E2E James');
     await I.fillField(this.fields.lastName, 'Patterson');
     await I.click(this.fields.applicant1_changedName);
-    await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
-    // await I.click(this.fields.applicant1Gender);
-    await I.click(this.fields.sameSex);
+
+
+    if(unionType === divorceOrDissolution.DIVORCE){
+      await I.selectOption(this.fields.whoIsApplicant1Divorcing, 'Wife');
+    }
+    if(unionType === divorceOrDissolution.DISSOLUTION){
+      await I.wait(2);
+      await I.click(this.fields.applicant1Gender);
+    }
+
+    // Same sex or oppositeSex Couple ?
+    await I.click(this.fields.oppositeSex);
+
     await I.click('I can\'t enter a UK postcode');
     // TODO AddressSearch and select dropdown. ( Find Address button )
     await I.wait(3);
