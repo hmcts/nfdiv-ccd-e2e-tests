@@ -146,7 +146,6 @@ const events = {
   HWF_ACCEPT_AWAIT_DECISION:'hwfApplicationAcceptedfromAwaitingHWFDecision',
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
-  AWAITING_FINAL_ORDER:'system-progress-case-awaiting-final-order',
   CASE_SUBMISSION:'Sign and submit',
   DRAFT_CONDITIONAL_ORDER:'Draft conditional order',
   UPDATE_CONDITIONAL_ORDER:'Update conditional order',
