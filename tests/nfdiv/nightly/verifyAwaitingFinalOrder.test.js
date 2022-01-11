@@ -13,7 +13,7 @@ Feature('NFD - Create a single Case and move it to bulk case pronounced state');
 
 // TODO - Script upto ConditionalOrder Pronounced and then the UI to move it to AwaitingFinalOrder.
 
-xScenario('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -90,5 +90,12 @@ xScenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   await I.submitPronounceListCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+
+  // backDate the dateFinalOrderEligibleToRespondent to '2021-12-12' , so that notification can happen
+
+  const  backDateTheFinalOrderEligibleToRespondent= await updateNFDCaseInCcd(user.CA,caseNumber, events.AWAITING_FINAL_ORDER,'data/final-order-date-eligible-to-respondent.json');
+  verifyState(backDateTheFinalOrderEligibleToRespondent , events.AWAITING_FO);
+
+
 
 }).retry(testConfig.TestRetryScenarios);
