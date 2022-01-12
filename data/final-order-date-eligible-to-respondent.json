@@ -1,3 +1,4 @@
 {
-  "dateFinalOrderEligibleToRespondent": "2021-12-12"
+  "dateFinalOrderEligibleToRespondent": "threeMonthsAfterDateFinalOrderEligibleFrom",
+  "dateFinalOrderEligibleFrom": "sixWeeksAndOneDayInThePast"
 }

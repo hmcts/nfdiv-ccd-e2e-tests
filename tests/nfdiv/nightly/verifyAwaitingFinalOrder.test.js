@@ -1,4 +1,5 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
+  updateFinalOrderDateForNFDCaseInCcd} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -91,11 +92,9 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitPronounceListCYA(bulkCaseReferenceId);
   await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
-  // backDate the dateFinalOrderEligibleToRespondent to '2021-12-12' , so that notification can happen
+  // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
-  const  backDateTheFinalOrderEligibleToRespondent= await updateNFDCaseInCcd(user.CA,caseNumber, events.AWAITING_FINAL_ORDER,'data/final-order-date-eligible-to-respondent.json');
-  verifyState(backDateTheFinalOrderEligibleToRespondent , events.AWAITING_FO);
-
-
+  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+  verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
 
 }).retry(testConfig.TestRetryScenarios);
