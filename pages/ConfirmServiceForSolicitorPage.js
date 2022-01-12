@@ -338,7 +338,7 @@ module.exports = {
   },
 
   async fillPronounceListCYA(caseNumber){
-    await I.wait(2);
+    await I.wait(30);
     await I.waitInUrl('trigger/caseworker-pronounce-list/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
