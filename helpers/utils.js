@@ -677,6 +677,74 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   return saveEventResponse;
 }
 
+async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  let authToken='';
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating case whose  id %s with the  event of  %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+
+  // 6 weeks and 1 day in the past For dateFinalOrderEligibleFrom
+  var dateFinalOrderEligibleFrom = dateYYYYMMDD(-43);
+  var foEligibleToRespondentDate = finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom);
+
+  console.log('Computing DateFinalOrderEligibleFrom  ie 6 weeks and 1 day in the PAST == '+ dateFinalOrderEligibleFrom);
+  console.log('Computing 3 months From DateFinalOrderEligibleFrom  == '+ foEligibleToRespondentDate);
+
+  data = data.replace('sixWeeksAndOneDayInThePast',dateFinalOrderEligibleFrom);
+  data = data.replace('threeMonthsAfterDateFinalOrderEligibleFrom',foEligibleToRespondentDate);
+
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating Case For FinalOrder',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+  return saveEventResponse;
+}
+
+
 async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
 
   let authToken;
@@ -926,6 +994,70 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
 }
 
 
+/**
+ *  dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
+ */
+async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  const authToken = await getUserToken();
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating dateFinalOrderEligibleFrom for Case %s AND  the event is %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+  var eventId = 'system-progress-case-awaiting-final-order';
+
+  //Six weeks and 1 day in the Past.
+  var dateInPast = datechange(-43);
+  console.log('6 weeks and 1 day in the PAST  is == '+ dateInPast);
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('sixWeeksOneDayInThePast', dateInPast);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    'event_token': eventToken
+  };
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
+
 
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
@@ -936,8 +1068,51 @@ function datechange(numberOfDaysToAdd){
   let newDate = new Date();
   newDate = new Date(newDate.setDate(currentDateTime.getDate()+numberOfDaysToAdd));
   let formattedDate = newDate.getDate() + ' ' + months[newDate.getMonth()] + ' ' + newDate.getFullYear();
+  console.log( 'Date is ' +  formattedDate);
   return formattedDate;
 };
+
+function dateYYYYMMDD(numberOfDaysToAdd){
+  let currentDateTime = new Date();
+  let newDate = new Date();
+  newDate = new Date(newDate.setDate(currentDateTime.getDate()+numberOfDaysToAdd));
+
+  // Padding with leading zero's for MM and DD
+  var month = newDate.getMonth()+1;
+  if(month <= 9){
+    month = '0'+month;
+  }
+
+  var day= newDate.getDate();
+  if(day <= 9){
+    day = '0'+day;
+  }
+  return  newDate.getFullYear() +'-'+month +'-'+day;
+}
+
+function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
+  console.log(' within the finalOrderEligbileToRespondentDate() ..... ');
+  console.log(' dateFinalOrderEligibleFrom  passed in as a paremter to this Function is :: ' + dateFinalOrderEligibleFrom);
+
+  let currentDateTime = new Date();
+  let newDate = new Date();;
+  var foEligibleForRespDate = new Date(newDate.setDate(currentDateTime.getDate()+47)) ; // 47 days from today
+
+  console.log(' FinalOrderEligibleForRespondentDate = Today LESS dateFinalOrderEligibleFrom(ie 43 days )  PLUS  90 days , ie 47 days from today  ==' + foEligibleForRespDate ) ;
+
+  var month = foEligibleForRespDate.getMonth()+1;
+
+  // Padding with leading zero's for MM and DD
+  if(month <= 9){
+    month = '0'+month;
+  }
+
+  var day= foEligibleForRespDate.getDate();
+  if(day <= 9)
+    day = '0'+day;
+
+  return  foEligibleForRespDate.getFullYear() +'-'+month +'-'+day;
+}
 
 function formatDateToCcdDisplayDate(givenDate = new Date()) {
   let formattedDate = givenDate.getDate() + ' ' + months[givenDate.getMonth()] + ' ' + givenDate.getFullYear();
@@ -956,5 +1131,8 @@ module.exports = {
   updateRoleForCase,
   shareCaseToRespondentSolicitor,
   moveFromHoldingToAwaitingCO,
-  moveCaseToBulk
+  moveCaseToBulk,
+  dateYYYYMMDD,
+  updateFinalOrderDateForNFDCaseInCcd,
+  updateFinalOrderEligibleFromDate
 };
