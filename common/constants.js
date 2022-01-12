@@ -122,11 +122,7 @@ const eventDisplayName = {
   REQUEST_CLARIFICATION:'Request clarification',
   SUBMIT_CLARIFICATION:'Submit clarification',
   SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service',
-  SUBMIT_CO:'Submit Conditional Order',
-  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
-  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
-  SYSTEM_UPDATE_CASE: 'System update case',
-  CREATE_BULK_LIST: 'Create bulk list'
+  SUBMIT_CO:'Submit Conditional Order'
 };
 
 const user = {
