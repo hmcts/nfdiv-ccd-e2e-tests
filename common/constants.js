@@ -189,7 +189,10 @@ const events = {
   PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
   SYSTEM_UPDATE_CASE: 'System update case',
   CREATE_BULK_LIST: 'Create bulk list',
-  PRONOUNCE_LIST: 'Pronounce list'
+  PRONOUNCE_LIST: 'Pronounce list',
+  AWAITING_FO: 'Awaiting Final Order',
+  APPLY_FOR_FINAL_ORDER: 'Apply for final order',
+  GRANT_FINAL_ORDER: 'Grant Final order'
 };
 
 const serviceApplicationType = {

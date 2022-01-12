@@ -378,6 +378,10 @@ module.exports = function () {
       return CaseworkerCheckStatAndEventPage.checkStateOnPage(state,event);
     },
 
+    checkEventAndStateOnPageAndSignOut: function(state, event){
+      return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
+    },
+
     ccdCaseCreatedFromJsonLandingPageFormAndSubmit: function() {
       return CcdCaseCreatedLandingPage.fillFormAndSubmit();
     },

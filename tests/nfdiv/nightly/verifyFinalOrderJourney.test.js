@@ -67,40 +67,40 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
   // verifyState(createBulkList, states.BULK_CASE_LISTED_CREATED);
   //
-  const scheduleBulkList = await updateCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
-  verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
+  // const scheduleBulkList = await updateCaseInCcd(user.CA, bulkCaseReferenceId, events.SCHEDULE_CASES_FOR_LISTING, 'data/bulk-case-list-schedule-data.json');
+  // verifyState(scheduleBulkList, states.BULK_CASE_LISTED);
   //
   // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
   // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
-  // await I.wait(5);
-  // await I.amOnHomePage();
-  // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  // await I.wait(5);
-  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
-  // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-  // await I.wait(5);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
-  //
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Schedule cases for listing');
-  // await I.submitScheduleCases(bulkCaseReferenceId);
-  // await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
-  //
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Pronounce list');
-  // await I.submitPronounceList(bulkCaseReferenceId);
-  //
-  // await I.submitPronounceListCYA(bulkCaseReferenceId);
-  // await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  await I.wait(5);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
+  await I.wait(5);
+  await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  await I.amOnPage('/case-details/' + bulkCaseReferenceId);
+  await I.wait(5);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
 
-  //system-pronounce-case cron
+  await I.wait(3);
+  await I.checkNextStepForEvent('Schedule cases for listing');
+  await I.submitScheduleCases(bulkCaseReferenceId);
+  await I.submitScheduleCasesCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+
+  await I.wait(3);
+  await I.checkNextStepForEvent('Pronounce list');
+  await I.submitPronounceList(bulkCaseReferenceId);
+  await I.submitPronounceListCYA(bulkCaseReferenceId);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+
+  //system-pronounce-case event
 
 
   //system-awaiting-final-order cron
-
+  const  backDateTheFinalOrderEligibleToRespondent= await updateNFDCaseInCcd(user.CA,caseNumber, events.AWAITING_FINAL_ORDER,'data/final-order-date-eligible-to-respondent.json');
+  verifyState(backDateTheFinalOrderEligibleToRespondent , events.AWAITING_FO);
 
   //final order pages
   await I.wait(5);
@@ -110,18 +110,12 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_FINAL_ORDER, events.ALERT_APPLICANT);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_FINAL_ORDER, events.AWAITING_FO);
 
   await I.wait(5);
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(5);
-  await I.wait(3);
-  await I.checkNextStepForEvent('Apply for final order');
-  await I.submitApplyForFinalOrder(caseNumber);
-  await I.submitApplyForFinalOrderCYA(caseNumber);
-  await I.checkState(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
-
   await I.wait(3);
   await I.checkNextStepForEvent('Apply for final order');
   await I.submitApplyForFinalOrder(caseNumber);
