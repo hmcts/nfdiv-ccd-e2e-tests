@@ -1057,8 +1057,6 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
   return saveEventResponse;
 }
 
-
-
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
@@ -1088,14 +1086,9 @@ function dateYYYYMMDD(numberOfDaysToAdd){
 }
 
 function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
-  console.log(' within the finalOrderEligbileToRespondentDate() ..... ');
-  console.log(' dateFinalOrderEligibleFrom  passed in as a paremter to this Function is :: ' + dateFinalOrderEligibleFrom);
-
   let currentDateTime = new Date();
   let newDate = new Date();;
   var foEligibleForRespDate = new Date(newDate.setDate(currentDateTime.getDate()+47)) ; // 47 days from today
-
-  console.log(' FinalOrderEligibleForRespondentDate = Today LESS dateFinalOrderEligibleFrom(ie 43 days )  PLUS  90 days , ie 47 days from today  ==' + foEligibleForRespDate ) ;
 
   var month = foEligibleForRespDate.getMonth()+1;
   month = padLeadingZeroFor(month);
@@ -1103,13 +1096,15 @@ function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
   var day= foEligibleForRespDate.getDate();
   day = padLeadingZeroFor(day);
 
+  console.log(' FinalOrderEligibleForRespondentDate = Today LESS dateFinalOrderEligibleFrom(ie 43 days )  PLUS  90 days , ' +
+    'ie 47 days from today  ==' + foEligibleForRespDate.getFullYear() +'-'+month +'-'+day ) ;
 
   return  foEligibleForRespDate.getFullYear() +'-'+month +'-'+day;
 }
 
 
 function padLeadingZeroFor(dayOrMonthValue){
-    return dayOrMonthValue <= 9 ? dayOrMonthValue = '0'+dayOrMonthValue : dayOrMonthValue
+  return dayOrMonthValue <= 9 ? dayOrMonthValue = '0'+dayOrMonthValue : dayOrMonthValue;
 }
 
 function formatDateToCcdDisplayDate(givenDate = new Date()) {
