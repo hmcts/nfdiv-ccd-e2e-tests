@@ -195,7 +195,7 @@ const events = {
   CREATE_BULK_LIST: 'Create bulk list',
   PRONOUNCE_LIST: 'Pronounce list',
   AWAITING_FO:'AwaitingFinalOrder',
-  PRONOUNCE_LIST: 'Pronounce list',
+  AWAITING_FINAL_ORDER: 'Awaiting Final Order',
   ALERT_APPLICANT: 'Alert Applicant 1',
   APPLY_FOR_FINAL_ORDER :'Apply for final order',
   GRANT_FINAL_ORDER: 'Grant Final order'

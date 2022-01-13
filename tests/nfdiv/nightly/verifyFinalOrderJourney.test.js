@@ -1,7 +1,8 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
-  updateCaseInCcd
+  updateCaseInCcd,
+  updateFinalOrderDateForNFDCaseInCcd
 } = require('../../../helpers/utils');
-const { states, events , user, stateDisplayName} = require('../../../common/constants');
+const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -61,7 +62,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
-  bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
+  const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
   // TODO - Bulk case events need to be scripts
   // const createBulkList = await bulkCaseListCreated(user.CA, bulkCaseReferenceId);
@@ -87,7 +88,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SCHEDULE_CASES_FOR_LISTING);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Pronounce list');
@@ -95,12 +96,10 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.submitPronounceListCYA(bulkCaseReferenceId);
   await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
-  //system-pronounce-case event
+  // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
-
-  //system-awaiting-final-order cron
-  const  backDateTheFinalOrderEligibleToRespondent= await updateNFDCaseInCcd(user.CA,caseNumber, events.AWAITING_FINAL_ORDER,'data/final-order-date-eligible-to-respondent.json');
-  verifyState(backDateTheFinalOrderEligibleToRespondent , events.AWAITING_FO);
+  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+  verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
 
   //final order pages
   await I.wait(5);
@@ -110,25 +109,21 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_FINAL_ORDER, events.ALERT_APPLICANT);
+  await I.checkState(stateDisplayName.AWAITING_FINAL_ORDER, events.AWAITING_FINAL_ORDER);
+
+  await I.wait(3);
+  await I.checkNextStepForEvent('Apply for final order');
+  await I.submitApplyForFinalOrder(caseNumber);
+  await I.submitApplyForFinalOrderCYA(caseNumber);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
 
   await I.wait(5);
   await I.amOnHomePage();
-  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
-  await I.wait(3);
-  await I.checkNextStepForEvent('Apply for final order');
-  await I.submitApplyForFinalOrder(caseNumber);
-  await I.submitApplyForFinalOrderCYA(caseNumber);
-  await I.checkState(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
-
-  await I.wait(3);
-  await I.checkNextStepForEvent('Apply for final order');
-  await I.submitApplyForFinalOrder(caseNumber);
-  await I.submitApplyForFinalOrderCYA(caseNumber);
-  await I.checkState(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
-
-  await I.wait(3);
+  await I.filterByBulkCaseReference(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
   await I.checkNextStepForEvent('Grant Final order');
   await I.submitGrantFinalOrder(caseNumber);
   await I.submitGrantFinalOrderCYA(caseNumber);
