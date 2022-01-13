@@ -1079,14 +1079,11 @@ function dateYYYYMMDD(numberOfDaysToAdd){
 
   // Padding with leading zero's for MM and DD
   var month = newDate.getMonth()+1;
-  if(month <= 9){
-    month = '0'+month;
-  }
+  month = padLeadingZeroFor(month);
 
   var day= newDate.getDate();
-  if(day <= 9){
-    day = '0'+day;
-  }
+  day = padLeadingZeroFor(day);
+
   return  newDate.getFullYear() +'-'+month +'-'+day;
 }
 
@@ -1101,17 +1098,18 @@ function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
   console.log(' FinalOrderEligibleForRespondentDate = Today LESS dateFinalOrderEligibleFrom(ie 43 days )  PLUS  90 days , ie 47 days from today  ==' + foEligibleForRespDate ) ;
 
   var month = foEligibleForRespDate.getMonth()+1;
-
-  // Padding with leading zero's for MM and DD
-  if(month <= 9){
-    month = '0'+month;
-  }
+  month = padLeadingZeroFor(month);
 
   var day= foEligibleForRespDate.getDate();
-  if(day <= 9)
-    day = '0'+day;
+  day = padLeadingZeroFor(day);
+
 
   return  foEligibleForRespDate.getFullYear() +'-'+month +'-'+day;
+}
+
+
+function padLeadingZeroFor(dayOrMonthValue){
+    return dayOrMonthValue <= 9 ? dayOrMonthValue = '0'+dayOrMonthValue : dayOrMonthValue
 }
 
 function formatDateToCcdDisplayDate(givenDate = new Date()) {
