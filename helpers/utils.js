@@ -993,6 +993,243 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   return bulkCaseReferenceId;
 }
 
+// async function bulkCaseListCreated(userLoggedIn,caseId) {
+//
+//   const authToken = await getSystemUserToken();
+//   const userId = await getUserId(authToken);
+//   const serviceToken = await getServiceToken();
+//   const eventTypeId ='create-bulk-list';
+//   const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
+//
+//   const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+//   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
+//   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
+//
+//   const startCaseOptions = {
+//     method: 'GET',
+//     uri: ccdApiUrl + ccdStartEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     }
+//   };
+//
+//   const startCaseResponse = await request(startCaseOptions);
+//
+//   const eventId = 'create-bulk-list';
+//
+//   const eventToken = JSON.parse(startCaseResponse).token;
+//
+//   var data =  fs.readFileSync(dataLocation).toString('utf8');
+//   data = data.replace('caseIdToBeReplaced',caseId);
+//
+//   var saveBody = {
+//     event: {
+//       id: eventId
+//     },
+//     data: JSON.parse(data),
+//     event_token: eventToken
+//   };
+//
+//   const postURL = ccdApiUrl + ccdSubmitEventPath;
+//
+//   const saveCaseOptions = {
+//     method: 'POST',
+//     uri: ccdApiUrl + ccdSubmitEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(saveBody)
+//   };
+//
+//   const saveCaseResponse =  await request(saveCaseOptions);
+//   var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
+//   console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
+//   return bulkCaseReferenceId;
+// }
+
+// async function bulkCaseListSchedule(dataLocation = 'data/bulk-case-list-created-data',caseId) {
+//
+//   const authToken = await getSystemUserToken();
+//   const userId = await getUserId(authToken);
+//   const serviceToken = await getServiceToken();
+//   const eventTypeId ='create-bulk-list';
+//   const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
+//
+//   const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+//   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
+//   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
+//
+//   const startCaseOptions = {
+//     method: 'GET',
+//     uri: ccdApiUrl + ccdStartEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     }
+//   };
+//
+//   const startCaseResponse = await request(startCaseOptions);
+//
+//   const eventId = 'create-bulk-list';
+//
+//   const eventToken = JSON.parse(startCaseResponse).token;
+//
+//   var data =  fs.readFileSync(dataLocation).toString('utf8');
+//   data = data.replace('caseIdToBeReplaced',caseId);
+//
+//   var saveBody = {
+//     event: {
+//       id: eventId
+//     },
+//     data: JSON.parse(data),
+//     event_token: eventToken
+//   };
+//
+//   const postURL = ccdApiUrl + ccdSubmitEventPath;
+//
+//   const saveCaseOptions = {
+//     method: 'POST',
+//     uri: ccdApiUrl + ccdSubmitEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(saveBody)
+//   };
+//
+//   const saveCaseResponse =  await request(saveCaseOptions);
+//   var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
+//   console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
+//   return bulkCaseReferenceId;
+// }
+
+// async function bulkCaseListPronounced(dataLocation = 'data/bulk-case-list-created-data',caseId) {
+//
+//   const authToken = await getSystemUserToken();
+//   const userId = await getUserId(authToken);
+//   const serviceToken = await getServiceToken();
+//   const eventTypeId ='create-bulk-list';
+//   const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
+//
+//   const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+//   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
+//   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
+//
+//   const startCaseOptions = {
+//     method: 'GET',
+//     uri: ccdApiUrl + ccdStartEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     }
+//   };
+//
+//   const startCaseResponse = await request(startCaseOptions);
+//
+//   const eventId = 'create-bulk-list';
+//
+//   const eventToken = JSON.parse(startCaseResponse).token;
+//
+//   var data =  fs.readFileSync(dataLocation).toString('utf8');
+//   data = data.replace('caseIdToBeReplaced',caseId);
+//
+//   var saveBody = {
+//     event: {
+//       id: eventId
+//     },
+//     data: JSON.parse(data),
+//     event_token: eventToken
+//   };
+//
+//   const postURL = ccdApiUrl + ccdSubmitEventPath;
+//
+//   const saveCaseOptions = {
+//     method: 'POST',
+//     uri: ccdApiUrl + ccdSubmitEventPath,
+//     headers: {
+//       'Authorization': `Bearer ${authToken}`,
+//       'ServiceAuthorization': `Bearer ${serviceToken}`,
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify(saveBody)
+//   };
+//
+//   const saveCaseResponse =  await request(saveCaseOptions);
+//   var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
+//   console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
+//   return bulkCaseReferenceId;
+// }
+
+/**
+ *  dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
+ */
+async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  const authToken = await getUserToken();
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating dateFinalOrderEligibleFrom for Case %s AND  the event is %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+  var eventId = 'system-progress-case-awaiting-final-order';
+
+  //Six weeks and 1 day in the Past.
+  var dateInPast = datechange(-43);
+  console.log('6 weeks and 1 day in the PAST  is == '+ dateInPast);
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('sixWeeksOneDayInThePast', dateInPast);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    'event_token': eventToken
+  };
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
 
 /**
  *  dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
