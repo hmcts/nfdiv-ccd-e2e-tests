@@ -35,7 +35,7 @@ Scenario('Reissue - Offline ', async function (I) {
   await I.wait(5);
   await I.see('Awaiting service');
   await I.see('Issue solicitor service pack');
-  await I.checkNextStepForEvent('Reissued');
+  await I.checkNextStepForEvent('Reissue');
   await I.reissueDivorceApplicationOffline(caseNumber);
   await I.submitReissue(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.APPLICATION_AWAITING_SERVICE, events.REISSUED);

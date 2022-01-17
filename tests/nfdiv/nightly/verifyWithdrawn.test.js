@@ -35,7 +35,7 @@ Scenario('NFD - Withdraw case moves state to Application withdrawn State', async
   await I.wait(5);
   await I.see('Awaiting service');
   await I.see('Issue solicitor service pack');
-  await I.checkNextStepForEvent('Withdrawn');
+  await I.checkNextStepForEvent('Withdraw');
   await I.submitWithdrawnCW(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.WITHDRAWN, events.APPLICATION_WITHDRAWN);
 

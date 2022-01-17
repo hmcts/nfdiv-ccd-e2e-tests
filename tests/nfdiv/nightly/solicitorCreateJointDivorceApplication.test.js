@@ -112,10 +112,10 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
   await I.wait(7);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('Application issued');
+  await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails();
   await I.checkYourAnswersIssueApplication();
-  await I.checkStateAndEvent('Awaiting service','Application issued');
+  await I.checkStateAndEvent('Awaiting service','Application issue');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
@@ -231,10 +231,10 @@ xScenario('Dissolution Application (Joint) with Documents, HWF accepted and Subm
   await I.wait(7);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('Application issued');
+  await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails();
   await I.checkYourAnswersIssueApplication();
-  await I.checkStateAndEvent('Awaiting service','Application issued');
+  await I.checkStateAndEvent('Awaiting service','Application issue');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 

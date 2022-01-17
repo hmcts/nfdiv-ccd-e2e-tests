@@ -36,7 +36,7 @@ Scenario('NFD - Service Application , Service Payment and  Service Decision', as
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('AoS awaiting');
-  await I.see('Application issued');
+  await I.see('Application issue');
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceived(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);

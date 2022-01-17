@@ -112,10 +112,10 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.wait(7);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('Application issued');
+  await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DIVORCE);
-  await I.checkStateAndEvent('AoS awaiting','Application issued');
+  await I.checkStateAndEvent('AoS awaiting','Application issue');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
@@ -227,10 +227,10 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.wait(7);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('Application issued');
+  await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DISSOLUTION);
-  await I.checkStateAndEvent('AoS awaiting','Application issued');
+  await I.checkStateAndEvent('AoS awaiting','Application issue');
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
