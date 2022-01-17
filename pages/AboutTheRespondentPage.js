@@ -1,3 +1,4 @@
+const {divorceOrDissolution} = require('../common/constants');
 const I = actor();
 
 module.exports = {
@@ -19,11 +20,9 @@ module.exports = {
     var unionUpperCase;
     if(union === divorceOrDissolution.DIVORCE){
       unionUpperCase = union.toUpperCase();
-      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2`);
-      // await I.click(this.fields.divorceWho);
+      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant1`);
     }else if ( union === divorceOrDissolution.DISSOLUTION){
       unionUpperCase = union.toUpperCase();
-      // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
       await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2');
     }
     await I.waitForElement(this.fields.firstName);
@@ -32,7 +31,7 @@ module.exports = {
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
     await I.click(this.fields.respondentChangedName);
-    // await I.click(this.fields.respondentGender);
+    //await I.click(this.fields.respondentGender);
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);
   }

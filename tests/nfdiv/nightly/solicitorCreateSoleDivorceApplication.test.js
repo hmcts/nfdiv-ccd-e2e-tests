@@ -21,7 +21,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit();
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // About Applicant2
   await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
