@@ -85,7 +85,10 @@ const stateDisplayName = {
   BULK_CASE_LISTED_CREATED: 'Bulk case list created',
   BULK_CASE_LISTED: 'Bulk case listed',
   BULK_CASE_PRONOUNCED: 'Bulk case pronounced',
-  BULK_CASE_DROPPED: 'Bulk case dropped'
+  BULK_CASE_DROPPED: 'Bulk case dropped',
+  AWAITING_FINAL_ORDER: 'Awaiting Final Order',
+  FINAL_ORDER_REQUESTED: 'Final order requested',
+  FINAL_ORDER_COMPLETED: 'Final order complete'
 };
 
 const eventDisplayName = {
@@ -119,7 +122,11 @@ const eventDisplayName = {
   REQUEST_CLARIFICATION:'Request clarification',
   SUBMIT_CLARIFICATION:'Submit clarification',
   SOLICITOR_CONFIRM_SERVICE: 'Solicitor confirm service',
-  SUBMIT_CO:'Submit Conditional Order'
+  SUBMIT_CO:'Submit Conditional Order',
+  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
+  PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
+  SYSTEM_UPDATE_CASE: 'System update case',
+  CREATE_BULK_LIST: 'Create bulk list'
 };
 
 const user = {
@@ -139,7 +146,6 @@ const events = {
   HWF_ACCEPT_AWAIT_DECISION:'hwfApplicationAcceptedfromAwaitingHWFDecision',
   SOLICITOR_SUBMIT_APPLICATION:'solicitor-submit-application',
   CASEWORKER_HWF_APPLICATION_ACCEPTED:'caseworker-hwf-application-accepted',
-  AWAITING_FINAL_ORDER:'system-progress-case-awaiting-final-order',
   CASE_SUBMISSION:'Sign and submit',
   DRAFT_CONDITIONAL_ORDER:'Draft conditional order',
   UPDATE_CONDITIONAL_ORDER:'Update conditional order',
@@ -183,12 +189,16 @@ const events = {
   UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document',
   REJECT: 'Reject',
   REISSUED: 'Reissued',
-  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
+  SCHEDULE_CASES_FOR_LISTING: 'caseworker-schedule-case',
   PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
   SYSTEM_UPDATE_CASE: 'System update case',
   CREATE_BULK_LIST: 'Create bulk list',
   PRONOUNCE_LIST: 'Pronounce list',
-  AWAITING_FO:'AwaitingFinalOrder'
+  AWAITING_FO:'AwaitingFinalOrder',
+  AWAITING_FINAL_ORDER: 'Awaiting Final Order',
+  ALERT_APPLICANT: 'Alert Applicant 1',
+  APPLY_FOR_FINAL_ORDER :'Apply for final order',
+  GRANT_FINAL_ORDER: 'Grant Final order'
 };
 
 const serviceApplicationType = {
