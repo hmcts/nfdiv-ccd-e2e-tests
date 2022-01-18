@@ -190,6 +190,7 @@ const events = {
   REJECT: 'Reject',
   REISSUED: 'Reissue',
   SCHEDULE_CASES_LISTING: 'caseworker-schedule-case',
+  SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
   PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
   SYSTEM_UPDATE_CASE: 'System update case',
   CREATE_BULK_LIST: 'Create bulk list',
