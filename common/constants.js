@@ -189,7 +189,7 @@ const events = {
   UPLOAD_CONFIDENTIAL_DOCUMENT: 'Upload confidential document',
   REJECT: 'Reject',
   REISSUED: 'Reissue',
-  SCHEDULE_CASES_FOR_LISTING: 'caseworker-schedule-case',
+  SCHEDULE_CASES_LISTING: 'caseworker-schedule-case',
   PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
   SYSTEM_UPDATE_CASE: 'System update case',
   CREATE_BULK_LIST: 'Create bulk list',

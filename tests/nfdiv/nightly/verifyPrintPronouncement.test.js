@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk} = require('../../../helpers/utils');
-const { states, events , user, stateDisplayName} = require('../../../common/constants');
+const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -65,19 +65,19 @@ Scenario('NFD - Verify Bulk Case & print for pronouncement event', async functio
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   await I.wait(5);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, eventDisplayName.CREATE_BULK_LIST);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SCHEDULE_CASES_FOR_LISTING);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');
   await I.submitPrintForPronouncement(bulkCaseReferenceId);
   await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
 
 }).retry(testConfig.TestRetryScenarios);
