@@ -88,13 +88,15 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SCHEDULE_CASES_FOR_LISTING);
+  await I.wait(10);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Pronounce list');
   await I.submitPronounceList(bulkCaseReferenceId);
   await I.submitPronounceListCYA(bulkCaseReferenceId);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  await I.wait(10);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.SYSTEM_UPDATE_CASE);
 
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
