@@ -1051,7 +1051,7 @@ async function bulkCaseListCreated(userLoggedIn,caseId) {
   return bulkCaseReferenceId;
 }
 
-async function bulkCaseListSchedule(userLoggedIn, caseId, eventId, dataLocation = 'data/data/bulk-case-list-created-data.json') {
+async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, dataLocation = 'data/data/bulk-case-list-created-data.json') {
 
   const authToken = await getUserToken();
 
@@ -1059,11 +1059,11 @@ async function bulkCaseListSchedule(userLoggedIn, caseId, eventId, dataLocation 
 
   const serviceToken = await getServiceToken();
 
-  logger.info('Scheduling cases for listing for Case %s AND  the event is %s', caseId, eventId);
+  logger.info('Scheduling cases for listing for Case %s AND  the event is %s', bulkcaseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
@@ -1078,29 +1078,21 @@ async function bulkCaseListSchedule(userLoggedIn, caseId, eventId, dataLocation 
   const startEventResponse = await request(startEventOptions);
 
   const eventToken = JSON.parse(startEventResponse).token;
-  var eventId = 'caseworker-schedule-case';
 
 
-  let currentDateTime = new Date();
-  let dateInImmediateFuture = new Date();
-  dateInImmediateFuture.setTime(dateInImmediateFuture.getTime() + 500 * 60);
-
-  var hearingDate = dateInImmediateFuture.getDate();
-  var hearingMonth =  parseInt(dateInImmediateFuture.getMonth()+ 1);
-  var hearingYear = dateInImmediateFuture.getFullYear();
-  var hearingTimeHours = dateInImmediateFuture.getHours();
-  var hearingTimeMinutes = dateInImmediateFuture.getMinutes();
-  var hearingTimeSeconds = dateInImmediateFuture.getSeconds();
-  console.log('Hearing Date must be in Future.......DD MM YYYY hh:mm:ss === '  + hearingDate  + ' ' + hearingMonth + '  ' + hearingYear + '  ' + hearingTimeHours + '  ' + hearingTimeMinutes + '  ' + hearingTimeSeconds);
+  var courtName = 'birmingham';
+  var decisionDateDay = '2014-10-27';
+  var hearingDateAndTime = '2022-01-21T13:00:00.000';
 
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
-  data = data.replace('todays-day', hearingDate);
-  data = data.replace('todays-month', hearingMonth);
-  data = data.replace('todays-year', hearingYear);
-  data = data.replace('todays-hour', hearingTimeHours);
-  data = data.replace('todays-minute', hearingTimeMinutes);
-  data = data.replace('todays-second', hearingTimeSeconds);
+
+  console.log('decision date is: '+ decisionDateDay + 'CaseID is ' + caseId + 'Courtname is ' + courtName + 'hearingdate&time is '+hearingDateAndTime);
+  data = data.replace('2014-10-27', decisionDateDay);
+  data = data.replace('caseIdToBeReplaced',caseId);
+  data = data.replace('birmingham', courtName);
+  data = data.replace('2022-01-21T13:00:00.000',hearingDateAndTime);
+
 
 
 

@@ -1,12 +1,17 @@
 {
-  "court-birmingham": "Birmingham Civil and Family Justice Centre",
-  "dateAndTimeOfHearing-day": "todays-day",
-  "dateAndTimeOfHearing-month": "todays-month",
-  "dateAndTimeOfHearing-year": "todays-year",
-  "dateAndTimeOfHearing-hour": "todays-hour",
-  "dateAndTimeOfHearing-minute": "todays-minute",
-  "dateAndTimeOfHearing-second": "todays-second",
-  "decisionDate-day": "20",
-  "decisionDate-month": "03",
-  "decisionDate-year": "2021"
+  "bulkListCaseDetails": [
+    {
+      "id": "6c3a37a0-67af-49cf-bbc7-6f87cca1d9d2",
+      "value": {
+        "caseParties": "E2E App1 FN1 LN1 App2 FN2 LN2",
+        "decisionDate": "2014-10-27",
+        "caseReference": {
+          "CaseReference": "caseIdToBeReplaced"
+        }
+      }
+    }
+  ],
+  "court": "birmingham",
+  "dateAndTimeOfHearing": "2022-01-21T13:00:00.000"
 }
+

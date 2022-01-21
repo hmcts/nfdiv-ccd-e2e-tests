@@ -67,28 +67,28 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
   // TODO - Bulk case events need to be scripts
 
-  const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
-  verifyState(scheduleBulkList, states.BULK_CASE_LISTED_CREATED);
+  const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
+  verifyState(scheduleBulkList, 'Listed');
 
   // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
   // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
-  await I.wait(5);
-  await I.amOnHomePage();
-  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(5);
-  await I.filterByBulkCaseReference(bulkCaseReferenceId);
-  await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-  await I.wait(5);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  // await I.wait(5);
+  // await I.amOnHomePage();
+  // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
+  // await I.wait(5);
+  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
+  // await I.wait(5);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
 
-  await I.wait(3);
-  await I.checkNextStepForEvent('Schedule cases for listing');
-  await I.submitScheduleCases(bulkCaseReferenceId);
-  await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.wait(10);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Schedule cases for listing');
+  // await I.submitScheduleCases(bulkCaseReferenceId);
+  // await I.submitScheduleCasesCYA(bulkCaseReferenceId);
+  // await I.wait(10);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Pronounce list');
