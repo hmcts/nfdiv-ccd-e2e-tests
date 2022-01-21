@@ -62,7 +62,8 @@ const states = {
   DN_PRONOUNCED: 'DNPronounced',
   AWAITING_GENERAL_CONSIDERATION: 'Awaiting general consideration',
   AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting general referral payment',
-  TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period'
+  TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period',
+  CONDITIONAL_ORDER_PRONOUNCED: 'Conditional order pronounced'
 };
 
 const stateDisplayName = {
@@ -82,7 +83,7 @@ const stateDisplayName = {
   SUBMITTED: 'Submitted',
   APPLICATION_REJECT: 'Application rejected',
   APPLICATION_AWAITING_SERVICE:'Awaiting service',
-  BULK_CASE_LISTED_CREATED: 'Bulk case list created',
+  BULK_CASE_LISTED_CREATED: 'Bulk case listed',
   BULK_CASE_LISTED: 'Bulk case listed',
   BULK_CASE_PRONOUNCED: 'Bulk case pronounced',
   BULK_CASE_DROPPED: 'Bulk case dropped',
