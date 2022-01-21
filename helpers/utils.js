@@ -1024,7 +1024,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   var courtName = 'birmingham';
   var decisionDateDay = '2014-10-27';
-  var hearingDateAndTime = '2022-01-21T15:13:00.000';
+  var hearingDateAndTime = '2022-01-21T15:42:00.000';
 
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
@@ -1033,7 +1033,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
   data = data.replace('2014-10-27', decisionDateDay);
   data = data.replace('caseIdToBeReplaced',caseId);
   data = data.replace('birmingham', courtName);
-  data = data.replace('2022-01-21T15:13:00.000',hearingDateAndTime);
+  data = data.replace('2022-01-21T15:42:00.000',hearingDateAndTime);
 
 
 
@@ -1120,12 +1120,14 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
   return saveEventResponse;
 }
 
-async function moveCaseToConditionalOderPronounced(dataLocation = 'data/conditional-order-pronounced.json',caseId) {
+async function moveCaseToConditionalOderPronounced(eventId, dataLocation = 'data/conditional-order-pronounced.json',caseId) {
 
   const authToken = await getSystemUserToken();
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
   const eventTypeId ='system-pronounce-case';
+
+  logger.info('Moving case to pronounced state for caseID %s AND  the event is %s', caseId, eventId);
 
   const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${caseId}/event-triggers/${eventTypeId}/token`;
@@ -1142,8 +1144,6 @@ async function moveCaseToConditionalOderPronounced(dataLocation = 'data/conditio
   };
 
   const startCaseResponse = await request(startCaseOptions);
-
-  const eventId = 'system-pronounce-case';
 
   const eventToken = JSON.parse(startCaseResponse).token;
 

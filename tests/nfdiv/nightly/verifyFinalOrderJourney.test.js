@@ -65,19 +65,17 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
   // verifyState(bulkCaseReferenceId, states.BULK_CASE_LISTED_CREATED);
 
-  // TODO - Bulk case events need to be scripts
-
   const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
   verifyState(scheduleBulkList, 'Listed');
 
   await I.wait(60);
 
   const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-pronounce-list', 'data/bulk-case-list-pronounce-data.json');
+  await I.wait(30);
   verifyState(pronounceBulkList, 'Pronounced');
 
-  await I.wait(60);
 
-  // const moveCaseToPronounced = await moveCaseToConditionalOderPronounced('data/conditional-order-pronounced.json',caseNumber);
+  // const moveCaseToPronounced = await moveCaseToConditionalOderPronounced('system-pronounce-case','data/conditional-order-pronounced.json',caseNumber);
   // verifyState(moveCaseToPronounced, states.CONDITIONAL_ORDER_PRONOUNCED);
 
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
