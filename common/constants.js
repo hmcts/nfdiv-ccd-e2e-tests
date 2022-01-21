@@ -62,7 +62,8 @@ const states = {
   DN_PRONOUNCED: 'DNPronounced',
   AWAITING_GENERAL_CONSIDERATION: 'Awaiting general consideration',
   AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting general referral payment',
-  TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period'
+  TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period',
+  CONDITIONAL_ORDER_PRONOUNCED: 'Conditional order pronounced'
 };
 
 const stateDisplayName = {

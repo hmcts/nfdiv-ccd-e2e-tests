@@ -993,64 +993,6 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   return bulkCaseReferenceId;
 }
 
-async function bulkCaseListCreated(userLoggedIn,caseId) {
-
-  const authToken = await getSystemUserToken();
-  const userId = await getUserId(authToken);
-  const serviceToken = await getServiceToken();
-  const eventTypeId ='create-bulk-list';
-  const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
-
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
-  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
-
-  const startCaseOptions = {
-    method: 'GET',
-    uri: ccdApiUrl + ccdStartEventPath,
-    headers: {
-      'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `Bearer ${serviceToken}`,
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const startCaseResponse = await request(startCaseOptions);
-
-  const eventId = 'create-bulk-list';
-
-  const eventToken = JSON.parse(startCaseResponse).token;
-
-  var data =  fs.readFileSync(dataLocation).toString('utf8');
-  data = data.replace('caseIdToBeReplaced',caseId);
-
-  var saveBody = {
-    event: {
-      id: eventId
-    },
-    data: JSON.parse(data),
-    event_token: eventToken
-  };
-
-  const postURL = ccdApiUrl + ccdSubmitEventPath;
-
-  const saveCaseOptions = {
-    method: 'POST',
-    uri: ccdApiUrl + ccdSubmitEventPath,
-    headers: {
-      'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `Bearer ${serviceToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(saveBody)
-  };
-
-  const saveCaseResponse =  await request(saveCaseOptions);
-  var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
-  console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
-  return bulkCaseReferenceId;
-}
-
 async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, dataLocation = 'data/data/bulk-case-list-created-data.json') {
 
   const authToken = await getUserToken();
@@ -1059,7 +1001,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   const serviceToken = await getServiceToken();
 
-  logger.info('Scheduling cases for listing for Case %s AND  the event is %s', bulkcaseId, eventId);
+  logger.info('Scheduling cases for listing for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
@@ -1082,7 +1024,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   var courtName = 'birmingham';
   var decisionDateDay = '2014-10-27';
-  var hearingDateAndTime = '2022-01-21T14:21:00.000';
+  var hearingDateAndTime = '2022-01-21T15:13:00.000';
 
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
@@ -1091,7 +1033,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
   data = data.replace('2014-10-27', decisionDateDay);
   data = data.replace('caseIdToBeReplaced',caseId);
   data = data.replace('birmingham', courtName);
-  data = data.replace('2022-01-21T14:21:00.000',hearingDateAndTime);
+  data = data.replace('2022-01-21T15:13:00.000',hearingDateAndTime);
 
 
 
@@ -1128,7 +1070,7 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
 
   const serviceToken = await getServiceToken();
 
-  logger.info('Pronounce list for Case %s AND  the event is %s', bulkcaseId, eventId);
+  logger.info('Pronounce list for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
@@ -1150,14 +1092,8 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
 
   var judgePronounced = 'Yes';
 
-
-
-
   var data =  fs.readFileSync(dataLocation).toString('utf8');
-
-  // console.log('decision date is: '+ decisionDateDay + 'CaseID is ' + caseId + 'Courtname is ' + courtName + 'hearingdate&time is '+hearingDateAndTime);
   data = data.replace('Yes', judgePronounced);
-
 
 
   var saveBody = {
@@ -1184,7 +1120,63 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
   return saveEventResponse;
 }
 
+async function moveCaseToConditionalOderPronounced(dataLocation = 'data/conditional-order-pronounced.json',caseId) {
 
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+  const eventTypeId ='system-pronounce-case';
+
+  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${caseId}/event-triggers/${eventTypeId}/token`;
+  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${caseId}/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventId = 'system-pronounce-case';
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var caseState = 'ConditionalOrderPronounced';
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('state',caseState);
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSubmitEventPath;
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSubmitEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveCaseOptions);
+
+  return saveEventResponse;
+}
 
 /**
  *  dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
@@ -1321,5 +1313,6 @@ module.exports = {
   updateFinalOrderDateForNFDCaseInCcd,
   updateFinalOrderEligibleFromDate,
   bulkCaseListSchedule,
-  bulkCaseListPronounced
+  bulkCaseListPronounced,
+  moveCaseToConditionalOderPronounced
 };
