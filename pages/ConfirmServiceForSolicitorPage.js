@@ -25,7 +25,7 @@ module.exports = {
     applicationDateMonth: 'receivedServiceApplicationDate-month',
     applicationDateYear: 'receivedServiceApplicationDate-year',
     selectAlternativeServiceType: '#alternativeServiceType',
-    selectPaymentMethod: '#paymentMethod',
+    selectPaymentMethod: '#servicePaymentFeePaymentMethod',
     serviceAppGranted: '#serviceApplicationGranted_Yes',
     serviceAppGrantedNo: '#serviceApplicationGranted_No',
     bailiffRefusalReason: '#serviceApplicationRefusalReason',
