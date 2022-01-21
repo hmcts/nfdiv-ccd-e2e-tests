@@ -1082,7 +1082,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   var courtName = 'birmingham';
   var decisionDateDay = '2014-10-27';
-  var hearingDateAndTime = '2022-01-21T13:00:00.000';
+  var hearingDateAndTime = '2022-01-21T14:21:00.000';
 
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
@@ -1091,7 +1091,7 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
   data = data.replace('2014-10-27', decisionDateDay);
   data = data.replace('caseIdToBeReplaced',caseId);
   data = data.replace('birmingham', courtName);
-  data = data.replace('2022-01-21T13:00:00.000',hearingDateAndTime);
+  data = data.replace('2022-01-21T14:21:00.000',hearingDateAndTime);
 
 
 
@@ -1120,19 +1120,21 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
   return saveEventResponse;
 }
 
-async function bulkCaseListPronounced(dataLocation = 'data/bulk-case-list-created-data',caseId) {
+async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId, dataLocation = 'data/data/bulk-case-list-pronounce-data.json') {
 
-  const authToken = await getSystemUserToken();
+  const authToken = await getUserToken();
+
   const userId = await getUserId(authToken);
+
   const serviceToken = await getServiceToken();
-  const eventTypeId ='create-bulk-list';
-  const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
 
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
-  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
+  logger.info('Pronounce list for Case %s AND  the event is %s', bulkcaseId, eventId);
 
-  const startCaseOptions = {
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
+
+  const startEventOptions = {
     method: 'GET',
     uri: ccdApiUrl + ccdStartEventPath,
     headers: {
@@ -1142,28 +1144,33 @@ async function bulkCaseListPronounced(dataLocation = 'data/bulk-case-list-create
     }
   };
 
-  const startCaseResponse = await request(startCaseOptions);
+  const startEventResponse = await request(startEventOptions);
 
-  const eventId = 'create-bulk-list';
+  const eventToken = JSON.parse(startEventResponse).token;
 
-  const eventToken = JSON.parse(startCaseResponse).token;
+  var judgePronounced = 'Yes';
+
+
+
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
-  data = data.replace('caseIdToBeReplaced',caseId);
+
+  // console.log('decision date is: '+ decisionDateDay + 'CaseID is ' + caseId + 'Courtname is ' + courtName + 'hearingdate&time is '+hearingDateAndTime);
+  data = data.replace('Yes', judgePronounced);
+
+
 
   var saveBody = {
     event: {
       id: eventId
     },
     data: JSON.parse(data),
-    event_token: eventToken
+    'event_token': eventToken
   };
 
-  const postURL = ccdApiUrl + ccdSubmitEventPath;
-
-  const saveCaseOptions = {
+  const saveEventOptions = {
     method: 'POST',
-    uri: ccdApiUrl + ccdSubmitEventPath,
+    uri: ccdApiUrl + ccdSaveEventPath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,
@@ -1172,10 +1179,9 @@ async function bulkCaseListPronounced(dataLocation = 'data/bulk-case-list-create
     body: JSON.stringify(saveBody)
   };
 
-  const saveCaseResponse =  await request(saveCaseOptions);
-  var bulkCaseReferenceId = JSON.parse(saveCaseResponse).id;
-  console.log('~~~~~~~~~~~~....bulkCaseReferenceId === ' + bulkCaseReferenceId);
-  return bulkCaseReferenceId;
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
 }
 
 
@@ -1314,5 +1320,6 @@ module.exports = {
   dateYYYYMMDD,
   updateFinalOrderDateForNFDCaseInCcd,
   updateFinalOrderEligibleFromDate,
-  bulkCaseListSchedule
+  bulkCaseListSchedule,
+  bulkCaseListPronounced
 };

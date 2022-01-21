@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
-  updateCaseInCcd,bulkCaseListSchedule,
+  updateCaseInCcd,bulkCaseListSchedule,bulkCaseListPronounced,
   updateFinalOrderDateForNFDCaseInCcd
 } = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
@@ -70,9 +70,12 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
   verifyState(scheduleBulkList, 'Listed');
 
-  // const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId, events.PRONOUNCE_LIST, 'data/bulk-case-list-pronounce-data.json');
-  // verifyState(pronounceBulkList, states.BULK_CASE_PRONOUNCED);
+  await I.wait(60);
 
+  const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-pronounce-list', 'data/bulk-case-list-pronounce-data.json');
+  verifyState(pronounceBulkList, 'Pronounced');
+
+  await I.wait(60);
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
   // await I.wait(5);
   // await I.amOnHomePage();
@@ -89,13 +92,13 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   // await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   // await I.wait(10);
   // await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
-
-  await I.wait(3);
-  await I.checkNextStepForEvent('Pronounce list');
-  await I.submitPronounceList(bulkCaseReferenceId);
-  await I.submitPronounceListCYA(bulkCaseReferenceId);
-  await I.wait(10);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.SYSTEM_UPDATE_CASE);
+  //
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Pronounce list');
+  // await I.submitPronounceList(bulkCaseReferenceId);
+  // await I.submitPronounceListCYA(bulkCaseReferenceId);
+  // await I.wait(10);
+  // await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.BULK_CASE_PRONOUNCED, events.SYSTEM_UPDATE_CASE);
 
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
