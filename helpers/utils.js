@@ -318,7 +318,6 @@ async function getLegalAdvisorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
-
 //TODO this will eventually replace the multiple getUserTokenXXX() methods above
 async function getUserTokenFor(user) {
 
@@ -470,7 +469,6 @@ async function createCaseInCcd(dataLocation = 'data/ccd-basic-data.json') {
   logger.info('Created case with id %s', caseId);
   return caseId;
 }
-
 
 async function createNFDCaseInCcd(dataLocation = 'data/ccd-nfdiv-case-draft.json') {
   const saveCaseResponse = await createNFDCaseAndFetchResponse(dataLocation).catch(error => {
@@ -744,7 +742,6 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
   return saveEventResponse;
 }
 
-
 async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
 
   let authToken;
@@ -934,7 +931,6 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   return saveCaseResponse;
 }
 
-
 async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) {
 
   const authToken = await getSystemUserToken();
@@ -993,7 +989,7 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   return bulkCaseReferenceId;
 }
 
-async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, dataLocation = 'data/data/bulk-case-list-created-data.json') {
+async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, dataLocation = 'data/bulk-case-list-schedule-data.json') {
 
   const authToken = await getUserToken();
 
@@ -1003,9 +999,11 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   logger.info('Scheduling cases for listing for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
+
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
+
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
@@ -1018,25 +1016,42 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
   };
 
   const startEventResponse = await request(startEventOptions);
-
   const eventToken = JSON.parse(startEventResponse).token;
-
 
   var courtName = 'birmingham';
   var decisionDateDay = '2014-10-27';
-  var hearingDateAndTime = '2022-01-21T15:42:00.000';
+  // hearingDate in Future ( currentTime + 1 Minute )
+  var hearingDateInFuture = addMinutesToDate(1);
 
+  const monthDisplayed = padLeadingZeroFor(hearingDateInFuture.getMonth()+1);
+  const minutesDisplayed = padLeadingZeroFor(hearingDateInFuture.getMinutes());
+  const secondsDisplayed = padLeadingZeroFor(hearingDateInFuture.getSeconds());
+
+  console.log('Decision date is : ' + decisionDateDay   + ':: CaseID is :: ' + caseId  +' and the  Courtname is :: ' + courtName);
+
+  console.log('HearingDateTime == CurrentTime + 2 minutes along  with 0 Padding for Month(MM) and Minutes(mm)  == ' +
+    hearingDateInFuture.getFullYear()+
+    '-'+monthDisplayed+
+    '-'+hearingDateInFuture.getDate()+
+    'T'+hearingDateInFuture.getHours()+
+    ':'+minutesDisplayed+
+    ':'+secondsDisplayed+
+    '.'+hearingDateInFuture.getMilliseconds());
+
+  var formattedHearingDateTime = hearingDateInFuture.getFullYear()+
+    '-'+monthDisplayed+
+    '-'+hearingDateInFuture.getDate()+
+    'T'+hearingDateInFuture.getHours()+
+    ':'+minutesDisplayed+
+    ':'+secondsDisplayed+
+    '.'+hearingDateInFuture.getMilliseconds();
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
 
-  console.log('decision date is: '+ decisionDateDay + 'CaseID is ' + caseId + 'Courtname is ' + courtName + 'hearingdate&time is '+hearingDateAndTime);
-  data = data.replace('2014-10-27', decisionDateDay);
+  data = data.replace('decisionDateToBeReplaced', decisionDateDay);
   data = data.replace('caseIdToBeReplaced',caseId);
-  data = data.replace('birmingham', courtName);
-  data = data.replace('2022-01-21T15:42:00.000',hearingDateAndTime);
-
-
-
+  data = data.replace('courtNameToBeReplaced', courtName);
+  data = data.replace('hearingDateTimeToBeReplaced',formattedHearingDateTime);
 
   var saveBody = {
     event: {
@@ -1073,8 +1088,8 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
   logger.info('Pronounce list for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
@@ -1178,9 +1193,6 @@ async function moveCaseToConditionalOderPronounced(eventId, dataLocation = 'data
   return saveEventResponse;
 }
 
-/**
- *  dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
- */
 async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
 
   const authToken = await getUserToken();
@@ -1210,7 +1222,7 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
   const eventToken = JSON.parse(startEventResponse).token;
   var eventId = 'system-progress-case-awaiting-final-order';
 
-  //Six weeks and 1 day in the Past.
+  //dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
   var dateInPast = datechange(-43);
   console.log('6 weeks and 1 day in the PAST  is == '+ dateInPast);
 
@@ -1254,6 +1266,10 @@ function datechange(numberOfDaysToAdd){
   return formattedDate;
 };
 
+function addMinutesToDate(minutes) {
+  return new Date(new Date().getTime() + minutes * 60000);
+}
+
 function dateYYYYMMDD(numberOfDaysToAdd){
   let currentDateTime = new Date();
   let newDate = new Date();
@@ -1285,7 +1301,6 @@ function finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom){
 
   return  foEligibleForRespDate.getFullYear() +'-'+month +'-'+day;
 }
-
 
 function padLeadingZeroFor(dayOrMonthValue){
   return dayOrMonthValue <= 9 ? dayOrMonthValue = '0'+dayOrMonthValue : dayOrMonthValue;
