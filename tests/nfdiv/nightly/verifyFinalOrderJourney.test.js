@@ -65,8 +65,14 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
   // verifyState(bulkCaseReferenceId, states.BULK_CASE_LISTED_CREATED);
 
+  // kasi
   const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
   verifyState(scheduleBulkList, 'Listed');
+
+
+
+
+
 
   await I.wait(60);
 
