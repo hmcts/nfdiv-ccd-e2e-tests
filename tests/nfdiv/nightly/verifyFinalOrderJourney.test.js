@@ -69,22 +69,19 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   const scheduleBulkList = await bulkCaseListSchedule(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-schedule-case', 'data/bulk-case-list-schedule-data.json');
   verifyState(scheduleBulkList, 'Listed');
 
-
-
-
-
-
   await I.wait(60);
 
   const pronounceBulkList = await bulkCaseListPronounced(user.CA, bulkCaseReferenceId,caseNumber, 'caseworker-pronounce-list', 'data/bulk-case-list-pronounce-data.json');
   await I.wait(30);
-  verifyState(pronounceBulkList, 'Pronounced');
 
+  // poll the Case within tthe bulkPack to check if it in 'Pronounced' state
+  verifyState(pronounceBulkList, 'Pronounced');
 
   // const moveCaseToPronounced = await moveCaseToConditionalOderPronounced('system-pronounce-case','data/conditional-order-pronounced.json',caseNumber);
   // verifyState(moveCaseToPronounced, states.CONDITIONAL_ORDER_PRONOUNCED);
-
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
+  //
+  await I.wait(180); // wait for 3 minutes to ensure that the Individual Case in the bulkList is 'Pronounced'
 
   const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
   verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');

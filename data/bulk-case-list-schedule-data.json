@@ -12,7 +12,6 @@
     }
   ],
   "court": "courtNameToBeReplaced",
-  "dateAndTimeOfHearing": "hearingDateTimeToBeReplaced",
-
+  "dateAndTimeOfHearing": "hearingDateTimeToBeReplaced"
 }
 

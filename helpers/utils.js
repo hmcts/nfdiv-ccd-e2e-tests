@@ -999,19 +999,11 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
 
   logger.info('Scheduling cases for listing for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
-  const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
- // const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
- // const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
-  //const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
-  //const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${caseId}/event-triggers/${eventId}/token`;
-//                           /caseworkers/{uid}/jurisdictions/{jid}/case-types/{ctid}/cases/{cid}/event-triggers/{etid}/token
-
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${caseId}/events`;
-        //                  /caseworkers/{uid}/jurisdictions/{jid}/case-types/{ctid}/cases/{cid}/events
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
@@ -1023,21 +1015,17 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
     }
   };
 
-  console.log( '....before calling GET ')
   const startEventResponse = await request(startEventOptions);
-  console.log( '....AFter  calling GET ')
-
   const eventToken = JSON.parse(startEventResponse).token;
-  console.log( '....eventToken '+ JSON.stringify(eventToken));
-
 
   var courtName = 'birmingham';
   var decisionDateDay = '2014-10-27';
-  // hearingDate in Future ( currentTime + 2minutes )
-  var hearingDateInFuture = addMinutesToDate(2);
+  // hearingDate in Future ( currentTime + 1 Minute )
+  var hearingDateInFuture = addMinutesToDate(1);
 
   const monthDisplayed = padLeadingZeroFor(hearingDateInFuture.getMonth()+1);
   const minutesDisplayed = padLeadingZeroFor(hearingDateInFuture.getMinutes());
+  const secondsDisplayed = padLeadingZeroFor(hearingDateInFuture.getSeconds());
 
   console.log('Decision date is : ' + decisionDateDay   + ':: CaseID is :: ' + caseId  +' and the  Courtname is :: ' + courtName);
 
@@ -1047,15 +1035,23 @@ async function bulkCaseListSchedule(userLoggedIn, bulkcaseId, caseId, eventId, d
     '-'+hearingDateInFuture.getDate()+
     'T'+hearingDateInFuture.getHours()+
     ':'+minutesDisplayed+
-    ':'+hearingDateInFuture.getSeconds()+
+    ':'+secondsDisplayed+
     '.'+hearingDateInFuture.getMilliseconds());
+
+  var formattedHearingDateTime = hearingDateInFuture.getFullYear()+
+    '-'+monthDisplayed+
+    '-'+hearingDateInFuture.getDate()+
+    'T'+hearingDateInFuture.getHours()+
+    ':'+minutesDisplayed+
+    ':'+secondsDisplayed+
+    '.'+hearingDateInFuture.getMilliseconds();
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
 
   data = data.replace('decisionDateToBeReplaced', decisionDateDay);
   data = data.replace('caseIdToBeReplaced',caseId);
   data = data.replace('courtNameToBeReplaced', courtName);
-  data = data.replace('hearingDateTimeToBeReplaced',hearingDateInFuture);
+  data = data.replace('hearingDateTimeToBeReplaced',formattedHearingDateTime);
 
   var saveBody = {
     event: {
@@ -1092,8 +1088,8 @@ async function bulkCaseListPronounced(userLoggedIn, bulkcaseId, caseId, eventId,
   logger.info('Pronounce list for bulkcase %s AND  the event is %s', bulkcaseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
-  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${bulkcaseId}/events`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NO_FAULT_DIVORCE_BulkAction/cases/${bulkcaseId}/events`;
 
   const startEventOptions = {
     method: 'GET',
