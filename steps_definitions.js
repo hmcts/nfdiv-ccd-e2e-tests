@@ -814,6 +814,14 @@ module.exports = function () {
 
     submitGrantFinalOrderCYA: function(caseNumber) {
       return FinalOrderPage.fillGrantFinalOrderCYA(caseNumber);
+    },
+
+    inviteApplicant2: function() {
+      return SolCreateCheckYourAnswersPage.submitInviteApplicant2();
+    },
+
+    submitJointApplication: function() {
+      return SolCreateCheckYourAnswersPage.submitJointApplication();
     }
 
   });

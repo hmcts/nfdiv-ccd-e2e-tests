@@ -5,28 +5,26 @@ let caseNumber;
 
 Feature('Create Joint Application ');
 
-xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Divorce Application (Joint) with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
-
-  // 'Yes' for Sole, 'No' for Joint.
-  await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.divorce);
+  await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown();
+  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);;
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit();
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);;
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit();
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);;
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -38,7 +36,7 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedings();
+  await I.otherLegalProceedingsDiv();
 
   // Financial Orders
   await I.financialOrdersSelectButton();
@@ -49,12 +47,20 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DIVORCE);
 
-  // Case Submission Steps
-  caseNumber = await I.solicitorCaseCreatedAndSubmit();
+  await I.checkNextStepForEvent('Invite Applicant 2');
+  caseNumber = await I.inviteApplicant2();
+
+  caseNumber = caseNumber.toString();
   caseNumber = caseNumber.replace(/\D/gi, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.amOnHomePage();
+  await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
+
+  //share case to respondent solic
+
+  await I.checkNextStepForEvent('Submit joint application');
+  await I.submitJointApplication();
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();
@@ -74,7 +80,7 @@ xScenario('Divorce Application (Joint) with Documents, HWF accepted and Submit t
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
 
-  console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
+  console.log('~~~~~~~~~~~~~  Respondent Solicitor Submit Joint Application Done ~~~~~~~~');
 
   // verifyTab
 
