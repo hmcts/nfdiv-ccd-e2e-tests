@@ -15,7 +15,7 @@ let bulkCaseReferenceId;
 
 Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
-Scenario('NFD - Verify Final Order pronounced', async function (I) {
+xScenario('NFD - Verify Final Order pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
