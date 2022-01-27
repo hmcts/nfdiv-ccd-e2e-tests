@@ -1,0 +1,124 @@
+{
+  "applicant1ContactDetailsConfidential": "share",
+  "applicationType": "jointApplication",
+  "labelContentTheApplicant2UC": "The respondent",
+  "labelContentApplicant2": "applicant 2",
+  "applicant1SolicitorAgreeToReceiveEmails": "No",
+  "labelContentApplicantsOrApplicant1s": "Applicant 1’s",
+  "labelContentTheApplicant2UC": "Applicant 2",
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "labelContentUnionTypeUC": "Divorce",
+  "labelContentTheApplicantOrApplicant1": "applicant 1",
+  "labelContentUnionType": "divorce",
+  "labelContentTheApplicant2": "applicant 2",
+  "labelContentApplicantOrApplicant1": "applicant 1’s",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Applicant 2's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "HEBFGBR",
+      "OrganisationName": "NFD Solicitor Organisation"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
+  },
+  "applicant2SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "3I4PJR6",
+      "OrganisationName": "DivRespondentSolicitorFirm"
+    },
+    "PreviousOrganisations": [],
+    "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
+  },
+  "marriageMarriedInUk": "Yes",
+  "marriageDate": "2003-10-25",
+  "applicant1MiddleName": "Scripting Middle",
+  "applicant1LegalProceedings": "No",
+  "applicant1Email": "nopamak@mailinator.com",
+  "applicant1Gender": "male",
+  "labelContentUnionType": "divorce",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "marriageIsSameSexCouple": "No",
+  "labelContentTheApplicant2": "the respondent",
+  "labelContentApplicant2": "respondent",
+  "applicant1SolicitorPhone": "020864351245",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "Raven Knapp",
+  "applicant2Email": "applicantTwoemail@mailinator.com",
+  "divorceOrDissolution": "divorce",
+  "applicant2Gender": "female",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant1FinancialOrder": "No",
+  "applicant2LastName": "Kane",
+  "applicant1PhoneNumber": "020345621454",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "applicant2CorrespondenceAddress": {
+    "AddressLine1": "1",
+    "AddressLine2": "1"
+  },
+  "applicant1SolicitorEmail": "juwahi@mailinator.com",
+  "applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
+  "applicant1HomeAddress": {
+    "AddressLine1": "1",
+    "AddressLine2": "1"
+  },
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorEmail": "varyc@mailinator.com",
+  "applicant1SolicitorName": "Pearl Bray App1 Solicitor ",
+  "applicant2SolicitorName": "Susan Vaughan",
+  "applicant1SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "applicant2FirstName": "Jamalia",
+  "labelContentUnionTypeUC": "Divorce",
+  "applicant1FirstName": "Script Beatrice",
+  "applicant1SolicitorName": "Calista Barry",
+  "applicant2SolicitorName": "Jumbo Solicitors for Applicant 2",
+  "applicant1LastName": "Script Vincent",
+  "applicant2LanguagePreferenceWelsh": "No",
+  "divorceWho": "wife",
+  "applicant2MiddleName": "Jermaine Wolf",
+  "marriageApplicant1Name": "Eugenia Palmer",
+  "selectedDivorceCentreSiteId": "AA07",
+  "jurisdictionConnections": [
+    "I",
+    "G",
+    "H"
+  ],
+  "applicant2SolicitorRepresented": "Yes",
+  "divorceUnit": "serviceCentre",
+  "applicant1SolicitorReference": "Ipsum in praesentiu",
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "dataVersion": 43,
+  "documentsGenerated": [
+    {
+      "id": "8afd12f2-78fc-45d3-9199-8eb9a07044d7",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/8a5b6fd2-5058-416c-91f5-9e3834dcbe97",
+          "document_filename": "draft-divorce-application-1643206167059322.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/8a5b6fd2-5058-416c-91f5-9e3834dcbe97/binary"
+        },
+        "documentType": "application",
+        "documentFileName": "draft-divorce-application-1643206167059322.pdf"
+      }
+    }
+  ],
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "6ba9fdc0-08ac-4053-8724-bb8fbd600de3",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/3f1efa05-c5f8-4185-bc66-5e46255b749b",
+          "document_filename": "1596-CW-Access.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/3f1efa05-c5f8-4185-bc66-5e46255b749b/binary"
+        },
+        "documentType": "correspondence"
+      }
+    }
+  ]
+}
