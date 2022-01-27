@@ -38,6 +38,12 @@ module.exports = {
     await I.fillField(this.fields.feeAccountReference,'PBA-123-322');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
+  },
+
+  async fillPbaAccountOrderSummary() {
+    await I.runAccessibilityTest();
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(3);
   }
 
 };

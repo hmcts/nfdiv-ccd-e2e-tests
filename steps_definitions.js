@@ -167,6 +167,10 @@ module.exports = function () {
       return IssueApplicationCyaPage.verifyCyaDetails(union);
     },
 
+    CYAIssueJointApplication: function(union){
+      return IssueApplicationCyaPage.verifyCyaDetailsJoint(union);
+    },
+
     // How do you want to apply for Divorce Sole/Joint
     fillSoleOrJointOptionForDivorce(soleApp,divorceOrCivil){
       return CreateCasePage.fillHowDoYouWantToApplyForDivorce(soleApp,divorceOrCivil);
@@ -279,6 +283,10 @@ module.exports = function () {
 
     fillPba:function() {
       return FeeAccountPaymentCaseSubmissionPage.fillPbaAccountNumberAndReference();
+    },
+
+    PbaAccountOrderSummary:function() {
+      return FeeAccountPaymentCaseSubmissionPage.fillPbaAccountOrderSummary();
     },
 
 
@@ -822,6 +830,14 @@ module.exports = function () {
 
     submitJointApplication: function() {
       return SolCreateCheckYourAnswersPage.submitJointApplication();
+    },
+
+    submitSignAndSubmit: function() {
+      return SolCreateCheckYourAnswersPage.submitSignAndSubmit();
+    },
+
+    submitJointIssueApplication: function() {
+      return SolCreateCheckYourAnswersPage.JointIssueApplication();
     }
 
   });
