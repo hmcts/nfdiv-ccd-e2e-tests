@@ -63,7 +63,9 @@ const states = {
   AWAITING_GENERAL_CONSIDERATION: 'Awaiting general consideration',
   AWAITING_GENERAL_REFERRAL_PAYMENT:'Awaiting general referral payment',
   TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period',
-  CONDITIONAL_ORDER_PRONOUNCED: 'Conditional order pronounced'
+  CONDITIONAL_ORDER_PRONOUNCED: 'Conditional order pronounced',
+  GENERAL_CONSIDERATION_COMPLETE: 'General consideration complete',
+  AWAITING_DWP_RESPONSE: 'Awaiting DWP response'
 };
 
 const stateDisplayName = {
@@ -89,7 +91,8 @@ const stateDisplayName = {
   BULK_CASE_DROPPED: 'Bulk case dropped',
   AWAITING_FINAL_ORDER: 'Awaiting Final Order',
   FINAL_ORDER_REQUESTED: 'Final order requested',
-  FINAL_ORDER_COMPLETED: 'Final order complete'
+  FINAL_ORDER_COMPLETED: 'Final order complete',
+  GENERAL_REFERRAL: 'Awaiting general referral payment'
 };
 
 const eventDisplayName = {
@@ -127,7 +130,10 @@ const eventDisplayName = {
   SCHEDULE_CASES_FOR_LISTING: 'Schedule cases for listing',
   PRINT_FOR_PRONOUNCEMENT: 'Print for pronouncement',
   SYSTEM_UPDATE_CASE: 'System update case',
-  CREATE_BULK_LIST: 'Create bulk list'
+  CREATE_BULK_LIST: 'Create bulk list',
+  GENERAL_REFERRAL: 'General referral',
+  GENERAL_CONSIDERATION: 'General Consideration',
+  REQUEST_DWP_DISCLOSURE: 'Request DWP disclosure'
 };
 
 const user = {
@@ -200,7 +206,8 @@ const events = {
   AWAITING_FINAL_ORDER: 'Awaiting Final Order',
   ALERT_APPLICANT: 'Alert Applicant 1',
   APPLY_FOR_FINAL_ORDER :'Apply for final order',
-  GRANT_FINAL_ORDER: 'Grant Final order'
+  GRANT_FINAL_ORDER: 'Grant Final order',
+  GENERAL_REFERRAL: 'General referral'
 };
 
 const serviceApplicationType = {

@@ -70,6 +70,7 @@ const submitAosPage = require('./pages/SubmitAoSPage.js');
 const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
 const BulkCasePage = require('./pages/BulkCasePage.js');
 const FinalOrderPage = require('./pages/FinalOrderPage.js');
+const GeneralConsiderationPage = require('./pages/GeneralConsiderationPage.js');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -838,6 +839,22 @@ module.exports = function () {
 
     submitJointIssueApplication: function() {
       return SolCreateCheckYourAnswersPage.JointIssueApplication();
+    },
+
+    submitGeneralReferral: function() {
+      return GeneralReferralPage.fillFormAndSubmit();
+    },
+
+    submitGeneralReferralCW: function() {
+      return GeneralReferralPage.submitGeneralReferral();
+    },
+
+    submitGeneralConsideration: function() {
+      return GeneralConsiderationPage.fillFormAndSubmit();
+    },
+
+    submitRequestDWPDisclosure: function() {
+      return GeneralConsiderationPage.submit();
     }
 
   });
