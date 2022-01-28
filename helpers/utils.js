@@ -470,6 +470,31 @@ async function createCaseInCcd(dataLocation = 'data/ccd-basic-data.json') {
   return caseId;
 }
 
+
+async function getCaseDetailsFor(caseId) {
+  const authToken = await getUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdGetCaseDetailsPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/`+caseId;
+
+  const getCaseDetails = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdGetCaseDetailsPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const getCaseDetailsResponse = await request(getCaseDetails);
+  // can return state or anyother element from Response etc.
+  return JSON.parse(getCaseDetailsResponse).state;
+}
+
+
 async function createNFDCaseInCcd(dataLocation = 'data/ccd-nfdiv-case-draft.json') {
   const saveCaseResponse = await createNFDCaseAndFetchResponse(dataLocation).catch(error => {
     console.log(error);
@@ -1329,5 +1354,6 @@ module.exports = {
   updateFinalOrderEligibleFromDate,
   bulkCaseListSchedule,
   bulkCaseListPronounced,
-  moveCaseToConditionalOderPronounced
+  moveCaseToConditionalOderPronounced,
+  getCaseDetailsFor
 };
