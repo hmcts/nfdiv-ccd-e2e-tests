@@ -17,6 +17,8 @@ module.exports = {
   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
   TestEnvSolUser: process.env.SOLICITOR_USER_NAME || '',
   TestEnvSolPassword: process.env.SOLICITOR_PASSWORD || '',
+  TestEnvCitizenUser: process.env.CITIZEN_USER_NAME || '',
+  TestEnvCitizenPassword: process.env.CITIZEN_PASSWORD || '',
   TestEnvCWUser: process.env.CASEWORKER_USER_NAME || '',
   TestEnvCWPassword: process.env.CASEWORKER_PASSWORD || '',
   TestEnvCourtAdminUser: process.env.CASEWORKER_USER_NAME || '',

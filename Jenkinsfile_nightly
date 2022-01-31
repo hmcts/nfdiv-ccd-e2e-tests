@@ -29,7 +29,9 @@ def secrets = [
     secret('idam-solicitor-username', 'SOLICITOR_USER_NAME'),
     secret('idam-solicitor-password', 'SOLICITOR_PASSWORD'),
     secret('idam-caseworker-username', 'CASEWORKER_USER_NAME'),
-    secret('idam-caseworker-password', 'CASEWORKER_PASSWORD')
+    secret('idam-caseworker-password', 'CASEWORKER_PASSWORD'),
+    secret('idam-citizen-username', 'CITIZEN_USER_NAME'),
+    secret('idam-citizen-password', 'CITIZEN_PASSWORD')
   ]
 ]
 
