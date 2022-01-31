@@ -1249,9 +1249,9 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
 
   //dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
   var dateInPast = datechange(-43);
-  console.log('6 weeks and 1 day in the PAST  is == '+ dateInPast);
+  console.log('6 weeks and 1 day in the PAST  is == ' + dateInPast);
 
-  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  var data = fs.readFileSync(dataLocation).toString('utf8');
   data = data.replace('sixWeeksOneDayInThePast', dateInPast);
 
   var saveBody = {
@@ -1261,6 +1261,63 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
     data: JSON.parse(data),
     'event_token': eventToken
   };
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
+async function updateAoSToAoSOverdue(caseId, eventId, dataLocation = 'data/aos-overdue.json') {
+
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating dueDate for Case %s AND  the event is %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  var dateToBeReplaced = '2021-02-16';
+  data = data.replace('dateToBeReplaced',dateToBeReplaced);
+
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSaveEventPath;
 
   const saveEventOptions = {
     method: 'POST',
@@ -1355,5 +1412,8 @@ module.exports = {
   bulkCaseListSchedule,
   bulkCaseListPronounced,
   moveCaseToConditionalOderPronounced,
-  getCaseDetailsFor
+  getCaseDetailsFor,
+  moveCaseToBulk,
+  updateAoSToAoSOverdue
+
 };
