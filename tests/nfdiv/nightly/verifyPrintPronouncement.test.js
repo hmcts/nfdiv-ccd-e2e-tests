@@ -54,6 +54,10 @@ Scenario('NFD - Verify Bulk Case & print for pronouncement event', async functio
 
   verifyState(awaitingLegalAdvisorReferral, states.AWAITING_LEGAL_ADVISOR_REFERRAL);
 
+  // Moves case to Listed;AwaitingPronouncement state
+  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
+  verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
+
   //Note:Important: BulkCase with just ONE CaseParty reference . Purely for e2e purpose Only and to enable testing of the Pages that follow it.
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 

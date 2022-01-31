@@ -16,7 +16,7 @@ Feature('NFD - Testing cases up to Awaiting DWP Response state paths ');
 
 Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payment ', async function (I) {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log('..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
   // SoT solServiceMethod == courtService
