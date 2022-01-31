@@ -1249,9 +1249,9 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
 
   //dateFinalOrderEligibleFrom is set to 6weeks and 1 day in the past from today.
   var dateInPast = datechange(-43);
-  console.log('6 weeks and 1 day in the PAST  is == '+ dateInPast);
+  console.log('6 weeks and 1 day in the PAST  is == ' + dateInPast);
 
-  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  var data = fs.readFileSync(dataLocation).toString('utf8');
   data = data.replace('sixWeeksOneDayInThePast', dateInPast);
 
   var saveBody = {
@@ -1272,16 +1272,23 @@ async function updateFinalOrderEligibleFromDate(caseId, eventId, dataLocation = 
     },
     body: JSON.stringify(saveBody)
   };
-async function updateAoSToAoSOverdue(dataLocation = 'data/aos-overdue.json',caseId) {
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
+async function updateAoSToAoSOverdue(caseId, eventId, dataLocation = 'data/aos-overdue.json') {
 
   const authToken = await getSystemUserToken();
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
-  const eventTypeId ='system-progress-to-aos-overdue';
 
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
-  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/${eventTypeId}/token`;
-  const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
+  logger.info('Updating dueDate for Case %s AND  the event is %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
   const startCaseOptions = {
     method: 'GET',
@@ -1295,13 +1302,11 @@ async function updateAoSToAoSOverdue(dataLocation = 'data/aos-overdue.json',case
 
   const startCaseResponse = await request(startCaseOptions);
 
-  const eventId = 'system-progress-to-aos-overdue';
-
   const eventToken = JSON.parse(startCaseResponse).token;
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
-  var fortnightAgo = datechange(-15); // 14 days in the past ... Check this
-  data = data.replace('dueDate',fortnightAgo);
+  var dateToBeReplaced = '2021-02-16';
+  data = data.replace('dateToBeReplaced',dateToBeReplaced);
 
 
   var saveBody = {
@@ -1312,11 +1317,11 @@ async function updateAoSToAoSOverdue(dataLocation = 'data/aos-overdue.json',case
     event_token: eventToken
   };
 
-  const postURL = ccdApiUrl + ccdSubmitEventPath;
+  const postURL = ccdApiUrl + ccdSaveEventPath;
 
-  const saveCaseOptions = {
+  const saveEventOptions = {
     method: 'POST',
-    uri: ccdApiUrl + ccdSubmitEventPath,
+    uri: ccdApiUrl + ccdSaveEventPath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,
@@ -1325,10 +1330,6 @@ async function updateAoSToAoSOverdue(dataLocation = 'data/aos-overdue.json',case
     body: JSON.stringify(saveBody)
   };
 
-  const saveCaseResponse =  await request(saveCaseOptions);
-  console.log( '...... response from CCD is ' + saveCaseResponse);
-  return saveCaseResponse;
-}
   const saveEventResponse = await request(saveEventOptions);
 
   return saveEventResponse;

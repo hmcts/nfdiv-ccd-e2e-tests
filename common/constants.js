@@ -51,6 +51,7 @@ const states = {
   AOS_AWAITING: 'AwaitingAos',
   AOS_STARTED: 'AosStarted',
   AOS_DRAFTED:'AosDrafted',
+  AOS_OVERDUE:'AosOverdue',
   HOLDING:'Holding',
   AWAITING_ANSWER: 'AosSubmittedAwaitingAnswer',
   AWAITING_DN: 'AwaitingDecreeNisi',

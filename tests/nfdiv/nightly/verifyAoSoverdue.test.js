@@ -28,36 +28,15 @@ Scenario('NFD - Move case into AoS Overdue', async function (I) {
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
 
-  const shareACase = await updateRoleForCase(user.CA,caseNumber,'APPTWOSOLICITOR');
+  const shareACase = await updateRoleForCase(user.RS, caseNumber, 'APPTWOSOLICITOR');
 
   const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
   assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior'); //at Awaiting AoS
 
-  // await I.amOnHomePage();
-  // await I.login(testconfig.TestEnvRespondentSolUser, testconfig.TestEnvRespondentSolPassword);
-  // await I.filterByCaseId(caseNumber);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  //
-  // await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
-  // await I.draftAosContactDetails();
-  // await I.draftAoSReview(caseNumber);
-  // await I.draftAoSDoYouAgree(caseNumber);
-  // await I.draftAoSAnyOtherLegalProceedings(caseNumber);
-  // await I.draftAosCheckYourAnswers(caseNumber);
-  // await I.see('AoS drafted');
-  //
-  // // Update AoS
-  // await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
-  // await I.aosUpdateReviewApplicant1Application(caseNumber);
-  // await I.aosUpdateJurisdiction(caseNumber);
-  // await I.aosUpdateLegal(caseNumber);
-  // await I.aosUpdateCYA(caseNumber);
-  // await I.see('AoS drafted');
-
-  const response = await updateAoSToAoSOverdue('data/aos-overdue.json',caseNumber);
-  assert.strictEqual(JSON.parse(response).state, 'AoS overdue');
+  const response = await updateAoSToAoSOverdue(caseNumber,'system-progress-to-aos-overdue','data/aos-overdue.json');
+  verifyState(response, states.AOS_OVERDUE);
 
 
 }).retry(testconfig.TestRetryScenarios);
