@@ -5,7 +5,7 @@ const assert = require('assert');
 
 let caseNumber;
 
-Feature('Create Joint Application ');
+Feature('Joint Application - Divorce and Dissolution Case Creation');
 
 Scenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I) => {
 
