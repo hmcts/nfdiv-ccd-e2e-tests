@@ -13,11 +13,12 @@ const verifyState = (eventResponse, state) => {
 let caseNumber;
 let bulkCaseReferenceId;
 
+@flaky
 Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
 // marked as flaky as between the states of 'Listed' and 'Pronounced' , CCD downstream moves these in an Asyncrhonous fashion
 // and hence it is not possible to automate this  unpredicatable 'WAIT' via a test.
-@flaky
+
 Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
