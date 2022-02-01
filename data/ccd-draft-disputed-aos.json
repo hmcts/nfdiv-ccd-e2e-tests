@@ -4,7 +4,7 @@
   "applicant2SolicitorEmail": "draftAoS@mailinator.com",
   "applicant2SolicitorAgreeToReceiveEmailsCheckbox": ["Yes"],
   "confirmReadPetition": "Yes",
-  "howToRespondApplication": "withoutDisputeDivorce",
+  "howToRespondApplication": "disputeDivorce",
   "jurisdictionAgree": "Yes",
   "applicant2LegalProceedings": "Yes",
   "applicant2LegalProceedingsDetails": "App2 Legal Proceedings description"
