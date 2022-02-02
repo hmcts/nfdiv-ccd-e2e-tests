@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD - Create a single Case and move it to Holding (Disputed/Undisputed');
 
-xScenario('NFD - Verify Undisputed Aos chosen', async function (I) {
+Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);

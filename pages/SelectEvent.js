@@ -17,8 +17,8 @@ module.exports = {
   },
 
   async signOut() {
-    await I.wait(2);
+    await I.wait(7);
     await I.click(signOut);
-    await I.wait(5);
+    await I.wait(7);
   }
 };
