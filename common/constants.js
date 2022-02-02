@@ -52,7 +52,7 @@ const states = {
   AOS_STARTED: 'AosStarted',
   AOS_DRAFTED:'AosDrafted',
   AOS_OVERDUE:'AosOverdue',
-  HOLDING:'20 week holding period',
+  HOLDING:'Holding',
   AWAITING_ANSWER: 'AosSubmittedAwaitingAnswer',
   AWAITING_DN: 'AwaitingDecreeNisi',
   AWAITING_LA: 'AwaitingLegalAdvisorReferral',
