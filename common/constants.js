@@ -52,7 +52,7 @@ const states = {
   AOS_STARTED: 'AosStarted',
   AOS_DRAFTED:'AosDrafted',
   AOS_OVERDUE:'AosOverdue',
-  HOLDING:'Holding',
+  HOLDING:'20 week holding period',
   AWAITING_ANSWER: 'AosSubmittedAwaitingAnswer',
   AWAITING_DN: 'AwaitingDecreeNisi',
   AWAITING_LA: 'AwaitingLegalAdvisorReferral',
@@ -93,7 +93,8 @@ const stateDisplayName = {
   AWAITING_FINAL_ORDER: 'Awaiting Final Order',
   FINAL_ORDER_REQUESTED: 'Final order requested',
   FINAL_ORDER_COMPLETED: 'Final order complete',
-  GENERAL_REFERRAL: 'Awaiting general referral payment'
+  GENERAL_REFERRAL: 'Awaiting general referral payment',
+  DRAFT_AOS: 'AoS drafted'
 };
 
 const eventDisplayName = {
@@ -208,7 +209,9 @@ const events = {
   ALERT_APPLICANT: 'Alert Applicant 1',
   APPLY_FOR_FINAL_ORDER :'Apply for final order',
   GRANT_FINAL_ORDER: 'Grant Final order',
-  GENERAL_REFERRAL: 'General referral'
+  GENERAL_REFERRAL: 'General referral',
+  AOS_UNDISPUTED: 'AoS undisputed',
+  AOS_DISPUTED: 'AoS disputed'
 };
 
 const serviceApplicationType = {
