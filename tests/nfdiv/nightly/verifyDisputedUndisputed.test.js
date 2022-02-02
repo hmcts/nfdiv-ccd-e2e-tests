@@ -1,5 +1,4 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,
-} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -15,7 +14,7 @@ Feature('NFD - Create a single Case and move it to Holding (Disputed/Undisputed'
 
 Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
   // SoT solServiceMethod == courtService
