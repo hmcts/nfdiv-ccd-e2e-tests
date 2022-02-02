@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD - Create a single Case and move it to Holding (Disputed/Undisputed');
 
-Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
+xScenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -63,7 +63,7 @@ Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.checkEventAndStateOnPageAndSignOut(states.HOLDING, events.AOS_UNDISPUTED);
+  await I.checkEventAndStateOnPageAndSignOut(states.TWENTY_WEEK_HOLDING_PERIOD, events.AOS_UNDISPUTED);
 
 }).retry(testConfig.TestRetryScenarios);
 
@@ -115,6 +115,6 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.checkEventAndStateOnPageAndSignOut(states.HOLDING, events.AOS_DISPUTED);
+  await I.checkEventAndStateOnPageAndSignOut(states.TWENTY_WEEK_HOLDING_PERIOD, events.AOS_DISPUTED);
 
 }).retry(testConfig.TestRetryScenarios);
