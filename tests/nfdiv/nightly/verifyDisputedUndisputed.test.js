@@ -1,6 +1,5 @@
 const { states, events , user, eventDisplayName, stateDisplayName} = require('../../../common/constants');
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
-const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
