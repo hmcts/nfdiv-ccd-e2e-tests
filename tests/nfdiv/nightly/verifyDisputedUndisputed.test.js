@@ -1,3 +1,4 @@
+const { states, events , user, eventDisplayName, stateDisplayName} = require('../../../common/constants');
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const { states, events , user} = require('../../../common/constants');
 const assert = require('assert');
@@ -34,11 +35,36 @@ Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
-  verifyState(draftAoS, states.AOS_DRAFTED);
+  // const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
+  // verifyState(draftAoS, states.AOS_DRAFTED);
+
+  //Draft AoS
+  await I.amOnHomePage();
+  await I.wait(8);
+  await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+
+  await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
+  await I.draftAosContactDetails();
+  await I.draftAoSReview(caseNumber);
+  await I.draftAoSDoYouAgree(caseNumber);
+
+  await I.draftAoSDoNotAgreeCourts(caseNumber);
+  await I.draftAoSAnyOtherLegalProceedings(caseNumber);
+  await I.draftAosCheckYourAnswers(caseNumber);
+  await I.signOut();
+  await I.wait(8);
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
-  verifyState(submitAoS, states.HOLDING);
+
+  await I.amOnHomePage();
+  await I.wait(8);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.checkEventAndStateOnPageAndSignOut(states.HOLDING, events.AOS_UNDISPUTED);
 
 }).retry(testConfig.TestRetryScenarios);
 
@@ -64,10 +90,32 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-disputed-aos.json');
-  verifyState(draftAoS, states.AOS_DRAFTED);
+  //Draft AoS
+  await I.amOnHomePage();
+  await I.wait(8);
+  await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+
+  await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
+  await I.draftAosContactDetails();
+  await I.draftAoSReview(caseNumber);
+  await I.draftAoSDoYouAgreeDisputed(caseNumber);
+
+  await I.draftAoSDoNotAgreeCourts(caseNumber);
+  await I.draftAoSAnyOtherLegalProceedings(caseNumber);
+  await I.draftAosCheckYourAnswers(caseNumber);
+  await I.signOut();
+  await I.wait(8);
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
-  verifyState(submitAoS, states.HOLDING);
+
+  await I.amOnHomePage();
+  await I.wait(8);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.checkEventAndStateOnPageAndSignOut(states.HOLDING, events.AOS_DISPUTED);
 
 }).retry(testConfig.TestRetryScenarios);

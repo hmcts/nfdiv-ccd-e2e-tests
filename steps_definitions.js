@@ -427,6 +427,10 @@ module.exports = function () {
       return draftAosPage.doYouAgreeJurisdiction(caseNumber);
     },
 
+    draftAoSDoYouAgreeDisputed :  function(caseNumber) {
+      return draftAosPage.doYouAgreeJurisdictionDisputed(caseNumber);
+    },
+
     draftAoSDoYouAgreeCourts :  function(caseNumber) {
       return draftAosPage.doYouAgreeCourts(caseNumber);
     },

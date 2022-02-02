@@ -10,6 +10,7 @@ module.exports = {
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
     disputeAgreeYes:'#howToRespondApplication-disputeDivorce',
     continueWithoutDisputingTheDivorce:'#howToRespondApplication-withoutDisputeDivorce',
+    continueWithDisputingTheDivorce:'#howToRespondApplication-disputeDivorce',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
     jurisdictionAgreeNo:'#jurisdictionAgree_No',
     reasonForNoJurisdiction:'#reasonCourtsOfEnglandAndWalesHaveNoJurisdiction',
@@ -49,11 +50,23 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
     await I.wait(4);
     await I.see('How does the applicant want to respond to the application?');
-    // await I.see(caseId);
     await I.see('The applicant can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond?');
     await I.runAccessibilityTest();
     await I.click(this.fields.continueWithoutDisputingTheDivorce);
+    await I.see('Continue without disputing the divorce');
+    await I.wait(2);
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async doYouAgreeJurisdictionDisputed(caseId) {
+    await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
+    await I.wait(4);
+    await I.see('How does the applicant want to respond to the application?');
+    await I.see('The applicant can only dispute the application if: (one or more of the following)');
+    await I.see('How do you want to respond?');
+    await I.runAccessibilityTest();
+    await I.click(this.fields.continueWithDisputingTheDivorce);
     await I.see('Continue without disputing the divorce');
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
