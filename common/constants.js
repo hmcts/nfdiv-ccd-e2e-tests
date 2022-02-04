@@ -66,7 +66,10 @@ const states = {
   TWENTY_WEEK_HOLDING_PERIOD:'20 week holding period',
   CONDITIONAL_ORDER_PRONOUNCED: 'Conditional order pronounced',
   GENERAL_CONSIDERATION_COMPLETE: 'General consideration complete',
-  AWAITING_DWP_RESPONSE: 'Awaiting DWP response'
+  AWAITING_DWP_RESPONSE: 'Awaiting DWP response',
+  AWAITING_GEN_CONSIDERATION:'AwaitingGeneralConsideration',
+  AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService'
+
 };
 
 const stateDisplayName = {
