@@ -71,6 +71,7 @@ const ConditionalOrderPage = require('./pages/ConditionalOrderPage.js');
 const BulkCasePage = require('./pages/BulkCasePage.js');
 const FinalOrderPage = require('./pages/FinalOrderPage.js');
 const GeneralConsiderationPage = require('./pages/GeneralConsiderationPage.js');
+const NoticeOfChangePage = require('./pages/NoticeOfChangePage');
 
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
@@ -84,6 +85,7 @@ const validateDocumentTabData = require ('./tabs/validateDocumentTabData');
 const validatePaymentTabData = require ('./tabs/validatePaymentTabData');
 const validateLanguageTabData = require ('./tabs/validateLanguageTabData');
 const validateLinkedCaseTabData = require ('./tabs/validateLinkedCaseTabData');
+
 
 module.exports = function () {
   return actor({
@@ -859,6 +861,10 @@ module.exports = function () {
 
     submitRequestDWPDisclosure: function() {
       return GeneralConsiderationPage.submit();
+    },
+
+    fillNoticeOfChange: function() {
+      return NoticeOfChangePage.fill();
     }
 
   });
