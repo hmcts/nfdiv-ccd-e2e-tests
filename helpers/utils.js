@@ -489,9 +489,10 @@ async function getCaseDetailsFor(caseId) {
     }
   };
 
-  const getCaseDetailsResponse = await request(getCaseDetails);
+  const getCaseResponse = await request(getCaseDetails);
   // can return state or anyother element from Response etc.
-  return JSON.parse(getCaseDetailsResponse).state;
+  // console.log('..... printint out the response '+getCaseResponse)
+  return JSON.parse(getCaseResponse);
 }
 
 

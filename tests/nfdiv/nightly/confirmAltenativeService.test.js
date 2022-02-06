@@ -40,7 +40,10 @@ Scenario('Confirm Alternative Service - Journey', async function (I) {
   verifyState(confirmAlternativeService, states.HOLDING);
 
   // TODO to assert that issueDate is now()+ 16days
-  // console.log( `issueDate is `, getCaseDetailsFor(caseNumber).case_data.issueDate);
+
+  let caseResponse = getCaseDetailsFor(caseNumber);
+  console.log ('issue Date is' +caseResponse.case_data.issueDate) ;
+
 
 }).retry(testConfig.TestRetryScenarios);
 
