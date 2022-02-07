@@ -1,4 +1,4 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,getCaseDetailsFor} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,getCaseDetailsFor,dateYYYYMMDD} = require('../../../helpers/utils');
 const {states,events,user} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -39,11 +39,10 @@ Scenario('Confirm Alternative Service - Journey', async function (I) {
   const confirmAlternativeService  = await updateNFDCaseInCcd(user.CA,caseNumber, 'caseworker-confirm-alternative-service','data/ccd-nfd-update-data.json');
   verifyState(confirmAlternativeService, states.HOLDING);
 
-  // TODO to assert that issueDate is now()+ 16days
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
 
-  let caseResponse = getCaseDetailsFor(caseNumber);
-  console.log ('issue Date is' +caseResponse.case_data.issueDate) ;
-
+  let formattedCurrentDate = dateYYYYMMDD(0);
+  assert.strictEqual(formattedCurrentDate,caseResponse.case_data.issueDate);
 
 }).retry(testConfig.TestRetryScenarios);
 
