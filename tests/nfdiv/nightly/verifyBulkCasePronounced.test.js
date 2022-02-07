@@ -1,6 +1,7 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,
+  moveCaseToBulk, getCaseDetailsFor} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
-const assert = require('assert');
+const assert   = require('assert');
 const testConfig = require('./../../config');
 
 const verifyState = (eventResponse, state) => {
@@ -90,5 +91,11 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitPronounceListCYA(bulkCaseReferenceId);
   await I.wait(10);
   await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, eventDisplayName.SYSTEM_UPDATE_CASE);
+
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  let documentType = caseResponse.case_data.coCertificateOfEntitlementDocument.documentType;
+  //let documentFileName = caseResponse.case_data.coCertificateOfEntitlementDocument.documentFileName;
+  assert.strictEqual(documentType,'certificateOfEntitlement');
+  //TODO - Assert that  documentFileName contains certificateOfEntitlement-caseId
 
 }).retry(testConfig.TestRetryScenarios);
