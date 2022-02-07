@@ -17,8 +17,9 @@ Scenario('Solicitor Create Joint Divorce Draft Case', async (I) => {
   let orgName = caseResponse.case_data.applicant1SolicitorOrganisationPolicy.Organisation.OrganisationName;
   let docType = caseResponse.case_data.applicant1DocumentsUploaded[0].value.documentType;
 
-  assert.deepEqual(caseResponse.case_data.applicant1SolicitorOrganisationPolicy.Organisation.OrganisationName,orgName);
-  assert.deepEqual(caseResponse.case_data.applicant1DocumentsUploaded[0].value.documentType,docType);
+  assert.strictEqual(orgName,'NFD Solicitor Organisation');
+  assert.strictEqual(docType,'correspondence');
+
 
 }).retry(testConfig.TestRetryScenarios);
 
