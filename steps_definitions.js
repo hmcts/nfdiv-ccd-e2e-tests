@@ -865,6 +865,10 @@ module.exports = function () {
 
     fillNoticeOfChange: function() {
       return NoticeOfChangePage.fill();
+    },
+
+    submitNoticeOfChangeCYA: function() {
+      return NoticeOfChangePage.fillApplyForFinalOrderCYA();
     }
 
   });

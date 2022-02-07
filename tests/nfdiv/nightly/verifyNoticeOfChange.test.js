@@ -1,7 +1,7 @@
 const {paymentType,yesorno,divorceOrDissolution, states, stateDisplayName, events} = require('../../../common/constants');
 const testconfig = require('./../../config');
 const {createNFDCaseInCcd,getCaseDetailsFor} = require('../../../helpers/utils');
-// const testConfig = require("./../../config");
+const testConfig = require('./../../config');
 
 let caseNumber;
 
@@ -23,8 +23,8 @@ Scenario('Caseworker triggers Notice of Change event', async (I) => {
   await I.wait(3);
 
   await I.checkNextStepForEvent('Notice of change');
-  await I.submitApplyForFinalOrder(caseNumber);
-  await I.submitApplyForFinalOrderCYA(caseNumber);
+  await I.fillNoticeOfChange(caseNumber);
+  await I.submitNoticeOfChangeCYA(caseNumber);
   await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
 
 
