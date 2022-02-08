@@ -25,7 +25,7 @@ Scenario('Caseworker triggers Notice of Change event', async (I) => {
   await I.checkNextStepForEvent('Notice of change');
   await I.fillNoticeOfChange(caseNumber);
   await I.submitNoticeOfChangeCYA(caseNumber);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.DRAFT, events.NOTICE_OF_CHANGE);
 
 
 }).retry(testconfig.TestRetryScenarios);
