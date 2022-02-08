@@ -14,7 +14,7 @@ module.exports = {
     searchOrganisation:'#search-org-text',
     orgResultTable: '#organisation-table',
     orgSelectUnLink: 'a[title="Clear organisation selection for NFD Solicitor Organisation"]',
-    orgSelectLink: 'a[title="Select the organisation DivRespondentSolicitorFirm"]',
+    orgSelectLink: 'a[title="Select the organisation NFD E2E Test Solicitor Organisation Ltd"]',
     submit: 'button[type="submit"]'
 
   },
@@ -31,7 +31,7 @@ module.exports = {
     await I.wait(3);
     await I.click(this.fields.orgSelectUnLink);
     await I.wait(3);
-    await I.fillField(this.fields.searchOrganisation, 'DivRespondentSolicitorFirm');
+    await I.fillField(this.fields.searchOrganisation, 'NFD E2E');
     await I.waitForElement(this.fields.orgResultTable);
     await I.click(this.fields.orgSelectLink);
     await I.waitForNavigationToComplete(this.fields.submit);
