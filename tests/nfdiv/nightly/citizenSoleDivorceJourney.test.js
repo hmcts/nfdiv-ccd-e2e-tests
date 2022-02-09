@@ -10,7 +10,8 @@ Feature('Citizen Journey  ');
 Scenario('Citizen Sole Divorce Journey - Basic ', async (I) => {
 
   caseNumber = await createNFDCitizenCase('data/ccd-nfdiv-joint-draft-case.json');
-  console.log( '..... Joint Case Created in CCD , CaseNumber is ==  ' + caseNumber);
+
+  console.log( 'caseID is ...........' + caseNumber);
 
   // let caseResponse =  await getCaseDetailsFor(caseNumber);
 

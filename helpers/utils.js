@@ -665,44 +665,57 @@ async function createNFDCitizenCase(dataLocation = 'data/ccd-nfdiv-sole-citizen-
   logger.info('Creating A Citizen Case');
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/citizen-create-application/token`;
-  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
+  const ccdStartCasePath = `/case-types/NFD/event-triggers/citizen-create-application`;
 
   const startCaseOptions = {
     method: 'GET',
     uri: ccdApiUrl + ccdStartCasePath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'ServiceAuthorization': `${serviceToken}`,
       'Content-Type': 'application/json'
     }
   };
 
+  console.log(`..... GET REquest ` + JSON.stringify(startCaseOptions ));
+
   const startCaseResponse = await request(startCaseOptions);
+
+  console.log( ' event token is '+ startCaseResponse);
 
   const eventToken = JSON.parse(startCaseResponse).token;
 
-  var data = fs.readFileSync(dataLocation);
-  var saveBody = {
-    event: {
-      id: 'citizen-create-application'
-    },
+  //var data = fs.readFileSync(dataLocation);
+
+  var data = {
+    divorceOrDissolution: 'divorce',
+    applicant1FirstName:  'FirstName11',
+    applicant1LastName: 'LastName11',
+    applicant1Email: 'lenix.british@alldrys.com'
+  }
+
+  var postBody = {
     data: JSON.parse(data),
+    event: {id: 'citizen-create-application'},
     event_token: eventToken
   };
 
+  const basicCitizen = `/case-types/NFD/cases`;
+
   const saveCaseOptions = {
     method: 'POST',
-    uri: ccdApiUrl + ccdSaveCasePath,
+    uri: ccdApiUrl + basicCitizen,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(saveBody)
+    body: JSON.stringify(postBody)
   };
 
   const saveCaseResponse =  await request(saveCaseOptions);
+
+  console.log( 'printing out the response...... which is caseId == ' + saveCaseResponse );
   return saveCaseResponse;
 }
 
