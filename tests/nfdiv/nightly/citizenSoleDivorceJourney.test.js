@@ -1,16 +1,16 @@
 const {paymentType,yesorno,divorceOrDissolution, states} = require('../../../common/constants');
 const testConfig = require('./../../config');
-const {createNFDCaseInCcd,getCaseDetailsFor} = require('../../../helpers/utils');
+const {createNFDCitizenCase,getCaseDetailsFor} = require('../../../helpers/utils');
 const assert = require('assert');
 
 let caseNumber;
 
-Feature('Joint Application ');
+Feature('Citizen Journey  ');
 
-Scenario('Solicitor Create Joint Divorce Draft Case', async (I) => {
+Scenario('Citizen Sole Divorce Journey - Basic ', async (I) => {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-citizen-case.json');
-  console.log( '..... Citizen Case Created in CCD and the  CaseNumber is ==  ' + caseNumber);
+  caseNumber = await createNFDCitizenCase('data/ccd-nfdiv-joint-draft-case.json');
+  console.log( '..... Joint Case Created in CCD , CaseNumber is ==  ' + caseNumber);
 
   // let caseResponse =  await getCaseDetailsFor(caseNumber);
 
