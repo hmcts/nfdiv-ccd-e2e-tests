@@ -867,8 +867,12 @@ module.exports = function () {
       return NoticeOfChangePage.fill();
     },
 
+    fillNoticeOfChangeRemove: function() {
+      return NoticeOfChangePage.fillRemove();
+    },
+
     submitNoticeOfChangeCYA: function() {
-      return NoticeOfChangePage.fillApplyForFinalOrderCYA();
+      return NoticeOfChangePage.fillApplyForNOCCYA();
     }
 
   });
