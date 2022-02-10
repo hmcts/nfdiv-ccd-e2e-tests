@@ -18,9 +18,7 @@ module.exports = {
     orgSelectLink: 'a[title="Select the organisation NFD E2E Test Solicitor Organisation Ltd"]',
     submit: 'button[type="submit"]',
     correspondenceAddress: '#applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_postcodeInput',
-    // findAddressButton:'button[class="button button-30" type="button" text="Find address"]'
     addressButton: '#applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_postcodeLookup > button',
-    // #applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_postcodeLookup > button
     addressOption: 'select[id="applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_addressList"]'
 
   },
