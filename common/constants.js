@@ -68,8 +68,8 @@ const states = {
   GENERAL_CONSIDERATION_COMPLETE: 'General consideration complete',
   AWAITING_DWP_RESPONSE: 'Awaiting DWP response',
   AWAITING_GEN_CONSIDERATION:'AwaitingGeneralConsideration',
-  AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService'
-
+  AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService',
+  FINAL_ORDER_OVERDUE: 'FinalOrderOverdue'
 };
 
 const stateDisplayName = {

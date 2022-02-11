@@ -1336,6 +1336,63 @@ async function updateAoSToAoSOverdue(caseId, eventId, dataLocation = 'data/aos-o
   return saveEventResponse;
 }
 
+async function updateFinalOrderOverdue(caseId, eventId, dataLocation = 'data/updateFinalOrderOverdue.json') {
+
+  const authToken = await getSystemUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating dateFinalOrderNoLongerEligible for Case %s AND  the event is %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  var dateToBeReplaced = '2021-01-01';
+  data = data.replace('dateToBeReplaced',dateToBeReplaced);
+
+
+  var saveBody = {
+    event: {
+      id: eventId
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const postURL = ccdApiUrl + ccdSaveEventPath;
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+
+  return saveEventResponse;
+}
+
 function firstLetterToCaps(value){
   return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
 };
@@ -1415,6 +1472,7 @@ module.exports = {
   moveCaseToConditionalOderPronounced,
   getCaseDetailsFor,
   moveCaseToBulk,
-  updateAoSToAoSOverdue
+  updateAoSToAoSOverdue,
+  updateFinalOrderOverdue
 
 };
