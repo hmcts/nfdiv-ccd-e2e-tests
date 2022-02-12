@@ -93,21 +93,6 @@
   "divorceUnit": "serviceCentre",
   "applicant1SolicitorReference": "Ipsum in praesentiu",
   "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
-  "dataVersion": 43,
-  "documentsGenerated": [
-    {
-      "id": "8afd12f2-78fc-45d3-9199-8eb9a07044d7",
-      "value": {
-        "documentLink": {
-          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/8a5b6fd2-5058-416c-91f5-9e3834dcbe97",
-          "document_filename": "draft-divorce-application-1643206167059322.pdf",
-          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/8a5b6fd2-5058-416c-91f5-9e3834dcbe97/binary"
-        },
-        "documentType": "application",
-        "documentFileName": "draft-divorce-application-1643206167059322.pdf"
-      }
-    }
-  ],
   "applicant1DocumentsUploaded": [
     {
       "id": "6ba9fdc0-08ac-4053-8724-bb8fbd600de3",
