@@ -2,6 +2,7 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const requestModule = require('request-promise-native');
 const request = requestModule.defaults();
 
+
 const fs = require('fs');
 const testConfig = require('../tests/config.js');
 
@@ -17,6 +18,45 @@ async function getUserToken() {
   // Setup Details
   const username = testConfig.TestEnvCWUser;
   const password = testConfig.TestEnvCWPassword;
+  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
+  const idamClientSecret = testConfig.TestIdamClientSecret;
+
+  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+
+  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
+
+  const codeResponse = await request.post({
+    uri: idamBaseUrl + idamCodePath,
+    headers: {
+      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  }).catch(error => {
+    console.log(error);
+  });
+
+  const code = JSON.parse(codeResponse).code;
+
+  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
+  const authTokenResponse = await request.post({
+    uri: idamBaseUrl + idamAuthPath,
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
+  });
+
+  logger.debug(JSON.parse(authTokenResponse)['access_token']);
+
+  return JSON.parse(authTokenResponse)['access_token'];
+}
+
+async function getUserTokenForCitizenUser(username,password) {
+
+  logger.info('....... Within the getUserTokenForCitizenUser');
+
+  // Setup Details
+  //const username = testConfig.TestEnvCitizenUser;
+  //const password = testConfig.TestEnvCitizenPassword;
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
@@ -319,44 +359,6 @@ async function getLegalAdvisorUserToken() {
 }
 
 
-async function getCitizenUserToken() {
-  logger.info('.........Getting Citizen User Token');
-
-  // Setup Details
-  const username = testConfig.TestEnvCitizenUser;
-  const password = testConfig.TestEnvCitizenPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
-}
 
 
 //TODO this will eventually replace the multiple getUserTokenXXX() methods above
@@ -468,7 +470,7 @@ async function getServiceToken() {
   ;
 
   logger.debug(serviceToken);
-
+  console.log(`.....service token is .......`  + serviceToken);
   return serviceToken;
 }
 
@@ -600,6 +602,7 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
   return saveCaseResponse;
 }
 
+
 async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
   const authToken = await getSolicitorUserToken();
@@ -653,72 +656,132 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
   return saveCaseResponse;
 }
 
-async function createNFDCitizenCase(dataLocation = 'data/ccd-nfdiv-sole-citizen-case') {
+async function createCitizenUser() {
 
-  const authToken = await getCitizenUserToken();
-  //const authToken = await getUserTokenFor(user.SOLS);
+  const generateTestUsername = `nfdiv.E2E.Applicant1`+new Date().getDate()+Math.random().toString().substr(2, 4)+`@hmcts.net`;
+  const userGroup='[{"code":"citizen"}]';
+
+  const rolesForCitizenUser = [{
+    "code": "citizen",
+    "code": "caseworker-divorce",
+    "code": "caseworker",
+    "code": "caseworker-divorce-courtadmin_beta"
+  }];
+
+  const bodyPayload = {
+    "email": generateTestUsername,
+    "password": "Testing123",
+    "roles":[
+      {"code":"caseworker"},
+      {"code":"citizen"},
+      {"code":"caseworker-divorce"},
+      {"code":"caseworker-divorce-courtadmin_beta"}
+    ],
+    "forename":  "e2eNfdCitizenApp1Forename",
+    "surname": "App1Surname",
+  };
+
+ const idamApiUrl = "https://idam-api.aat.platform.hmcts.net/testing-support/accounts";
+
+  const createCitzUser = {
+    method: 'POST',
+    uri: idamApiUrl,
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(bodyPayload)
+  };
+
+  let idamUserCreatedResponse
+  try{
+    idamUserCreatedResponse =  await request(createCitzUser);
+  }catch(e){
+    console.log(`Exception while trying to create Citizen user with email ${generateTestUsername},e`);
+  }
+
+  console.log(' User Created :' + idamUserCreatedResponse);
+  return  JSON.parse(idamUserCreatedResponse);
+
+
+}
+
+async function deleteUser(userEmail){
+
+  const deleteUserURL = "https://idam-api.aat.platform.hmcts.net/testing-support/accounts/"+userEmail;
+
+  const deleteUser = {
+    method: 'DELETE',
+    uri: deleteUserURL
+  };
+
+  let idamUserCreatedResponse
+  try{
+    idamUserCreatedResponse =  await request(deleteUser);
+  }catch(exception){
+    console.log(`Exception while trying to DELETE Citizen user with email `+userEmail +exception);
+  }
+  console.log(' User with email | '+ userEmail  + ' | has been DELETED  :');
+}
+
+//kasi
+//kasi
+async function createNFDCitizenBasicCaseAndFetchResponse(username,password,dataLocation = 'data/ccd-nfdiv-sole-citizen-user-base-data.json') {
+
+  const authToken = await getUserTokenForCitizenUser(username,password);
 
   const userId = await getUserId(authToken);
 
-  const serviceToken = await getServiceToken(); // S2S Auth
+  const serviceToken = await getServiceToken();
 
-  logger.info('Creating A Citizen Case');
+  logger.info('Creating Citizen  Case');
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartCasePath = `/case-types/NFD/event-triggers/citizen-create-application`;
+  const ccdStartCasePath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/citizen-create-application/token`;
+  const ccdSaveCasePath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
 
-  const startCaseOptions = {
+  const getTokenOnly = {
     method: 'GET',
     uri: ccdApiUrl + ccdStartCasePath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `${serviceToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
       'Content-Type': 'application/json'
     }
   };
 
-  console.log(`..... GET REquest ` + JSON.stringify(startCaseOptions ));
+  const tokenOnlyResponse = await request(getTokenOnly);
+  const eventToken  = JSON.parse(tokenOnlyResponse).token;
 
-  const startCaseResponse = await request(startCaseOptions);
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('replaceApplicant1EmailAddress',username);// username == emailId.
 
-  console.log( ' event token is '+ startCaseResponse);
-
-  const eventToken = JSON.parse(startCaseResponse).token;
-
-  //var data = fs.readFileSync(dataLocation);
-
-  var data = {
-    divorceOrDissolution: 'divorce',
-    applicant1FirstName:  'FirstName11',
-    applicant1LastName: 'LastName11',
-    applicant1Email: 'lenix.british@alldrys.com'
-  }
-
-  var postBody = {
+  var saveBody = {
     data: JSON.parse(data),
-    event: {id: 'citizen-create-application'},
-    event_token: eventToken
+    event: {
+      id: 'citizen-create-application',
+      summary: 'Creating Basic Citizen Case',
+      description: 'For NFD Citizen E2E Test'
+    },
+    'event_token': eventToken
   };
-
-  const basicCitizen = `/case-types/NFD/cases`;
 
   const saveCaseOptions = {
     method: 'POST',
-    uri: ccdApiUrl + basicCitizen,
+    uri: ccdApiUrl + ccdSaveCasePath,
     headers: {
       'Authorization': `Bearer ${authToken}`,
       'ServiceAuthorization': `Bearer ${serviceToken}`,
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(postBody)
+    body: JSON.stringify(saveBody)
   };
 
+  console.log (`..................  Bearer  `+authToken);
+
   const saveCaseResponse =  await request(saveCaseOptions);
-
-  console.log( 'printing out the response...... which is caseId == ' + saveCaseResponse );
-  return saveCaseResponse;
+  console.log( ` final response is ` , saveCaseResponse);
+  return JSON.parse(saveCaseResponse).id;
 }
-
 
 async function getAuthTokenFor(userLoggedIn) {
   let authToken='';
@@ -1522,8 +1585,9 @@ module.exports = {
   bulkCaseListPronounced,
   moveCaseToConditionalOderPronounced,
   getCaseDetailsFor,
-  moveCaseToBulk,
   updateAoSToAoSOverdue,
-  createNFDCitizenCase
+  createCitizenUser,
+  createNFDCitizenBasicCaseAndFetchResponse,
+  deleteUser
 
 };

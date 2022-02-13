@@ -1,27 +1,38 @@
-const {paymentType,yesorno,divorceOrDissolution, states} = require('../../../common/constants');
+const {paymentType,yesorno,divorceOrDissolution, states,} = require('../../../common/constants');
 const testConfig = require('./../../config');
-const {createNFDCitizenCase,getCaseDetailsFor} = require('../../../helpers/utils');
+const {createCitizenUser,createNFDCitizenBasicCaseAndFetchResponse, deleteUser} = require('../../../helpers/utils');
 const assert = require('assert');
 
-let caseNumber;
+let citizenCaseId;
+let response;
 
 Feature('Citizen Journey  ');
 
 Scenario('Citizen Sole Divorce Journey - Basic ', async (I) => {
 
-  caseNumber = await createNFDCitizenCase('data/ccd-nfdiv-joint-draft-case.json');
+  // create new citizen user for each Test Run.
+  response = await createCitizenUser();
 
-  console.log( 'caseID is ...........' + caseNumber);
+  const userDetails = new Object();
+  userDetails.id = response.id;
+  userDetails.forename = response.forename;
+  userDetails.surname = response.surname;
+  userDetails.email = response.email;
+  userDetails.password = response.password;
 
-  // let caseResponse =  await getCaseDetailsFor(caseNumber);
+  console.log(" |  |"+  userDetails.email  + "| " + userDetails.forename + "| " +  userDetails.surname + "| " + userDetails.email +" | |");
 
-  // let orgName = caseResponse.case_data.applicant1SolicitorOrganisationPolicy.Organisation.OrganisationName;
-  // let docType = caseResponse.case_data.applicant1DocumentsUploaded[0].value.documentType;
-  //
-  // assert.strictEqual(orgName,'NFD Solicitor Organisation');
-  // assert.strictEqual(docType,'correspondence');
+  const citizenCaseId   = await createNFDCitizenBasicCaseAndFetchResponse(userDetails.email,'Testing123', 'data/ccd-nfdiv-sole-citizen-user-base-data.json');
+  console.log(" |Citizen Case Created with ID of .....  |"+  citizenCaseId ) ;
 
+  // Code to delete the created Citizen User after the test has completed
+  const userDeleteStatus = deleteUser(userDetails.email);
 
 }).retry(testConfig.TestRetryScenarios);
+
+
+
+
+
 
 
