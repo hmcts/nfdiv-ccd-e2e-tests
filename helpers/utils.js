@@ -319,9 +319,6 @@ async function getLegalAdvisorUserToken() {
   return JSON.parse(authTokenResponse)['access_token'];
 }
 
-
-
-
 //TODO this will eventually replace the multiple getUserTokenXXX() methods above
 async function getUserTokenFor(user) {
 
