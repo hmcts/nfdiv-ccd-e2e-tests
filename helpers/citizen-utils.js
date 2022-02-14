@@ -2,7 +2,6 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const requestModule = require('request-promise-native');
 const request = requestModule.defaults();
 
-
 const fs = require('fs');
 const testConfig = require('../tests/config.js');
 

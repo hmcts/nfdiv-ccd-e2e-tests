@@ -1,0 +1,116 @@
+{
+  "dueDate": "2022-02-27",
+  "dateSubmitted": "2022-02-13T15:46:24.708",
+  "applicant1Gender": "female",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "applicant2Gender": "male",
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "marriageDate": "2000-02-12",
+  "hyphenatedCaseRef": "1644-7465-3781-1885",
+  "applicant1Email": "nfdiv.E2E.Applicant1130596@hmcts.net",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1AgreedToReceiveEmails": "Yes",
+  "applicationType": "soleApplication",
+  "applicant1IsApplicant2Represented": "Yes",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
+  "labelContentTheApplicant2UC": "The respondent",
+  "applicant1ContactDetailsType": "public",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "applicant1LastNameChangedWhenMarried": "No",
+  "applicant1HWFAppliedForFees": "Yes",
+  "jurisdictionApplicant2Residence": "Yes",
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "marriageMarriedInUk": "Yes",
+  "applicant1HomeAddress": {
+    "County": "NORWICH",
+    "Country": "UK",
+    "PostCode": "NR3 3BY",
+    "PostTown": "NORWICH",
+    "AddressLine1": "29 ST. AUGUSTINES STREET",
+    "AddressLine2": "",
+    "AddressLine3": ""
+  },
+  "marriageDate": "2000-02-12",
+  "applicant2FirstName": "HUSBUS",
+  "applicant2InviteEmailAddress": "husbandemail@gmail.com",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "6c5bd254-28bf-47ff-b5b2-b533cf64f187",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577",
+          "document_filename": "Screenshot 2022-02-10 at 10.41.16.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577/binary"
+        },
+        "documentComment": "Uploaded by applicant",
+        "documentFileName": "Screenshot 2022-02-10 at 10.41.16.png"
+      }
+    },
+    {
+      "id": "049cdcde-353e-479a-8855-8894954ca04e",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/188df9f6-f3d2-4b71-9768-12df26c0d02f",
+          "document_filename": "AAT-1635-1.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/188df9f6-f3d2-4b71-9768-12df26c0d02f/binary"
+        },
+        "documentComment": "Uploaded by applicant",
+        "documentFileName": "AAT-1635-1.png"
+      }
+    }
+  ],
+  "applicant1MiddleName": "App1MiddleName",
+  "labelContentUnionTypeUC": "Divorce",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "applicant1LegalProceedings": "No",
+  "applicant1FirstName": "NFD Citizen EndToEnd FirstName",
+  "applicant1Email": "nfdiv.E2E.Applicant1130596@hmcts.net",
+  "applicant1Gender": "female",
+  "applicant1PcqId": "59ffd104-fbc6-47cb-8ae3-eb591c7b7660",
+  "labelContentUnionType": "divorce",
+  "applicant1LastName": "NFD Citizen LastName",
+  "applicant1LanguagePreferenceWelsh": "No",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant1KnowsApplicant2EmailAddress": "Yes",
+  "applicant2MiddleName": "App2Middle",
+  "marriageApplicant1Name": "MyFullNameOnMarriageCert",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "HusbandNameOnMarriageCert",
+  "divorceOrDissolution": "divorce",
+  "applicant1KnowsApplicant2Address": "Yes",
+  "applicant2Gender": "male",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
+  "applicant1FinancialOrder": "No",
+  "applicant1StatementOfTruth": "Yes",
+  "applicant2LastName": "band",
+  "applicant1PhoneNumber": "02031231546",
+  "applicant2HomeAddress": {
+    "County": "NORWICH",
+    "Country": "UK",
+    "PostCode": "NR2 4TE",
+    "PostTown": "NORWICH",
+    "AddressLine1": "27 FLAT 4, HEIGHAM STREET"
+   },
+  "jurisdictionApplicant1Residence": "Yes",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "applicant1PrayerHasBeenGivenCheckbox": [
+    "Yes"
+  ],
+  "screenHasMarriageCert": "Yes",
+  "jurisdictionConnections": [
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "applicant1HWFReferenceNumber": "HWF-326-325",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "applicant2Email": "husbandemail@gmail.com",
+  "applicant1HWFNeedHelp": "Yes",
+  "labelContentApplicant2": "respondent"
+}

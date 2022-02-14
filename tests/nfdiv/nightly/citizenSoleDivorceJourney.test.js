@@ -1,6 +1,6 @@
-const {paymentType,yesorno,divorceOrDissolution, states,} = require('../../../common/constants');
+const {paymentType,yesorno,divorceOrDissolution, states,citizenUserPW} = require('../../../common/constants');
 const testConfig = require('./../../config');
-const {createCitizenUser,createNFDCitizenBasicCaseAndFetchResponse, deleteUser} = require('../../../helpers/utils');
+const {createCitizenUser,createNFDCitizenBasicCaseAndFetchResponse, deleteUser,updateNFDCitizenCaseWithId} = require('../../../helpers/utils');
 const assert = require('assert');
 
 let citizenCaseId;
@@ -18,15 +18,19 @@ Scenario('Citizen Sole Divorce Journey - Basic ', async (I) => {
   userDetails.forename = response.forename;
   userDetails.surname = response.surname;
   userDetails.email = response.email;
-  userDetails.password = response.password;
 
   console.log(" |  |"+  userDetails.email  + "| " + userDetails.forename + "| " +  userDetails.surname + "| " + userDetails.email +" | |");
 
-  const citizenCaseId   = await createNFDCitizenBasicCaseAndFetchResponse(userDetails.email,'Testing123', 'data/ccd-nfdiv-sole-citizen-user-base-data.json');
+  const citizenCaseId   = await createNFDCitizenBasicCaseAndFetchResponse(userDetails.email,citizenUserPW, 'data/ccd-nfdiv-sole-citizen-user-base-data.json');
   console.log(" |Citizen Case Created with ID of .....  |"+  citizenCaseId ) ;
 
+  const responseAfterUpdating = await updateNFDCitizenCaseWithId(userDetails.email,citizenUserPW,citizenCaseId,'data/ccd-nfdiv-citizen-update-sole-application.json','citizen-update-application');
+
+  console.log(`..After Updating case.........` + responseAfterUpdating );
+
+
   // Code to delete the created Citizen User after the test has completed
-  const userDeleteStatus = deleteUser(userDetails.email);
+  // const userDeleteStatus = deleteUser(userDetails.email);
 
 }).retry(testConfig.TestRetryScenarios);
 
