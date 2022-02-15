@@ -77,6 +77,8 @@ module.exports = {
     await I.click(this.fields.noCorrectionNeeded);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationSolStatementOfTruthApplicant2');
+    await I.click(this.fields.solReconciliation);
+    await I.click(this.fields.solReconciliationDiscussed);
     await I.click(this.fields.prayerApp2);
     await I.click(this.fields.statementOfTruthApp2);
     await I.click(this.fields.statementOfTruthSolApp2);
@@ -93,7 +95,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
     await I.click(this.fields.urgentCase);
-    await I.click(this.fields.courtService);
+    // await I.click(this.fields.courtService);
     await I.click(this.fields.solReconciliation);
     await I.click(this.fields.solReconciliationDiscussed);
     await I.click(this.fields.prayerYes);
