@@ -1,6 +1,7 @@
 {
   "coApplicant1StatementOfTruth": "Yes",
-  "coSolicitorName": "James Porter",
-  "coSolicitorFirm": "Wimal & Co Solicitors",
-  "coSolicitorAdditionalComments": "Additional Comments"
+  "coApplicant1SolicitorName": "James Porter",
+  "coApplicant1SolicitorFirm": "Wimal & Co Solicitors",
+  "coApplicant1SolicitorAdditionalComments": "Additional Comments",
+  "coApplicant1IsSubmitted": "Yes"
 }

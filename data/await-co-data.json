@@ -1,3 +1,5 @@
 {
-  "dueDate": null
+  "dueDate": null,
+  "coApplicant1IsDrafted": "No",
+  "coApplicant1IsSubmitted": "No"
 }

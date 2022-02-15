@@ -1,5 +1,6 @@
 {
-  "coApplicant1ApplyForConditionalOrder": "Yes",
-  "coApplicant1ChangeOrAddToApplication": "Yes",
-  "coApplicant1ChangeOrAddToApplication": "Yes"
+  "coApplicant1IsDrafted": "Yes",
+  "coApplicant1ConfirmInformationStillCorrect": "Yes",
+  "coApplicant1IsSubmitted": "No",
+  "coApplicant1ApplyForConditionalOrder": "Yes"
 }
