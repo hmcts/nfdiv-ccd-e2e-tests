@@ -55,6 +55,7 @@
     "test:alternative-service": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/confirmAltenativeService.test.js -c ./ --steps",
     "test:notice-of-change": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyNoticeOfChange.test.js -c ./ --steps",
     "test:citizen-sole-divorce": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/citizenSoleDivorceJourney.test.js -c ./ --steps",
+    "test:conditionalorder-journey": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/conditionalOrderJourneys.test.js -c ./ --steps",
 
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
