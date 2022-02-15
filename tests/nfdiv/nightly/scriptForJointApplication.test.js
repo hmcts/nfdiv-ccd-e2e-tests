@@ -9,8 +9,8 @@ Feature('Joint Application ');
 
 Scenario('Solicitor Create Joint Divorce Draft Case', async (I) => {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-joint-draft-case.json');
-  console.log( '..... Joint Case Created in CCD , CaseNumber is ==  ' + caseNumber);
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-citizen-case.json');
+  console.log( '..... Citizen Case Created in CCD and the  CaseNumber is ==  ' + caseNumber);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
 

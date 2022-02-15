@@ -15,6 +15,8 @@ const signOut = 'Sign out';
 
 const currentCaseType = 'NFD';
 
+const citizenUserPW='Testing123';
+
 const bulkCaseReferenceCaseType='NO_FAULT_DIVORCE_BulkAction';
 
 const divorceOrDissolution = {
@@ -238,5 +240,6 @@ module.exports = {
   divorceOrDissolution,
   serviceApplicationType,
   currentCaseType,
-  bulkCaseReferenceCaseType
+  bulkCaseReferenceCaseType,
+  citizenUserPW
 };

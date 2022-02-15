@@ -2,6 +2,7 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const requestModule = require('request-promise-native');
 const request = requestModule.defaults();
 
+
 const fs = require('fs');
 const testConfig = require('../tests/config.js');
 
@@ -427,7 +428,6 @@ async function getServiceToken() {
   ;
 
   logger.debug(serviceToken);
-
   return serviceToken;
 }
 
@@ -459,6 +459,61 @@ async function getManageOrgServiceToken() {
 
   return serviceToken;
 }
+
+
+async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
+
+  const authToken = await getSolicitorUserToken();
+  //const authToken = await getUserTokenFor(user.SOLS);
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken(); // S2S Auth
+
+  logger.info('Creating Case');
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/solicitor-create-application/token`;
+  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+
+  var data = fs.readFileSync(dataLocation);
+  var saveBody = {
+    event: {
+      id: 'solicitor-create-application'
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  return saveCaseResponse;
+}
+
 
 async function createCaseInCcd(dataLocation = 'data/ccd-basic-data.json') {
   const saveCaseResponse = await createCaseInCcd(dataLocation).catch(error => {
@@ -559,58 +614,8 @@ async function createCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.js
   return saveCaseResponse;
 }
 
-async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
-  const authToken = await getSolicitorUserToken();
-  //const authToken = await getUserTokenFor(user.SOLS);
 
-  const userId = await getUserId(authToken);
-
-  const serviceToken = await getServiceToken(); // S2S Auth
-
-  logger.info('Creating Case');
-
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/solicitor-create-application/token`;
-  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
-
-  const startCaseOptions = {
-    method: 'GET',
-    uri: ccdApiUrl + ccdStartCasePath,
-    headers: {
-      'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `Bearer ${serviceToken}`,
-      'Content-Type': 'application/json'
-    }
-  };
-
-  const startCaseResponse = await request(startCaseOptions);
-
-  const eventToken = JSON.parse(startCaseResponse).token;
-
-  var data = fs.readFileSync(dataLocation);
-  var saveBody = {
-    event: {
-      id: 'solicitor-create-application'
-    },
-    data: JSON.parse(data),
-    event_token: eventToken
-  };
-
-  const saveCaseOptions = {
-    method: 'POST',
-    uri: ccdApiUrl + ccdSaveCasePath,
-    headers: {
-      'Authorization': `Bearer ${authToken}`,
-      'ServiceAuthorization': `Bearer ${serviceToken}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(saveBody)
-  };
-
-  const saveCaseResponse =  await request(saveCaseOptions);
-  return saveCaseResponse;
-}
 
 async function getAuthTokenFor(userLoggedIn) {
   let authToken='';
@@ -1414,7 +1419,7 @@ module.exports = {
   bulkCaseListPronounced,
   moveCaseToConditionalOderPronounced,
   getCaseDetailsFor,
-  moveCaseToBulk,
-  updateAoSToAoSOverdue
-
+  updateAoSToAoSOverdue,
+  getUserId,
+  getServiceToken
 };

@@ -1,0 +1,119 @@
+{
+  "dueDate": "2022-02-28",
+  "applicant1AgreedToReceiveEmails": "Yes",
+  "applicationType": "soleApplication",
+  "applicant1IsApplicant2Represented": "Yes",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
+  "labelContentTheApplicant2UC": "The respondent",
+  "applicant1ContactDetailsType": "public",
+  "applicant1LastNameChangedWhenMarried": "No",
+  "jurisdictionApplicant2Residence": "Yes",
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "marriageMarriedInUk": "Yes",
+  "applicant1HomeAddress": {
+    "County": "NORWICH",
+    "Country": "UK",
+    "PostCode": "NR3 3BY",
+    "PostTown": "NORWICH",
+    "AddressLine1": "29 ST. AUGUSTINES STREET"
+  },
+  "marriageDate": "2000-02-12",
+  "applicant2FirstName": "HUSBUS",
+  "applicant2InviteEmailAddress": "husbandemail@gmail.com",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "6c5bd254-28bf-47ff-b5b2-b533cf64f187",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577",
+          "document_filename": "Screenshot 2022-02-10 at 10.41.16.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577/binary"
+        },
+        "documentComment": "Uploaded by applicant",
+        "documentFileName": "Screenshot 2022-02-10 at 10.41.16.png"
+      }
+    }
+  ],
+  "applicant1MiddleName": "ApplicantOneMiddleName",
+  "labelContentUnionTypeUC": "Divorce",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "applicant1LegalProceedings": "No",
+  "applicant1FirstName": "NFD Citizen EndToEnd FirstName",
+  "applicant1Email": "nfdiv.E2E.Applicant1130596@hmcts.net",
+  "applicant1Gender": "female",
+  "labelContentUnionType": "divorce",
+  "applicationFeeOrderSummary": {
+    "Fees": [
+      {
+        "id": "0f881f8b-a557-4ab1-ac74-141a632bbc8e",
+        "value": {
+          "FeeCode": "FEE0002",
+          "FeeAmount": "59300",
+          "FeeVersion": "6",
+          "FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution"
+        }
+      }
+    ],
+    "PaymentTotal": "59300"
+  },
+  "applicant1LastName": "NFD Citizen LastName",
+  "applicant1LanguagePreferenceWelsh": "No",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant1KnowsApplicant2EmailAddress": "Yes",
+  "applicant2MiddleName": "AppTwoMiddlesss",
+  "marriageApplicant1Name": "MyFullNameOnMarriageCert",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "HusbandNameOnMarriageCertssss",
+  "applicant1CannotUploadSupportingDocument": [],
+  "divorceOrDissolution": "divorce",
+  "applicant1KnowsApplicant2Address": "Yes",
+  "applicant2Gender": "male",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
+  "applicant1FinancialOrder": "No",
+  "applicant1StatementOfTruth": "Yes",
+  "applicant2LastName": "band",
+  "applicant1PhoneNumber": "02031231546",
+  "applicant2HomeAddress": {
+    "County": "NORWICH",
+    "Country": "UK",
+    "PostCode": "NR2 4TE",
+    "PostTown": "NORWICH",
+    "AddressLine1": "27 FLAT 4, HEIGHAM STREET"
+  },
+  "jurisdictionApplicant1Residence": "Yes",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "applicant1PrayerHasBeenGivenCheckbox": [
+    "Yes"
+  ],
+  "screenHasMarriageCert": "Yes",
+  "jurisdictionConnections": [
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "applicationPayments": [
+    {
+      "id": "bc20k34k3smhmtsga0d65hqn9b",
+      "value": {
+        "amount": 59300,
+        "status": "success",
+        "channel": "https://www.payments.service.gov.uk/secure/a275afbf-189a-4f1a-81fe-01b7cc1e1dcc",
+        "created": "2022-02-14T16:40:27.474Z",
+        "feeCode": "FEE0002",
+        "updated": "2022-02-14T16:41:34.062Z",
+        "reference": "RC-1644-8568-2708-5114",
+        "transactionId": "bc20k34k3smhmtsga0d65hqn9b"
+      }
+    }
+  ],
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "applicant2Email": "husbandemail@gmail.com",
+  "applicant1HWFNeedHelp": "No",
+  "labelContentApplicant2": "respondent"
+}
