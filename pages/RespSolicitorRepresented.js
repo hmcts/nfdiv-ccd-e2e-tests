@@ -6,7 +6,8 @@ module.exports = {
     solicitorNotRepresented: '#respondentSolicitorRepresented-No',
     applicant2SolicitorRepresented: '#applicant2SolicitorRepresented_Yes',
     applicant2SolicitorNotRepresented: '#applicant2SolicitorRepresented_No',
-
+    applicant2Email: '#applicant2Email',
+    applicant2Address: '#applicant2HomeAddress_applicant2HomeAddress_postcodeInput',
     respondentServiceAddress:'#D8DerivedRespondentCorrespondenceAddr',
     applicant2SolicitorName: '#applicant2SolicitorName',
     applicant2SolicitorReference: '#applicant2SolicitorReference',
@@ -18,6 +19,8 @@ module.exports = {
     orgSearchBar: '#search-org-text',
     orgResultTable: '#organisation-table',
     orgSelectLink: 'a[title="Select the organisation DivRespondentSolicitorFirm"]',
+    addressButton: '#applicant2HomeAddress_applicant2HomeAddress_postcodeLookup > button',
+    addressOption: 'select[id="applicant2HomeAddress_applicant2HomeAddress_addressList"]',
     submit: 'button[type="submit"]'
   },
 
@@ -31,13 +34,18 @@ module.exports = {
     await I.fillField(this.fields.applicant2SolicitorPhone, '02086425142');
     await I.fillField(this.fields.applicant2SolicitorEmail, 'kasi.subramaniam@solirius.com');
     await I.fillField(this.fields.applicant2SolicitorAddress, '101 Reede Road, RM10 8DU');
-
     await I.waitForElement(this.fields.searchOrganisation);
     await I.fillField(this.fields.searchOrganisation, 'DivRespondentSolicitorFirm');
     await I.waitForElement(this.fields.orgResultTable);
     await I.scrollTo(this.fields.orgSelectLink);
     await I.click(this.fields.orgSelectLink);
-
+    await I.fillField(this.fields.applicant2Email, 'applicant2@solirius.com');
+    await I.fillField(this.fields.applicant2Address, 'SW1A 1BJ');
+    await I.click(this.fields.addressButton);
+    await I.wait(3);
+    await I.waitForElement(this.fields.addressOption);
+    await I.wait(3);
+    await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   },
