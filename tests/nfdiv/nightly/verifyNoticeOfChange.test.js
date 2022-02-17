@@ -118,3 +118,5 @@ Scenario('Caseworker removes solicitor org for app1', async (I) => {
 
 
 }).retry(testconfig.TestRetryScenarios);
+
+//Todo Caseworker adding solicitor org for app1 & app2
