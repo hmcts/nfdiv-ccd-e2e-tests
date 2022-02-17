@@ -12,7 +12,7 @@ module.exports = {
     solicitorPaymentMethodSelect: '#SolPaymentHowToPay',
     urgentFilterYes: '#SolUrgentCase_Yes',
     urgentFilterNo: '#SolUrgentCase_No',
-    caseNumber:'[CASE_REFERENCE]',
+    caseNumber:'#[CASE_REFERENCE]',
     eventSummary: '#field-trigger-summary'
   },
   fields: {
@@ -47,10 +47,11 @@ module.exports = {
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
+    await I.selectOption(this.selectors.caseTypeSelect, 'New Law Case');
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
     await I.wait(5);
+    //TODO fix the caseNumber fill field
     //await I.fillField(this.fields.caseNumber, caseNumber); // Does nt work
     await I.wait(3);
     await I.click('Apply');
@@ -60,9 +61,10 @@ module.exports = {
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, bulkCaseReferenceCaseType);
+    await I.selectOption(this.selectors.caseTypeSelect, 'New Law Bulk Case');
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
+    // await I.fillField(this.fields.caseNumber, caseNumber);
     await I.wait(5);
     await I.click('Apply');
     await I.wait(3);
