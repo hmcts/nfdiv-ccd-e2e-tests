@@ -1,12 +1,14 @@
 {
-  "dueDate": "2022-02-28",
   "applicant1AgreedToReceiveEmails": "Yes",
   "applicationType": "soleApplication",
   "applicant1IsApplicant2Represented": "Yes",
   "labelContentApplicantsOrApplicant1s": "Applicant’s",
   "labelContentTheApplicant2UC": "The respondent",
   "applicant1ContactDetailsType": "public",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "dueDate": "REPLACE_DUE_DATE",
   "applicant1LastNameChangedWhenMarried": "No",
+  "applicant1HWFAppliedForFees": "Yes",
   "jurisdictionApplicant2Residence": "Yes",
   "labelContentDivorceOrEndCivilPartnership": "for divorce",
   "marriageMarriedInUk": "Yes",
@@ -15,73 +17,95 @@
     "Country": "UK",
     "PostCode": "NR3 3BY",
     "PostTown": "NORWICH",
-    "AddressLine1": "29 ST. AUGUSTINES STREET"
+    "AddressLine1": "17 ST. AUGUSTINES STREET",
+    "AddressLine2": "Norfolk",
+    "AddressLine3": "St Crispins Building"
   },
   "marriageDate": "2000-02-12",
-  "applicant2FirstName": "HUSBUS",
-  "applicant2InviteEmailAddress": "husbandemail@gmail.com",
+  "applicant2FirstName": "husband",
+  "hyphenatedCaseRef": "1645-1877-9115-8086",
+  "applicant2InviteEmailAddress": "husbus@gmail.com",
   "marriageFormationType": "oppositeSexCouple",
   "applicant1DocumentsUploaded": [
     {
-      "id": "6c5bd254-28bf-47ff-b5b2-b533cf64f187",
+      "id": "4b25adc6-a759-4015-bb77-d12b9c3b5b5a",
       "value": {
         "documentLink": {
-          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577",
-          "document_filename": "Screenshot 2022-02-10 at 10.41.16.png",
-          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/975ce7d1-7d81-4abe-9972-ba987844b577/binary"
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/7813435e-eee9-4415-8233-4339a776c2f8",
+          "document_filename": "Screenshot 2022-02-17 at 16.23.38.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/7813435e-eee9-4415-8233-4339a776c2f8/binary"
         },
         "documentComment": "Uploaded by applicant",
-        "documentFileName": "Screenshot 2022-02-10 at 10.41.16.png"
+        "documentFileName": "Screenshot 2022-02-17 at 16.23.38.png"
+      }
+    },
+    {
+      "id": "0e456b07-b771-4021-8299-9c25e500fbfd",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/ca6e603f-8b17-4213-8646-d885f173b794",
+          "document_filename": "1649-App1Sol-Login.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/ca6e603f-8b17-4213-8646-d885f173b794/binary"
+        },
+        "documentComment": "Uploaded by applicant",
+        "documentFileName": "1649-App1Sol-Login.png"
       }
     }
   ],
-  "applicant1MiddleName": "ApplicantOneMiddleName",
+  "applicant1MiddleName": "app1Middle",
   "labelContentUnionTypeUC": "Divorce",
+  "applicant2SolicitorFirmName": "The firm",
   "labelContentTheApplicantOrApplicant1": "the applicant",
   "applicant1LegalProceedings": "No",
-  "applicant1FirstName": "NFD Citizen EndToEnd FirstName",
-  "applicant1Email": "nfdiv.E2E.Applicant1130596@hmcts.net",
+  "applicant1Email": "xzaviar.kamahri@fundingair.com",
   "applicant1Gender": "female",
+  "applicant1PcqId": "500270d1-dded-41e1-a9a1-36e0329be16d",
   "labelContentUnionType": "divorce",
-  "applicant1LastName": "NFD Citizen LastName",
+  "applicant2SolicitorEmail": "respondentSols@mailinator.com",
+  "applicant2SolicitorName": "RespondentSolicitorName",
   "applicant1LanguagePreferenceWelsh": "No",
   "labelContentTheApplicant2": "the respondent",
   "applicant1KnowsApplicant2EmailAddress": "Yes",
-  "applicant2MiddleName": "AppTwoMiddlesss",
-  "marriageApplicant1Name": "MyFullNameOnMarriageCert",
+  "applicant2SolicitorAddress": "Applicant2 Solicitor Address ",
+  "applicant2MiddleName": "middle",
+  "marriageApplicant1Name": "Marriage",
   "labelContentApplicant2UC": "Respondent",
-  "marriageApplicant2Name": "HusbandNameOnMarriageCertssss",
-  "applicant1CannotUploadSupportingDocument": [],
-  "divorceOrDissolution": "divorce",
+  "marriageApplicant2Name": "cert",
   "applicant1KnowsApplicant2Address": "Yes",
   "applicant2Gender": "male",
   "applicant1NameDifferentToMarriageCertificate": "No",
   "labelContentApplicantOrApplicant1": "the applicant’s",
   "applicant1FinancialOrder": "No",
-  "applicant1IsApplicant2Represented": "No",
-  "applicant2LastName": "band",
-  "applicant1PhoneNumber": "02031231546",
+  "applicant1StatementOfTruth": "Yes",
+  "applicant2LastName": "last",
+  "applicant1PhoneNumber": "020312124142",
   "applicant2HomeAddress": {
     "County": "NORWICH",
     "Country": "UK",
     "PostCode": "NR2 4TE",
     "PostTown": "NORWICH",
-    "AddressLine1": "27 FLAT 4, HEIGHAM STREET"
+    "AddressLine1": "27 FLAT 4, HEIGHAM STREET",
+    "AddressLine2": "",
+    "AddressLine3": ""
   },
   "jurisdictionApplicant1Residence": "Yes",
   "applicant1ScreenHasMarriageBroken": "Yes",
   "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "applicant1PrayerHasBeenGivenCheckbox": [
+    "Yes"
+  ],
   "screenHasMarriageCert": "Yes",
   "jurisdictionConnections": [
     "A"
   ],
   "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
   "labelContentDivorceOrCivilPartnership": "divorce",
+  "applicant1HWFReferenceNumber": "HWF-235-326",
   "labelContentMarriageOrCivilPartnership": "marriage",
   "labelContentRespondentsOrApplicant2s": "Respondent's",
   "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
   "labelContentDivorceOrLegallyEnd": "get a divorce",
-  "applicant2Email": "husbandemail@gmail.com",
-  "applicant1HWFNeedHelp": "YES",
+  "applicant2Email": "husbus@gmail.com",
+  "applicant1HWFNeedHelp": "Yes",
   "labelContentApplicant2": "respondent"
 }

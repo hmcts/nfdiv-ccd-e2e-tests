@@ -120,7 +120,7 @@ async function updateNFDCitizenCaseWithId(username,pw,caseId,dataLocation = 'dat
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
 
-  console.log('Updating case with id %s and event %s', caseId, eventId);
+  console.log('Updating case  %s and event %s', caseId, eventId);
 
   const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
@@ -139,16 +139,14 @@ async function updateNFDCitizenCaseWithId(username,pw,caseId,dataLocation = 'dat
   const tokenOnlyResponse = await request(getTokenOnly);
   const eventToken  = JSON.parse(tokenOnlyResponse).token;
 
-  const dueDate = dateYYYYMMDD(0);
-  var data =  fs.readFileSync(dataLocation).toString('utf8');
-  data = data.replace('REPLACE_DUE_DATE',dueDate);// username == emailId.
-  //data = data.replace("REPLACE_DATE_SUBMITTED","\"2022-02-14T16:41:34.684\"");
+  const dueDate = dateYYYYMMDD(16);
+  let data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('REPLACE_DUE_DATE',dueDate);
 
-
-  var saveBody = {
+  let saveBody = {
     data: JSON.parse(data),
     event: {
-      id: 'citizen-update-application',
+      id: eventId,
       summary: 'Updating Citizen E2E Case',
       description: 'NFD Citizen E2E Update'
     },
@@ -171,12 +169,9 @@ async function updateNFDCitizenCaseWithId(username,pw,caseId,dataLocation = 'dat
 }
 
 async function getUserTokenForCitizenUser(username,password) {
-
   logger.info('....... Within the getUserTokenForCitizenUser');
 
-  // Setup Details
-  //const username = testConfig.TestEnvCitizenUser;
-  //const password = testConfig.TestEnvCitizenPassword;
+
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
