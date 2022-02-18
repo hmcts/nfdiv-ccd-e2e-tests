@@ -43,20 +43,6 @@
   "applicant1Email": "nfdiv.E2E.Applicant1130596@hmcts.net",
   "applicant1Gender": "female",
   "labelContentUnionType": "divorce",
-  "applicationFeeOrderSummary": {
-    "Fees": [
-      {
-        "id": "0f881f8b-a557-4ab1-ac74-141a632bbc8e",
-        "value": {
-          "FeeCode": "FEE0002",
-          "FeeAmount": "59300",
-          "FeeVersion": "6",
-          "FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution"
-        }
-      }
-    ],
-    "PaymentTotal": "59300"
-  },
   "applicant1LastName": "NFD Citizen LastName",
   "applicant1LanguagePreferenceWelsh": "No",
   "labelContentTheApplicant2": "the respondent",
@@ -72,7 +58,7 @@
   "applicant1NameDifferentToMarriageCertificate": "No",
   "labelContentApplicantOrApplicant1": "the applicant’s",
   "applicant1FinancialOrder": "No",
-  "applicant1StatementOfTruth": "Yes",
+  "applicant1IsApplicant2Represented": "No",
   "applicant2LastName": "band",
   "applicant1PhoneNumber": "02031231546",
   "applicant2HomeAddress": {
@@ -85,35 +71,17 @@
   "jurisdictionApplicant1Residence": "Yes",
   "applicant1ScreenHasMarriageBroken": "Yes",
   "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
-  "applicant1PrayerHasBeenGivenCheckbox": [
-    "Yes"
-  ],
   "screenHasMarriageCert": "Yes",
   "jurisdictionConnections": [
     "A"
   ],
   "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
   "labelContentDivorceOrCivilPartnership": "divorce",
-  "applicationPayments": [
-    {
-      "id": "bc20k34k3smhmtsga0d65hqn9b",
-      "value": {
-        "amount": 59300,
-        "status": "success",
-        "channel": "https://www.payments.service.gov.uk/secure/a275afbf-189a-4f1a-81fe-01b7cc1e1dcc",
-        "created": "2022-02-14T16:40:27.474Z",
-        "feeCode": "FEE0002",
-        "updated": "2022-02-14T16:41:34.062Z",
-        "reference": "RC-1644-8568-2708-5114",
-        "transactionId": "bc20k34k3smhmtsga0d65hqn9b"
-      }
-    }
-  ],
   "labelContentMarriageOrCivilPartnership": "marriage",
   "labelContentRespondentsOrApplicant2s": "Respondent's",
   "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
   "labelContentDivorceOrLegallyEnd": "get a divorce",
   "applicant2Email": "husbandemail@gmail.com",
-  "applicant1HWFNeedHelp": "No",
+  "applicant1HWFNeedHelp": "YES",
   "labelContentApplicant2": "respondent"
 }
