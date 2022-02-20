@@ -1,0 +1,19 @@
+{
+"applicant2ScreenHasMarriageBroken":"Yes",
+"applicant2FinancialOrder": "No",
+"applicant2NeedsHelpWithFees": "Yes",
+"applicant2HWFReferenceNumber": "HWF-326-328",
+"applicant2ConfirmApplicant1Information": "No",
+"applicant2FinancialOrdersFor": [],
+"solStatementOfReconciliationCertify":"Yes",
+"solStatementOfReconciliationDiscussed": "Yes",
+"applicant2PrayerHasBeenGivenCheckbox": ["Yes"],
+"applicant2StatementOfTruth": "Yes",
+"applicant2SolSignStatementOfTruth": "Yes",
+"applicant2SolStatementOfReconciliationName": "Name of the Firm ",
+"applicant2SolStatementOfReconciliationFirm": " Reconciliation ",
+"applicant2StatementOfReconciliationComments": "Additional comments For E2E Test Script",
+"divorceOrDissolution": "divorce",
+"labelContentDivorceOrLegallyEnd": "Legally end it",
+"labelContentMarriageOrCivilPartnership": "civil partnership"
+}

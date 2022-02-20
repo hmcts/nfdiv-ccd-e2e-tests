@@ -1,0 +1,40 @@
+{
+"applicant2SolicitorAnswersLink": {
+"document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/4e5cf878-b393-4eeb-891d-26b035901495",
+"document_filename": "joint-divorce-application-applicant-2-answers-1645363330833279.pdf",
+"document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/4e5cf878-b393-4eeb-891d-26b035901495/binary"
+},
+"applicationType": "jointApplication",
+"divorceOrDissolution": "divorce",
+"solUrgentCase": "No",
+"solUrgentCaseSupportingInformation": null,
+"applicant1FinancialOrder": "No",
+"solServiceMethod": null,
+"solStatementOfReconciliationCertify": "Yes",
+"solStatementOfReconciliationDiscussed": "Yes",
+"applicant1PrayerHasBeenGivenCheckbox": [
+"Yes"
+],
+"applicant1StatementOfTruth": "Yes",
+"solSignStatementOfTruth": "Yes",
+"solStatementOfReconciliationName": "Name ",
+"solStatementOfReconciliationFirm": "FirmName",
+"statementOfReconciliationComments": "AdditionalComments",
+"solApplicationFeeInPounds": "593",
+"solPaymentHowToPay": "feesHelpWith",
+"applicant1HWFReferenceNumber": "HWF-325-329",
+"applicant2HWFReferenceNumber": "HWF-326-328",
+"applicationFeeOrderSummary": {
+"PaymentTotal": "59300",
+"Fees": [
+{
+"value": {
+"FeeCode": "FEE0002",
+"FeeAmount": "59300",
+"FeeDescription": "Filing an application for a divorce, nullity or civil partnership dissolution",
+"FeeVersion": "6"
+}
+}
+]
+}
+}
