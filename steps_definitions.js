@@ -73,6 +73,7 @@ const FinalOrderPage = require('./pages/FinalOrderPage.js');
 const GeneralConsiderationPage = require('./pages/GeneralConsiderationPage.js');
 const NoticeOfChangePage = require('./pages/NoticeOfChangePage');
 
+const validateApplicationTabData = require ('./tabs/nfdiv/validateApplicationTabData');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
 const validateConfidentialPetitionerTab = require ('./tabs/validateConfidentialPetitionerTab');
 const validateAOSTabData = require ('./tabs/validateAOSTabData');
@@ -738,6 +739,11 @@ module.exports = function () {
     linkWithBulkCase: function(caseNumber) {
       return BulkCasePage.submitLinkWithBulkCase(caseNumber);
     },
+
+    validateApplicationTabData: function(reason, verifyContent) {
+      return validateApplicationTabData(reason,verifyContent);
+    },
+
 
     validatePetitionTabData: function(reason,verifyContent) {
       return validatePetitionTabData(reason,verifyContent);

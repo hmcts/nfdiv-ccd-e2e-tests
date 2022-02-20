@@ -1,12 +1,13 @@
 const I = actor();
 const { firstLetterToCaps, formatDateToCcdDisplayDate } = require('../helpers/utils');
-const labels = require('../data/tab-fields/petition.json');
+const labels = require('../data/tab-fields/nfdiv/application.json');
 const commonFields = require('../data/tab-fields/commonFields.json');
 const { reasonsForDivorce } = require('../common/constants');
 
 
 module.exports = async (reason, verifyContent) => {
   await I.clickTab(labels.name);
+
   await I.see(labels.rdc);
   await I.see(labels.courtName); //"Courts and Tribunals Service Centre",
   await I.see(labels.petitionerFName);

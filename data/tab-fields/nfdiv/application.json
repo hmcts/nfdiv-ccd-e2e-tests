@@ -1,0 +1,8 @@
+{
+  "name": "Application",
+  "whenApplicationCreated": "Date when the application was created",
+  "whenApplicationSubmitted": "Date submitted to HMCTS",
+  "whenApplicationIssued": "Date when the application was issued",
+  "rdc": "Courts and Tribunals Service Centre"
+}
+
