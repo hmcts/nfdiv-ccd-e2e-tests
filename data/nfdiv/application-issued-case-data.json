@@ -1,5 +1,6 @@
 {
-  "applicationType": "soleApplication",
+  "applicationType": "Sole Application",
+  "labelContentUnionTypeUC": "Divorce",
   "labelContentTheApplicant2UC": "The respondent",
   "applicant1ContactDetailsType": "public",
   "labelContentGotMarriedOrFormedCivilPartnership": "got married",
@@ -37,7 +38,7 @@
   "applicant2LanguagePreferenceWelsh": "No",
   "applicant1MiddleName": "Scripting Middle",
   "solUrgentCase": "No",
-  "labelContentUnionTypeUC": "Divorce",
+  "courtsTribunalsServiceCentre":"Courts and Tribunals Service Centre",
   "applicant1LegalProceedings": "No",
   "applicant1FirstName": "Script Beatrice",
   "applicant1Email": "nopamak@mailinator.com",
@@ -54,32 +55,6 @@
   "labelContentTheApplicant2": "the respondent",
   "dateSubmitted": "2022-01-31T15:09:32.105",
   "divorceWho": "wife",
-  "documentsGenerated": [
-    {
-      "id": "b66e5648-d3fb-41dd-ad51-974c452ca89e",
-      "value": {
-        "documentLink": {
-          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/b423d6eb-e225-4705-bf9b-903bf38063fa",
-          "document_filename": "divorce-application-1643641767987003-2022-01-31:15:09.pdf",
-          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/b423d6eb-e225-4705-bf9b-903bf38063fa/binary"
-        },
-        "documentType": "application",
-        "documentFileName": "divorce-application-1643641767987003-2022-01-31:15:09.pdf"
-      }
-    },
-    {
-      "id": "cfb28525-9f6e-499f-816e-a8e35f03908b",
-      "value": {
-        "documentLink": {
-          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/a8347951-81f7-460c-8931-ce69c0b33f1e",
-          "document_filename": "aosinvitation-1643641767987003-2022-01-31:15:09.pdf",
-          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/a8347951-81f7-460c-8931-ce69c0b33f1e/binary"
-        },
-        "documentType": "aos",
-        "documentFileName": "aosinvitation-1643641767987003-2022-01-31:15:09.pdf"
-      }
-    }
-  ],
   "applicant2MiddleName": "Jermaine Wolf",
   "marriageApplicant1Name": "Eugenia Palmer",
   "applicant1SolicitorPhone": "+1 (849) 349-3413",
