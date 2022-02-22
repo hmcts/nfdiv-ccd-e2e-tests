@@ -58,7 +58,7 @@ Scenario('NFD - Divorce Case   - Service Application , Service Payment and  Serv
 
 }).retry(testConfig.TestRetryScenarios);
 
-Scenario('NFD - Civil Case     - Service Application , Service Payment and  Service Decision', async function (I) {
+xScenario('NFD - Civil Case     - Service Application , Service Payment and  Service Decision', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   //console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
