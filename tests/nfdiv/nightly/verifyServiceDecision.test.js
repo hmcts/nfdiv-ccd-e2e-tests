@@ -1,4 +1,4 @@
-const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,updateNFDCaseInCcd,getCaseDetailsFor} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -58,7 +58,7 @@ Scenario('NFD - Divorce Case   - Service Application , Service Payment and  Serv
 
 }).retry(testConfig.TestRetryScenarios);
 
-xScenario('NFD - Civil Case     - Service Application , Service Payment and  Service Decision', async function (I) {
+Scenario('NFD - Civil Case     - Service Application , Service Payment and  Service Decision', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   //console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -95,10 +95,15 @@ xScenario('NFD - Civil Case     - Service Application , Service Payment and  Ser
   await I.submitServiceApplicationPaymentSubmit(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_CONSIDERATION, events.CONFIRM_SERVICE_PAYMENT);
 
+  // As LegalAdvisor trigger 'Make Service Decision' event and check for the documentType  generated.
+
+  await I.wait(7);
+  await I.signOut();
+  await I.wait(5);
   await I.amOnHomePage();
-  await I.wait(7);
+  await I.wait(5);
   await I.login(testconfig.TestEnvLegalAdvisorUser, testconfig.TestEnvLegalAdvisorPassword);
-  await I.wait(7);
+  await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -107,5 +112,15 @@ xScenario('NFD - Civil Case     - Service Application , Service Payment and  Ser
   await I.submitApproveServiceApplication(caseNumber);
   await I.submitApproveServiceApplicationCYA(caseNumber);
   await I.checkState(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
+
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  let docGeneratedArray = caseResponse.case_data.documentsGenerated;
+
+  const deemedDocument = docGeneratedArray
+    .filter(doc => {
+      doc.value.documentLink.document_filename ==='"deemedAsServedGranted.pdf"';
+    });
+
+  console.log('Array Filtered for document_filename '  + JSON.stringify(deemedDocument));
 
 }).retry(testConfig.TestRetryScenarios);
