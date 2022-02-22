@@ -6,7 +6,9 @@ const commonFields = require('../../data/tab-fields/nfdiv/commonFields.json');
 const { reasonsForDivorce } = require('../../common/constants');
 
 module.exports = async (reason, verifyContent) => {
+  await I.wait(3);
   await I.clickTab(labels.name);
+  await I.wait(5);
 
   // Application Tab.
   await I.see(labels.whenApplicationCreated);
