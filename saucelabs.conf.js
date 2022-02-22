@@ -11,7 +11,7 @@ const defaultSauceOptions = {
   tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
   acceptSslCerts: true,
   windowSize: '1600x900',
-  tags: ['div_expertui']
+  tags: ['nfdiv_expertui']
 };
 
 function merge (intoObject, fromObject) {
