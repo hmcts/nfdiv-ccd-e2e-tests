@@ -1,6 +1,7 @@
 const I = actor();
 const { firstLetterToCaps, formatDateToCcdDisplayDate } = require('../../helpers/utils');
 const labels = require('../../data/tab-fields/nfdiv/application-tab-fields.json');
+const content = require('../../data/nfdiv/application-issued-case-data.json');
 
 const commonFields = require('../../data/tab-fields/nfdiv/commonFields.json');
 const { reasonsForDivorce } = require('../../common/constants');
@@ -12,13 +13,17 @@ module.exports = async (reason, verifyContent) => {
 
   // Application Tab.
   await I.see(labels.whenApplicationCreated);
+  // await I.see(verifyContent.whenApplicationCreated);
   await I.see(labels.whenApplicationSubmitted);
+  // await I.see(verifyContent.whenApplicationSubmitted);
   await I.see(labels.whenApplicationIssued);
+  // await I.see(verifyContent.whenApplicationIssued);
   await I.see(labels.applicationType);
-  await I.see(verifyContent.applicationType);
+  await I.see(content.applicationType);
   await I.see(labels.divorceOrCivil);
-  await I.see(verifyContent.labelContentUnionTypeUC);
+  await I.see(content.labelContentUnionTypeUC);
   await I.see(labels.rdc);
+  await I.see(content.rdc);
 
   await I.see(labels.theApplicant);
   await I.see(labels.firstName);
