@@ -11,14 +11,14 @@ module.exports = {
   },
 
   async fillApplyForFinalOrder(caseNumber) {
-    await I.waitInUrl('trigger/solicitor-final-order-requested/solicitor-final-order-requestedSolicitorApplyForFinalOrder');
-    await I.see('Apply for final order');
+    await I.waitInUrl('/trigger/final-order-requested/final-order-requestedSolicitorApplyForFinalOrder');
+    // await I.see('Apply for final order');
     await I.click(this.fields.finalOrderYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async fillApplyForFinalOrderCYA(caseNumber) {
-    await I.waitInUrl('trigger/solicitor-final-order-requested/submit');
+    await I.waitInUrl('trigger/final-order-requested/submit');
     await I.see('Check your answers');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
