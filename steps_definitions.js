@@ -147,6 +147,18 @@ module.exports = function () {
       return CreateCasePage.fillFormAndSubmit();
     },
 
+    fillCreateTestCaseFormAndSubmit() {
+      return CreateCasePage.fillTesCaseFormAndSubmit();
+    },
+
+    fillCreateTestCase() {
+      return CreateCasePage.fillCreateTestCase();
+    },
+
+    pressSubmit() {
+      return CreateCasePage.pressSubmit();
+    },
+
     filterByCaseId : function(caseNumber){
       return CaseListPage.filterByCaseId(caseNumber);
     },
