@@ -16,10 +16,11 @@ let bulkCaseReferenceId;
 
 Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
-// marked as flaky as between the states of 'Listed' and 'Pronounced' , CCD downstream moves these in an Asyncrhonous fashion
-// and hence it is not possible to automate this  unpredicatable 'WAIT' via a test.
+// Commenting this out as it is flaky  between the states of 'Listed' and 'Pronounced' ,
+// CCD downstream moves these in an Asyncrhonous fashion
+// And hence it is not possible to automate this  unpredicatable 'WAIT' via a e2e Test.
 
-Scenario.skip('NFD - Verify Final Order pronounced', async function (I) {
+xScenario('NFD - Verify Final Order pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -85,10 +86,14 @@ Scenario.skip('NFD - Verify Final Order pronounced', async function (I) {
   // verifyState(moveCaseToPronounced, states.CONDITIONAL_ORDER_PRONOUNCED);
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
   //
-  await I.wait(180); // wait for 3 minutes to ensure that the Individual Case in the bulkList is 'Pronounced'
+//  await I.wait(180); // wait for 3 minutes to ensure that the Individual Case in the bulkList is 'Pronounced'
 
-  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
-  verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
+ // const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+
+  const xx = await updateNFDCaseInCcd(user.SOLS,caseNumber, "NEW EVENT NAME",'data/ccd-draft-co.json');
+//  verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
+  verifyState(xx , 'AwaitingFinalOrder');
+
 
   //final order pages
   await I.wait(5);
