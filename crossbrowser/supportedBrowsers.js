@@ -19,7 +19,7 @@ const supportedBrowsers = {
       platformName: 'macOS 10.14',
       browserVersion: 'latest',
       'sauce:options': {
-        name: 'DIV CCD E2E Tests - XUI: MAC_SAFARI',
+        name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
         seleniumVersion: '3.141.59',
         screenResolution: '2360x1770'
       }
