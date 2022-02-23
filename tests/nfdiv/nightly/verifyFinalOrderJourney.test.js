@@ -29,7 +29,11 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.clickCreateCase();
   await I.fillCreateTestCaseFormAndSubmit();
   await I.fillCreateTestCase();
-  await I.pressSubmit();
+  caseNumber = await I.pressSubmit();
+
+  caseNumber = caseNumber.toString();
+  caseNumber = caseNumber.replace(/\D/g, '');
+  console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   //final order pages
   await I.checkState(stateDisplayName.AWAITING_FINAL_ORDER, events.AWAITING_FINAL_ORDER);
