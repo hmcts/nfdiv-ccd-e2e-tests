@@ -5,7 +5,6 @@ const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespon
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
-const testconfig = require('../../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -17,24 +16,37 @@ let bulkCaseReferenceId;
 
 Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 
+// Commenting this out as it is flaky  between the states of 'Listed' and 'Pronounced' ,
+// CCD downstream moves these in an Asyncrhonous fashion
+// And hence it is not possible to automate this  unpredicatable 'WAIT' via a e2e Test.
+
 Scenario('NFD - Verify Final Order pronounced', async function (I) {
+
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.clickCreateCase();
+
   await I.fillCreateTestCaseFormAndSubmit();
   await I.fillCreateTestCase();
-  caseNumber = await I.pressSubmit();
-  caseNumber = caseNumber.toString();
-  caseNumber = caseNumber.replace(/\D/g, '');
-  console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
+
+  await I.pressSubmit(this.fields.submit);
+
+
 
   //final order pages
+  await I.wait(5);
+  await I.amOnHomePage();
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.wait(5);
+  await I.filterByBulkCaseReference(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
   await I.checkState(stateDisplayName.AWAITING_FINAL_ORDER, events.AWAITING_FINAL_ORDER);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Apply for final order');
-  await I.submitApplyForFinalOrder();
+  await I.submitApplyForFinalOrder(caseNumber);
   await I.submitApplyForFinalOrderCYA(caseNumber);
   await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
 
