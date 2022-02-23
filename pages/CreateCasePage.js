@@ -16,6 +16,7 @@ module.exports = {
     applicant1Represented: '#applicant1SolicitorRepresented_Yes',
     applicant2Represented: '#applicant2SolicitorRepresented_Yes',
     applicant2ID: '#applicant2UserId',
+    caseNumberDisplay: 'markdown[class="markdown"] h3',
     submit: 'button[type="submit"]',
     continue: '#content > div > exui-ccd-connector > ccd-case-edit > ccd-case-edit-submit > div > form > div > button:nth-child(2)'
   },
@@ -68,8 +69,10 @@ module.exports = {
 
   async pressSubmit() {
     await I.retry(5).click(this.fields.continue);
-    await I.wait(10);
-    await I.waitForText('test_last_name and test_last_name');
+    await I.waitForElement(this.fields.caseNumberDisplay);
+    const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
+    await I.wait(1);
+    return display;
   },
 
   async fillHowDoYouWantToApplyForDivorce(soleOrJoint,divorceOrCivil) {
