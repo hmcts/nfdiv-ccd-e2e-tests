@@ -124,7 +124,7 @@ Scenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I
 
   console.log('~~~~~~~~~~~~~  Case State now is 20 week holding period ~~~~~~~~~~~~ ');
 
-}).tag('@crossbrowser').retry(testconfig.TestRetryScenarios);
+}).retry(testconfig.TestRetryScenarios);
 
 Scenario('Dissolution Application (Joint) with PBA  and issuing the Case ', async (I) => {
 
@@ -242,5 +242,4 @@ Scenario('Dissolution Application (Joint) with PBA  and issuing the Case ', asyn
   await I.checkStateAndEvent('20 week holding period','Application issue');
 
   console.log('~~~~~~~~~~~~~  Case State now is 20 week holding period ~~~~~~~~~~~~ ');
-}).tag('@crossbrowser').retry(testconfig.TestRetryScenarios);
-
+}).retry(testconfig.TestRetryScenarios);
