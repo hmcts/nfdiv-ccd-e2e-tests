@@ -82,17 +82,15 @@ xScenario('NFD - Verify Final Order pronounced', async function (I) {
   // poll the Case within tthe bulkPack to check if it in 'Pronounced' state
   verifyState(pronounceBulkList, 'Pronounced');
 
-  // const moveCaseToPronounced = await moveCaseToConditionalOderPronounced('system-pronounce-case','data/conditional-order-pronounced.json',caseNumber);
-  // verifyState(moveCaseToPronounced, states.CONDITIONAL_ORDER_PRONOUNCED);
+  const moveCaseToPronounced = await moveCaseToConditionalOderPronounced('system-pronounce-case','data/conditional-order-pronounced.json',caseNumber);
+  verifyState(moveCaseToPronounced, states.CONDITIONAL_ORDER_PRONOUNCED);
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
   //
-//  await I.wait(180); // wait for 3 minutes to ensure that the Individual Case in the bulkList is 'Pronounced'
+  await I.wait(180); // wait for 3 minutes to ensure that the Individual Case in the bulkList is 'Pronounced'
 
- // const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
 
-  const xx = await updateNFDCaseInCcd(user.SOLS,caseNumber, "NEW EVENT NAME",'data/ccd-draft-co.json');
-//  verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
-  verifyState(xx , 'AwaitingFinalOrder');
+  verifyState(draftConditionalOrder, stateDisplayName.CONDITIONAL_ORDER_DRAFTED);
 
 
   //final order pages
