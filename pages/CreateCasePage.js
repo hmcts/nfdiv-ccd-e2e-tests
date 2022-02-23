@@ -16,7 +16,8 @@ module.exports = {
     applicant1Represented: '#applicant1SolicitorRepresented_Yes',
     applicant2Represented: '#applicant2SolicitorRepresented_Yes',
     applicant2ID: '#applicant2UserId',
-    submit: 'button[type="submit"]'
+    submit: 'button[type="submit"]',
+    continue: '#content > div > exui-ccd-connector > ccd-case-edit > ccd-case-edit-submit > div > form > div > button:nth-child(2)'
   },
 
   async clickCreateCase() {
@@ -66,7 +67,9 @@ module.exports = {
   },
 
   async pressSubmit() {
-    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.retry(5).click(this.fields.continue);
+    await I.wait(10);
+    await I.waitForText('test_last_name and test_last_name');
   },
 
   async fillHowDoYouWantToApplyForDivorce(soleOrJoint,divorceOrCivil) {
