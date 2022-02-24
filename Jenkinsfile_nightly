@@ -49,7 +49,7 @@ withNightlyPipeline("nodejs", product, component) {
     env.NODE_ENV = 'ci'
 
     loadVaultSecrets(secrets)
-    //enableCrossBrowserTest(['microsoft', 'firefox', 'safari', 'chrome'], 90)
+    enableCrossBrowserTest(['firefox','chrome'], 12)
     enableFullFunctionalTest(90)
 
     after('fullFunctionalTest') {

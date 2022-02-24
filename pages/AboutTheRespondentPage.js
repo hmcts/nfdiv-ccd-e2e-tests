@@ -26,7 +26,7 @@ module.exports = {
       await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2');
     }
     await I.waitForElement(this.fields.firstName);
-    await I.runAccessibilityTest();
+    //await I.runAccessibilityTest();
     await I.fillField(this.fields.firstName, 'Natasha');
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
