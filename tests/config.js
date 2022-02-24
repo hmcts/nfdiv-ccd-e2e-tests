@@ -6,7 +6,7 @@ module.exports = {
   TestRetryFeatures: process.env.RETRY_SCENARIOS ||  0,
   TestRetryScenarios: process.env.RETRY_SCENARIOS || 0,
   TestPathToRun: process.env.E2E_TEST_PATH || 'tests/nfdiv/nightly/*.test.js',
-   TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
+  TestOutputDir: process.env.E2E_OUTPUT_DIR || './functional-output/xui',
   TestEnvSolUser: process.env.SOLICITOR_USER_NAME || '',
   TestEnvSolPassword: process.env.SOLICITOR_PASSWORD || '',
   TestEnvCitizenUser: process.env.CITIZEN_USER_NAME || '',
