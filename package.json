@@ -60,7 +60,10 @@
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
-    "test:crossbrowser": "./bin/run-crossbrowser-tests.sh"
+    "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
+    "test:test-xb":"SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/solicitorCreateSoleDivorceApplication.test.js -c ./ --steps"
+
+
   },
   "keywords": [],
   "author": "",
@@ -77,6 +80,8 @@
   "devDependencies": {
     "codeceptjs": "^2.6.11",
     "eslint": "^4.19.1",
+    "@wdio/selenium-standalone-service": "^7.6.0",
+    "selenium-standalone": "^6.16.0",
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-mocha": "^5.0.0",
     "mocha": "^5.2.0",
