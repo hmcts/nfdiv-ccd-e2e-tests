@@ -28,7 +28,7 @@ module.exports = {
           "parserOptions": {
             "ecmaVersion": 2018,
             "sourceType": "module",
-            "project": "./tsconfig.json"
+            "project": "./ccd-draft-disputed-aos.json"
           },
           "plugins": ["@typescript-eslint"],
           "rules": {
