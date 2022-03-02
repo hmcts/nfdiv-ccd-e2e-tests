@@ -121,7 +121,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
 }).tag('@crossbrowser').retry(testconfig.TestRetryScenarios);
 
-xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
