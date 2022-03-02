@@ -7,7 +7,7 @@ module.exports = {
     applicant2SolicitorRepresented: '#applicant2SolicitorRepresented_Yes',
     applicant2SolicitorNotRepresented: '#applicant2SolicitorRepresented_No',
     applicant2Email: '#applicant2Email',
-    applicant2Address: '#applicant2Address_applicant2Address_postcodeInput',
+    applicant2Address: '#applicant2HomeAddress_applicant2HomeAddress_postcodeInput',
     respondentServiceAddress:'#D8DerivedRespondentCorrespondenceAddr',
     applicant2SolicitorName: '#applicant2SolicitorName',
     applicant2SolicitorReference: '#applicant2SolicitorReference',
@@ -19,8 +19,8 @@ module.exports = {
     orgSearchBar: '#search-org-text',
     orgResultTable: '#organisation-table',
     orgSelectLink: 'a[title="Select the organisation DivRespondentSolicitorFirm"]',
-    addressButton: '#applicant2Address_applicant2Address_postcodeLookup > button',
-    addressOption: 'select[id="applicant2Address_applicant2Address_addressList"]',
+    addressButton: '#applicant2HomeAddress_applicant2HomeAddress_postcodeLookup > button',
+    addressOption: 'select[id="applicant2HomeAddress_applicant2HomeAddress_addressList"]',
     submit: 'button[type="submit"]'
   },
 

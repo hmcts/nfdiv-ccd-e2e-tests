@@ -9,17 +9,16 @@ module.exports = {
     lastName: '#applicant1LastName',
     applicant1_changedName: '#applicant1NameDifferentToMarriageCertificate_No',
     whoIsApplicant1Divorcing: '#divorceWho',
-    addressLine1_Building:'#applicant1Address__detailAddressLine1',
+    addressLine1_Building:'#applicant1HomeAddress_applicant1HomeAddress_postcodeInput',
     applicant1Gender: '#applicant1Gender-male',
     oppositeSex: '#marriageFormationType-oppositeSexCouple',
-    applicant1_postcode:'#applicant1Address__detailPostCode',
-    applicant1_selected_address:'#applicant1Address_applicant1Address_addressList',
     findAddressButton:'button[type="button" ]',
-    selectAddresssDropDown: '#applicant1Address_applicant1Address_addressList',
     applicant1_phoneNumber: '#applicant1PhoneNumber',
     applicant1_email: '#applicant1Email',
     keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
     keepPetitionerContactDetailsNotConfidential: '#applicant1ContactDetailsType-public',
+    addressButton: '#applicant1HomeAddress_applicant1HomeAddress_postcodeLookup > button',
+    addressOption: 'select[id="applicant1HomeAddress_applicant1HomeAddress_addressList"]',
     submit: 'button[type="submit"]'
   },
 
@@ -41,15 +40,28 @@ module.exports = {
 
     // Same sex or oppositeSex Couple ?
     await I.click(this.fields.oppositeSex);
-
-    await I.click('I can\'t enter a UK postcode');
-    // TODO AddressSearch and select dropdown. ( Find Address button )
-    await I.wait(3);
-    await I.fillField(this.fields.addressLine1_Building, 'Building 007');
     await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
     await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
+
+    await I.click(this.fields.addressLine1_Building);
+    await I.fillField(this.fields.addressLine1_Building, 'SW1A 1BJ');
+    await I.wait(3);
+    await I.click(this.fields.addressButton);
+    await I.wait(3);
+    await I.waitForElement(this.fields.addressOption);
+    await I.wait(3);
+    await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
     await I.click(this.fields.keepPetitionerContactDetailsNotConfidential);
-    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
+
+    // await I.click('I can\'t enter a UK postcode');
+    // // TODO AddressSearch and select dropdown. ( Find Address button )
+    // await I.wait(3);
+    // await I.fillField(this.fields.addressLine1_Building, 'Building 007');
+    // await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
+    // await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
+    // await I.click(this.fields.keepPetitionerContactDetailsNotConfidential);
+    // await I.wait(2);
+    // await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
