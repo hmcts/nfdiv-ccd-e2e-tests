@@ -9,7 +9,7 @@ module.exports = {
     lastName: '#applicant1LastName',
     applicant1_changedName: '#applicant1NameDifferentToMarriageCertificate_No',
     whoIsApplicant1Divorcing: '#divorceWho',
-    addressLine1_Building:'#applicant1HomeAddress_applicant1HomeAddress_postcodeInput',
+    addressLine1_Building:'#applicant1Address_applicant1Address_postcodeInput',
     applicant1Gender: '#applicant1Gender-male',
     oppositeSex: '#marriageFormationType-oppositeSexCouple',
     findAddressButton:'button[type="button" ]',
@@ -17,8 +17,8 @@ module.exports = {
     applicant1_email: '#applicant1Email',
     keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
     keepPetitionerContactDetailsNotConfidential: '#applicant1ContactDetailsType-public',
-    addressButton: '#applicant1HomeAddress_applicant1HomeAddress_postcodeLookup > button',
-    addressOption: 'select[id="applicant1HomeAddress_applicant1HomeAddress_addressList"]',
+    addressButton: '#applicant1Address_applicant1Address_postcodeLookup > button',
+    addressOption: 'select[id="applicant1Address_applicant1Address_addressList"]',
     submit: 'button[type="submit"]'
   },
 

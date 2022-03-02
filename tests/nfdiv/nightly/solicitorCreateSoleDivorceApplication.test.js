@@ -5,7 +5,7 @@ let caseNumber;
 
 Feature('Create Sole Application ');
 
-Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+xScenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
