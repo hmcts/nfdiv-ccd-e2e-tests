@@ -65,7 +65,7 @@ Scenario('Caseworker updates solicitor org for app1', async (I) => {
 
 }).retry(testconfig.TestRetryScenarios);
 
-xScenario('Caseworker removes solicitor org for app1', async (I) => {
+Scenario('Caseworker removes solicitor org for app1', async (I) => {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
