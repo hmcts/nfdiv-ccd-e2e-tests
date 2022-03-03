@@ -25,47 +25,49 @@ const supportedBrowsers = {
   //     }
   //   }
   // },
-  // chrome: {
-  //   chrome_win_latest: {
-  //     browserName: 'chrome',
-  //     platformName: LATEST_WINDOWS,
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'NFD CCD E2E Tests - XUI: WIN_CHROME_LATEST',
-  //       screenResolution: '2560x1600'
-  //     }
-  //   },
-  //   chrome_mac_latest: {
-  //     browserName: 'chrome',
-  //     platformName: LATEST_MAC,
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'NFD CCD E2E Tests - XUI: MAC_CHROME_LATEST',
-  //       screenResolution: '2360x1770'
-  //     }
-  //   }
-  //}
-  //,
-  //firefox: {
-  // firefox_win_latest: {
-  //   browserName: 'firefox',
-  //   platformName: LATEST_WINDOWS,
-  //   browserVersion: 'latest',
-  //   'sauce:options': {
-  //     name: 'NFD CCD E2E Tests - XUI: WIN_FIREFOX_LATEST',
-  //     screenResolution: '2560x1600'
-  //   }
-  // },
-  firefox_mac_latest: {
-    browserName: 'firefox',
-    platformName: LATEST_MAC,
-    browserVersion: 'latest',
-    'sauce:options': {
-      name: 'NFD CCD E2E Tests - XUI: MAC_FIREFOX_LATEST',
-      screenResolution: '2360x1770'
+  chrome: {
+    chrome_win_latest: {
+      browserName: 'chrome',
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'NFD CCD E2E Tests - XUI: WIN_CHROME_LATEST',
+        screenResolution: '2560x1600',
+        tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel'
+      }
+    },
+    chrome_mac_latest: {
+      browserName: 'chrome',
+      platformName: LATEST_MAC,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'NFD CCD E2E Tests - XUI: MAC_CHROME_LATEST',
+        screenResolution: '2360x1770',
+        tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel'
+      }
     }
   }
-  //}
+  //,
+  // firefox: {
+  // // firefox_win_latest: {
+  // //   browserName: 'firefox',
+  // //   platformName: LATEST_WINDOWS,
+  // //   browserVersion: 'latest',
+  // //   'sauce:options': {
+  // //     name: 'NFD CCD E2E Tests - XUI: WIN_FIREFOX_LATEST',
+  // //     screenResolution: '2560x1600'
+  // //   }
+  // // },
+  // //firefox_mac_latest: {
+  //   browserName: 'firefox',
+  //   platformName: LATEST_MAC,
+  //   browserVersion: 'latest',
+  //   'sauce:options': {
+  //     name: 'NFD CCD E2E Tests - XUI: MAC_FIREFOX_LATEST',
+  //     screenResolution: '2360x1770'
+  //   }
+  // }
+  // }
 };
 
 module.exports = supportedBrowsers;

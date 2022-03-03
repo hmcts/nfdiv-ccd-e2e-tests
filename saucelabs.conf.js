@@ -6,9 +6,19 @@ const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
 const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
 const browser = process.env.BROWSER_GROUP || 'chrome';
 const defaultSauceOptions = {
+  //sauceSeleniumAddress: 'ondemand.eu-central-1.saucelabs.com:443/wd/hub',
+  // /wd/hub/session
+  host: 'ondemand.eu-central-1.saucelabs.com',
+  //  sauceRegion: 'eu',
+  //  port: 80,
+  //sauceConnect: true,
+  //sauceProxy: 'http://proxyout.reform.hmcts.net:8080',  // Proxy for the REST API
+  //sauceUser: process.env.SAUCE_USERNAME,
+  //sauceKey: process.env.SAUCE_ACCESS_KEY,
+  tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
+  //SAUCE_REST_ENDPOINT: 'https://eu-central-1.saucelabs.com/rest/v1/',
   username: process.env.SAUCE_USERNAME,
   accessKey: process.env.SAUCE_ACCESS_KEY,
-  tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
   acceptSslCerts: true,
   windowSize: '1600x900',
   tags: ['nfdiv_expertui']
