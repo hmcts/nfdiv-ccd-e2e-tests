@@ -17,9 +17,9 @@ module.exports = {
     orgSelectUnLink: 'a[title="Clear organisation selection for NFD Solicitor Organisation"]',
     orgSelectLink: 'a[title="Select the organisation NFD E2E Test Solicitor Organisation Ltd"]',
     submit: 'button[type="submit"]',
-    correspondenceAddress: '#applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_postcodeInput',
-    addressButton: '#applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_postcodeLookup > button',
-    addressOption: 'select[id="applicant1CorrespondenceAddress_applicant1CorrespondenceAddress_addressList"]'
+    correspondenceAddress: '#applicant1Address_applicant1Address_postcodeInput',
+    addressButton: '#applicant1Address_applicant1Address_postcodeLookup > button',
+    addressOption: 'select[id="applicant1Address_applicant1Address_addressList"]'
 
   },
 

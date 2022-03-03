@@ -56,10 +56,6 @@
   "applicant2LastName": "Kane",
   "applicant1PhoneNumber": "020345621454",
   "applicant1ScreenHasMarriageBroken": "Yes",
-  "applicant2CorrespondenceAddress": {
-    "AddressLine1": "1",
-    "AddressLine2": "1"
-  },
   "applicant1SolicitorEmail": "juwahi@mailinator.com",
   "applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
   "applicant1Address": {
