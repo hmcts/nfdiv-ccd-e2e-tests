@@ -43,10 +43,6 @@
   "applicant1PhoneNumber": "+1 (141) 489-5191",
   "applicant1ScreenHasMarriageBroken": "Yes",
   "labelContentApplicant2": "respondent",
-  "applicant2CorrespondenceAddress": {
-    "AddressLine1": "1",
-    "AddressLine2": "1"
-  },
   "applicant1SolicitorEmail": "juwahi@mailinator.com",
   "applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
   "applicant1Address": {

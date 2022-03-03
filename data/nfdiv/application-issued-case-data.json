@@ -101,9 +101,5 @@
   "applicant2Email": "applicantTwoemail@mailinator.com",
   "labelContentApplicant2": "respondent",
   "applicant1SolicitorRepresented": "Yes",
-  "statementOfReconciliationComments": "CommentsSoT",
-  "applicant2CorrespondenceAddress": {
-    "AddressLine1": "1",
-    "AddressLine2": "1"
-  }
+  "statementOfReconciliationComments": "CommentsSoT"
 }
