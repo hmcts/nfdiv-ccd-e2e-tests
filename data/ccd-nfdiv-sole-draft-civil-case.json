@@ -1,9 +1,8 @@
 {
-  "applicant1ContactDetailsConfidential": "share",
   "applicationType": "soleApplication",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
   "labelContentTheApplicant2UC": "The respondent",
-  "applicant1SolicitorAgreeToReceiveEmails": "No",
-  "labelContentDivorceOrCivilPartnershipApplication": "application to end the civil partnership",
+  "labelContentGotMarriedOrFormedCivilPartnership": "formed their civil partnership",
   "applicant1SolicitorOrganisationPolicy": {
     "Organisation": {
       "OrganisationID": "HEBFGBR",
@@ -11,58 +10,105 @@
     },
     "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
   },
+  "labelContentDivorceOrEndCivilPartnership": "to end the civil partnership",
+  "marriageMarriedInUk": "Yes",
+  "applicant1SolicitorEmail": "fusepyjom@mailinator.com",
   "applicant2SolicitorOrganisationPolicy": {
     "Organisation": {
       "OrganisationID": "3I4PJR6",
       "OrganisationName": "DivRespondentSolicitorFirm"
     },
-    "PreviousOrganisations": [],
     "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
   },
-  "marriageMarriedInUk": "Yes",
-  "marriageDate": "2003-10-25",
-  "applicant1MiddleName": "Scripting Middle",
-  "applicant1LegalProceedings": "No",
-  "applicant1Email": "nopamak@mailinator.com",
-  "applicant1Gender": "male",
-  "labelContentUnionType": "dissolution",
-  "labelContentUnionTypeUC": "Dissolution",
-  "applicant2NameDifferentToMarriageCertificate": "No",
+  "marriageDate": "1984-01-20",
+  "applicant2FirstName": "Carol",
   "marriageFormationType": "oppositeSexCouple",
-  "labelContentTheApplicant2": "the respondent",
-  "applicant1SolicitorPhone": "+1 (849) 349-3413",
-  "labelContentApplicant2UC": "Respondent",
-  "marriageApplicant2Name": "Raven Knapp",
-  "applicant2Email": "applicantTwoemail@mailinator.com",
-  "divorceOrDissolution": "dissolution",
-  "applicant2Gender": "female",
-  "applicant1NameDifferentToMarriageCertificate": "No",
-  "applicant1FinancialOrder": "No",
-  "applicant2LastName": "Kane",
-  "applicant1PhoneNumber": "+1 (141) 489-5191",
-  "applicant1ScreenHasMarriageBroken": "Yes",
-  "labelContentApplicant2": "respondent",
-  "applicant1SolicitorEmail": "juwahi@mailinator.com",
-  "applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
-  "applicant1Address": {
-    "AddressLine1": "1",
-    "AddressLine2": "1"
-  },
-  "applicant2FirstName": "Jamalia",
-  "applicant1FirstName": "Script Beatrice",
-  "applicant1SolicitorName": "Calista Barry",
-  "applicant2SolicitorName": "Jumbo Solicitors for Applicant 2",
-  "applicant1LastName": "Script Vincent",
-  "applicant2LanguagePreferenceWelsh": "No",
-  "divorceWho": "wife",
-  "applicant2MiddleName": "Jermaine Wolf",
-  "marriageApplicant1Name": "Eugenia Palmer",
-  "jurisdictionConnections": [
-    "I",
-    "G",
-    "H"
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "1b4fb81e-9905-4794-9e4a-b7191687aa8b",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/db33c521-75a3-4989-937a-0db7dbc9e55b",
+          "document_filename": "Screenshot 2022-03-01 at 14.14.42.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/db33c521-75a3-4989-937a-0db7dbc9e55b/binary"
+        },
+        "documentType": "application"
+      }
+    }
   ],
+  "applicant1MiddleName": "Audrey Sampson",
+  "labelContentUnionTypeUC": "Dissolution",
+  "coApplicant1IsDrafted": "No",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "applicant1LegalProceedings": "No",
+  "applicant1FirstName": "David",
+  "applicant1Email": "dykefu@mailinator.com",
+  "applicant1Gender": "male",
+  "isJudicialSeparation": "No",
+  "labelContentUnionType": "dissolution",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorEmail": "jokifas@mailinator.com",
+  "applicant1SolicitorName": "Ramona Rodgers",
+  "applicant2SolicitorName": "Paki Dalton",
+  "applicant1SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "applicant1LastName": "Hammond",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant2SolicitorAddress": "Sequi provident eaq",
+  "divorceWho": "wife",
+  "applicant2MiddleName": "Xantha Austin",
+  "marriageApplicant1Name": "Evan Hodges",
+  "applicant1SolicitorPhone": "02084541444",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "Hashim Browning",
+  "divorceOrDissolution": "dissolution",
+  "coApplicant1IsSubmitted": "No",
+  "applicant1Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR2 4TE",
+    "PostTown": "Norwich",
+    "AddressLine1": "Capitol House 4-6",
+    "AddressLine2": "Unit 14 Heigham Street",
+    "AddressLine3": ""
+  },
+  "applicant2Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "SM1 2JE",
+    "PostTown": "Sutton",
+    "AddressLine1": "15 Jeffs Road",
+    "AddressLine2": "",
+    "AddressLine3": "Cheam"
+  },
+  "applicant2Gender": "female",
+  "applicant2SolicitorReference": "Aut aliquam ipsa ul",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorPhone": "020312411144",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
   "applicant2SolicitorRepresented": "Yes",
+  "applicant1ContactDetailsType": "public",
+  "applicant1FinancialOrder": "No",
+  "applicant2LastName": "Berry",
+  "applicant1PhoneNumber": "0203124222144",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "application to end the civil partnership",
+  "applicant1SolicitorAddress": "102 Petty France London Westminster SW1H 9AJ",
   "divorceUnit": "serviceCentre",
-  "applicant1SolicitorReference": "645645564"
+  "jurisdictionConnections": [
+    "B",
+    "C",
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "civil partnership",
+  "labelContentMarriageOrCivilPartnership": "civil partnership",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "end civil partnership",
+  "labelContentDivorceOrLegallyEnd": "legally end it",
+  "applicant1SolicitorReference": "Obcaecati iste eos",
+  "applicant2Email": "losah@mailinator.com",
+  "labelContentApplicant2": "respondent",
+  "applicant1SolicitorRepresented": "Yes"
 }

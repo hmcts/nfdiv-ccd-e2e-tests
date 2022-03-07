@@ -4,7 +4,7 @@ module.exports = {
 
   fields: {
     selectActionDropDown: '#select[id="next-step"]',
-    finalOrderYes: '#doesApplicantWantToApplyForFinalOrder_Yes',
+    finalOrderYes: '#doesApplicant1WantToApplyForFinalOrder_Yes',
     finalOrderGrantedYes: '#granted-Yes',
     submit: 'button[type="submit"]'
 

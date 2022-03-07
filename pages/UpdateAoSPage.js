@@ -25,6 +25,8 @@ module.exports = {
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Update AoS');
+    await I.wait(2);
+
     await I.see('Confirm contact details');
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
