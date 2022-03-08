@@ -24,12 +24,12 @@ module.exports = {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.wait(2);
     await I.runAccessibilityTest();
-    await I.see('Update AoS');
     await I.see('Confirm solicitor contact details');
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
     await I.fillField(this.fields.respSolicitorPhone,'02031241245');
     await I.fillField(this.fields.respSolicitorEmail,'kasi.subramaniam@solirius.com');
+    await I.wait(3);
     await I.click(this.fields.acceptServiceCheckBoxYes);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -39,9 +39,10 @@ module.exports = {
   async updateAoSDispute() {
     await I.waitInUrl('trigger/update-aos/update-aosapplicant2HowToResponseToApplication');
     await I.wait(2);
-    await I.see('How does the respondent want to respond to the application?');
+    await I.see('How does the respondent want to respond to the application');
     await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.click(this.fields.disputeAgreeNo);
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I .wait(3);
   },
@@ -61,7 +62,7 @@ module.exports = {
   },
 
   async updateAoSLegalProceedings() {
-    await I.waitInUrl('update-aos/update-aosApplicant2SolAosjurisdiction');
+    await I.waitInUrl('update-aos/update-aosApplicant2SolAosJurisdiction');
     await I.wait(3);
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -71,6 +72,7 @@ module.exports = {
     await I.waitInUrl('update-aos/update-aosApplicant2SolAosOtherProceedings');
     await I.wait(3);
     await I.click(this.fields.legalProceedingsExistsYes);
+    await I.wait(2);
     await I.fillField(this.fields.legalProceedingsDescription,'Updates  to  legal proceedings');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
@@ -87,15 +89,13 @@ module.exports = {
   },
 
   async updateAoSReviewApplicationRes(caseNumber) {
-    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
-
     await I.wait(3);
+    await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
+    await I.wait(2);
     await I.click(this.fields.confirmReadPetitionYes);
     await I.wait(3);
-
     await I.waitForNavigationToComplete(this.fields.submit);
   },
-
 
   async updateAoSCya(){
     await I.waitInUrl('update-aos/submit');

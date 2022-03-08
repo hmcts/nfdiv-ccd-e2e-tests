@@ -515,7 +515,6 @@ module.exports = function () {
       return UpdateAosPage.updateAoSContactDetails(caseNumber);
     },
 
-    // updateAoSConfirmContactDetails
     updateReviewAoS : function(caseNumber){
       return UpdateAosPage.updateAoSReviewApplication(caseNumber);
     },

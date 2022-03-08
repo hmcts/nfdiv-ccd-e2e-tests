@@ -40,10 +40,11 @@ Scenario('Citizen Sole Divorce Journey - using Divorce,Documents,PBA ', async (I
   const hwfAccepted = await updateNFDCaseInCcd(user.CA,citizenCaseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
-  displayState(hwfAccepted);
+  // uncomment this for local testing only .
+  //displayState(hwfAccepted);
 
   // Code to delete the created Citizen User after all tests are completed.
-  // const userDeleteStatus = deleteUser(userDetails.email);
+  const userDeleteStatus = deleteUser(userDetails.email);
 
 }).retry(testConfig.TestRetryScenarios);
 

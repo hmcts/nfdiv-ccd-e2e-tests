@@ -110,7 +110,6 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/submit');
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
-    await I.see('Has the respondent read the application ?');
     await I.see('How do you want to respond?');
     await I.see('Are there any other legal proceedings relating to the');
     await I.see('Provide details of the other legal proceedings');

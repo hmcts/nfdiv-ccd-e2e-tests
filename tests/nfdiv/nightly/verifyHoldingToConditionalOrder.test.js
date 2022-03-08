@@ -12,7 +12,8 @@ let caseNumber;
 
 Feature('NFD  - 20 Week Holding to Conditional Order [CO]');
 
-Scenario('NFD - Share a Case and Draft AoS', async function (I) {
+// TODO Remove test as this is already covered by shareACaseAndDraftUpdateSubmitAoS.test
+xScenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -57,31 +58,43 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   //Update AoS
   await I.checkNextStepForEvent(eventDisplayName.UPDATE_AOS);
+
+  // Confirm solicitor contact details
   await I.updateAoSConfirmContactDetails(caseNumber);
+
+  //Update AoS  Review application
   await I.aosUpdateReviewApplicant1ApplicationRes(caseNumber);
+
+  //Update AoS  How does the respondent want to respond to the application?
   await I.aosUpdateDispute(caseNumber);
+
+  // Update AoS  The jurisdiction of the courts
   await I.aosUpdateLegal(caseNumber);
+
+  // Update Aos // Other legal proceedings
   await I.aosUpdateLegalProceedings(caseNumber);
+
+  // Update AoS // CYA
   await I.aosUpdateCYA(caseNumber);
 
   // Submit AoS
-  await I.wait(2);
-  await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(5);
-  await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
-  await I.submitAosSOT(caseNumber);
-  await I.submitAOSSotSolicitorDetails(caseNumber);
-  await I.submitAosCYA(caseNumber);
-  await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  // await I.wait(2);
+  // await I.amOnPage('/cases/case-details/' + caseNumber);
+  // await I.wait(5);
+  // await I.checkNextStepForEvent(eventDisplayName.SUBMIT_AOS);
+  // await I.submitAosSOT(caseNumber);
+  // await I.submitAOSSotSolicitorDetails(caseNumber);
+  // await I.submitAosCYA(caseNumber);
+  // await I.wait(5);
+  // await I.amOnPage('/case-details/' + caseNumber);
   // await I.wait(20);
   // await I.see('20 week holding period');
 
-  await I.signOut();
-  await I.wait(3);
+  //await I.signOut();
+  //await I.wait(3);
 
   // To Move case from 20WeekHolding to AwaitingConditionalOrder  .... Call CCD API to mimic the cron job.
   // and set the dueDate to null ..See SystemProgressHeldCasesTask.java  in nfdiv-case-api
-  const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
-  assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
+  // const response = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
+  // assert.strictEqual(JSON.parse(response).state, 'AwaitingConditionalOrder');
 }).retry(testConfig.TestRetryScenarios);

@@ -43,7 +43,6 @@ module.exports = async (reason, verifyContent) => {
   await I.see(labels.respondentSolicitorHeading);
   await I.see(labels.solicitorName);
   await I.see(labels.solicitorEmail);
-  //await I.see(labels.solicitorAddress);
   await I.see(labels.marriageAndCertificate);
   await I.see(labels.marriagedate);
   await I.see(labels.applicantNameOnMarriageCert);

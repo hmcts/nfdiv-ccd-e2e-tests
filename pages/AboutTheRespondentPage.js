@@ -1,5 +1,6 @@
 const {divorceOrDissolution} = require('../common/constants');
 const I = actor();
+const testConfig = require('../tests/config');
 
 module.exports = {
 
@@ -17,22 +18,20 @@ module.exports = {
   },
 
   async fillFormAndSubmit(union) {
-    var unionUpperCase;
-    if(union === divorceOrDissolution.DIVORCE){
-      unionUpperCase = union.toUpperCase();
-      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant1`);
-    }else if ( union === divorceOrDissolution.DISSOLUTION){
-      unionUpperCase = union.toUpperCase();
-      await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2');
+
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
     }
+
+    await I.waitInUrl('/solicitor-create-application/solicitor-create-applicationSolAboutApplicant2');
     await I.waitForElement(this.fields.firstName);
-    //await I.runAccessibilityTest();
     await I.fillField(this.fields.firstName, 'Natasha');
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
     await I.click(this.fields.respondentChangedName);
-    //await I.click(this.fields.respondentGender);
     await I.wait(1);
+    await I.runAccessibilityTest();
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
