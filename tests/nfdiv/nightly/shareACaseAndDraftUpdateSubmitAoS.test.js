@@ -14,7 +14,7 @@ Feature('NFD  Share A Case via Manage Org so that AoS can be progressed on Case'
 // Duplicate of verifyHoldingToConditionalOrder.test
 // Check and Delete if Not Required.
 
-Scenario('NFD - Share a Case and Draft AoS', async function (I) {
+xScenario('NFD - Share a Case and Draft AoS', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -72,7 +72,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
 
 }).retry(testConfig.TestRetryScenarios);
 
-xScenario('Draft AoS - Respondent disagreed to claimed jurisdiction', async function (I) {
+Scenario('Draft AoS - Respondent disagreed to claimed jurisdiction', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -109,5 +109,4 @@ xScenario('Draft AoS - Respondent disagreed to claimed jurisdiction', async func
 
   await I.wait(2);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  // await I.see('AoS drafted');
 }).retry(testConfig.TestRetryScenarios);
