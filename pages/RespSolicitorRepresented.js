@@ -1,3 +1,5 @@
+const testConfig = require('../tests/config');
+
 const I = actor();
 
 module.exports = {
@@ -40,11 +42,18 @@ module.exports = {
     await I.scrollTo(this.fields.orgSelectLink);
     await I.click(this.fields.orgSelectLink);
     await I.fillField(this.fields.applicant2Email, 'applicant2@solirius.com');
+
     await I.fillField(this.fields.applicant2Address, 'SW1A 1BJ');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
+    }
     await I.click(this.fields.addressButton);
     await I.wait(3);
     await I.waitForElement(this.fields.addressOption);
     await I.wait(3);
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(5);
+    }
     await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
