@@ -7,7 +7,7 @@ let caseNumber;
 
 Feature('Joint Application - Divorce and Dissolution Case Creation');
 
-Scenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I) => {
+xScenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);

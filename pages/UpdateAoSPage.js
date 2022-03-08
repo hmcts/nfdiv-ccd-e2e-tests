@@ -6,9 +6,9 @@ module.exports = {
     respSolicitorName:'#applicant2SolicitorName',
     respSolicitorPhone:'#applicant2SolicitorPhone',
     respSolicitorEmail:'#applicant2SolicitorEmail',
-    acceptServiceRadioYes:'#applicant2SolicitorAgreeToReceiveEmailsCheckbox-Yes',
+    acceptServiceCheckBoxYes:'#applicant2SolicitorAgreeToReceiveEmailsCheckbox-Yes',
     confirmReadPetitionYes:'#confirmReadPetition_Yes',
-    confirmReadPetitionYes:'#confirmReadPetition_Yes',
+
     disputeAgreeYes:'#howToRespondApplication-disputeDivorce',
     disputeAgreeNo:'#howToRespondApplication-withoutDisputeDivorce',
     jurisdictionAgreeYes:'#jurisdictionAgree_Yes',
@@ -25,12 +25,13 @@ module.exports = {
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.see('Update AoS');
-    await I.wait(2);
-
-    await I.see('Confirm contact details');
+    await I.see('Confirm solicitor contact details');
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
     await I.fillField(this.fields.respSolicitorPhone,'02031241245');
+    await I.fillField(this.fields.respSolicitorEmail,'kasi.subramaniam@solirius.com');
+    await I.click(this.fields.acceptServiceCheckBoxYes);
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
   },
@@ -38,6 +39,8 @@ module.exports = {
   async updateAoSDispute() {
     await I.waitInUrl('trigger/update-aos/update-aosapplicant2HowToResponseToApplication');
     await I.wait(2);
+    await I.see('How does the respondent want to respond to the application?');
+    await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.click(this.fields.disputeAgreeNo);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I .wait(3);
@@ -74,13 +77,22 @@ module.exports = {
 
   async updateAoSReviewApplication() {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
-    await I.wait(3);
+    await I.fillField(this.fields.respSolicitorName,'Respondent Name');
+    await I.fillField(this.fields.respSolicitorPhone,'02031241245');
+    await I.fillField(this.fields.respSolicitorEmail,'kasi.subramaniam@solirius.com');
+    await I.wait(2);
+    await I.click(this.fields.acceptServiceCheckBoxYes);
+    await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
   async updateAoSReviewApplicationRes(caseNumber) {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolReviewApplicant1Application');
+
     await I.wait(3);
+    await I.click(this.fields.confirmReadPetitionYes);
+    await I.wait(3);
+
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -90,11 +102,10 @@ module.exports = {
     await I.wait(3);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
-    await I.see('Link to online application');
     await I.see('Has the respondent read the application ?');
     await I.see('How do you want to respond?');
-    await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.see('Are there any existing or previous court proceedings relating to the marriage?');
+    await I.see('Does the respondent agree the courts of England and Wales have jurisdiction?');
+    await I.see('Are there any other legal proceedings relating to the marriage?');
     await I.see('Provide details of the other legal proceedings');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);

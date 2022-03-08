@@ -13,7 +13,6 @@ Feature('NFD - Confidential Applicant');
 
 Scenario('NFD - Assert Data in the Confidential Documents Tab - App1 Represented and app1ContactDetails Not Confidential ',
   async function (I) {
-    //TODO Test  Assert ConfidentialDocuments Tab once this test has passed.
     //"applicant1KeepContactDetailsConfidential": "No", in the  File below.
     caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-app1-details-not-confidential-case.json');
     console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -24,5 +23,7 @@ Scenario('NFD - Assert Data in the Confidential Documents Tab - App1 Represented
 
     const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
     verifyState(hwfAccepted, states.SUBMITTTED);
+
+    //TODO Test  Assert ConfidentialDocuments Tab once this test has passed.
 
   }).retry(testConfig.TestRetryScenarios);
