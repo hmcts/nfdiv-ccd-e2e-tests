@@ -1,6 +1,6 @@
 const {yesorno,currentCaseType,bulkCaseReferenceCaseType} = require('../common/constants');
 const I = actor();
-const testConfig = require('./../../config');
+const testConfig = require('../tests/config');
 
 
 module.exports = {
