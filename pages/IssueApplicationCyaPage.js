@@ -33,8 +33,8 @@ module.exports = {
       // await I.waitInUrl('caseworker-issue-application/submit');
       await I.see('Check your answers');
       await I.see('Check the information below carefully.');
-      await I.see('The applicant\'s full name as on marriage certificate');
-      await I.see('The respondent full name as on marriage certificate');
+      await I.see('The applicant\'s full name as on civil partnership certificate');
+      await I.see('The respondent full name as on civil partnership certificate');
       await I.see('Place of civil partnership');
       await I.runAccessibilityTest();
       await I.waitForNavigationToComplete(this.fields.submit);
@@ -67,8 +67,8 @@ module.exports = {
       // await I.waitInUrl('caseworker-issue-application/submit');
       await I.see('Check your answers');
       await I.see('Check the information below carefully.');
-      await I.see('The applicant\'s full name as on marriage certificate');
-      await I.see('Applicant 2 full name as on marriage certificate');
+      await I.see('The applicant\'s full name as on civil partnership certificate');
+      await I.see('Applicant 2 full name as on civil partnership certificate');
       await I.see('Place of civil partnership');
       await I.runAccessibilityTest();
       await I.waitForNavigationToComplete(this.fields.submit);
