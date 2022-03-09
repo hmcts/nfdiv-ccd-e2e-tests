@@ -119,7 +119,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
-}).tag('@crossbrowser').retry(testconfig.TestRetryScenarios);
+}).retry(testconfig.TestRetryScenarios);
 
 Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
