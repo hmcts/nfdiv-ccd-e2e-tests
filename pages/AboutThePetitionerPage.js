@@ -1,5 +1,6 @@
 const I = actor();
 const {divorceOrDissolution} = require('../common/constants');
+const testConfig = require('../tests/config');
 
 
 module.exports = {
@@ -55,6 +56,9 @@ module.exports = {
     await I.waitForElement(this.fields.addressOption);
     await I.wait(3);
     await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
+    }
     await I.click(this.fields.keepPetitionerContactDetailsNotConfidential);
     await I.waitForNavigationToComplete(this.fields.submit);
 

@@ -55,6 +55,9 @@ module.exports = {
       await I.wait(5);
     }
     await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
+    }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   },
