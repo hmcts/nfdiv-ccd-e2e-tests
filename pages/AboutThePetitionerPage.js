@@ -46,7 +46,11 @@ module.exports = {
     await I.click(this.fields.addressLine1_Building);
     await I.fillField(this.fields.addressLine1_Building, 'SW1A 1BJ');
     await I.wait(3);
+
     await I.click(this.fields.addressButton);
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
+    }
     await I.wait(3);
     await I.waitForElement(this.fields.addressOption);
     await I.wait(3);
