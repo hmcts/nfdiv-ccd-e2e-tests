@@ -3,29 +3,29 @@ const LATEST_WINDOWS = 'Windows 10';
 
 /* eslint-disable */
 const supportedBrowsers = {
-  // microsoft: {
-  //   edge_win_latest: {
-  //     browserName: 'MicrosoftEdge',
-  //     platformName: LATEST_WINDOWS,
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'NFD CCD E2E Tests - XUI: Edge_Win10',
-  //       screenResolution: '2560x1600'
-  //     }
-  //   }
-  // },
-  // safari: {
-  //   safari_mac: {
-  //     browserName: 'safari',
-  //     platformName: 'macOS 10.14',
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
-  //       seleniumVersion: '3.141.59',
-  //       screenResolution: '2360x1770'
-  //     }
-  //   }
-  // },
+  microsoft: {
+    edge_win_latest: {
+      browserName: 'MicrosoftEdge',
+      platformName: LATEST_WINDOWS,
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'NFD CCD E2E Tests - XUI: Edge_Win10',
+        screenResolution: '2560x1600'
+      }
+    }
+  },
+  safari: {
+    safari_mac: {
+      browserName: 'safari',
+      platformName: 'macOS 10.14',
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
+        seleniumVersion: '3.141.59',
+        screenResolution: '2360x1770'
+      }
+    }
+  },
   chrome: {
     chrome_win_latest: {
       browserName: 'chrome',
@@ -47,8 +47,7 @@ const supportedBrowsers = {
         tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel'
       }
     }
-  }
-  ,
+  },
   firefox: {
     firefox_win_latest: {
       browserName: 'firefox',
