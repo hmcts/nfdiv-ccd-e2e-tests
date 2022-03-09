@@ -1,5 +1,7 @@
 const {yesorno,currentCaseType,bulkCaseReferenceCaseType} = require('../common/constants');
 const I = actor();
+const testConfig = require('./../../config');
+
 
 module.exports = {
 
@@ -40,10 +42,21 @@ module.exports = {
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
     // await I.fillField(this.fields.caseNumber, caseNumber);
     await I.wait(3);
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(5);
+    }
     await I.click('Apply');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(3);
+    }
   },
 
   async filterByCaseId(caseNumber) {
+
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(3);
+    }
+
     await I.waitForElement(this.selectors.jurisdictionSelect);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
@@ -51,7 +64,11 @@ module.exports = {
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, 'Any');
     await I.wait(5);
-    //TODO fix the caseNumber fill field
+
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(8);
+    }
+
     //await I.fillField(this.fields.caseNumber, caseNumber); // Does nt work
     await I.wait(3);
     await I.click('Apply');
