@@ -74,8 +74,8 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
   // No draft petition should be present , but Uploaded Docs should be present.
-  // await I.solAwaitingPaymentConfPageFormAndSubmit();
-  await I.signOut();
+  await I.solAwaitingPaymentConfPageFormAndSubmit();
+  // await I.signOut();
 
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
@@ -190,8 +190,8 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
   // No draft petition should be present , but Uploaded Docs should be present.
-  // await I.solAwaitingPaymentConfPageFormAndSubmit();
-  await I.signOut();
+  await I.solAwaitingPaymentConfPageFormAndSubmit();
+  // await I.signOut();
 
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
