@@ -28,9 +28,8 @@ module.exports = {
     solNameApp1: '#solStatementOfReconciliationName',
     solFirmNameApp1: '#solStatementOfReconciliationFirm',
     PBAaccount: '#solPaymentHowToPay-feePayByAccount',
-    placeOfMarriage: '#marriagePlaceOfMarriage'
-
-
+    placeOfMarriage: '#marriagePlaceOfMarriage',
+    countryOfMarriage:'#marriageCountryOfMarriage'
   },
 
   async fillFormAndSubmit(union) {
@@ -114,6 +113,8 @@ module.exports = {
   async JointIssueApplication(){
     await I.waitInUrl('trigger/caseworker-issue-application/caseworker-issue-applicationissueApplication');
     await I.fillField(this.fields.placeOfMarriage, 'London');
+    await I.fillField(this.fields.countryOfMarriage, 'UK');
+
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 };

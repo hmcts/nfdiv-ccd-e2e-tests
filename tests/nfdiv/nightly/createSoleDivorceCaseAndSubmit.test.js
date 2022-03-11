@@ -40,8 +40,8 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   // Financial Orders
   await I.financialOrdersSelectButton();
 
-  // Upload the marriage certificate
-  await I.uploadTheMarriageCertificateOptional();
+  // Marriage certificate - skipping upload of Marriage Certificate owing to known XB Issues.
+  await I.skipUploadingMarriageCertificate();
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DIVORCE);
@@ -66,5 +66,3 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   await I.solAwaitingPaymentConfPageFormAndSubmit();
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 }).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
-
-

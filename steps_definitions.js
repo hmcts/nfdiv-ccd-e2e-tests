@@ -272,6 +272,10 @@ module.exports = function () {
       return UploadMarriageCertificatePage.fillFormAndSubmit();
     },
 
+    skipUploadingMarriageCertificate: function() {
+      return UploadMarriageCertificatePage.notUploadingAnyDocuments();
+    },
+
     languagePreferenceSelection: function() {
       return SolCreateLanguagePrefPage.fillFormAndSubmit();
     },

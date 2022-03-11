@@ -11,6 +11,7 @@ module.exports = {
     respondentFullname: '#marriageApplicant2Name',
     didMarriageTakePlaceInUK: '#marriageMarriedInUk_Yes',
     placeOfMarriage:'#marriagePlaceOfMarriage',
+    countryOfMarriage:'#marriageCountryOfMarriage',
     placeOfCivilPartnership: '#marriagePlaceOfMarriage',
     submit: 'button[type="submit"]'
   },
@@ -40,6 +41,7 @@ module.exports = {
       await I.fillField(this.fields.marriageDateDay, '09');
       await I.fillField(this.fields.marriageDateMonth, '12');
       await I.fillField(this.fields.marriageDateYear, '2002');
+      await I.fillField(this.fields.countryOfMarriage,'United Kingdom');
       await I.fillField(this.fields.placeOfMarriage,'Point Pedro');
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(2);
