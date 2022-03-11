@@ -42,7 +42,8 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   await I.checkNextStepForEvent('Apply for final order');
   await I.submitApplyForFinalOrder();
   await I.submitApplyForFinalOrderCYA(caseNumber);
-  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
+  await I.signOut();
+  // await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.FINAL_ORDER_REQUESTED, events.APPLY_FOR_FINAL_ORDER);
 
   await I.wait(5);
   await I.amOnHomePage();

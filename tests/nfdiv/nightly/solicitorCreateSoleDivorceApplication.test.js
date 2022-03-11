@@ -74,7 +74,8 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
   // No draft petition should be present , but Uploaded Docs should be present.
-  await I.solAwaitingPaymentConfPageFormAndSubmit();
+  // await I.solAwaitingPaymentConfPageFormAndSubmit();
+  await I.signOut();
 
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
@@ -85,18 +86,18 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  // await I.shouldBeOnCaseListPage();
 
-  await I.wait(5);
+  // await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('HWF application accepted');
 
-  await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(8);
-
-  await I.checkNextStepForEvent('HWF application accepted');
+  // await I.wait(3);
+  // await I.amOnPage('/case-details/' + caseNumber);
+  // await I.wait(8);
+  //
+  // await I.checkNextStepForEvent('HWF application accepted');
   await I.hwfAccepted(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
@@ -189,7 +190,8 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
   // No draft petition should be present , but Uploaded Docs should be present.
-  await I.solAwaitingPaymentConfPageFormAndSubmit();
+  // await I.solAwaitingPaymentConfPageFormAndSubmit();
+  await I.signOut();
 
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
@@ -200,16 +202,16 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
 
   await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  // await I.shouldBeOnCaseListPage();
 
-  await I.wait(5);
+  // await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(7);
-  await I.checkNextStepForEvent('HWF application accepted');
+  // await I.wait(7);
+  // await I.checkNextStepForEvent('HWF application accepted');
 
-  await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(8);
+  // await I.wait(3);
+  // await I.amOnPage('/case-details/' + caseNumber);
+  // await I.wait(8);
 
   await I.checkNextStepForEvent('HWF application accepted');
   await I.hwfAccepted(caseNumber);
