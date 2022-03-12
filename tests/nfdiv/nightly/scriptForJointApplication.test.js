@@ -38,7 +38,7 @@ Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
 
   // login as Respondent Solicitor and 'Submit Joint Application'
   const respSolsSubmitApplication = await updateNFDCaseInCcd(user.RS,caseNumber, 'solicitor-submit-joint-application','data/ccd-nfd-resp-sols-submit-application.json');
-  verifyState(respSolsSubmitApplication,'AwaitingApplicant2Response');
+  verifyState(respSolsSubmitApplication,'Applicant2Approved');
 
   // async CCD process that will move the case to 'applicant2-approve'
   await I.wait(8);
