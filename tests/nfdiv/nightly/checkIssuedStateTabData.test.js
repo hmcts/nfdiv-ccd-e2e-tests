@@ -13,7 +13,7 @@ let caseNumber;
 
 Feature('Application Issued - Check the Labels and Content present on the Application Tab of the CaseHistory Page.');
 
-Scenario('Checking Tab data when case has been Issued', async function (I) {
+Scenario.skip('Checking Tab data when case has been Issued', async function (I) {
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 

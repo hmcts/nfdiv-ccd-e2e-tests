@@ -36,6 +36,7 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
   await I.checkStateAndEvent('AoS awaiting','Application issue');
 }).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
 
+
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
 };

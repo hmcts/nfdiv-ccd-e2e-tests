@@ -54,6 +54,7 @@ Scenario('NFD - Divorce Case   - Service Application , Service Payment and  Serv
   await I.checkNextStepForEvent('Make service decision');
   await I.submitApproveServiceApplication(caseNumber);
   await I.submitApproveServiceApplicationCYA(caseNumber);
+  await I.wait(4);
   await I.checkState(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
 
 }).retry(testConfig.TestRetryScenarios);

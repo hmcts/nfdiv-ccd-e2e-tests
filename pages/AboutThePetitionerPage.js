@@ -49,6 +49,7 @@ module.exports = {
     await I.wait(3);
 
     await I.click(this.fields.addressButton);
+
     if (testConfig.TestForCrossBrowser) {
       await I.wait(8);
     }

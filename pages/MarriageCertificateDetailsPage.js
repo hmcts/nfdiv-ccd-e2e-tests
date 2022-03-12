@@ -46,9 +46,6 @@ module.exports = {
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(2);
     }else if ( union === divorceOrDissolution.DISSOLUTION){
-      // unionUpperCase = union.toUpperCase();
-      // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
-      // await I.waitInUrl('/DIVORCE/NFD/caseworker-issue-application/caseworker-issue-applicationissueApplication');
       await I.waitInUrl('trigger/caseworker-issue-application/caseworker-issue-applicationissueApplication');
       await I.waitForElement(this.fields.marriageDateDay);
       await I.runAccessibilityTest();
@@ -56,6 +53,7 @@ module.exports = {
       await I.fillField(this.fields.marriageDateMonth, '12');
       await I.fillField(this.fields.marriageDateYear, '2002');
       await I.fillField(this.fields.placeOfCivilPartnership,'Point Pedro');
+      await I.fillField(this.fields.countryOfMarriage,'United Kingdom');
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(2);
     }
