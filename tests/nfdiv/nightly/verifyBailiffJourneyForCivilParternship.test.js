@@ -10,11 +10,11 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD Case - Verify Bailiff Journey for Divorce and CP cases');
+Feature('NFD Case - Verify Bailiff Journey for CP case');
 
-Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision and Bailiff Service ', async function (I) {
+Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
   // SoT solServiceMethod == courtService
@@ -54,12 +54,12 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
 
-
-  //Comment for MakeBailiffDecisionNo
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);
-  await I.checkState(stateDisplayName.ISSUED_TO_BAILIFF, events.ISSUED_BAILIFF_PACK);
+
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  assert.strictEqual('AwaitingBailiffService',caseResponse.state);
 
 }).retry(testConfig.TestRetryScenarios);
