@@ -57,6 +57,7 @@
     "test:citizen-sole-divorce": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/citizenSoleDivorceJourney.test.js -c ./ --steps",
     "test:conditionalorder-journey": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/conditionalOrderJourneys.test.js -c ./ --steps",
     "test:issuedTab-check": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/checkIssuedStateTabData.test.js -c ./ --steps",
+    "test:bailiff-civil": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyBailiffJourneyForCivilParternship.test.js -c ./ --steps",
 
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",

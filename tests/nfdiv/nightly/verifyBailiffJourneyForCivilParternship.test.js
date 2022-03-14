@@ -62,6 +62,6 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.wait(5);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
-  assert.strictEqual('AwaitingBailiffService',caseResponse.state);
+  assert.strictEqual('IssuedToBailiff',caseResponse.state);
 
 }).retry(testConfig.TestRetryScenarios);

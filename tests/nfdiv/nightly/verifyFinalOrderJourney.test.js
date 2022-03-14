@@ -36,7 +36,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   //final order pages
-  await I.checkState(stateDisplayName.AWAITING_FINAL_ORDER, events.AWAITING_FINAL_ORDER);
+  await I.checkState(stateDisplayName.AWAITING_FINAL_ORDER, events.TEST_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Apply for final order');
