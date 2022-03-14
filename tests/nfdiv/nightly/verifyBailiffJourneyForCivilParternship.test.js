@@ -59,6 +59,8 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);
 
+  await I.wait(5);
+
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   assert.strictEqual('AwaitingBailiffService',caseResponse.state);
 

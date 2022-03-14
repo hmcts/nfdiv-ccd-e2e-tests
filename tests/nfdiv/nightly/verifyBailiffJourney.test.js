@@ -54,12 +54,14 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
 
-
-  //Comment for MakeBailiffDecisionNo
+  // //Comment for MakeBailiffDecisionNo
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);
-  await I.checkState(stateDisplayName.ISSUED_TO_BAILIFF, events.ISSUED_BAILIFF_PACK);
+  await I.wait(7);
+
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  assert.strictEqual('IssuedToBailiff',caseResponse.state);
 
 }).retry(testConfig.TestRetryScenarios);
