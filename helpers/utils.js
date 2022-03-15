@@ -550,6 +550,29 @@ async function getCaseDetailsFor(caseId) {
   return JSON.parse(getCaseResponse);
 }
 
+async function getCaseDetailsAsSolFor(caseId) {
+  const authToken = await getCourtAdminUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdGetCaseDetailsPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/`+caseId;
+
+  const getCaseDetails = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdGetCaseDetailsPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const getCaseResponse = await request(getCaseDetails);
+  // can return state or anyother element from Response etc.
+  // console.log('..... printint out the response '+getCaseResponse)
+  return JSON.parse(getCaseResponse);
+}
 
 async function createNFDCaseInCcd(dataLocation = 'data/ccd-nfdiv-case-draft.json') {
   const saveCaseResponse = await createNFDCaseAndFetchResponse(dataLocation).catch(error => {
@@ -1421,5 +1444,6 @@ module.exports = {
   getCaseDetailsFor,
   updateAoSToAoSOverdue,
   getUserId,
-  getServiceToken
+  getServiceToken,
+  getCaseDetailsAsSolFor
 };
