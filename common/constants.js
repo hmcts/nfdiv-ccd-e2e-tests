@@ -13,7 +13,7 @@ const reasonsForDivorce = {
 
 const signOut = 'Sign out';
 
-const currentCaseType = 'NFD';
+const currentCaseType = 'New Law Case';
 
 const citizenUserPW='Testing123';
 
