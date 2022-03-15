@@ -20,7 +20,7 @@ module.exports = async (reason, verifyContent) => {
   await I.see(verifyContent.labelContentUnionTypeUC);
   await I.see(labels.rdc);
 
-  await I.see(labels.theApplicant);
+  await I.see(labels.labelContentTheApplicantOrApplicant1UC);
   await I.see(labels.firstName);
   await I.see(labels.lastName);
   await I.see(labels.middleName);
