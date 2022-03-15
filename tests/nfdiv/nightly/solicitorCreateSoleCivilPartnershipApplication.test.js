@@ -1,5 +1,5 @@
 const {paymentType,yesorno,states,divorceOrDissolution} = require('../../../common/constants');
-const {getCaseDetailsFor} = require('../../../helpers/utils');
+const {getCaseDetailsFor, getCaseDetailsAsSolFor} = require('../../../helpers/utils');
 const testConfig = require('./../../config');
 const assert = require('assert');
 
@@ -93,14 +93,10 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   await I.wait(7);
   await I.checkNextStepForEvent('HWF application accepted');
 
-  await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(8);
-
-  await I.checkNextStepForEvent('HWF application accepted');
   await I.hwfAccepted(caseNumber);
   await I.wait(2);
-  await I.checkStateAndEvent('Submitted','HWF application accepted');
+  // await I.checkStateAndEvent('Submitted','HWF application accepted');
+  await I.signOut();
 
   console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
 
@@ -116,10 +112,11 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DISSOLUTION);
+  await I.checkStateAndEvent('AoS awaiting','Application issue');
 
-  let caseResponse =  await getCaseDetailsFor(caseNumber);
-
-  assert.strictEqual(states.AOS_AWAITING,caseResponse.state);
+  // let caseResponse =  await getCaseDetailsAsSolFor(caseNumber);
+  //
+  // assert.strictEqual(states.AOS_AWAITING,caseResponse.state);
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 

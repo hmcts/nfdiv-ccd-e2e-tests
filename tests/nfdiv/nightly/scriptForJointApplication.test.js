@@ -1,6 +1,6 @@
 const {states, user, events} = require('../../../common/constants');
 const testConfig = require('./../../config');
-const {createNFDCaseInCcd,getCaseDetailsFor, updateNFDCaseInCcd, updateRoleForCase, shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
+const {createNFDCaseInCcd,getCaseDetailsFor, updateNFDCaseInCcd, updateRoleForCase, shareCaseToRespondentSolicitor,getCaseDetailsAsSolFor} = require('../../../helpers/utils');
 const assert = require('assert');
 const testconfig = require('./../../config');
 
@@ -17,7 +17,7 @@ Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-joint-draft-case.json');
   console.log( '..... Citizen Case Created in CCD and the  CaseNumber is ==  ' + caseNumber);
 
-  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  let caseResponse =  await getCaseDetailsAsSolFor(caseNumber);
 
   let orgName = caseResponse.case_data.applicant1SolicitorOrganisationPolicy.Organisation.OrganisationName;
   let docType = caseResponse.case_data.applicant1DocumentsUploaded[0].value.documentType;
