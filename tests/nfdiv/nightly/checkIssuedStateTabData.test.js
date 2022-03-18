@@ -3,7 +3,7 @@ const { reasonsForDivorce, signOut, states, events ,user} = require('../../../co
 const assert = require('assert');
 const TestConfig = require('./../../config');
 
-const verifyContent = require('../../../data/nfdiv/application-issued-case-data.json');
+const verifyContent = require('../../../data/tab-fields/nfdiv/application-issued-case-data.json');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
