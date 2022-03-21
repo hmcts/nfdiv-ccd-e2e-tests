@@ -28,7 +28,7 @@ module.exports = {
     await I.fillField(this.fields.firstName, 'Natasha');
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
-    await I.click(this.fields.respondentChangedName);
+    // await I.click(this.fields.respondentChangedName);
     await I.wait(1);
     await I.runAccessibilityTest();
     await I.wait(2);
