@@ -24,7 +24,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE,yesorno.Yes);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -142,7 +142,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION,  yesorno.Yes);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();

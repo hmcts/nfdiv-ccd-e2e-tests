@@ -1,4 +1,4 @@
-const {divorceOrDissolution} = require('../common/constants');
+const {divorceOrDissolution, yesorno} = require('../common/constants');
 const I = actor();
 const testConfig = require('../tests/config');
 
@@ -17,7 +17,7 @@ module.exports = {
     submit: 'button[type="submit"]'
   },
 
-  async fillFormAndSubmit(union) {
+  async fillFormAndSubmit(union, soleOrJoint) {
 
     if (testConfig.TestForCrossBrowser) {
       await I.wait(8);
@@ -28,7 +28,11 @@ module.exports = {
     await I.fillField(this.fields.firstName, 'Natasha');
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
-    // await I.click(this.fields.respondentChangedName);
+    //only for sole applications
+    if(soleOrJoint === yesorno.Yes ) {
+      await I.click(this.fields.respondentChangedName);
+    }
+
     await I.wait(1);
     await I.runAccessibilityTest();
     await I.wait(2);

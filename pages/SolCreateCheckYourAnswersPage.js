@@ -53,6 +53,7 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/invite-applicant2/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(2);
     await I.see('Awaiting applicant 2 response');
     await I.see('Invite Applicant 2');
     await I.waitForElement(this.fields.caseNumberDisplay);

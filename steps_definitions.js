@@ -200,8 +200,8 @@ module.exports = function () {
       return AboutThePetitionerPage.fillFormAndSubmit(union);
     },
 
-    fillAboutTheRespondentFormAndSubmit: function(union) {
-      return AboutTheRespondentPage.fillFormAndSubmit(union);
+    fillAboutTheRespondentFormAndSubmit: function(union, soleOrJoint) {
+      return AboutTheRespondentPage.fillFormAndSubmit(union, soleOrJoint);
     },
 
     fillAboutRespSolicitorFormAndSubmit() {

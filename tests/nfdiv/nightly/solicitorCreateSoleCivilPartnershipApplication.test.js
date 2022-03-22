@@ -28,7 +28,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION, yesorno.Yes);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -112,7 +112,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DISSOLUTION);
-  await I.checkStateAndEvent('AoS awaiting','Application issue');
+  // await I.checkStateAndEvent('AoS awaiting','Application issue');
 
   // let caseResponse =  await getCaseDetailsAsSolFor(caseNumber);
   //

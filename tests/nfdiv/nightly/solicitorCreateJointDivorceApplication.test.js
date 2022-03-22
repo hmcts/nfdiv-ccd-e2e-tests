@@ -7,7 +7,7 @@ let caseNumber;
 
 Feature('Joint Application - Divorce and Dissolution Case Creation');
 
-Scenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I) => {
+xScenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
@@ -20,13 +20,13 @@ Scenario('Divorce Application (Joint) with PBA  and issuing the Case ', async (I
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);;
+  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);;
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);;
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -139,13 +139,13 @@ Scenario('Dissolution Application (Joint) with PBA  and issuing the Case ', asyn
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);;
+  await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);;
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);;
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
