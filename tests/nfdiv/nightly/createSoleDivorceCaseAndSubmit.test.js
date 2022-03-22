@@ -23,7 +23,7 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE, yesorno.Yes);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
