@@ -1,15 +1,15 @@
 {
-"solUrgentCase": "No",
-"solServiceMethod": "courtService",
-"solStatementOfReconciliationCertify": "Yes",
-"solStatementOfReconciliationDiscussed": "Yes",
-"applicant1PrayerHasBeenGivenCheckbox":["Yes"],
-"applicant1StatementOfTruth": "Yes",
-"solSignStatementOfTruth": "Yes",
-"solStatementOfReconciliationName": "SoR Name",
-"solStatementOfReconciliationFirm": "SoR Firm",
-"statementOfReconciliationComments": "Some comments",
-"solPaymentHowToPay": "feesHelpWith",
-"applicant1HWFReferenceNumber": "HWF-325-325",
-"statementOfReconciliationComments": "CommentsSoT"
+  "solUrgentCase": "No",
+  "solServiceMethod": "courtService",
+  "solStatementOfReconciliationCertify": "Yes",
+  "solStatementOfReconciliationDiscussed": "Yes",
+  "solPaymentHowToPay": "feesHelpWith",
+  "applicant1HWFReferenceNumber": "hwf-123-123",
+  "applicant1PrayerDissolveDivorce": [
+    "dissolveDivorce"
+  ],
+  "applicant1StatementOfTruth": "Yes",
+  "solSignStatementOfTruth": "Yes",
+  "solStatementOfReconciliationName": "SoR Name",
+  "solStatementOfReconciliationFirm": "SoR Firm"
 }
