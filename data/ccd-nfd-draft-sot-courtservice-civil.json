@@ -1,12 +1,12 @@
 {
   "solUrgentCase": "No",
-  "solServiceMethod": "solicitorService",
+  "solServiceMethod": "courtService",
   "solStatementOfReconciliationCertify": "Yes",
   "solStatementOfReconciliationDiscussed": "Yes",
   "solPaymentHowToPay": "feesHelpWith",
   "applicant1HWFReferenceNumber": "hwf-123-123",
-  "applicant1PrayerDissolveDivorce": [
-    "dissolveDivorce"
+  "applicant1PrayerEndCivilPartnership": [
+    "endCivilPartnership"
   ],
   "applicant1StatementOfTruth": "Yes",
   "solSignStatementOfTruth": "Yes",
