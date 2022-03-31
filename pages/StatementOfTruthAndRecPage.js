@@ -16,7 +16,10 @@ module.exports = {
     howToServeRespondent:'#solServiceMethod-courtService',
     serviceSolicitorService:'#solServiceMethod-solicitorService',
     serviceCourtService:'#solServiceMethod-courtService',
-    prayerHasBeenGiven:'#applicant1PrayerHasBeenGivenCheckbox-Yes',
+    //prayerHasBeenGiven:'#applicant1PrayerHasBeenGivenCheckbox-Yes',
+    prayerDissolveDivorce:'#applicant1PrayerDissolveDivorce-dissolveDivorce',
+    prayerFinancialOrderForSelf:'#applicant1PrayerFinancialOrdersThemselves-financialOrdersThemselves',
+
     additionalComments: '#statementOfReconciliationComments',
     submit: 'button[type="submit"]'
   },
@@ -33,13 +36,17 @@ module.exports = {
       await I.fillField(this.fields.caseUrgentSupportingInfoTextBox, 'here is the supporting information and instructions for the urgency');
     }
     await I.retry().click(this.fields.serviceCourtService);
-    //await I.see('After service is complete you must notify the court by completing the \'Confirm Service\' form in CCD.Refer to the notification that will be sent upon the issuing of the the case');
     await I.click(this.fields.reconciliationWithApplicant1);
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);
 
+    // The Prayer
+    await I.click(this.fields.prayerDissolveDivorce);
+    await I.click(this.fields.prayerFinancialOrderForSelf);
+
+    // Statement of Truth
     await I.click(this.fields.applicant1_BelievesFactsTrue);
     await I.click(this.fields.amAuthorisedByApplicant1ToSign);
-    await I.click(this.fields.prayerHasBeenGiven);
+
     await I.fillField(this.fields.yourName, 'James Porter');
     await I.fillField(this.fields.nameOfYourFirm, 'Nicole Denvir and Purnell');
     await I.fillField(this.fields.additionalComments, 'Additional Comments');
