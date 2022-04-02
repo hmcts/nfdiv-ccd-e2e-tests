@@ -90,7 +90,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitPronounceList(bulkCaseReferenceId);
   await I.submitPronounceListCYA(bulkCaseReferenceId);
   await I.wait(10);
-  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, eventDisplayName.SYSTEM_UPDATE_CASE);
+  // await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   let documentType = caseResponse.case_data.coCertificateOfEntitlementDocument.documentType;

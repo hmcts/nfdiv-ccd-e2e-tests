@@ -71,13 +71,13 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   await I.wait(5);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');
@@ -90,7 +90,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitPronounceList(bulkCaseReferenceId);
 
   await I.submitPronounceListCYA(bulkCaseReferenceId);
-  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  // await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
