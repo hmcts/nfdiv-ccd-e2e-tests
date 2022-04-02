@@ -23,6 +23,8 @@ module.exports = {
     solReconciliation: '#solStatementOfReconciliationCertify_Yes',
     solReconciliationDiscussed: '#solStatementOfReconciliationDiscussed_Yes',
     prayerYes: '#applicant1PrayerEndCivilPartnership-endCivilPartnership',
+    prayerDissolveDivorce:'#applicant1PrayerDissolveDivorce-dissolveDivorce',
+    prayerDissolveCivil:'#applicant1PrayerEndCivilPartnership-endCivilPartnership',
     statementOfTruthApp1: '#applicant1StatementOfTruth_Yes',
     statementOfTruthSolApp1: '#solSignStatementOfTruth_Yes',
     solNameApp1: '#solStatementOfReconciliationName',
@@ -89,7 +91,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async submitSignAndSubmit() {
+  async submitSignAndSubmit(union) {
     await I.wait(2);
     await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationConfirmJointApplication');
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -98,7 +100,13 @@ module.exports = {
     // await I.click(this.fields.courtService);
     await I.click(this.fields.solReconciliation);
     await I.click(this.fields.solReconciliationDiscussed);
-    await I.click(this.fields.prayerYes);
+    if(union === divorceOrDissolution.DIVORCE) {
+      await I.click(this.fields.prayerDissolveDivorce);
+      console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Divorce Chosen');
+    }else {
+      console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
+      await I.click(this.fields.prayerDissolveCivil);
+    }
     await I.click(this.fields.statementOfTruthApp1);
     await I.click(this.fields.statementOfTruthSolApp1);
     await I.fillField(this.fields.solNameApp1, 'Solicitor 1 Name');

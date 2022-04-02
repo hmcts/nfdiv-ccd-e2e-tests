@@ -76,7 +76,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
   await I.wait(10);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');

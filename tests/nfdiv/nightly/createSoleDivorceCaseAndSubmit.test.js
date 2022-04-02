@@ -52,7 +52,7 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   //screen needs to fixed to run successfully
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No, divorceOrDissolution.DIVORCE);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();

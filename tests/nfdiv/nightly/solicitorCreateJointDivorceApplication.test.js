@@ -208,7 +208,7 @@ Scenario('Dissolution Application (Joint) with PBA  and issuing the Case ', asyn
   await I.amOnPage('/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Sign and submit');
-  await I.submitSignAndSubmit();
+  await I.submitSignAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   await I.paymentWithPbaAccount();
 

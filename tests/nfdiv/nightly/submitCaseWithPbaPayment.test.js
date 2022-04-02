@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd} =  require('../../../helpers/utils');
-const {yesorno,paymentType, states,events} =require('../../../common/constants');
+const {yesorno,paymentType, states,events, divorceOrDissolution} =require('../../../common/constants');
 const assert = require('assert');
 const testconfig = require('./../../config');
 
@@ -21,7 +21,7 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   await I.wait(7);
   await I.checkNextStepForEvent('Sign and submit');
   await I.wait(5);
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No, divorceOrDissolution.DIVORCE);
 
   // - PBA Account
   await I.paymentWithPbaAccount();

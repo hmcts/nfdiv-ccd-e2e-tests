@@ -1,4 +1,4 @@
-const {states, user, events} = require('../../../common/constants');
+const {states, user, events, divorceOrDissolution} = require('../../../common/constants');
 const testConfig = require('./../../config');
 const {createNFDCaseInCcd,getCaseDetailsFor, updateNFDCaseInCcd, updateRoleForCase, shareCaseToRespondentSolicitor,getCaseDetailsAsSolFor} = require('../../../helpers/utils');
 const assert = require('assert');
@@ -62,7 +62,7 @@ Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
   await I.amOnPage('/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Sign and submit');
-  await I.submitSignAndSubmit();
+  await I.submitSignAndSubmit(divorceOrDissolution.DIVORCE);
 
   await I.paymentWithPbaAccount();
 
