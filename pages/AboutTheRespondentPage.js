@@ -29,9 +29,8 @@ module.exports = {
     await I.fillField(this.fields.middleName, 'E2E');
     await I.fillField(this.fields.lastName, 'Patrick');
     //only for sole applications
-    if(soleOrJoint === yesorno.Yes ) {
-      await I.click(this.fields.respondentChangedName);
-    }
+    await I.click(this.fields.respondentChangedName);
+
 
     await I.wait(1);
     await I.runAccessibilityTest();

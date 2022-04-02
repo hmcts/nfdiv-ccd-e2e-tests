@@ -135,7 +135,8 @@ module.exports = async (reason, verifyContent) => {
   await I.see(content.solStatementOfReconciliationName);
   await I.see(labels.firmName);
   await I.see(content.solStatementOfReconciliationFirm);
-  await I.see(labels.additionalComments);
-  await I.see(content.statementOfReconciliationComments);
+  // await I.see(labels.additionalComments);
+  // await I.see(content.statementOfReconciliationComments);
   await I.see(labels.howShouldRespondentBeServed); //will need to be hardcoded
+  // await I.see(content.statementOfReconciliationComments);
 };

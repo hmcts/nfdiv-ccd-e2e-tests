@@ -1,4 +1,4 @@
-const {yesorno} = require('../common/constants');
+const {yesorno, divorceOrDissolution} = require('../common/constants');
 const I = actor();
 
 module.exports = {
@@ -17,6 +17,7 @@ module.exports = {
     serviceSolicitorService:'#solServiceMethod-solicitorService',
     serviceCourtService:'#solServiceMethod-courtService',
     //prayerHasBeenGiven:'#applicant1PrayerHasBeenGivenCheckbox-Yes',
+    prayerDissolveCivil:'#applicant1PrayerEndCivilPartnership-endCivilPartnership',
     prayerDissolveDivorce:'#applicant1PrayerDissolveDivorce-dissolveDivorce',
     prayerFinancialOrderForSelf:'#applicant1PrayerFinancialOrdersThemselves-financialOrdersThemselves',
 
@@ -24,7 +25,7 @@ module.exports = {
     submit: 'button[type="submit"]'
   },
 
-  async fillFormAndSubmit(urgent) {
+  async fillFormAndSubmit(urgent, union) {
 
     await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
     await I.runAccessibilityTest();
@@ -40,7 +41,14 @@ module.exports = {
     await I.click(this.fields.namesAndAddressesOfPersonsQualified);
 
     // The Prayer
-    await I.click(this.fields.prayerDissolveDivorce);
+    if(union === divorceOrDissolution.DIVORCE) {
+      await I.click(this.fields.prayerDissolveDivorce);
+      console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Divorce Chosen');
+    }else {
+      console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
+      await I.click(this.fields.prayerDissolveCivil);
+    }
+    // await I.click(this.fields.prayerDissolveCivil);
     await I.click(this.fields.prayerFinancialOrderForSelf);
 
     // Statement of Truth
