@@ -313,8 +313,9 @@ module.exports = {
   },
 
   async fillScheduleCasesCYA(caseNumber){
-    await I.wait(2);
+    await I.wait(7);
     await I.waitInUrl('/caseworker-schedule-case/submit');
+    await I.wait(5);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
