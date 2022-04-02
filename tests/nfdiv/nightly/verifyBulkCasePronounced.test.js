@@ -69,7 +69,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   await I.wait(5);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
@@ -83,7 +83,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.submitPrintForPronouncement(bulkCaseReferenceId);
   await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
   await I.wait(10);
-  await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.SYSTEM_UPDATE_CASE);
+  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, eventDisplayName.PRINT_FOR_PRONOUNCEMENT);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Pronounce list');
