@@ -62,16 +62,13 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
-  await I.wait(5);
+  await I.wait(10);
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-  await I.wait(5);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
-
-  await I.wait(3);
+  await I.wait(7);
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
@@ -94,8 +91,6 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   let documentType = caseResponse.case_data.coCertificateOfEntitlementDocument.documentType;
-  //let documentFileName = caseResponse.case_data.coCertificateOfEntitlementDocument.documentFileName;
   assert.strictEqual(documentType,'certificateOfEntitlement');
-  //TODO - Assert that  documentFileName contains certificateOfEntitlement-caseId
 
 }).retry(testConfig.TestRetryScenarios);
