@@ -55,7 +55,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
   //screen needs to fixed to run successfully
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No, divorceOrDissolution.DIVORCE);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();
@@ -121,7 +121,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
 }).retry(testconfig.TestRetryScenarios);
 
-Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);

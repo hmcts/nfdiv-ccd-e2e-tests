@@ -288,8 +288,8 @@ module.exports = function () {
       return SolCaseCreatedPage.fillFormAndSubmit();
     },
 
-    statementOfTruthAndReconciliationPageFormAndSubmit: function (urgent) {
-      return StatementOfTruthAndRecPage.fillFormAndSubmit(urgent);
+    statementOfTruthAndReconciliationPageFormAndSubmit: function (urgent,union) {
+      return StatementOfTruthAndRecPage.fillFormAndSubmit(urgent, union);
     },
 
 

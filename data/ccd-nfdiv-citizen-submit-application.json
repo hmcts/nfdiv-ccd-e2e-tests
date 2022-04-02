@@ -2,5 +2,8 @@
   "applicant1PrayerHasBeenGivenCheckbox": [
     "Yes"
   ],
-  "applicant1StatementOfTruth": "Yes"
+  "applicant1StatementOfTruth": "Yes",
+  "applicant1PrayerDissolveDivorce": [
+    "dissolveDivorce"
+  ]
 }

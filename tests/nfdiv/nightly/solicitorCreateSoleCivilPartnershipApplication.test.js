@@ -58,7 +58,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   caseNumber = caseNumber.replace(/\D/g, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No);
+  await I.statementOfTruthAndReconciliationPageFormAndSubmit(yesorno.No, divorceOrDissolution.DISSOLUTION);
 
   // Case Submission  - Help With Fees Page and Fees Reference Number.
   await I.paymentWithHelpWithFeeAccount();
