@@ -860,8 +860,8 @@ module.exports = function () {
       return SolCreateCheckYourAnswersPage.submitJointApplication();
     },
 
-    submitSignAndSubmit: function() {
-      return SolCreateCheckYourAnswersPage.submitSignAndSubmit();
+    submitSignAndSubmit: function(union) {
+      return SolCreateCheckYourAnswersPage.submitSignAndSubmit(union);
     },
 
     submitJointIssueApplication: function() {
