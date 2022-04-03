@@ -27,6 +27,10 @@ Scenario('Confirm Alternative Service - Journey', async function (I) {
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AWAITING_SERVICE);
 
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  let formattedCurrentDate = dateYYYYMMDD(0);
+  assert.strictEqual(formattedCurrentDate,caseResponse.case_data.issueDate);
+
   // General Referral Event
   const awaitingGenConsideration  = await updateNFDCaseInCcd(user.CA,caseNumber, 'caseworker-general-referral','data/ccd-nfd-cw-general-referral.json');
   verifyState(awaitingGenConsideration, states.AWAITING_GEN_CONSIDERATION);
@@ -38,11 +42,6 @@ Scenario('Confirm Alternative Service - Journey', async function (I) {
   // Confirm Alternative service
   const confirmAlternativeService  = await updateNFDCaseInCcd(user.CA,caseNumber, 'caseworker-confirm-alternative-service','data/ccd-nfd-update-data.json');
   verifyState(confirmAlternativeService, states.HOLDING);
-
-  let caseResponse =  await getCaseDetailsFor(caseNumber);
-
-  let formattedCurrentDate = dateYYYYMMDD(0);
-  assert.strictEqual(formattedCurrentDate,caseResponse.case_data.issueDate);
 
 }).retry(testConfig.TestRetryScenarios);
 
