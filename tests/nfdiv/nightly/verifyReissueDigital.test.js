@@ -38,7 +38,7 @@ Scenario('Reissue - Digital ', async function (I) {
   await I.checkNextStepForEvent('Reissue');
   await I.reissueDivorceApplicationDigital(caseNumber);
   await I.submitReissue(caseNumber);
-  await I.checkStateAndEvent(stateDisplayName.APPLICATION_AWAITING_SERVICE, events.REISSUED);
+  await I.checkStateAndEvent(stateDisplayName.AOS_AWAITING_NAME, events.REISSUED);
 
 }).retry(testConfig.TestRetryScenarios);
 
