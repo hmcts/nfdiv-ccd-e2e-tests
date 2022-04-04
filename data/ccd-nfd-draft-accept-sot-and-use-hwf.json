@@ -1,6 +1,6 @@
 {
   "solUrgentCase": "No",
-  "solServiceMethod": "solicitorService",
+  "serviceMethod": "solicitorService",
   "solStatementOfReconciliationCertify": "Yes",
   "solStatementOfReconciliationDiscussed": "Yes",
   "solPaymentHowToPay": "feesHelpWith",

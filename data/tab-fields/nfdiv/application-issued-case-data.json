@@ -81,7 +81,7 @@
   "applicant2LastName": "Oliver",
   "applicant1PhoneNumber": "+1 (247) 459-9629",
   "dataVersion": 46,
-  "solServiceMethod": "courtService",
+  "serviceMethod": "courtService",
   "applicant1ScreenHasMarriageBroken": "Yes",
   "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
   "applicant1PrayerHasBeenGivenCheckbox": [

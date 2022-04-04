@@ -18,7 +18,7 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
 
-  //SoT solServiceMethod == solicitorService is chosen during  SoT
+  //SoT serviceMethod == solicitorService is chosen during  SoT
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 

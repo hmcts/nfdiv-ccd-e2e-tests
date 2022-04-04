@@ -19,7 +19,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payme
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log('..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // SoT solServiceMethod == courtService
+  // SoT serviceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS, caseNumber, events.SOLICITOR_SUBMIT_APPLICATION, 'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
@@ -60,7 +60,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log('..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // SoT solServiceMethod == courtService
+  // SoT serviceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS, caseNumber, events.SOLICITOR_SUBMIT_APPLICATION, 'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
