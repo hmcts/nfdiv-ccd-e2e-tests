@@ -19,7 +19,7 @@ module.exports = {
     solName: '#applicant2SolStatementOfReconciliationName',
     solFirmName: '#applicant2SolStatementOfReconciliationFirm',
     urgentCase: '#solUrgentCase_No',
-    courtService: '#solServiceMethod-courtService',
+    courtService: '#serviceMethod-courtService',
     solReconciliation: '#solStatementOfReconciliationCertify_Yes',
     solReconciliationDiscussed: '#solStatementOfReconciliationDiscussed_Yes',
     prayerYes: '#applicant1PrayerEndCivilPartnership-endCivilPartnership',

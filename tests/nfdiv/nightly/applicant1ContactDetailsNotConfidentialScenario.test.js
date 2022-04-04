@@ -17,7 +17,7 @@ Scenario('NFD - Assert Data in the Confidential Documents Tab - App1 Represented
     caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-app1-details-not-confidential-case.json');
     console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-    //SoT solServiceMethod == courtService
+    //SoT serviceMethod == courtService
     const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
     verifyState(awaitingHWF, states.AWAITING_HWF);
 

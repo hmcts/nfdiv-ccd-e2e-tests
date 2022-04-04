@@ -17,7 +17,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // SoT solServiceMethod == courtService
+  // SoT serviceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice-civil.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 

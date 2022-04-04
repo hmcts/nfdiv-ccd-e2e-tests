@@ -19,7 +19,7 @@ Scenario('NFD - Divorce Case   - Service Application , Service Payment and  Serv
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // SoT solServiceMethod == courtService
+  // SoT serviceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
@@ -64,7 +64,7 @@ Scenario('NFD - Civil Case     - Service Application , Service Payment and  Serv
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   //console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
-  // SoT solServiceMethod == courtService
+  // SoT serviceMethod == courtService
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice-civil.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
