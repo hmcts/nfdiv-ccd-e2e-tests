@@ -56,7 +56,11 @@ module.exports = {
     await I.wait(3);
     await I.waitForElement(this.fields.addressOption);
     await I.wait(3);
-    await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
+    if(testConfig.TestUrl.includes('localhost') ){
+      await I.selectOption(this.fields.addressOption, '1 Rse Way, London');
+    }else {
+      await I.selectOption(this.fields.addressOption, '22 St. James\'s Palace, London');
+    }
     if (testConfig.TestForCrossBrowser) {
       await I.wait(8);
     }
