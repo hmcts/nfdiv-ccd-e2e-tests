@@ -1,5 +1,6 @@
 module.exports = {
   TestUrl: process.env.TEST_E2E_URL || 'https://manage-case.aat.platform.hmcts.net/',
+  //TestUrl: process.env.TEST_E2E_URL || 'https://localhost:3000/',
   TestManageOrgUrl: process.env.TEST_MO_E2E_URL || 'https://manage-org.aat.platform.hmcts.net/',
   TestEnv: process.env.RUNNING_ENV  || 'aat',
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,

@@ -470,9 +470,16 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
 
   const serviceToken = await getServiceToken(); // S2S Auth
 
-  logger.info('Creating Case');
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl;
+  if(testConfig.TestUrl.includes('localhost')){
+    ccdApiUrl = 'http://localhost:4452';
+    logger.info('Creating Case in Local Environment ...');
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+    logger.info('Creating Case in AAT...');
+  }
+
   const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/solicitor-create-application/token`;
   const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
 
@@ -531,7 +538,14 @@ async function getCaseDetailsFor(caseId) {
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl;
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
   const ccdGetCaseDetailsPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/`+caseId;
 
   const getCaseDetails = {
@@ -682,11 +696,16 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
 
   logger.info('Updating case with id %s and event %s', caseId, eventId);
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
-
-
 
   const startEventOptions = {
     method: 'GET',
@@ -805,13 +824,14 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
 
   const serviceToken = await getServiceToken();
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-  const ccdUpdateRolePath ='/case-users';
+  var ccdApiUrl;
 
-  // const data = {
-  //   user_id: userId,
-  //   case_roles: ['[APPTWOSOLICITOR]']
-  // };
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+  const ccdUpdateRolePath ='/case-users';
 
   const data = {
     'case_users':[
@@ -895,7 +915,6 @@ async function updateCaseInCcd(caseId, eventId, dataLocation = 'data/ccd-nfd-upd
   };
 
   const saveEventResponse = await request(saveEventOptions);
-
   return saveEventResponse;
 }
 
@@ -904,12 +923,18 @@ async function shareCaseToRespondentSolicitor(userLoggedIn, caseId) {
   const authToken = await getAuthTokenFor(userLoggedIn);
   const serviceToken = await getManageOrgServiceToken();
 
-  const aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  var aacHost;
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    aacHost = 'http://localhost:4096';
+  }else{
+    aacHost = 'http://aac-manage-case-assignment-aat.service.core-compute-aat.internal';
+  }
+
   const caseAssignmentUrl = '/case-assignments';
 
   const data = {
     assignee_id:'4c152236-a40a-423a-b97e-b9535dda633c',
-    // linus fix for RS 2
     //assignee_id:'51087730-dfc0-4c1c-a44d-0ee8e75c3c43', // this is the id of the RS2
     case_id:caseId,
     case_type_id:'NFD'
@@ -1315,7 +1340,14 @@ async function updateAoSToAoSOverdue(caseId, eventId, dataLocation = 'data/aos-o
 
   logger.info('Updating dueDate for Case %s AND  the event is %s', caseId, eventId);
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl;
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl='http://localhost:4452';
+  }else{
+    ccdApiUrl=`http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 

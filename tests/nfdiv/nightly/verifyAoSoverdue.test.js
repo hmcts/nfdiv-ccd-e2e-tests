@@ -30,8 +30,8 @@ Scenario('NFD - Move case into AoS Overdue from Aos Awaiting', async function (I
 
   const shareACase = await updateRoleForCase(user.RS, caseNumber, 'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
+  //const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
+  assert.strictEqual(JSON.parse(shareACase).status_message, 'Case-User-Role assignments created successfully');
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior'); //at Awaiting AoS
 
@@ -58,8 +58,8 @@ Scenario('NFD - Move case into AoS Overdue from Aos Drafted', async function (I)
 
   const shareACase = await updateRoleForCase(user.RS, caseNumber, 'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
+  //const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
+  //assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior'); //at Awaiting AoS
 
