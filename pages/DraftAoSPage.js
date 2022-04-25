@@ -25,7 +25,7 @@ module.exports = {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolConfirmContactDetails');
     await I.wait(2);
     await I.runAccessibilityTest();
-    await I.see('Confirm solicitor contact details');
+    //await I.see('Confirm solicitor contact details');
     await I.fillField(this.fields.respSolicitorName, 'Porter & Co');
     await I.fillField(this.fields.respSolicitorPhone,'02031214214');
     await I.fillField(this.fields.respSolicitorEmail,'draftAos@email.com');
@@ -38,7 +38,7 @@ module.exports = {
   async fillReviewApplicant1_Application(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolReviewApplicant1Application');
     await I.wait(4);
-    await I.see('Review application');
+    //await I.see('Review application');
     await I.see('View application');
     await I.runAccessibilityTest();
     await I.click(this.fields.confirmReadPetitionYes);
@@ -49,8 +49,7 @@ module.exports = {
   async doYouAgreeJurisdiction(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
     await I.wait(4);
-    await I.see('How does the respondent want to respond to the application?');
-    await I.see('The respondent can only dispute the application if');
+    await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond?');
     await I.runAccessibilityTest();
     await I.click(this.fields.continueWithoutDisputingTheDivorce);
@@ -62,12 +61,11 @@ module.exports = {
   async doYouAgreeJurisdictionDisputed(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosapplicant2HowToResponseToApplication');
     await I.wait(4);
-    await I.see('How does the respondent want to respond to the application?');
-    await I.see('The respondent can only dispute the application if:');
+    await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond?');
     await I.runAccessibilityTest();
-    await I.click(this.fields.continueWithDisputingTheDivorce);
     await I.see('Continue without disputing');
+    await I.click(this.fields.continueWithDisputingTheDivorce);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },

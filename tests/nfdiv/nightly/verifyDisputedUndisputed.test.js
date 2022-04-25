@@ -46,9 +46,10 @@ Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
+
+  // here.....
   await I.draftAoSReview(caseNumber);
   await I.draftAoSDoYouAgree(caseNumber);
-
   await I.draftAoSDoNotAgreeCourts(caseNumber);
   await I.draftAoSAnyOtherLegalProceedings(caseNumber);
   await I.draftAosCheckYourAnswers(caseNumber);
