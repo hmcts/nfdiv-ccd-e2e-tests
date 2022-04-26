@@ -25,7 +25,9 @@ module.exports = {
     await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewAoS');
     await I.wait(2);
     // await I.runAccessibilityTest();
-    await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
+    await I.see('Link to respondent answers');
+    await I.see('respondentAnswers.pdf');
+
     await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
     await I.click(this.fields.applyConditionalOrderYes);
     await I.wait(2);
@@ -37,9 +39,9 @@ module.exports = {
     await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewApplicant1');
     await I.wait(2);
     await I.runAccessibilityTest();
-    await I.see('Review the applicant\'s application - Draft Conditional Order Application');
+    await I.see('Link to online application');
+    await I.see('Is the information in this application still correct?');
     await I.click(this.fields.changeOrAddAnythingToApplication);
-    // await I.click(this.fields.everythingInPetitionTrue);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
@@ -61,8 +63,8 @@ module.exports = {
     await I.see('Check the information below carefully.');
     await I.see('Link to respondent answers');
     await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
+    await I.see('Link to online application');
     await I.see('Is the information in this application still correct?');
-    // await I.see('Is everything stated in this divorce application true?');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -70,7 +72,6 @@ module.exports = {
     await I.wait(2);
 
     await I.waitInUrl('/submit-conditional-order/submit-conditional-orderConditionalOrderSoT');
-    await I.see('Statement of Truth - submit conditional order');
     await I.see('The applicant believes that the facts stated in the application for a conditional order are true.');
 
     await I.click(this.fields.coAppSoTYes);
@@ -84,15 +85,16 @@ module.exports = {
   async submitConditionalOrder(){
     await I.wait(2);
     await I.waitInUrl('/submit-conditional-order/submit');
-    // await I.see('Conditional order drafted');
+    await I.see('Submit Conditional Order');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   },
 
   async updateCOAoSReview(){
-    await I.wait(2);
+    await I.wait(5);
     await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewAoS');
-    await I.see('Review Acknowledgement of Service - Draft Conditional Order Application');
+    await I.see('Link to respondent answers');
+    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
     await I.click(this.fields.reviewAoSYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
@@ -101,6 +103,8 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewApplicant1');
     await I.see('Link to online application');
+    await I.see('Is the information in this application still correct?');
+
     await I.click(this.fields.updateChangeOrAddAnythingToApplication);
     await I.fillField(this.fields.updateEverythingInPetitionTrue, 'Some details');
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -117,7 +121,7 @@ module.exports = {
   async updateSubmit(){
     await I.wait(2);
     await I.waitInUrl('/trigger/update-conditional-order/submit');
-    // await I.see('Conditional order drafted');
+    await I.see('Update conditional order');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
