@@ -98,10 +98,10 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
 
   // TODO
   // CO - SUBMIT Clarification as a Solicitor
-  // await I.amOnHomePage();
-  // await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  // await I.filterByCaseId(caseNumber);
-  // await I.amOnPage('/case-details/' + caseNumber);
-  // await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
+  //  await I.amOnHomePage();
+  //  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  //  await I.filterByCaseId(caseNumber);
+  //  await I.amOnPage('/case-details/' + caseNumber);
+  //  await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
 
 }).retry(testConfig.TestRetryScenarios);
