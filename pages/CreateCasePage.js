@@ -63,7 +63,7 @@ module.exports = {
     await I.retry(5).click(this.fields.applicant1Represented);
     await I.retry(5).click(this.fields.applicant2Represented);
     await I.retry(5).fillField(this.fields.applicant2ID, '93b108b7-4b26-41bf-ae8f-6e356efb11b3');
-    await I.retry(5).selectOption(this.fields.stateOption, 'AwaitingFinalOrder');
+    await I.retry(5).selectOption(this.fields.stateOption, 'Awaiting final order');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
