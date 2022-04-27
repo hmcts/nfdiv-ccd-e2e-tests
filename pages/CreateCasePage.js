@@ -81,7 +81,6 @@ module.exports = {
     } else {
       await I.wait(5);
     }
-    await I.waitForText('Is this a divorce or dissolution application?');
 
     if(divorceOrCivil === divorceOrDissolution.DIVORCE) {
       await I.retry(5).click(this.fields.divorce);
