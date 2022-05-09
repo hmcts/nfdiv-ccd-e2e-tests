@@ -5,28 +5,28 @@ const assert = require('assert');
 
 let caseNumber;
 
-Feature('Joint Application - Divorce');
+Feature('Joint Application - Dissolution');
 
-xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
+Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
-  await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
+  await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DISSOLUTION); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
   await I.fillAboutSolicitorFormAndSubmit();
 
   // Marriage - Irretrievably Broken Down
-  await I.marriageBrokenDown(divorceOrDissolution.DIVORCE);
+  await I.marriageBrokenDown(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant1
-  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DIVORCE);
+  await I.fillAboutThePetitionerFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // About Applicant2
-  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DIVORCE);
+  await I.fillAboutTheRespondentFormAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   // Applicant 2 Service Details
   await I.fillAboutRespSolicitorFormAndSubmit();
@@ -38,7 +38,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.selectJurisdictionQuestionPageAndSubmit();
 
   // Other Legal Proceedings
-  await I.otherLegalProceedingsDiv();
+  await I.otherLegalProceedingsCivil();
 
   // Financial Orders
   await I.financialOrdersSelectButton();
@@ -47,7 +47,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.uploadTheMarriageCertificateOptional();
 
   // Create Application 'Save Application' and 'Check Your Answers'
-  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DIVORCE);
+  await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   await I.checkNextStepForEvent('Invite Applicant 2');
   caseNumber = await I.inviteApplicant2();
@@ -58,11 +58,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   caseNumber = caseNumber.replace(/\D/gi, '');
   console.log('--------------------------------------------- CASE NUMBER ------------------------------------------'+ caseNumber);
 
-  //share case to respondent solic
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
-  // const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  // assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
   await I.amOnHomePage();
@@ -74,7 +70,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.amOnPage('/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Submit joint application');
-  await I.submitDivJointApplication();
+  await I.submitJointApplication();
   await I.signOut();
 
   console.log('~~~~~~~~~~~~~  Respondent Solicitor Submit Joint Application Done ~~~~~~~~');
@@ -84,14 +80,18 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
-
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
 
-  await I.checkNextStepForEvent('Sign and submit');
+  // In Real time , this will be a CCD Async event which will move case from 'Awaiting applicant 2 response' to the
+  // 'Applicant 2 Approved', but we trigger it manually here as it is easier to continue to test the  UI Flow as part of the Joint Journeys
+  await I.checkNextStepForEvent('Applicant 2 approve');
+  await I.submitApplicant2Approve();
+  await I.wait(5);
 
-  // Kasi Restart Here....
-  await I.submitSignAndSubmit();
+  // Staying as Sols - Do  Sign And Submit.
+  await I.checkNextStepForEvent('Sign and submit');
+  await I.submitSignAndSubmit(divorceOrDissolution.DISSOLUTION);
 
   await I.paymentWithPbaAccount();
 
@@ -105,26 +105,21 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
 
   console.log('~~~~~~~~~~~~~  Solicitor sign and submit Joint Application Done ~~~~~~~~');
 
-  // verifyTab
-
+  // Do Application Issue.
   await I.wait(8);
-
-  //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
-  console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
-
+  console.log('....... Login as Caseworker and Issue Joint Application');
   await I.amOnHomePage();
-  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(8);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
+  await I.wait(5);
   await I.shouldBeOnCaseListPage();
-  await I.wait(7);
+  await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(7);
+  await I.wait(5);
   await I.checkNextStepForEvent('Application issue');
   await I.submitJointIssueApplication();
-  await I.CYAIssueJointApplication(divorceOrDissolution.DIVORCE);
+  await I.CYAIssueJointApplication(divorceOrDissolution.DISSOLUTION);
+  await I.wait(3);
   await I.checkStateAndEvent('20 week holding period','Application issue');
-
   console.log('~~~~~~~~~~~~~  Case State now is 20 week holding period ~~~~~~~~~~~~ ');
 
 }).retry(testConfig.TestRetryScenarios);
-

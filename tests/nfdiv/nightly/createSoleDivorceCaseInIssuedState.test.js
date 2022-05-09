@@ -16,24 +16,19 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  verifyState(hwfAccepted, states.SUBMITTTED);
+
   await I.wait(5);
   await I.amOnHomePage();
-  await I.wait(3);
-
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(7);
-  await I.shouldBeOnCaseListPage();
-
   await I.wait(5);
+
   await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(7);
-  await I.checkNextStepForEvent('HWF application accepted');
-  await I.hwfAccepted();
-  await I.wait(5);
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DIVORCE);
-  await I.checkStateAndEvent('AoS awaiting','Application issue');
 }).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
 
 

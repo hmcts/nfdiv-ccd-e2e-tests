@@ -860,9 +860,18 @@ module.exports = function () {
       return SolCreateCheckYourAnswersPage.submitJointApplication();
     },
 
+    submitDivJointApplication: function() {
+      return SolCreateCheckYourAnswersPage.submitJointDivorceApplication();
+    },
+
     submitSignAndSubmit: function(union) {
       return SolCreateCheckYourAnswersPage.submitSignAndSubmit(union);
     },
+
+    submitApplicant2Approve: function() {
+      return SolCreateCheckYourAnswersPage.submitApproveApplicant2();
+    },
+
 
     submitJointIssueApplication: function() {
       return SolCreateCheckYourAnswersPage.JointIssueApplication();

@@ -14,6 +14,8 @@ module.exports = {
     hwfNo: '#applicant2NeedsHelpWithFees_No',
     noCorrectionNeeded : '#applicant2ConfirmApplicant1Information_No',
     prayerApp2: '#applicant2PrayerEndCivilPartnership-endCivilPartnership',
+    prayerApp2Divorce:'#applicant2PrayerDissolveDivorce-dissolveDivorce',
+    prayerApp2FinancialOrderThemselves:'#applicant2PrayerFinancialOrdersThemselves-financialOrdersThemselves',
     statementOfTruthApp2: '#applicant2StatementOfTruth_Yes',
     statementOfTruthSolApp2: '#applicant2SolSignStatementOfTruth_Yes',
     solName: '#applicant2SolStatementOfReconciliationName',
@@ -89,6 +91,40 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitInUrl('trigger/solicitor-submit-joint-application/submit');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitJointDivorceApplication() {
+    await I.wait(2);
+    await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationMarriageIrretrievablyBroken');
+    await I.click(this.fields.marriageBrokenApp2);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationFinancialOrdersForApplicant2');
+    await I.click(this.fields.financialOrder);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationcheckTheirAnswers');
+    await I.click(this.fields.noCorrectionNeeded);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(2);
+    await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationSolStatementOfTruthApplicant2');
+    await I.wait(2);
+    await I.click(this.fields.solReconciliation);
+    await I.click(this.fields.solReconciliationDiscussed);
+    await I.click(this.fields.prayerApp2Divorce);
+    await I.click(this.fields.prayerApp2FinancialOrderThemselves);
+    await I.click(this.fields.statementOfTruthApp2);
+    await I.click(this.fields.statementOfTruthSolApp2);
+    await I.fillField(this.fields.solName, 'Solicitor Name');
+    await I.fillField(this.fields.solFirmName, 'Solicitor Firm name');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.waitInUrl('trigger/solicitor-submit-joint-application/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async submitApproveApplicant2() {
+    await I.wait(3);
+    await I.waitInUrl('trigger/applicant2-approve/submit');
+    await I.waitForNavigationToComplete(this.fields.submit);
+
   },
 
   async submitSignAndSubmit(union) {

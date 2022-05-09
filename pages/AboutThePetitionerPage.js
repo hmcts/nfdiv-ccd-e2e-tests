@@ -17,7 +17,7 @@ module.exports = {
     applicant1_phoneNumber: '#applicant1PhoneNumber',
     applicant1_email: '#applicant1Email',
     keepPetitionerContactDetails: '#applicant1KeepContactDetailsConfidential_Yes',
-    keepPetitionerContactDetailsNotConfidential: '#applicant1ContactDetailsType-public',
+    keepPetitionerContactDetailsNotConfidential: '#applicant1ContactDetailsType-private',
     addressButton: '#applicant1Address_applicant1Address_postcodeLookup > button',
     addressOption: 'select[id="applicant1Address_applicant1Address_addressList"]',
     submit: 'button[type="submit"]'
