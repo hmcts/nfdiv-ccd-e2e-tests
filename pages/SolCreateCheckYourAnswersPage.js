@@ -54,8 +54,9 @@ module.exports = {
   },
 
   async submitInviteApplicant2() {
-    await I.wait(2);
+    await I.wait(5);
     await I.waitInUrl('trigger/invite-applicant2/submit');
+    await I.wait(5);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
     await I.see('Awaiting applicant 2 response');

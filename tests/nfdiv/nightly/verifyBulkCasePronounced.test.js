@@ -14,7 +14,7 @@ Feature('NFD - Create a single Case and move it to bulk case pronounced state');
 
 // Always passes on local , and fails on pipeline. Will re run this on regression ,but not on pipeline
 // TODO possibly refactor this large test into 2 smaller parts ( with help of scripts instead of UI Flow ) -  to see if this can be a solution.
-xScenario('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);

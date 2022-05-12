@@ -41,7 +41,7 @@ module.exports = {
   },
 
   async fillPbaAccountOrderSummary() {
-    await I.runAccessibilityTest();
+    await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPaymentSummary');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(3);
   }

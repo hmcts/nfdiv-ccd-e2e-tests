@@ -10,6 +10,7 @@ Feature('Joint Application - Dissolution');
 Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
   await I.amOnHomePage();
+  //await I.waitForValue('Sign in or create an account');
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
@@ -77,8 +78,9 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
   await I.wait(5);
   await I.amOnHomePage();
+  await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.wait(10);
+  await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -86,7 +88,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   // In Real time , this will be a CCD Async event which will move case from 'Awaiting applicant 2 response' to the
   // 'Applicant 2 Approved', but we trigger it manually here as it is easier to continue to test the  UI Flow as part of the Joint Journeys
   await I.checkNextStepForEvent('Applicant 2 approve');
-  await I.submitApplicant2Approve();
+  //await I.submitApplicant2Approve();
   await I.wait(5);
 
   // Staying as Sols - Do  Sign And Submit.
@@ -106,9 +108,11 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   console.log('~~~~~~~~~~~~~  Solicitor sign and submit Joint Application Done ~~~~~~~~');
 
   // Do Application Issue.
-  await I.wait(8);
-  console.log('....... Login as Caseworker and Issue Joint Application');
+  console.log('....... As Caseworker  Issue Joint Application');
+
+  await I.wait(5);
   await I.amOnHomePage();
+  await I.wait(8);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.shouldBeOnCaseListPage();
