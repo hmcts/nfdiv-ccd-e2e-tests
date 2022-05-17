@@ -127,7 +127,7 @@ module.exports = {
 
   async requestClarification(){
     await I.wait(2);
-    await I.waitInUrl('/legal-advisor-request-clarification/submit');
+    await I.waitInUrl('trigger/legal-advisor-make-decision/legal-advisor-make-decisiongrantConditionalOrder');
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
