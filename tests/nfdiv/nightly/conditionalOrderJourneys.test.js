@@ -1,5 +1,6 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,
-  moveFromHoldingToAwaitingCO} = require('../../../helpers/utils');
+  moveFromHoldingToAwaitingCO, getCaseDetailsFor
+} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName,eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -94,14 +95,8 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.CO_REQUEST_CLARIFICATION);
   await I.conditionalOrderClarification();
   await I.wait(3);
-  await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
 
-  // TODO
-  // CO - SUBMIT Clarification as a Solicitor
-  //  await I.amOnHomePage();
-  //  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  //  await I.filterByCaseId(caseNumber);
-  //  await I.amOnPage('/case-details/' + caseNumber);
-  //  await I.checkStateAndEvent(stateDisplayName.AWAITING_CLARIFICATION,eventDisplayName.REQUEST_CLARIFICATION);
+  let caseResponse =  await getCaseDetailsFor(caseNumber);
+  assert.strictEqual('AwaitingLegalAdvisorReferral',caseResponse.state);
 
 }).retry(testConfig.TestRetryScenarios);

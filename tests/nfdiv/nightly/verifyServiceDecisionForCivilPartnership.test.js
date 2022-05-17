@@ -10,16 +10,16 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD Divorce :Verify Service Decision');
+Feature('NFD Civil Partnership Case  - Verify Service Decision');
 
 
-Scenario('NFD - Divorce Service Application , Service Payment and  Service Decision', async function (I) {
+Scenario('NFD - Civil Case ::Service Application , Service Payment and  Service Decision', async function (I) {
 
-  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
-  console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
+  caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
+  //console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
 
   // SoT serviceMethod == courtService
-  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice.json');
+  const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-sot-courtservice-civil.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
@@ -38,6 +38,7 @@ Scenario('NFD - Divorce Service Application , Service Payment and  Service Decis
   await I.see('AoS awaiting');
   await I.see('Application issue');
   await I.checkNextStepForEvent('Service application received');
+
   await I.submitServiceApplicationReceived(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
@@ -49,11 +50,22 @@ Scenario('NFD - Divorce Service Application , Service Payment and  Service Decis
   await I.submitServiceApplicationPaymentSubmit(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_CONSIDERATION, events.CONFIRM_SERVICE_PAYMENT);
 
-  await I.wait(3);
+  // As LegalAdvisor trigger 'Make Service Decision' event and check for the documentType  generated.
+
+  await I.wait(7);
+  await I.signOut();
+  await I.wait(5);
+  await I.amOnHomePage();
+  await I.wait(5);
+  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
+  await I.wait(5);
+  await I.shouldBeOnCaseListPage();
+  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
   await I.checkNextStepForEvent('Make service decision');
   await I.submitApproveServiceApplication(caseNumber);
   await I.submitApproveServiceApplicationCYA(caseNumber);
-  await I.wait(4);
   await I.checkState(stateDisplayName.TWENTY_WEEK_HOLDING_PERIOD, events.MAKE_SERVICE_DECISION);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
@@ -67,4 +79,3 @@ Scenario('NFD - Divorce Service Application , Service Payment and  Service Decis
   console.log('Array Filtered for document_filename '  + JSON.stringify(deemedDocument));
 
 }).retry(testConfig.TestRetryScenarios);
-
