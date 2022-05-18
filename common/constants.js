@@ -70,8 +70,9 @@ const states = {
   GENERAL_CONSIDERATION_COMPLETE: 'General consideration complete',
   AWAITING_DWP_RESPONSE: 'Awaiting DWP response',
   AWAITING_GEN_CONSIDERATION:'AwaitingGeneralConsideration',
-  AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService'
-
+  AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService',
+  ATTACH_SCAN_DOCS:'Attach scanned docs',
+  REMOVE_SCANNED_DOCS:'Remove scanned document'
 };
 
 const stateDisplayName = {
@@ -100,7 +101,8 @@ const stateDisplayName = {
   FINAL_ORDER_COMPLETED: 'Final order complete',
   GENERAL_REFERRAL: 'Awaiting general referral payment',
   DRAFT_AOS: 'AoS drafted',
-  DRAFT: 'Draft'
+  DRAFT: 'Draft',
+  OFFLINE_DOCS_RECEIVED_BY_CW: 'Offline document received by CW'
 };
 
 const eventDisplayName = {
@@ -141,7 +143,9 @@ const eventDisplayName = {
   CREATE_BULK_LIST: 'Create bulk list',
   GENERAL_REFERRAL: 'General referral',
   GENERAL_CONSIDERATION: 'General Consideration',
-  REQUEST_DWP_DISCLOSURE: 'Request DWP disclosure'
+  REQUEST_DWP_DISCLOSURE: 'Request DWP disclosure',
+  OFFLINE_DOCS_RECEIVED_BY_CW :'Offline document received by CW',
+  REMOVE_SCANNED_DOCS:'Remove scanned document'
 };
 
 const user = {
@@ -219,7 +223,8 @@ const events = {
   GENERAL_REFERRAL: 'General referral',
   AOS_UNDISPUTED: 'AoS undisputed',
   AOS_DISPUTED: 'AoS disputed',
-  NOTICE_OF_CHANGE: 'Notice of change'
+  NOTICE_OF_CHANGE: 'Notice of change',
+  REMOVE_SCANNED_DOCS:'Remove scanned document'
 };
 
 const serviceApplicationType = {
