@@ -1,8 +1,6 @@
-// const {states, eventDisplayName} = require("../../../common/constants");
 const I = actor();
 
 module.exports = {
-
   fields: {
     scannedDocumentText: 'Scanned documents',
     documentNumber: '#scannedDocuments_0_controlNumber',
@@ -26,7 +24,6 @@ module.exports = {
     chooseFile: 'input[id="scannedDocuments_0_url"]',
     supplementaryEvidenceHandled:'#evidenceHandled_Yes',
     removeButtonXPath:'//mat-dialog-container//button[@title="Remove"]',
-
     newSolEmail: '#applicant1SolicitorEmail',
     searchOrgText: 'Search for an organisation',
     searchOrganisation:'#search-org-text',
@@ -37,16 +34,12 @@ module.exports = {
     correspondenceAddress: '#applicant1Address_applicant1Address_postcodeInput',
     addressButton: '#applicant1Address_applicant1Address_postcodeLookup > button',
     addressOption: 'select[id="applicant1Address_applicant1Address_addressList"]'
-
   },
 
   async attachScanDocuments(caseNumber) {
     await I.waitInUrl('trigger/attachScannedDocs/attachScannedDocsattachScannedDocs');
     await I.see('Attach scanned docs');
     I.click(locate('.button').withText('Add new'));
-
-    //await I.waitForElement(this.fields.scannedDocumentText);
-
     await I.wait(3);
     await I.fillField(this.fields.documentNumber , '64654654654654');
     await I.fillField(this.fields.deliveryDay , '11');
@@ -71,14 +64,11 @@ module.exports = {
     await I.wait(5);
     await I.retry(2).selectOption(this.fields.selectDocumentType, 'Form');
     await I.wait(4);
-
     await I.attachFile(this.fields.chooseFile, 'data/scanDocumentsFileUpload.txt');
     await I.wait(7);
 
-
     await I.waitForElement(this.fields.supplementaryEvidenceHandled);
     await I.click(this.fields.supplementaryEvidenceHandled);
-
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
@@ -92,7 +82,6 @@ module.exports = {
 
 
   async removeScanDocument(caseNumber) {
-
     await I.waitInUrl('trigger/caseworker-remove-scanned-document/caseworker-remove-scanned-documentremoveScannedDocument');
     await I.wait(3);
     await I.click(locate('.button').withText('Remove'));
