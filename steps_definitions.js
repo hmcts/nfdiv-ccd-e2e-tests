@@ -72,6 +72,7 @@ const BulkCasePage = require('./pages/BulkCasePage.js');
 const FinalOrderPage = require('./pages/FinalOrderPage.js');
 const GeneralConsiderationPage = require('./pages/GeneralConsiderationPage.js');
 const NoticeOfChangePage = require('./pages/NoticeOfChangePage');
+const ScanDocumentsPage = require('./pages/ScanDocumentsPage');
 
 const validateApplicationTabData = require ('./tabs/nfdiv/validateApplicationTabData');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
@@ -903,7 +904,18 @@ module.exports = function () {
 
     submitNoticeOfChangeCYA: function() {
       return NoticeOfChangePage.fillApplyForNOCCYA();
-    }
+    },
 
+    attachScannedDocs: function() {
+      return ScanDocumentsPage.attachScanDocuments();
+    },
+
+    submitScannedDocs: function() {
+      return ScanDocumentsPage.scanDocsSubmit();
+    },
+
+    removeScanDoc: function() {
+      return ScanDocumentsPage.removeScanDocument();
+    }
   });
 };
