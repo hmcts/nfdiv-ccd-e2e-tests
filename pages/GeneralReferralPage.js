@@ -5,6 +5,8 @@ module.exports = {
   fields: {
     generalReferral:'General referral',
     generalApplicationReferral:'#generalReferralReason-caseworkerReferral',
+    urgentReferralRequiredYes:'#generalReferralUrgentCase_Yes',
+    generalReferralUrgentCaseReason:'#generalReferralUrgentCaseReason',
     applicationFrom:'#generalApplicationFrom',
     day:'#generalApplicationReferralDate-day',
     month:'#generalApplicationReferralDate-month',
@@ -30,6 +32,10 @@ module.exports = {
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.click(this.fields.generalApplicationReferral);
+    await I.wait(2);
+    await I.click(this.fields.urgentReferralRequiredYes);
+    await I.wait(2);
+    await I.fillField(this.fields.generalReferralUrgentCaseReason, 'Urgent Reason description');
     await I.fillField(this.fields.day, '24');
     await I.fillField(this.fields.month, '07');
     await I.fillField(this.fields.year, '2021');
@@ -47,6 +53,8 @@ module.exports = {
     await I.wait(2);
     await I.runAccessibilityTest();
     await I.click(this.fields.generalApplicationReferral);
+    await I.click(this.fields.urgentReferralRequiredYes);
+    await I.fillField(this.fields.generalReferralUrgentCaseReason, 'Urgent Reason description');
     await I.fillField(this.fields.day, '24');
     await I.fillField(this.fields.month, '07');
     await I.fillField(this.fields.year, '2021');

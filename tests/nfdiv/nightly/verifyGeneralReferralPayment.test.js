@@ -1,8 +1,6 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
-// const testConfig = require('./../../config');
-const testconfig = require('../../config');
 const testConfig = require('../../config');
 
 
@@ -31,9 +29,6 @@ Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payme
 
   const shareACase = await updateRoleForCase(user.RS, caseNumber, 'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA, caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-
   console.log('~~~~~~~~~ Case with Id ' + caseNumber + ' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
   const draftAoS = await updateNFDCaseInCcd(user.RS, caseNumber, events.DRAFT_AOS, 'data/ccd-draft-aos.json');
@@ -44,7 +39,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payme
 
   await I.wait(5);
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -72,11 +67,6 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
 
   const shareACase = await updateRoleForCase(user.RS, caseNumber, 'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA, caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-
-  console.log('~~~~~~~~~ Case with Id ' + caseNumber + ' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
-
   const draftAoS = await updateNFDCaseInCcd(user.RS, caseNumber, events.DRAFT_AOS, 'data/ccd-draft-aos.json');
   verifyState(draftAoS, states.AOS_DRAFTED);
 
@@ -85,7 +75,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
 
   await I.wait(5);
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -96,7 +86,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
 
   await I.wait(5);
   await I.amOnHomePage();
-  await I.login(testconfig.TestEnvLegalAdvisorUser, testconfig.TestEnvLegalAdvisorPassword);
+  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -105,7 +95,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.submitGeneralConsideration();
   await I.checkEventAndStateOnPageAndSignOut(states.GENERAL_CONSIDERATION_COMPLETE, eventDisplayName.GENERAL_REFERRAL);
 
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
