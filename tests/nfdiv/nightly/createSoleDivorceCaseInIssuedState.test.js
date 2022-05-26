@@ -29,7 +29,12 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);
   await I.checkYourAnswersIssueApplication(divorceOrDissolution.DIVORCE);
-}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
+
+  await I.checkEventAndStateOnPageAndSignOut('AoS awaiting','Application issue');
+
+}).retry(testConfig.TestRetryScenarios);
+
+//}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
 
 
 const verifyState = (eventResponse, state) => {
