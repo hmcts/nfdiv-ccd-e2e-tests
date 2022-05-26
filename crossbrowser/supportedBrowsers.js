@@ -33,8 +33,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: WIN_CHROME_LATEST',
-        screenResolution: '2560x1600',
-        tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel'
+        screenResolution: '2560x1600'
       }
     },
     chrome_mac_latest: {
@@ -43,8 +42,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_CHROME_LATEST',
-        screenResolution: '2360x1770',
-        tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel'
+        screenResolution: '2360x1770'
       }
     }
   },
