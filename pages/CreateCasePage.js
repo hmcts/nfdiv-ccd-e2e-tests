@@ -29,7 +29,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(60);
+      await I.wait(20);
     } else {
       await I.wait(5);
     }

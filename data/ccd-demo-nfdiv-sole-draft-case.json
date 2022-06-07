@@ -1,0 +1,122 @@
+{
+  "applicationType": "soleApplication",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
+  "labelContentTheApplicant2UC": "The respondent",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "HEBFGBR",
+      "OrganisationName": "NFD Solicitor Organisation"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
+  },
+  "applicant2SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "3I4PJR6",
+      "OrganisationName": "DivRespondentSolicitorFirm"
+    },
+    "PreviousOrganisations": [],
+    "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
+  },
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "marriageMarriedInUk": "Yes",
+  "applicant1SolicitorEmail": "juwahi@mailinator.com",
+  "marriageDate": "2003-10-25",
+  "applicant1FirstName": "David XUI",
+  "applicant2FirstName": "Jamalia",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "ce831d2f-34c9-40dd-a097-9ba9949a324f",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/489495c4-e48e-4bf3-874c-7c653a16044d",
+          "document_filename": "2316-Fix-Demo.png",
+          "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/489495c4-e48e-4bf3-874c-7c653a16044d/binary"
+        },
+        "documentType": "correspondence"
+      }
+    }  ],
+  "applicant1MiddleName": "Scripting Middle",
+  "labelContentUnionTypeUC": "Divorce",
+  "coApplicant1IsDrafted": "No",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "labelContentTheApplicantOrApplicant1UC": "The applicant",
+  "applicant1LegalProceedings": "No",
+  "applicant1Email": "nopamak@mailinator.com",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "applicant1SolicitorReference": "Perspiciatis commod",
+  "applicant1Gender": "female",
+  "applicant1ContactDetailsType": "public",
+  "isJudicialSeparation": "No",
+  "labelContentUnionType": "divorce",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorEmail": "kasi.subramaniam@solirius.com",
+  "applicant1SolicitorName": "Calista Barry",
+  "applicant2SolicitorName": "Wimal Solicitors for Applicant 2",
+  "applicant1SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "applicant1LastName": "Demo E2E",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant2SolicitorAddress": "Rerum explicabo Ten",
+  "divorceWho": "husband",
+  "applicant2MiddleName": "Nola Gamble",
+  "marriageApplicant1Name": "Kyla Gordon",
+  "applicant1SolicitorPhone": "+1 (703) 848-3934",
+  "labelContentApplicant2UC": "Respondent",
+  "marriageApplicant2Name": "Cynthia Hester",
+  "divorceOrDissolution": "divorce",
+  "coApplicant1IsSubmitted": "No",
+  "applicant1Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR3 3BY",
+    "PostTown": "Norwich",
+    "AddressLine1": "13 Rose Yard",
+    "AddressLine2": "",
+    "AddressLine3": "St. Augustines Street"
+  },
+  "applicant2Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR3 3BY",
+    "PostTown": "Norwich",
+    "AddressLine1": "33 St. Augustines Street",
+    "AddressLine2": "",
+    "AddressLine3": ""
+  },
+  "applicant2Gender": "male",
+  "applicant2SolicitorReference": "Et dolore enim labor",
+  "applicant2NameChangedHow": [],
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorPhone": "+1 (554) 135-1047",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
+  "applicant2SolicitorRepresented": "Yes",
+  "applicant1FinancialOrder": "No",
+  "applicant2LastName": "Oliver",
+  "applicant1PhoneNumber": "+1 (247) 459-9629",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "applicant1SolicitorAddress": "102 Petty France London Westminster SW1H 9AJ",
+  "divorceUnit": "serviceCentre",
+  "jurisdictionConnections": [
+    "C",
+    "B",
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "applicant1SolicitorReference": "Perspiciatis commod",
+  "applicant2Email": "xibofifuru@mailinator.com",
+  "labelContentApplicant2": "respondent",
+  "applicant1SolicitorRepresented": "Yes"
+}
