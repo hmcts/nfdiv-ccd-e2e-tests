@@ -58,7 +58,7 @@ async function getSystemUserToken() {
   const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
   const idamClientSecret = testConfig.TestIdamClientSecret;
 
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
+  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
   const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
 
@@ -477,7 +477,7 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
     logger.info('Creating Case in Local Environment ...');
   }else{
     ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-    logger.info('Creating Case in AAT...');
+    logger.info('Creating Case in..'+{env} );
   }
 
   const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/solicitor-create-application/token`;
@@ -829,6 +829,12 @@ async function updateRoleForCase(userLoggedIn, caseId, roleToUpdate) {
   if(testConfig.TestUrl.includes('localhost') ) {
     ccdApiUrl = 'http://localhost:4452';
   }else{
+    if(testConfig.TestUrl.includes('demo')){
+      console.log('... Env  is DEMO');
+    }else if(testConfig.TestUrl.includes('aat')){
+      console.log('... Env is AAT');
+    }
+
     ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   }
   const ccdUpdateRolePath ='/case-users';
@@ -961,7 +967,7 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
   const eventTypeId ='system-progress-held-case';
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdApiUrl =`http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
@@ -1018,7 +1024,7 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   const eventTypeId ='create-bulk-list';
   const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
 
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdApiUrl = 'http://ccd-data-store-api-${env}.service.core-compute-${env}.internal';
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
 
@@ -1223,7 +1229,7 @@ async function moveCaseToConditionalOderPronounced(eventId, dataLocation = 'data
 
   logger.info('Moving case to pronounced state for caseID %s AND  the event is %s', caseId, eventId);
 
-  const ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${caseId}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${caseId}/cases`;
 
