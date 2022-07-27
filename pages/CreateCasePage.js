@@ -34,7 +34,14 @@ module.exports = {
       await I.wait(5);
     }
     await I.waitForText('Family Divorce');
-    await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(15);
+      await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
+    } else {
+      await I.wait(5);
+      await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
+    }
+
     await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     await I.wait(5);
     await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
