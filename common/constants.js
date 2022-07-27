@@ -72,7 +72,8 @@ const states = {
   AWAITING_GEN_CONSIDERATION:'AwaitingGeneralConsideration',
   AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService',
   ATTACH_SCAN_DOCS:'Attach scanned docs',
-  REMOVE_SCANNED_DOCS:'Remove scanned document'
+  REMOVE_SCANNED_DOCS:'Remove scanned document',
+  AWAITING_JOINT_CONDITIONAL_ORDER:'ConditionalOrderPending'
 };
 
 const stateDisplayName = {
@@ -174,6 +175,7 @@ const events = {
   DRAFT_AOS:'draft-aos',
   SUBMIT_AOS:'submit-aos',
   SUBMIT_CO:'submit-conditional-order',
+  SUBMIT_JOINT_CO:'submit-joint-conditional-order',
   SOLS_DRAFT_CO:'draft-conditional-order',
   UPDATE_CO:'update-conditional-order',
   LEGAL_ADVISOR_MAKE_DECISION:'legal-advisor-make-decision',
