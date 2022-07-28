@@ -33,18 +33,31 @@ module.exports = {
     } else {
       await I.wait(5);
     }
-    await I.waitForText('Family Divorce');
     if (testConfig.TestForCrossBrowser) {
       await I.wait(15);
+      await I.waitForText('Family Divorce');
       await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
     } else {
       await I.wait(5);
+      await I.waitForText('Family Divorce');
       await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
     }
 
-    await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
-    await I.wait(5);
-    await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(10);
+      await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
+    }else{
+      await I.wait(5);
+      await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
+    }
+    if (testConfig.TestForCrossBrowser) {
+      await I.wait(10);
+      await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
+    }
+    else{
+      await I.wait(5);
+      await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
+    }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
   },
