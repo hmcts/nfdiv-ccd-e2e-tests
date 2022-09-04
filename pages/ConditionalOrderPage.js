@@ -14,6 +14,9 @@ module.exports = {
     sotSolicitorFirm:'#coApplicant1SolicitorFirm',
     reviewAoSYes:'#coApplicant1ApplyForConditionalOrder_Yes',
     coAppSoTYes:'#coApplicant1StatementOfTruth_Yes',
+    coGrantedNo:'#coGranted_No',
+    coRefusalMoreInfo:'#coRefusalDecision-moreInfo',
+    coRefusalReason:'#coRefusalClarificationReason-marriageCertificate',
     updateChangeOrAddAnythingToApplication:'#coApplicant1ConfirmInformationStillCorrect_No',
     updateEverythingInPetitionTrue:'#coApplicant1ReasonInformationNotCorrect',
     updateAddNewDocumentsNo:'#coAddNewDocuments_No',
@@ -24,11 +27,8 @@ module.exports = {
   async fillReviewAoS(){
     await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewAoS');
     await I.wait(2);
-    // await I.runAccessibilityTest();
-    await I.see('Link to respondent answers');
-    await I.see('respondentAnswers.pdf');
 
-    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
+    await I.see('Does the applicant want to continue with their divorce application?');
     await I.click(this.fields.applyConditionalOrderYes);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -61,8 +61,6 @@ module.exports = {
     await I.wait(2);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');
-    await I.see('Link to respondent answers');
-    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
     await I.see('Link to online application');
     await I.see('Is the information in this application still correct?');
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -93,8 +91,7 @@ module.exports = {
   async updateCOAoSReview(){
     await I.wait(5);
     await I.waitInUrl('update-conditional-order/update-conditional-orderConditionalOrderReviewAoS');
-    await I.see('Link to respondent answers');
-    await I.see('Does the applicant want to continue with the divorce and apply for a conditional order?');
+    await I.see('Does the applicant want to continue with their divorce application?');
     await I.click(this.fields.reviewAoSYes);
     await I.waitForNavigationToComplete(this.fields.submit);
   },
@@ -128,7 +125,28 @@ module.exports = {
   async requestClarification(){
     await I.wait(2);
     await I.waitInUrl('trigger/legal-advisor-make-decision/legal-advisor-make-decisiongrantConditionalOrder');
+    await I.click(this.fields.coGrantedNo);
     await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(4);
+    await I.waitInUrl('trigger/legal-advisor-make-decision/legal-advisor-make-decisionmakeRefusalOrder');
+    await I.wait(4);
+    await I.click(this.fields.coRefusalMoreInfo);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(4);
+    await I.waitInUrl('trigger/legal-advisor-make-decision/legal-advisor-make-decisionrefusalOrderClarification');
+    await I.wait(4);
+    await I.click(this.fields.coRefusalReason);
+    await I.wait(4);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(4);
+    await I.waitInUrl('/trigger/legal-advisor-make-decision/legal-advisor-make-decisionrefusalDraft');
+    await I.see('Refusal Draft');
+    await I.see('NoticeOfRefusalDocument.pdf');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(2);
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(3);
+    await I.see('Awaiting clarification');
   },
 
   async submitClarification(){

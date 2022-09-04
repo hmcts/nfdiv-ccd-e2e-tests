@@ -1,0 +1,138 @@
+{
+  "applicationType": "jointApplication",
+  "labelContentApplicantsOrApplicant1s": "Applicant 1’s",
+  "labelContentTheApplicant2UC": "Applicant 2",
+  "applicant1ContactDetailsType": "public",
+  "coApplicant2IsDrafted": "No",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "8O9L8DR",
+      "OrganisationName": "NFD Solicitor Organisation"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
+  },
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "marriageMarriedInUk": "Yes",
+  "applicant1SolicitorEmail": "huzygidyxi@mailinator.com",
+  "labelContentMarriageOrCivilPartnershipUC": "Marriage",
+  "applicant2SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "1AOILY3",
+      "OrganisationName": "DivRespondentSolicitorFirmDemo"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
+  },
+  "marriageDate": "1990-10-09",
+  "applicant2FirstName": "Hammett",
+  "hyphenatedCaseRef": "1660-2206-3754-1544",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "8133ae96-6790-44f8-a3ec-195459dea6d4",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/c6ba0b0e-e112-4ba0-9da6-0eb0cd087192",
+          "document_filename": "Screenshot 2022-08-09 at 14.12.58.png",
+          "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/c6ba0b0e-e112-4ba0-9da6-0eb0cd087192/binary"
+        },
+        "documentType": "correspondence"
+      }
+    }
+  ],
+  "applicant1MiddleName": "Wilma Chapman",
+  "labelContentUnionTypeUC": "Divorce",
+  "coApplicant1IsDrafted": "No",
+  "labelContentTheApplicantOrApplicant1": "applicant 1",
+  "applicant1LegalProceedings": "No",
+  "applicant1FirstName": "Duncan",
+  "applicant1Email": "juqatodu@mailinator.com",
+  "applicant1Gender": "male",
+  "isJudicialSeparation": "No",
+  "labelContentUnionType": "divorce",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorEmail": "dufakyvux@mailinator.com",
+  "applicant1SolicitorName": "Alec Rowland Demo Joint Case",
+  "applicant2SolicitorName": "Ciara Lott",
+  "applicant1SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "applicant1LastName": "Wood",
+  "coApplicant2IsSubmitted": "No",
+  "labelContentTheApplicant2": "applicant 2",
+  "applicant2SolicitorAddress": "Dolorem minima dolor",
+  "divorceWho": "wife",
+  "documentsGenerated": [
+    {
+      "id": "5a3124ef-786b-4ccb-8340-45bcbdd6384f",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/e6749bd9-6519-47e8-95be-0648b0695534",
+          "document_filename": "joint-divorce-application-applicant-1-answers-1660220637541544.pdf",
+          "document_binary_url": "http://dm-store-demo.service.core-compute-demo.internal/documents/e6749bd9-6519-47e8-95be-0648b0695534/binary"
+        },
+        "documentType": "application",
+        "documentFileName": "joint-divorce-application-applicant-1-answers-1660220637541544.pdf"
+      }
+    }
+  ],
+  "applicant2MiddleName": "Dawn Hebert",
+  "marriageApplicant1Name": "Mariko Morrison",
+  "applicant1SolicitorPhone": "+1 (985) 134-1229",
+  "labelContentApplicant2UC": "Applicant 2",
+  "marriageApplicant2Name": "Kiona Nicholson",
+  "divorceOrDissolution": "divorce",
+  "coApplicant1IsSubmitted": "No",
+  "applicant1Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR3 3BY",
+    "PostTown": "Norwich",
+    "AddressLine1": "2 Rose Yard",
+    "AddressLine2": "",
+    "AddressLine3": "St. Augustines Street"
+  },
+  "applicant2Address": {
+    "County": "",
+    "Country": "",
+    "PostCode": "",
+    "PostTown": "",
+    "AddressLine1": "1",
+    "AddressLine2": "1",
+    "AddressLine3": "1"
+  },
+  "applicant2Gender": "female",
+  "applicant2SolicitorReference": "Quos proident volup",
+  "applicant2NameChangedHow": [],
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorPhone": "+1 (277) 304-9985",
+  "labelContentApplicantOrApplicant1": "applicant 1’s",
+  "applicant2SolicitorRepresented": "Yes",
+  "applicant1FinancialOrder": "No",
+  "applicant2LastName": "Bolton",
+  "applicant1PhoneNumber": "+1 (557) 529-7424",
+  "dataVersion": 5,
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "warnings": [],
+  "applicant1NameChangedHow": [],
+  "applicant1SolicitorAddress": "102 Petty France\nLondon\nWestminster\nSW1H 9AJ",
+  "divorceUnit": "serviceCentre",
+  "jurisdictionConnections": [
+    "A",
+    "B"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "labelContentDivorceOrEndingCivilPartnership": "divorce",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Applicant 2's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "createdDate": "2022-08-11",
+  "applicant1SolicitorReference": "664654654",
+  "applicant2Email": "fora@mailinator.com",
+  "labelContentTheApplicantOrApplicant1UC": "Applicant 1",
+  "labelContentApplicant2": "applicant 2",
+  "applicant1SolicitorRepresented": "Yes"
+}

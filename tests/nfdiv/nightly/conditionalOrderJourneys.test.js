@@ -30,8 +30,8 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
 
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
+  // const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
+  // assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
   console.log('~~~~~~~~~ Case with Id' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
@@ -41,27 +41,18 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
   verifyState(submitAoS, states.HOLDING);
 
-  // Login as CW and check the latest Event and State of the Case
-  // When logging in as TestEnvRespondentSolUser , the CaseDetails page view that normally show Event and State is not present.
-
-  await I.amOnHomePage();
-  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
-
-  await I.checkStateAndEvent(states.TWENTY_WEEK_HOLDING_PERIOD,eventDisplayName.SUBMIT_AOS);
-
   console.log('~~~~~~~~~~~~ about to Call the moveFromHoldingToAwaitingCO ..~~~~~ ');
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
   await I.amOnHomePage();
+  await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
 
   // Draft CO
-  await I.amOnPage('/case-details/'+caseNumber);
-  await I.wait(3);
+  await I.wait(5);
   await I.checkNextStepForEvent(events.DRAFT_CONDITIONAL_ORDER);
   await I.draftConditionalOrderReviewAoS();
   await I.draftConditionalOrderReviewApplicant1Application();
@@ -70,10 +61,11 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
 
   // Update CO
   await I.amOnPage('/case-details/'+caseNumber);
+  await I.amOnPage('/case-details/' + caseNumber);
+
   await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
   await I.updateCOReviewAoS();
   await I.updateCOReviewApplication();
-  //await I.updateCODocuments();
   await I.updateCOAndSave();
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.UPDATE_CONDITIONAL_ORDER);
 
@@ -85,18 +77,18 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.submitConditionalOrder();
   await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
 
-  //CO - Request - Clarification -> Awaiting Clarification :: as a LegalAdvisor.
+  //Conditional Order - Do not Grant CO ->  Refusal Order ->  Get More Information ->  Marriage Certificate
   await I.amOnHomePage();
   await I.wait(3);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/'+caseNumber);
   await I.wait(3);
-  await I.checkNextStepForEvent(events.CO_REQUEST_CLARIFICATION);
+  await I.checkNextStepForEvent(events.MAKE_A_DECISION);
   await I.conditionalOrderClarification();
   await I.wait(3);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
-  assert.strictEqual('AwaitingLegalAdvisorReferral',caseResponse.state);
+  assert.strictEqual('AwaitingClarification',caseResponse.state);
 
 }).retry(testConfig.TestRetryScenarios);
