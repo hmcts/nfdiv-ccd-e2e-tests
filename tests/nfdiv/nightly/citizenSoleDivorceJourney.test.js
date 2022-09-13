@@ -1,11 +1,12 @@
 const {citizenUserPW,events, user, states} = require('../../../common/constants');
 const testConfig = require('./../../config');
-const {createCitizenUser,deleteUser,updateNFDCitizenCaseWithId,createNFDCitizenBasicCaseAndFetchResponse} = require('../../../helpers/citizen-utils');
+const {createCitizenUser,deleteUser,updateNFDCitizenCaseWithId,createNFDCitizenBasicCaseAndFetchResponse,createRespondentCitizenUser} = require('../../../helpers/citizen-utils');
 const assert = require('assert');
 const {updateNFDCaseInCcd} = require('../../../helpers/utils');
 
 let citizenCaseId;
 let response;
+let respondentOrApplicant2Response;
 
 
 
@@ -16,6 +17,7 @@ Scenario('Citizen Sole Divorce Journey - using Divorce,Documents,PBA ', async (I
 
   // create new citizen user for each Test Run.
   response = await createCitizenUser();
+  respondentOrApplicant2Response = await createRespondentCitizenUser();
 
   const userDetails = new Object();
   userDetails.id = response.id;
@@ -23,7 +25,15 @@ Scenario('Citizen Sole Divorce Journey - using Divorce,Documents,PBA ', async (I
   userDetails.surname = response.surname;
   userDetails.email = response.email;
 
+
+  const respondentUserDetails  = new Object();
+  respondentUserDetails.id = respondentOrApplicant2Response.id;
+  respondentUserDetails.forename = respondentOrApplicant2Response.forename;
+  respondentUserDetails.surname = respondentOrApplicant2Response.surname;
+  respondentUserDetails.email = respondentOrApplicant2Response.email;
+
   console.log('| +  userDetails.email  + |   " + "| " +  "userDetails.forename + " | " + "| " +  userDetails.surname + "| "  + "| " + userDetails.email ' );
+
 
   citizenCaseId   = await createNFDCitizenBasicCaseAndFetchResponse(userDetails.email,citizenUserPW, 'data/ccd-nfdiv-sole-citizen-user-base-data.json');
   console.log(' "Citizen Case Created and ID is '+ citizenCaseId) ;
@@ -44,7 +54,7 @@ Scenario('Citizen Sole Divorce Journey - using Divorce,Documents,PBA ', async (I
   //displayState(hwfAccepted);
 
   // Code to delete the created Citizen User after all tests are completed.
-  const userDeleteStatus = deleteUser(userDetails.email);
+  //const userDeleteStatus = deleteUser(userDetails.email);
 
 }).retry(testConfig.TestRetryScenarios);
 

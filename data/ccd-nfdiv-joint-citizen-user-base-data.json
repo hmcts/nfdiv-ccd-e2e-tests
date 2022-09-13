@@ -1,0 +1,65 @@
+{
+  "divorceOrDissolution": "divorce",
+  "applicant1Email": "replaceApplicant1EmailAddress",
+  "applicant2FirstName": "NFD Respondent E2E FirstName",
+  "applicant2LastName": "NFD Respondent  E2E LastName",
+  "applicant2Email": "replaceApplicant2EmailAddress",
+  "applicant1AgreedToReceiveEmails": "Yes",
+  "applicationType": "jointApplication",
+  "marriageApplicant1Name": "full name",
+  "applicant1ContactDetailsType": "public",
+  "applicant2ScreenHasMarriageBroken": "Yes",
+  "applicant1LastNameChangedWhenMarried": "No",
+  "marriageApplicant2Name": "on cert",
+  "jurisdictionApplicant2Residence": "Yes",
+  "marriageMarriedInUk": "Yes",
+  "applicant1CannotUpload": "No",
+  "applicant1Address": {
+    "County": "NORWICH",
+    "Country": "UK",
+    "PostCode": "NR3 3BY",
+    "PostTown": "NORWICH",
+    "AddressLine1": "13C, ST. AUGUSTINES STREET"
+  },
+  "applicant2Gender": "female",
+  "marriageDate": "2000-02-12",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "hyphenatedCaseRef": "1662-8447-6013-4021",
+  "applicant2InviteEmailAddress": "testRespondentSaturday@mailinator.com",
+  "applicant2Offline": "No",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1FinancialOrder": "No",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "da0cb7cb-210c-4b1b-91c3-4c9e536df55d",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/387c3686-cdc7-4e44-973c-f57be0e30c1c",
+          "document_filename": "Screenshot 2022-09-08 at 14.14.58.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/387c3686-cdc7-4e44-973c-f57be0e30c1c/binary"
+        },
+        "documentComment": "Uploaded by applicant",
+        "documentFileName": "Screenshot 2022-09-08 at 14.14.58.png"
+      }
+    }
+  ],
+  "applicant1MiddleName": "",
+  "applicant1FinancialOrdersFor": [],
+  "applicant1PhoneNumber": "02032132156464",
+  "jurisdictionApplicant1Residence": "Yes",
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "screenHasMarriageCert": "Yes",
+  "applicant1LegalProceedings": "No",
+  "jurisdictionConnections": [
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "applicant1FirstName": "main",
+  "applicant1Gender": "male",
+  "applicant1PcqId": "8aff44fb-f931-486f-8bbb-0fc1151dbb7b",
+  "applicant1HWFNeedHelp": "No",
+  "applicant2UserId": "REPLACE_APP_2_USER_ID",
+  "applicant1LastName": "applicant",
+  "applicant1LanguagePreferenceWelsh": "No",
+  "applicant1KnowsApplicant2EmailAddress": "Yes"
+}

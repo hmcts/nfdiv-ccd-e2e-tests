@@ -49,8 +49,8 @@ module.exports = {
     LADecisionDateDateDay: 'decisionDate-day',
     LADecisionDateDateMonth: 'decisionDate-month',
     LADecisionDateDateYear: 'decisionDate-year',
-    judgePronouncedYes: '#hasJudgePronounced_Yes'
-
+    judgePronouncedYes: '#hasJudgePronounced_Yes',
+    bulkCaseReferenceNumber:'#bulkListCaseDetails_0_caseReference'
   },
 
   async fillServiceDetailsAndSubmit(caseNumber) {
@@ -279,7 +279,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
-  async fillScheduleCases(caseNumber){
+  async fillScheduleCases(bulkCaseReferenceNumber){
     await I.wait(2);
     await I.waitInUrl('trigger/caseworker-schedule-case/caseworker-schedule-casescheduleForListing');
     await I.click(this.fields.courtNameBirmingham);
@@ -302,6 +302,11 @@ module.exports = {
     await I.fillField(this.fields.hearingDateHour, hearingTimeHours);
     await I.fillField(this.fields.hearingDateMinute, hearingTimeMinutes);
     await I.fillField(this.fields.hearingDateSecond,hearingTimeSeconds);
+
+    await I.wait(2);
+    await I.fillField(this.fields.bulkCaseReferenceNumber, bulkCaseReferenceNumber);
+    await I.wait(2);
+
 
     console.log('Hearing Date must be in Future.......');
     console.log('DD MM YYYY hh:mm:ss === '  + hearingDate  + ' ' + hearingMonth + '  ' + hearingYear + '  ' + hearingTimeHours + '  ' + hearingTimeMinutes + '  ' + hearingTimeSeconds);

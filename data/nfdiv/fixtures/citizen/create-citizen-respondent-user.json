@@ -1,0 +1,12 @@
+{
+  "email": "REPLACE_WITH_GENERATED_EMAIL",
+  "password": "Testing123",
+  "roles":[
+    {"code":"caseworker"},
+    {"code":"citizen"},
+    {"code":"caseworker-divorce"},
+    {"code":"caseworker-divorce-courtadmin_beta"}
+  ],
+  "forename":  "NFD E2E Respondent Citizen Forename",
+  "surname": "E2E Respondent Surname"
+}

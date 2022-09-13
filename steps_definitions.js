@@ -809,12 +809,12 @@ module.exports = function () {
       return validateLinkedCaseTabData(verifyContent);
     },
 
-    submitScheduleCases: function(caseNumber) {
-      return ConfirmServiceForSolicitorPage.fillScheduleCases(caseNumber);
+    submitScheduleCases: function(bulkCaseReferenceId) {
+      return ConfirmServiceForSolicitorPage.fillScheduleCases(bulkCaseReferenceId);
     },
 
-    submitScheduleCasesCYA: function(caseNumber) {
-      return ConfirmServiceForSolicitorPage.fillScheduleCasesCYA(caseNumber);
+    submitScheduleCasesCYA: function(bulkCaseReferenceNumber) {
+      return ConfirmServiceForSolicitorPage.fillScheduleCasesCYA(bulkCaseReferenceNumber);
     },
 
     submitPrintForPronouncement: function(caseNumber) {

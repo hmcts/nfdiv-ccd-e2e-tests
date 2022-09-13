@@ -758,10 +758,19 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   logger.info('Updating case whose  id %s with the  event of  %s', caseId, eventId);
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else if(testConfig.TestUrl.includes('aat')){
+    ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  }else if(testConfig.TestUrl.includes('demo')){
+    ccdApiUrl = 'http://ccd-data-store-api-demo.service.core-compute-demo.internal';
+  }
+
+  //const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
-
 
   const startEventOptions = {
     method: 'GET',
@@ -967,7 +976,17 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
   const eventTypeId ='system-progress-held-case';
-  const ccdApiUrl =`http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+
+  //const ccdApiUrl =`http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
@@ -1024,7 +1043,16 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   const eventTypeId ='create-bulk-list';
   const nfdBulkAction ='NO_FAULT_DIVORCE_BulkAction';
 
-  const ccdApiUrl = 'http://ccd-data-store-api-${env}.service.core-compute-${env}.internal';
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+  //const ccdApiUrl = 'http://ccd-data-store-api-${env}.service.core-compute-${env}.internal';
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/${nfdBulkAction}/cases`;
 
@@ -1483,5 +1511,6 @@ module.exports = {
   updateAoSToAoSOverdue,
   getUserId,
   getServiceToken,
-  getCaseDetailsAsSolFor
+  getCaseDetailsAsSolFor,
+  getSystemUserToken
 };

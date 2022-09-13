@@ -2,5 +2,8 @@
   "divorceOrDissolution": "divorce",
   "applicant1FirstName": "NFD Citizen e2e FirstName",
   "applicant1LastName": "NFD Citizen LastName",
-  "applicant1Email": "replaceApplicant1EmailAddress"
+  "applicant1Email": "replaceApplicant1EmailAddress",
+  "applicant2FirstName": "NFD Respondent E2E FirstName",
+  "applicant2LastName": "NFD Respondent E2E LastName",
+  "applicant2Email": "replaceApplicant2EmailAddress"
 }

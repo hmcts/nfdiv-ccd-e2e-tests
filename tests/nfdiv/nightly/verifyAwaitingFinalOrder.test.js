@@ -1,6 +1,6 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
   updateFinalOrderDateForNFDCaseInCcd} = require('../../../helpers/utils');
-const { states, events , user, stateDisplayName} = require('../../../common/constants');
+const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -10,11 +10,9 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD - Create a single Case and move it to bulk case pronounced state');
+Feature('NFD - Sole Divorce Case in Awaiting FO State');
 
-// TODO - Script upto ConditionalOrder Pronounced and then the UI to move it to AwaitingFinalOrder.
-
-Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
+Scenario('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -31,8 +29,8 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
 
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
-  const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
+  // const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
+  // assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
@@ -70,31 +68,35 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
   await I.wait(5);
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-  await I.wait(5);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, events.CREATE_BULK_LIST);
+  await I.see('Case list 1');
+  await I.see('Bulk case list');
+  await I.see('Case parties');
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
   await I.submitScheduleCases(bulkCaseReferenceId);
   await I.submitScheduleCasesCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SCHEDULE_CASES_FOR_LISTING);
+
+  // TODO Click on History Tab to get state of the Event & then Assert
+  //await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Print for pronouncement');
   await I.submitPrintForPronouncement(bulkCaseReferenceId);
   await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
 
   await I.wait(3);
   await I.checkNextStepForEvent('Pronounce list');
   await I.submitPronounceList(bulkCaseReferenceId);
 
   await I.submitPronounceListCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
 
   // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
 
-  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
-  verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
+  // TODO toFix  FO bits.
+  //const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+  //verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
 
 }).retry(testConfig.TestRetryScenarios);

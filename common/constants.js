@@ -147,7 +147,9 @@ const eventDisplayName = {
   GENERAL_CONSIDERATION: 'General Consideration',
   REQUEST_DWP_DISCLOSURE: 'Request DWP disclosure',
   OFFLINE_DOCS_RECEIVED_BY_CW :'Offline document received by CW',
-  REMOVE_SCANNED_DOCS:'Remove scanned document'
+  REMOVE_SCANNED_DOCS:'Remove scanned document',
+  UPDATE_CASE_WITH_COURT_HEARING:'Update case with court hearing'
+
 };
 
 const user = {

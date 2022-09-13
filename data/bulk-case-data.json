@@ -5,7 +5,6 @@
       "value": {
         "caseParties": "E2E App1 FN1 LN1 App2 FN2 LN2",
         "decisionDate": null,
-        "decisionDate": null,
         "caseReference": {
           "CaseReference": "caseIdToBeReplaced"
         }
