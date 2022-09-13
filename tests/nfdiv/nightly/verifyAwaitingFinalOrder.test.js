@@ -68,9 +68,9 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   await I.wait(5);
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
-//  await I.see('Case list 1');
-//  await I.see('Bulk case list');
-//  await I.see('Case parties');
+  //  await I.see('Case list 1');
+  //  await I.see('Bulk case list');
+  //  await I.see('Case parties');
 
   await I.wait(3);
   await I.checkNextStepForEvent('Schedule cases for listing');
