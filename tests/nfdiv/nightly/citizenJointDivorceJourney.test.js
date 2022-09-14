@@ -12,7 +12,7 @@ let respondentOrApplicant2Response;
 Feature('Create a JOINT Citizen Case');
 
 
-Scenario.skip('Citizen JOINT Divorce Journey', async (I) => {
+Scenario('Citizen JOINT Divorce Journey', async (I) => {
 
   // create new citizen user for each Test Run.
   soleOrApplicant1Response = await createCitizenUser();

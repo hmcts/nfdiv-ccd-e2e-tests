@@ -100,7 +100,14 @@ async function createNFDCitizenBasicCaseAndFetchResponse(username,password,dataL
 
   logger.info('Creating Citizen  Case');
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = 'http://ccd-data-store-api-${env}.service.core-compute-${env}.internal';
+  }
+
   const ccdStartCasePath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/citizen-create-application/token`;
   const ccdSaveCasePath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
 
@@ -231,9 +238,7 @@ async function inviteApplicant2(username,caseId,dataLocation = 'data/citizen-inv
   let ccdApiUrl = '';
 
   if(testConfig.TestUrl.includes('localhost') ) {
-    console.log('... inviteApplicant2() .... Env  is LOCALHOST');
     ccdApiUrl = 'http://localhost:4452';
-    console.log('... ccdApiUrl  is ..' + ccdApiUrl );
   }else if(testConfig.TestUrl.includes('demo')){
     console.log('... Env  is DEMO');
     ccdApiUrl ='http://ccd-data-store-api-demo.service.core-compute-demo.internal';
@@ -388,7 +393,18 @@ async function updateNFDCitizenCaseWithId(username,pw,caseId,dataLocation = 'dat
 
   console.log('Updating case  %s and event %s', caseId, eventId);
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  let ccdApiUrl = '';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else if(testConfig.TestUrl.includes('demo')){
+    console.log('... Env  is DEMO');
+    ccdApiUrl = 'http://ccd-data-store-api-demo.service.core-compute-demo.internal';
+  }else if(testConfig.TestUrl.includes('aat')){
+    console.log('... Env is AAT');
+    ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  }
+
   const ccdStartEventPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
   const ccdSaveEventPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
@@ -434,6 +450,61 @@ async function updateNFDCitizenCaseWithId(username,pw,caseId,dataLocation = 'dat
   return JSON.parse(saveCaseResponse);
 }
 
+async function updateNFDCitizenCase(username,pw,caseId,dataLocation = 'data/ccd-nfdiv-sole-citizen-update-sole-application.json',eventId){
+
+  const authToken = await getUserTokenForCitizenUser(username,pw);
+
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  console.log('Updating case  %s and event %s', caseId, eventId);
+
+  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const getTokenOnly = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const tokenOnlyResponse = await request(getTokenOnly);
+  const eventToken  = JSON.parse(tokenOnlyResponse).token;
+
+  let data =  fs.readFileSync(dataLocation).toString('utf8');
+  data = data.replace('replaceApplicant1EmailAddress',username);
+
+  let saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating Citizen E2E Case',
+      description: 'NFD Citizen E2E Update'
+    },
+    'event_token': eventToken
+  };
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  return JSON.parse(saveCaseResponse);
+}
+
+
 async function getUserTokenForCitizenUser(username,password) {
 
   logger.info('....... Within the getUserTokenForCitizenUser ....' + username);
@@ -478,5 +549,6 @@ module.exports = {
   deleteUser,
   updateNFDCitizenCaseWithId,
   inviteApplicant2,
-  systemLinkApplicant2
+  systemLinkApplicant2,
+  updateNFDCitizenCase
 };

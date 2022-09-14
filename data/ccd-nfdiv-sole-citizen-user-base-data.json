@@ -5,5 +5,5 @@
   "applicant1Email": "replaceApplicant1EmailAddress",
   "applicant2FirstName": "NFD Respondent E2E FirstName",
   "applicant2LastName": "NFD Respondent E2E LastName",
-  "applicant2Email": "replaceApplicant2EmailAddress"
+  "applicant2Email": "someRespondent@mailinator.com"
 }
