@@ -1,0 +1,17 @@
+{
+  "applicationPayments": [
+    {
+      "value": {
+        "created": "2022-09-16T13:35:01.396Z",
+        "updated": "2022-09-16T13:39:36.482Z",
+        "feeCode": "FEE0002",
+        "amount": 59300,
+        "status": "success",
+        "channel": "https://www.payments.service.gov.uk/secure/3c4e18ec-5728-4fa5-b24a-46b77e672408",
+        "reference": "RC-1663-3353-0094-6189",
+        "transactionId": "nb8e88kt301v4h2tkplhvcad6g"
+      },
+      "id": "nb8e88kt301v4h2tkplhvcad6g"
+    }
+  ]
+}
