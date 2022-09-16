@@ -1,0 +1,23 @@
+{
+  "applicant2ScreenHasMarriageBroken": "Yes",
+  "applicant2MiddleName": "Middle",
+  "applicant2FirstName": "First Name",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "applicant2LastNameChangedWhenMarried": "No",
+  "applicant2PhoneNumber": "02086438435",
+  "applicant2AgreedToReceiveEmails": "Yes",
+  "applicant2LanguagePreferenceWelsh": "No",
+  "applicant2ContactDetailsType": "public",
+  "applicant2Address": {
+    "AddressLine1": "17 JEFFS ROAD",
+    "AddressLine2": "CHEAM",
+    "AddressLine3": "Ewell",
+    "PostTown": "SUTTON",
+    "County": "SUTTON",
+    "PostCode": "SM1 2JE",
+    "Country": "UK"
+  },
+  "applicant2LegalProceedings": "No",
+  "applicant2FinancialOrder": "No",
+  "applicant2ConfirmApplicant1Information": "Yes"
+}

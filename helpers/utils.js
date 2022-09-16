@@ -390,7 +390,6 @@ async function getUserTokenFor(user) {
 }
 
 async function getUserId(authToken) {
-  logger.info('Getting User Id');
 
   const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
 
@@ -408,7 +407,6 @@ async function getUserId(authToken) {
 }
 
 async function getServiceToken() {
-  logger.info('Getting Service Token');
 
   const serviceSecret = testConfig.TestS2SAuthSecret;
 
@@ -1073,7 +1071,7 @@ async function moveCaseToBulk(dataLocation = 'data/bulk-case-data.json',caseId) 
   const eventToken = JSON.parse(startCaseResponse).token;
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
-  data = data.replace('caseIdToBeReplaced',caseId);
+  // data = data.replace('caseIdToBeReplaced',caseId);
 
   var saveBody = {
     event: {
@@ -1512,5 +1510,6 @@ module.exports = {
   getUserId,
   getServiceToken,
   getCaseDetailsAsSolFor,
-  getSystemUserToken
+  getSystemUserToken,
+  getCourtAdminUserToken
 };
