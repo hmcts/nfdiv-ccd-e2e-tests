@@ -16,6 +16,7 @@ const signOut = 'Sign out';
 const currentCaseType = 'New Law Case';
 
 const citizenUserPW='Testing123';
+const respondentUserPW='Testing123';
 
 const bulkCaseReferenceCaseType='NO_FAULT_DIVORCE_BulkAction';
 

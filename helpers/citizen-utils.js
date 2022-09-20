@@ -414,7 +414,7 @@ async function app2CitizenProgressCase(caseId, respondentEmail, dataLocation = '
 
 async function app2CitizenApproves(caseId, respondentEmail, dataLocation = 'data/citizen-app2-approves-application.json',eventId){
 
-  console.log('Applicant 2 Approves Application for Case with id -  %s and event  %s ', caseId, eventId );
+  console.log('Applicant 2 Approves Application for Case with id -  %s and Event  %s ', caseId, eventId );
 
   const authToken = await getUserTokenForCitizenUser(respondentEmail,citizenUserPW);
   const userId = await getUserId(authToken);
@@ -468,7 +468,7 @@ async function app2CitizenApproves(caseId, respondentEmail, dataLocation = 'data
 
 async function app1CitizenApproves(caseId, applicantEmail, dataLocation = 'data/citizen-app1-approves-application.json',eventId){
 
-  console.log('Applicant 2 Approves Application for Case with id -  %s and event  %s ', caseId, eventId );
+  console.log('Applicant 1 Approves Application for Case with Event -  %s and event  %s ', caseId, eventId );
 
   const authToken = await getUserTokenForCitizenUser(applicantEmail,citizenUserPW);
   const userId = await getUserId(authToken);
@@ -522,7 +522,7 @@ async function app1CitizenApproves(caseId, applicantEmail, dataLocation = 'data/
 
 async function app1CitizenAddPayment(caseId, applicantEmail, dataLocation = 'data/citizen-app1-add-payment.json',eventId){
 
-  console.log('Applicant 2 Approves Application for Case with id -  %s and event  %s ', caseId, eventId );
+  console.log('App1 Citizen Add payment  ', caseId, eventId );
 
   const authToken = await getUserTokenForCitizenUser(applicantEmail,citizenUserPW);
   const userId = await getUserId(authToken);
@@ -576,7 +576,7 @@ async function app1CitizenAddPayment(caseId, applicantEmail, dataLocation = 'dat
 
 async function app1CitizenPaymentMade(caseId, applicantEmail, dataLocation = 'data/citizen-app1-payment-made',eventId){
 
-  console.log('Applicant 2 Approves Application for Case with id -  %s and event  %s ', caseId, eventId );
+  console.log('App 1 Citizen Payment Made for case %s  and event  %s ', caseId, eventId );
 
   const authToken = await getUserTokenForCitizenUser(applicantEmail,citizenUserPW);
   const userId = await getUserId(authToken);

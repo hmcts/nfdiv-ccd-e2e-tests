@@ -1,4 +1,4 @@
-const {citizenUserPW,events, user, states} = require('../../../common/constants');
+const {citizenUserPW,respondentUserPW,events, user, states} = require('../../../common/constants');
 const testConfig = require('./../../config');
 const {createCitizenUser,inviteApplicant2,systemLinkApplicant2,
   createNFDJointCitizen,createRespondentCitizenUser,app2CitizenProgressCase,app2CitizenApproves,app1CitizenApproves, app1CitizenAddPayment,
@@ -51,24 +51,15 @@ Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
   verifyState(applicant2Approves, 'Applicant2Approved');
   console.log('.....  Applicant2 Approves Application  DONE .... ');
 
-
+  //
   // Applicant1 logs in and is happy with the case details
   let applicant1Approves = await app1CitizenApproves(citizenCaseId, userDetails.email,
     dataLocation = 'data/citizen-app1-approves-application.json','citizen-submit-application');
-  verifyState(applicant1Approves, 'AwaitingPayment');
+  verifyState(applicant1Approves, 'AwaitingHWFDecision');
   console.log('.....  Applicant1 Submit DONE .... ' );
 
-
-  // Applicant1 Add Payment - Citizen Add Payment
-  let applicant1AddPayment = await app1CitizenAddPayment(citizenCaseId, userDetails.email,
-    dataLocation = 'data/citizen-app1-add-payment.json','citizen-add-payment');
-  console.log('.....  Applicant1 Add Payment ...DONE');
-
-  // Applicant1 Payment made
-  let applicant1PaymentMade = await app1CitizenPaymentMade(citizenCaseId, userDetails.email,
-    dataLocation = 'data/citizen-app1-payment-made.json','citizen-payment-made');
-  console.log('.....  Applicant1 Payment Made ...DONE');
-  verifyState(applicant1PaymentMade, 'Submitted');
+  const hwfAccepted = await updateNFDCaseInCcd(user.CA,citizenCaseId, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
+  verifyState(hwfAccepted, states.SUBMITTTED);
 
   // IssueApplication takes case to 20w Holding
   const awaitingService = await updateNFDCaseInCcd(user.CA,citizenCaseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
@@ -77,6 +68,20 @@ Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
   // AwaitingCO
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',citizenCaseId);
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
+
+
+
+  // Applicant1 Add Payment - Citizen Add Payment
+  // let applicant1AddPayment = await app1CitizenAddPayment(citizenCaseId, userDetails.email,
+  //   dataLocation = 'data/citizen-app1-add-payment.json','citizen-add-payment');
+  // console.log('.....  Applicant1 Add Payment ...DONE');
+  //
+  // // Applicant1 Payment made
+  // let applicant1PaymentMade = await app1CitizenPaymentMade(citizenCaseId, userDetails.email,
+  //   dataLocation = 'data/citizen-app1-payment-made.json','citizen-payment-made');
+  // console.log('.....  Applicant1 Payment Made ...DONE');
+  // verifyState(applicant1PaymentMade, 'Submitted');
+
 
   // Code to delete the created Citizen User after all tests are completed.
   //const userDeleteStatus = deleteUser(userDetails.email);
