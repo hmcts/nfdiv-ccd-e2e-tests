@@ -1,0 +1,250 @@
+{
+  "applicationType": "soleApplication",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
+  "labelContentTheApplicant2UC": "The respondent",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "coLegalAdvisorDecisions": [
+    {
+      "id": "084df4a0-6050-4ee3-84b1-e5a2a0f5b59b",
+      "value": {
+        "granted": "Yes",
+        "decisionDate": "2022-09-05"
+      }
+    }
+  ],
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "HEBFGBR",
+      "OrganisationName": "NFD Solicitor Organisation"
+    },
+    "OrgPolicyCaseAssignedRole": "[APPONESOLICITOR]"
+  },
+  "marriageMarriedInUk": "Yes",
+  "labelContentMarriageOrCivilPartnershipUC": "Marriage",
+  "marriageDate": "1971-10-09",
+  "hyphenatedCaseRef": "1662-4061-6961-8549",
+  "applicant1Offline": "No",
+  "applicant2Offline": "No",
+  "marriageFormationType": "oppositeSexCouple",
+  "applicant1MiddleName": "Scripting Middle",
+  "solUrgentCase": "No",
+  "coClarificationUploadDocuments": [],
+  "coApplicant1IsDrafted": "Yes",
+  "applicant1LegalProceedings": "No",
+  "applicant1Email": "nopamak@mailinator.com",
+  "applicant1Gender": "female",
+  "labelContentUnionType": "divorce",
+  "applicant2NameDifferentToMarriageCertificate": "No",
+  "solSignStatementOfTruth": "Yes",
+  "applicant2SolicitorEmail": "draftAoS@mailinator.com",
+  "applicant1SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "labelContentTheApplicant2": "the respondent",
+  "serviceMethod": "courtService",
+  "applicant2SolicitorAddress": "Rerum explicabo Ten",
+  "documentsGenerated": [
+    {
+      "id": "15213659-c629-4756-a2df-87a608cc871f",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/e3a9288e-e5bd-4c03-a38c-b67e3d4060a9",
+          "document_filename": "conditionalOrderAnswers.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/e3a9288e-e5bd-4c03-a38c-b67e3d4060a9/binary"
+        },
+        "documentType": "conditionalOrderAnswers",
+        "documentFileName": "conditionalOrderAnswers.pdf"
+      }
+    },
+    {
+      "id": "704a24dd-a965-4183-bb5b-7719a9f54e7f",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/fea137f4-04a6-44bf-a071-12a2fb1dca2e",
+          "document_filename": "respondentAnswers.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/fea137f4-04a6-44bf-a071-12a2fb1dca2e/binary"
+        },
+        "documentType": "respondentAnswers",
+        "documentFileName": "respondentAnswers.pdf"
+      }
+    },
+    {
+      "id": "12aab05f-6201-4f5e-a5a2-80bff518f3ca",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/63eafd87-c0e6-4bbf-adc6-930f4f913a90",
+          "document_filename": "divorce-application-1662406169618549-2022-09-05:20:29.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/63eafd87-c0e6-4bbf-adc6-930f4f913a90/binary"
+        },
+        "documentType": "application",
+        "documentFileName": "divorce-application-1662406169618549-2022-09-05:20:29.pdf"
+      }
+    },
+    {
+      "id": "fceb8043-5e22-40e3-b0b1-238893346a4a",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/d0ec73c8-2df0-45ba-93ab-293e38ddcba4",
+          "document_filename": "noticeOfProceedingsApp2-1662406169618549-2022-09-05:20:29.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/d0ec73c8-2df0-45ba-93ab-293e38ddcba4/binary"
+        },
+        "documentType": "noticeOfProceedingsApp2",
+        "documentFileName": "noticeOfProceedingsApp2-1662406169618549-2022-09-05:20:29.pdf"
+      }
+    },
+    {
+      "id": "1b3a9591-e898-46e4-8cde-59d096673e24",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/5c3000bf-1988-442f-85f9-636442a65438",
+          "document_filename": "noticeOfProceedings-1662406169618549-2022-09-05:20:29.pdf",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/5c3000bf-1988-442f-85f9-636442a65438/binary"
+        },
+        "documentType": "noticeOfProceedings",
+        "documentFileName": "noticeOfProceedings-1662406169618549-2022-09-05:20:29.pdf"
+      }
+    }
+  ],
+  "applicant1SolicitorPhone": "+1 (703) 848-3934",
+  "labelContentApplicant2UC": "Respondent",
+  "solStatementOfReconciliationName": "SoR Name",
+  "applicant2SolicitorAgreeToReceiveEmailsCheckbox": [
+    "Yes"
+  ],
+  "app2ContactMethodIsDigital": "Yes",
+  "marriageApplicant2Name": "Cynthia Hester",
+  "divorceOrDissolution": "divorce",
+  "statementOfTruth": "Yes",
+  "applicant2Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR3 3BY",
+    "PostTown": "Norwich",
+    "AddressLine1": "33 St. Augustines Street",
+    "AddressLine2": "",
+    "AddressLine3": ""
+  },
+  "applicant2Gender": "male",
+  "coClarificationResponses": [],
+  "applicant2SolicitorReference": "Et dolore enim labor",
+  "applicant1NameDifferentToMarriageCertificate": "No",
+  "applicant2SolicitorPhone": "0203121214545",
+  "marriagePlaceOfMarriage": "London",
+  "applicant1FinancialOrder": "No",
+  "coApplicant1ConfirmInformationStillCorrect": "Yes",
+  "applicant2LastName": "App2 LN",
+  "applicant1PhoneNumber": "+1 (247) 459-9629",
+  "dataVersion": 5,
+  "applicant1ScreenHasMarriageBroken": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "jurisdictionAgree": "Yes",
+  "jurisdictionConnections": [
+    "B",
+    "A",
+    "C"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "solStatementOfReconciliationCertify": "Yes",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "createdDate": "2022-09-05",
+  "labelContentTheApplicantOrApplicant1UC": "The applicant",
+  "confirmReadPetition": "Yes",
+  "labelContentApplicant2": "respondent",
+  "coRespondentAnswersLink": {
+    "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/fea137f4-04a6-44bf-a071-12a2fb1dca2e",
+    "document_filename": "respondentAnswers.pdf",
+    "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/fea137f4-04a6-44bf-a071-12a2fb1dca2e/binary"
+  },
+  "coApplicant1StatementOfTruth": "Yes",
+  "applicant2LegalProceedingsDetails": "App2 Legal Proceedings description",
+  "applicant1ContactDetailsType": "public",
+  "dueDate": "2023-01-24",
+  "solStatementOfReconciliationFirm": "SoR Firm",
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "solPaymentHowToPay": "feesHelpWith",
+  "dateAosSubmitted": "2022-09-05T20:29:47.353",
+  "coDecisionDate": "2022-09-05",
+  "applicant1SolicitorEmail": "juwahi@mailinator.com",
+  "accessCode": "358T2EBW",
+  "applicant2SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "3I4PJR6",
+      "OrganisationName": "DivRespondentSolicitorFirm"
+    },
+    "PreviousOrganisations": [],
+    "OrgPolicyCaseAssignedRole": "[APPTWOSOLICITOR]"
+  },
+  "noticeOfProceedingsEmail": "kasi.subramaniam@solirius.com",
+  "applicant2FirstName": "App2 FN",
+  "coApplicant1SolicitorName": "James Porter",
+  "applicant1DocumentsUploaded": [
+    {
+      "id": "4b25b748-e30e-4bb6-b34d-fdc009681bbd",
+      "value": {
+        "documentLink": {
+          "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/4b24bd2d-8b86-4847-a4f8-4debcfaf62a1",
+          "document_filename": "Screenshot 2022-03-01 at 14.14.42.png",
+          "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/4b24bd2d-8b86-4847-a4f8-4debcfaf62a1/binary"
+        },
+        "documentType": "annexA"
+      }
+    }
+  ],
+  "howToRespondApplication": "withoutDisputeDivorce",
+  "labelContentUnionTypeUC": "Divorce",
+  "aosIsDrafted": "Yes",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "coGranted": "Yes",
+  "applicant1FirstName": "E2E App1 FN1",
+  "coApplicant1ApplyForConditionalOrder": "Yes",
+  "isJudicialSeparation": "No",
+  "applicant1SolicitorName": "Calista Barry",
+  "applicant2SolicitorName": "Applicant 2 Solicitor",
+  "applicant1LastName": "BulkCase App1 Last",
+  "dateSubmitted": "2022-09-05T20:29:34.851",
+  "coApplicant1SolicitorAdditionalComments": "Additional Comments",
+  "divorceWho": "husband",
+  "applicant2MiddleName": "Nola Gamble",
+  "marriageApplicant1Name": "Kyla Gordon",
+  "applicant1PrayerDissolveDivorce": [
+    "dissolveDivorce"
+  ],
+  "coApplicant1IsSubmitted": "Yes",
+  "coApplicant1SubmittedDate": "2022-09-05T20:29:53.061",
+  "solStatementOfReconciliationDiscussed": "Yes",
+  "solicitorName": "Sam & Co",
+  "applicant1Address": {
+    "County": "",
+    "Country": "United Kingdom",
+    "PostCode": "NR3 3BY",
+    "PostTown": "Norwich",
+    "AddressLine1": "13 Rose Yard",
+    "AddressLine2": "",
+    "AddressLine3": "St. Augustines Street"
+  },
+  "applicant2NameChangedHow": [],
+  "issueDate": "2022-09-05",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
+  "applicant2SolicitorRepresented": "Yes",
+  "applicant1StatementOfTruth": "Yes",
+  "bulkListCaseReferenceLink": {
+    "CaseReference": "1662407428439529"
+  },
+  "warnings": [],
+  "applicant1SolicitorAddress": "102 Petty France\nLondon\nWestminster\nSW1H 9AJ",
+  "divorceUnit": "serviceCentre",
+  "coApplicant1SolicitorFirm": "Wimal & Co Solicitors",
+  "labelContentDivorceOrEndingCivilPartnership": "divorce",
+  "applicant1HWFReferenceNumber": "hwf-123-123",
+  "noticeOfProceedingsSolicitorFirm": "DivRespondentSolicitorFirm",
+  "applicant2LegalProceedings": "Yes",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "additionalComments": "Optional additional comments",
+  "applicant1SolicitorReference": "Perspiciatis commod",
+  "applicant2Email": "xibofifuru@mailinator.com",
+  "applicant1SolicitorRepresented": "Yes",
+  "marriageCountryOfMarriage": "United Kingdom"
+}

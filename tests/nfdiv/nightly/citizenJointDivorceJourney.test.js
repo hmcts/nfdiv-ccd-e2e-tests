@@ -5,7 +5,7 @@ const {createCitizenUser,inviteApplicant2,systemLinkApplicant2,
   app1CitizenPaymentMade}
   = require('../../../helpers/citizen-utils');
 const assert = require('assert');
-const {updateNFDCaseInCcd} = require('../../../helpers/utils');
+const {updateNFDCaseInCcd, moveFromHoldingToAwaitingCO} = require('../../../helpers/utils');
 
 let citizenCaseId;
 let soleOrApplicant1Response;
@@ -69,6 +69,14 @@ Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
     dataLocation = 'data/citizen-app1-payment-made.json','citizen-payment-made');
   console.log('.....  Applicant1 Payment Made ...DONE');
   verifyState(applicant1PaymentMade, 'Submitted');
+
+  // IssueApplication takes case to 20w Holding
+  const awaitingService = await updateNFDCaseInCcd(user.CA,citizenCaseId, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
+  verifyState(awaitingService, states.HOLDING);
+
+  // AwaitingCO
+  const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',citizenCaseId);
+  assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
   // Code to delete the created Citizen User after all tests are completed.
   //const userDeleteStatus = deleteUser(userDetails.email);

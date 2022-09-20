@@ -1,6 +1,7 @@
 const I = actor();
+
 const testConfig = require('../tests/config');
-const {currentCaseType,yesorno,divorceOrDissolution} = require('../common/constants');
+const {yesorno,SoleOrJoint,divorceOrDissolution} = require('../common/constants');
 
 module.exports = {
 
@@ -85,6 +86,17 @@ module.exports = {
     await I.retry(5).fillField(this.fields.applicant2ID, '93b108b7-4b26-41bf-ae8f-6e356efb11b3');
     await I.retry(5).selectOption(this.fields.stateOption, 'Awaiting final order');
     await I.waitForNavigationToComplete(this.fields.submit);
+  },
+
+  async createTestCaseInAwaitingPronouncement() {
+    await I.waitForText('Create test case');
+    await I.retry(5).click(this.fields.applicationTypeSole);
+    await I.retry(5).click(this.fields.applicant1Represented);
+    await I.retry(5).click(this.fields.applicant2Represented);
+    await I.retry(5).fillField(this.fields.applicant2ID, '93b108b7-4b26-41bf-ae8f-6e356efb11b3');
+    await I.retry(5).selectOption(this.fields.stateOption, 'Listed; awaiting pronouncement');
+    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(6);
   },
 
   async pressSubmit() {

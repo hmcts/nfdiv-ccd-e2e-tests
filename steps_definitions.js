@@ -156,6 +156,11 @@ module.exports = function () {
       return CreateCasePage.fillCreateTestCase();
     },
 
+    createTestCaseWith()  {
+      return CreateCasePage.createTestCaseInAwaitingPronouncement();
+    },
+
+
     pressSubmit() {
       return CreateCasePage.pressSubmit();
     },

@@ -1,0 +1,121 @@
+{
+  "applicationType": "soleApplication",
+  "labelContentApplicantsOrApplicant1s": "Applicant’s",
+  "labelContentTheApplicant2UC": "Respondent",
+  "applicant1ContactDetailsType": "public",
+  "labelContentGotMarriedOrFormedCivilPartnership": "got married",
+  "dueDate": "2020-04-28",
+  "applicant1SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "0FA7S8S",
+      "OrganisationName": "Test 1 Organisation"
+    }
+  },
+  "jurisdictionApplicant2Residence": "Yes",
+  "labelContentDivorceOrEndCivilPartnership": "for divorce",
+  "applicant1SolicitorEmail": "applicant1.solicitor@example.com",
+  "labelContentMarriageOrCivilPartnershipUC": "Marriage",
+  "applicant2SolicitorOrganisationPolicy": {
+    "Organisation": {
+      "OrganisationID": "N5AFUXG",
+      "OrganisationName": "Test 2 Organisation"
+    }
+  },
+  "marriageDate": "1990-06-10",
+  "applicant2FirstName": "app2_first_name",
+  "hyphenatedCaseRef": "1663-5036-4111-4565",
+  "applicant1Offline": "No",
+  "applicant2Offline": "No",
+  "applicant2LanguagePreferenceWelsh": "No",
+  "applicant1MiddleName": "app1_middle_name",
+  "applicant2StatementOfTruth": "Yes",
+  "labelContentUnionTypeUC": "Divorce",
+  "coApplicant1IsDrafted": "No",
+  "labelContentTheApplicantOrApplicant1": "the applicant",
+  "applicant1LegalProceedings": "Yes",
+  "applicant1FirstName": "app1_first_name",
+  "applicant1Email": "TEST_SOLICITOR@mailinator.com",
+  "applicant1Gender": "female",
+  "isJudicialSeparation": "No",
+  "labelContentUnionType": "divorce",
+  "applicant2ContactDetailsType": "public",
+  "applicant2SolicitorEmail": "applicant2.solicitor@example.com",
+  "applicant1SolicitorName": "Applicant 1 Solicitor",
+  "applicationFeeOrderSummary": {
+    "PaymentTotal": "55000"
+  },
+  "applicant2SolicitorName": "Applicant 2 Solicitor",
+  "applicant1LastName": "app1_last_name",
+  "applicant1LanguagePreferenceWelsh": "No",
+  "labelContentTheApplicant2": "the respondent",
+  "applicant2SolicitorAddress": "App 2 Solicitor 221b\nBaker Street\nLondon\nGreater London\nNW1 6XE\nUnited Kingdom",
+  "applicant2MiddleName": "app2_middle_name",
+  "marriageApplicant1Name": "test_first_name test_last_name",
+  "labelContentApplicant2UC": "The respondent",
+  "applicant1PrayerDissolveDivorce": [
+    "dissolveDivorce"
+  ],
+  "marriageApplicant2Name": "test_first_name test_last_name",
+  "divorceOrDissolution": "divorce",
+  "coApplicant1IsSubmitted": "No",
+  "applicant1Address": {
+    "County": "Greater London",
+    "Country": "United Kingdom",
+    "PostCode": "NW1 6XE",
+    "PostTown": "London",
+    "AddressLine1": "App 1 221a Baker Street"
+  },
+  "applicant2Address": {
+    "County": "Greater London",
+    "Country": "France",
+    "PostCode": "NW1 6XE",
+    "PostTown": "London",
+    "AddressLine1": "App 2 221a Baker Street"
+  },
+  "documentUploadComplete": "Yes",
+  "applicant2Gender": "female",
+  "issueDate": "2020-05-28",
+  "labelContentApplicantOrApplicant1": "the applicant’s",
+  "marriagePlaceOfMarriage": "Somewhere",
+  "applicant2SolicitorRepresented": "Yes",
+  "applicant1FinancialOrder": "No",
+  "applicant1StatementOfTruth": "Yes",
+  "applicant2LastName": "app2_last_name",
+  "applicant2PrayerDissolveDivorce": [
+    "dissolveDivorce"
+  ],
+  "dataVersion": 0,
+  "jurisdictionApplicant1Residence": "Yes",
+  "labelContentDivorceOrCivilPartnershipApplication": "divorce application",
+  "warnings": [],
+  "applicant1SolicitorAddress": "App 1 Solicitor 221b\nBaker Street\nLondon\nGreater London\nNW1 6XE\nUnited Kingdom",
+  "jurisdictionConnections": [
+    "A"
+  ],
+  "solServiceTruthStatement": "I believe that the facts stated in the application are true.",
+  "labelContentDivorceOrCivilPartnership": "divorce",
+  "applicationPayments": [
+    {
+      "id": "70d4da9a-3bf1-4d7b-bcec-5293f2c8a130",
+      "value": {
+        "amount": 55000,
+        "status": "success",
+        "channel": "online",
+        "feeCode": "FEE0001",
+        "reference": "paymentRef",
+        "transactionId": "ge7po9h5bhbtbd466424src9tk"
+      }
+    }
+  ],
+  "labelContentDivorceOrEndingCivilPartnership": "divorce",
+  "labelContentMarriageOrCivilPartnership": "marriage",
+  "labelContentRespondentsOrApplicant2s": "Respondent's",
+  "labelContentFinaliseDivorceOrEndCivilPartnership": "finalise the divorce",
+  "labelContentDivorceOrLegallyEnd": "get a divorce",
+  "applicant2FinancialOrder": "No",
+  "applicant2Email": "applicant2@example.com",
+  "labelContentTheApplicantOrApplicant1UC": "The applicant",
+  "labelContentApplicant2": "respondent",
+  "applicant1SolicitorRepresented": "Yes",
+  "applicant2UserId": "93b108b7-4b26-41bf-ae8f-6e356efb11b3"
+}
