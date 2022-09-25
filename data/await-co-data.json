@@ -1,4 +1,5 @@
 {
   "coApplicant1IsDrafted": "No",
-  "coApplicant1IsSubmitted": "No"
+  "coApplicant1IsSubmitted": "No",
+  "dueDate": "dueDateToBeReplaced"
 }

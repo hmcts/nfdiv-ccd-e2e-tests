@@ -14,7 +14,7 @@ let  dataLocation;
 
 async function createCitizenUser() {
 
-  const generatedEmail = 'nfdiv.E2E.Applicant1'+new Date().getDate()+Math.random().toString().substr(2, 4)+'@hmcts.net';
+  const generatedEmail = 'nfdiv.E2E.Applicant1-'+new Date().getDate()+Math.random().toString().substr(2, 4)+'@mailinator.com';
   dataLocation = 'data/nfdiv/fixtures/citizen/create-citizen-user.json';
 
   let bodyPayload =  fs.readFileSync(dataLocation).toString('utf8');
@@ -45,7 +45,7 @@ async function createCitizenUser() {
 
 async function createRespondentCitizenUser() {
 
-  const generatedEmail = 'nfdiv.E2E.Respondent'+new Date().getDate()+Math.random().toString().substr(2, 4)+'@hmcts.net';
+  const generatedEmail = 'nfdiv.E2E.Respondent-'+new Date().getDate()+Math.random().toString().substr(2, 4)+'@mailinator.com';
   dataLocation = 'data/nfdiv/fixtures/citizen/create-citizen-respondent-user.json';
 
   let bodyPayload =  fs.readFileSync(dataLocation).toString('utf8');
@@ -89,7 +89,7 @@ async function deleteUser(userEmail){
   }catch(exception){
     console.log('Exception while trying to DELETE Citizen user with email '+userEmail + ' and error is... ' +  exception);
   }
-  console.log(' User with email | '+ userEmail  + ' | has been DELETED  :');
+  console.log('~~~~~~~~~~~~~~~~~~~~~~~~ User with email  '+ userEmail  + '  has been DELETED  ~~~~~~~~~~~~~~~~~~~~~~~~');
 }
 
 async function createNFDCitizenBasicCaseAndFetchResponse(username,password,dataLocation = 'data/ccd-nfdiv-sole-citizen-user-base-data.json') {

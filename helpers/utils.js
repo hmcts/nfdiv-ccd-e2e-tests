@@ -567,7 +567,15 @@ async function getCaseDetailsAsSolFor(caseId) {
   const userId = await getUserId(authToken);
   const serviceToken = await getServiceToken();
 
-  const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  var ccdApiUrl;
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+  //ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdGetCaseDetailsPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/`+caseId;
 
   const getCaseDetails = {
@@ -679,6 +687,11 @@ async function getAuthTokenFor(userLoggedIn) {
   if (userLoggedIn === 'LegalAdvisor') {
     authToken = await getLegalAdvisorUserToken();
   }
+  if (userLoggedIn === 'SystemUser') {
+    console.log('....about to call the getSystemUserToken() ');
+    authToken = await getSystemUserToken();
+  }
+
 
   return authToken;
 }
@@ -746,6 +759,73 @@ async function updateNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 
   return saveEventResponse;
 }
 
+async function moveCaseToFinalOrderOverdue(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-overdue.json') {
+
+  let authToken='';
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating case with id %s and event %s', caseId, eventId);
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  let oneYearAgo = dateYYYYMMDD(-366);
+  data = data.replace('replaceCoGrantedDate',oneYearAgo);
+
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating COGranted Date ',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveEventResponse = await request(saveEventOptions);
+  return saveEventResponse;
+}
+
+
 async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
 
   let authToken='';
@@ -782,6 +862,8 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   const startEventResponse = await request(startEventOptions);
 
+  //console.log( " ~~~~~~~~~~~~~~~Output of the GET call is " +  startEventResponse) ;
+
   const eventToken = JSON.parse(startEventResponse).token;
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
@@ -795,6 +877,8 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   data = data.replace('sixWeeksAndOneDayInThePast',dateFinalOrderEligibleFrom);
   data = data.replace('threeMonthsAfterDateFinalOrderEligibleFrom',foEligibleToRespondentDate);
+
+  //console.log( "data .... after Replacement of dates is  is " + data);
 
   var saveBody = {
     data: JSON.parse(data),
@@ -817,7 +901,6 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
     },
     body: JSON.stringify(saveBody)
   };
-
   const saveEventResponse = await request(saveEventOptions);
   return saveEventResponse;
 }
@@ -1004,7 +1087,10 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
 
   const eventToken = JSON.parse(startCaseResponse).token;
 
-  var data = fs.readFileSync(dataLocation);
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+  let dateSixMonthsAgo = dateYYYYMMDD(-180);
+  console.log( 'Date six months earlier ' + dateSixMonthsAgo);
+  data = data.replace('dueDateToBeReplaced',dateSixMonthsAgo);
 
   var saveBody = {
     event: {
@@ -1587,5 +1673,6 @@ module.exports = {
   getCaseDetailsAsSolFor,
   getSystemUserToken,
   getCourtAdminUserToken,
-  moveMultipleCasesToBulk
+  moveMultipleCasesToBulk,
+  moveCaseToFinalOrderOverdue
 };

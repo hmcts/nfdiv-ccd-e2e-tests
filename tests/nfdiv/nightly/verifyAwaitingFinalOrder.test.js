@@ -1,5 +1,5 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
-  updateFinalOrderDateForNFDCaseInCcd} = require('../../../helpers/utils');
+  updateFinalOrderDateForNFDCaseInCcd, moveCaseToFinalOrderOverdue} = require('../../../helpers/utils');
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
@@ -12,8 +12,8 @@ let caseNumber;
 
 Feature('NFD - Sole Divorce Case in Awaiting FO State');
 
-// NOTE THIS TEST PASSES LOCALLY,but since it is a long winded one it fails on pipeline
-// Updated 14 Sept 2022.
+// NOTE THIS TEST PASSES LOCALLY,but since it is a very long one going upto FinalOrderOverdue it fails on pipeline
+// Useful Test to reuse/amend , when creating TestData
 Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
@@ -64,10 +64,11 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
   const bulkCaseReferenceId = await moveCaseToBulk('data/bulk-case-data.json',caseNumber);
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
-  await I.wait(5);
+  await I.wait(10);
   await I.amOnHomePage();
+  await I.wait(7);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(5);
+  await I.wait(7);
   await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   //  await I.see('Case list 1');
@@ -82,22 +83,26 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
   // TODO Click on History Tab to get state of the Event & then Assert
   //await I.checkState(stateDisplayName.BULK_CASE_LISTED_CREATED, eventDisplayName.SYSTEM_UPDATE_CASE);
 
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Print for pronouncement');
-  // await I.submitPrintForPronouncement(bulkCaseReferenceId);
-  // await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
-  //
-  // await I.wait(3);
-  // await I.checkNextStepForEvent('Pronounce list');
-  // await I.submitPronounceList(bulkCaseReferenceId);
-  //
-  // await I.submitPronounceListCYA(bulkCaseReferenceId);
-  // await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
-  // backDate the dateFinalOrderEligibleFrom to 6weeks + 1day in the past
+  await I.wait(3);
+  await I.checkNextStepForEvent('Print for pronouncement');
+  await I.submitPrintForPronouncement(bulkCaseReferenceId);
+  await I.submitPrintForPronouncementCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_LISTED, events.SYSTEM_UPDATE_CASE);
 
-  // TODO toFix  FO bits.
-  //const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
-  //verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
+  await I.wait(3);
+  await I.checkNextStepForEvent('Pronounce list');
+  await I.submitPronounceList(bulkCaseReferenceId);
+
+  await I.submitPronounceListCYA(bulkCaseReferenceId);
+  await I.checkState(stateDisplayName.BULK_CASE_PRONOUNCED, events.PRONOUNCE_LIST);
+
+  const  finalOrderEligibleToRespondent= await updateFinalOrderDateForNFDCaseInCcd(user.CA,caseNumber, 'system-progress-case-awaiting-final-order','data/final-order-date-eligible-to-respondent.json');
+  verifyState(finalOrderEligibleToRespondent , 'AwaitingFinalOrder');
+
+  await I.wait(3);
+
+  //Awaiting Final Order to finalOrderOverDue
+  const  finalOrderOverDue= await moveCaseToFinalOrderOverdue(user.SYS,caseNumber, 'system-final-order-overdue','data/final-order-overdue.json');
+  verifyState(finalOrderOverDue , 'FinalOrderOverdue');
 
 }).retry(testConfig.TestRetryScenarios);

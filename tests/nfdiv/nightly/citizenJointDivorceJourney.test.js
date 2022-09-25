@@ -69,9 +69,9 @@ Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',citizenCaseId);
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
+  // TODO Draft CO + Submit C) etc.
 
-
-  // Applicant1 Add Payment - Citizen Add Payment
+  // // Applicant1 Add Payment - Citizen Add Payment
   // let applicant1AddPayment = await app1CitizenAddPayment(citizenCaseId, userDetails.email,
   //   dataLocation = 'data/citizen-app1-add-payment.json','citizen-add-payment');
   // console.log('.....  Applicant1 Add Payment ...DONE');
@@ -81,7 +81,7 @@ Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
   //   dataLocation = 'data/citizen-app1-payment-made.json','citizen-payment-made');
   // console.log('.....  Applicant1 Payment Made ...DONE');
   // verifyState(applicant1PaymentMade, 'Submitted');
-
+  //
 
   // Code to delete the created Citizen User after all tests are completed.
   //const userDeleteStatus = deleteUser(userDetails.email);

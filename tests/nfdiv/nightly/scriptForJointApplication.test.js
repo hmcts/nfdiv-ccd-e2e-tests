@@ -10,7 +10,7 @@ const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
 };
 
-Feature('Joint Application ');
+Feature('Joint Application - SOLICITOR ');
 
 Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
 
