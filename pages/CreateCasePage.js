@@ -7,7 +7,8 @@ module.exports = {
 
   fields: {
     jurisdiction: 'select[id="cc-jurisdiction"]',
-    jurisdictionSelect: '#cc-jurisdiction',
+    //jurisdictionSelect: '#cc-jurisdiction',
+    jurisdictionSelect: 'select[id="cc-jurisdiction"]',
     caseType: 'select[id="cc-case-type"]',
     applicationTypeSole: '#applicationType-soleApplication',
     applicationTypeJoint: '#applicationType-jointApplication',
