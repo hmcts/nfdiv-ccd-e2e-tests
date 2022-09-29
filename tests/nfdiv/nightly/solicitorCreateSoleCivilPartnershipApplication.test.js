@@ -5,9 +5,9 @@ const assert = require('assert');
 
 let caseNumber;
 
-Feature('Create Sole Civil Application ');
+Feature('Create Sole CP Case');
 
-Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Issue Case ', async (I) => {
+Scenario('CP Case  Application with Documents, HWF and Case Issued', async (I) => {
 
   await I.amOnHomePage();
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
@@ -46,12 +46,14 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   await I.financialOrdersSelectButton();
 
   // Upload the marriage certificate
-  await I.uploadTheMarriageCertificateOptional();
+  await I.skipUploadingMarriageCertificate();
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DISSOLUTION);
   // TODO ASSERT the STATE of the case here after Case Creation
   // Case Submission Steps
+
+  await I.wait(7);
 
   caseNumber = await I.solicitorCaseCreatedAndSubmit();
   caseNumber = caseNumber.toString();
@@ -69,56 +71,18 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit  & Iss
   //Case Submission - ORDER Summary
   await I.caseOrderSummaryPageFormAndSubmit(paymentType.HWF);
 
-  // Case Submission - Before You Submit
-
   // Case Submission Check Your Answers.
   await I.caseCheckYourAnswersPageFormAndSubmit();
 
+
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
+  console.log('Checked State AwaitingHWFDecision');
 
-  console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 
-  await I.wait(8);
-
-  //Login as CaseWorker and Validate HWF Reference
-  console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
-
-  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
-  await I.wait(10);
-  await I.shouldBeOnCaseListPage();
-
-  await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(7);
-  await I.checkNextStepForEvent('HWF application accepted');
-
-  await I.hwfAccepted(caseNumber);
-  await I.wait(2);
-  // await I.checkStateAndEvent('Submitted','HWF application accepted');
-  await I.signOut();
-
-  console.log('~~~~~~~~~~~~~   HWF Code Accepted && State is now Submitted  ~~~~~~~~~~~~~');
-
-  //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
-  console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
-
-  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(8);
-  await I.shouldBeOnCaseListPage();
-  await I.wait(7);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(7);
-  await I.checkNextStepForEvent('Application issue');
-  await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);
-  await I.checkYourAnswersIssueApplication(divorceOrDissolution.DISSOLUTION);
-  // await I.checkStateAndEvent('AoS awaiting','Application issue');
-
-  // let caseResponse =  await getCaseDetailsAsSolFor(caseNumber);
-  //
-  // assert.strictEqual(states.AOS_AWAITING,caseResponse.state);
-
-  console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
 }).retry(testConfig.TestRetryScenarios);
 
+const verifyState = (eventResponse, state) => {
+  assert.strictEqual(JSON.parse(eventResponse).state, state);
+};

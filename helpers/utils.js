@@ -589,8 +589,37 @@ async function getCaseDetailsAsSolFor(caseId) {
   };
 
   const getCaseResponse = await request(getCaseDetails);
+  return JSON.parse(getCaseResponse);
+}
+
+async function getCitizenCaseDetails(caseId) {
+  const authToken = await getCourtAdminUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken();
+
+  var ccdApiUrl;
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else{
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+  //ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdGetCaseDetailsPath = `/citizens/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/`+caseId;
+
+  const getCaseDetails = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdGetCaseDetailsPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const getCaseResponse = await request(getCaseDetails);
   // can return state or anyother element from Response etc.
-  // console.log('..... printint out the response '+getCaseResponse)
   return JSON.parse(getCaseResponse);
 }
 
@@ -827,6 +856,229 @@ async function moveCaseToFinalOrderOverdue(userLoggedIn, caseId, eventId, dataLo
 
 
 async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  let authToken='';
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating case whose  id %s with the  event of  %s', caseId, eventId);
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else if(testConfig.TestUrl.includes('aat')){
+    ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  }else if(testConfig.TestUrl.includes('demo')){
+    ccdApiUrl = 'http://ccd-data-store-api-demo.service.core-compute-demo.internal';
+  }
+
+  //const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  //console.log( " ~~~~~~~~~~~~~~~Output of the GET call is " +  startEventResponse) ;
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+
+  // 6 weeks and 1 day in the past For dateFinalOrderEligibleFrom
+  var dateFinalOrderEligibleFrom = dateYYYYMMDD(-43);
+  var foEligibleToRespondentDate = finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom);
+
+  console.log('Computing DateFinalOrderEligibleFrom  ie 6 weeks and 1 day in the PAST == '+ dateFinalOrderEligibleFrom);
+  console.log('Computing 3 months From DateFinalOrderEligibleFrom  == '+ foEligibleToRespondentDate);
+
+  data = data.replace('sixWeeksAndOneDayInThePast',dateFinalOrderEligibleFrom);
+  data = data.replace('threeMonthsAfterDateFinalOrderEligibleFrom',foEligibleToRespondentDate);
+
+  //console.log( "data .... after Replacement of dates is  is " + data);
+
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating Case For FinalOrder',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+  const saveEventResponse = await request(saveEventOptions);
+  return saveEventResponse;
+}
+
+async function soleCitizenApp2DraftAoS(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  let authToken='';
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Citizen Sole Case - Applicant2 Does Draft AoS for case id  %s with Event of  %s', caseId, eventId);
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else if(testConfig.TestUrl.includes('aat')){
+    ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  }else if(testConfig.TestUrl.includes('demo')){
+    ccdApiUrl = 'http://ccd-data-store-api-demo.service.core-compute-demo.internal';
+  }
+
+  //const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Citizen Sole -Applicant2 Does Draft AoS',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+  const saveEventResponse = await request(saveEventOptions);
+  return saveEventResponse;
+}
+
+async function soleCitizenApp2SubmitAoS(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
+
+  let authToken='';
+  authToken = await getAuthTokenFor(userLoggedIn, authToken);
+  const userId = await getUserId(authToken);
+
+  const serviceToken = await getServiceToken();
+
+  logger.info('Updating case whose  id %s with the  event of  %s', caseId, eventId);
+
+  var ccdApiUrl='';
+
+  if(testConfig.TestUrl.includes('localhost') ) {
+    ccdApiUrl = 'http://localhost:4452';
+  }else if(testConfig.TestUrl.includes('aat')){
+    ccdApiUrl = 'http://ccd-data-store-api-aat.service.core-compute-aat.internal';
+  }else if(testConfig.TestUrl.includes('demo')){
+    ccdApiUrl = 'http://ccd-data-store-api-demo.service.core-compute-demo.internal';
+  }
+
+  //const ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventId}/token`;
+  const ccdSaveEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
+
+  const startEventOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startEventResponse = await request(startEventOptions);
+
+  //console.log( " ~~~~~~~~~~~~~~~Output of the GET call is " +  startEventResponse) ;
+
+  const eventToken = JSON.parse(startEventResponse).token;
+
+  var data =  fs.readFileSync(dataLocation).toString('utf8');
+
+  // 6 weeks and 1 day in the past For dateFinalOrderEligibleFrom
+  var dateFinalOrderEligibleFrom = dateYYYYMMDD(-43);
+  var foEligibleToRespondentDate = finalOrderEligbileToRespondentDate(dateFinalOrderEligibleFrom);
+
+  console.log('Computing DateFinalOrderEligibleFrom  ie 6 weeks and 1 day in the PAST == '+ dateFinalOrderEligibleFrom);
+  console.log('Computing 3 months From DateFinalOrderEligibleFrom  == '+ foEligibleToRespondentDate);
+
+  data = data.replace('sixWeeksAndOneDayInThePast',dateFinalOrderEligibleFrom);
+  data = data.replace('threeMonthsAfterDateFinalOrderEligibleFrom',foEligibleToRespondentDate);
+
+  //console.log( "data .... after Replacement of dates is  is " + data);
+
+  var saveBody = {
+    data: JSON.parse(data),
+    event: {
+      id: eventId,
+      summary: 'Updating Case For FinalOrder',
+      description: 'For CCD E2E Test'
+    },
+    'event_token': eventToken
+  };
+
+
+  const saveEventOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveEventPath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+  const saveEventResponse = await request(saveEventOptions);
+  return saveEventResponse;
+}
+
+async function soleCitizenApp2UpdateApplication(userLoggedIn, caseId, eventId, dataLocation = 'data/final-order-date-eligible-to-respondent.json') {
 
   let authToken='';
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
@@ -1674,5 +1926,10 @@ module.exports = {
   getSystemUserToken,
   getCourtAdminUserToken,
   moveMultipleCasesToBulk,
-  moveCaseToFinalOrderOverdue
+  moveCaseToFinalOrderOverdue,
+  getCitizenCaseDetails,
+  soleCitizenApp2DraftAoS,
+  soleCitizenApp2UpdateApplication,
+  soleCitizenApp2SubmitAoS
+
 };
