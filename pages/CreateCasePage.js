@@ -7,6 +7,7 @@ module.exports = {
 
   fields: {
     jurisdiction: 'select[id="cc-jurisdiction"]',
+    jurisdictionSelect: '#cc-jurisdiction',
     caseType: 'select[id="cc-case-type"]',
     applicationTypeSole: '#applicationType-soleApplication',
     applicationTypeJoint: '#applicationType-jointApplication',
@@ -30,29 +31,22 @@ module.exports = {
 
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(20);
+      await I.wait(15);
+      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     } else {
       await I.wait(5);
-    }
-    if (testConfig.TestForCrossBrowser) {
-      await I.wait(15);
-      await I.waitForText('Family Divorce');
-      await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
-    } else {
-      await I.wait(12);
-      await I.waitForText('Family Divorce');
-      await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
+      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(10);
+      await I.wait(7);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }else{
-      await I.wait(8);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(10);
+      await I.wait(7);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     else{
