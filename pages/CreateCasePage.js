@@ -63,7 +63,7 @@ module.exports = {
     await I.wait(1);
   },
 
-  async fillTesCaseFormAndSubmit() {
+  async fillTestCaseFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
       await I.wait(60);
     } else {

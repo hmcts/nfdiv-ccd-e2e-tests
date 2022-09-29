@@ -149,7 +149,7 @@ module.exports = function () {
     },
 
     fillCreateTestCaseFormAndSubmit() {
-      return CreateCasePage.fillTesCaseFormAndSubmit();
+      return CreateCasePage.fillTestCaseFormAndSubmit();
     },
 
     fillCreateTestCase() {
