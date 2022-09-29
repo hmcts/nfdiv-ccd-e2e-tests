@@ -46,7 +46,7 @@ Scenario('CP Case  Application with Documents, HWF and Case Issued', async (I) =
   await I.financialOrdersSelectButton();
 
   // Upload the marriage certificate
-  await I.skipUploadingMarriageCertificate();
+  await I.uploadTheMarriageCertificateOptional();
 
   // Create Application 'Save Application' and 'Check Your Answers'
   await I.solicitorCreateCheckYourAnswerAndSubmit(divorceOrDissolution.DISSOLUTION);

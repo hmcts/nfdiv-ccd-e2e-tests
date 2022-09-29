@@ -39,7 +39,7 @@ module.exports = {
       await I.waitForText('Family Divorce');
       await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
     } else {
-      await I.wait(8);
+      await I.wait(12);
       await I.waitForText('Family Divorce');
       await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
     }

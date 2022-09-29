@@ -32,6 +32,8 @@ module.exports = {
     // await I.fillField(this.fields.fileComment, 'Uploading a dummy file');
     // await I.wait(6);
     // }
+    await I.wait(6);
+    I.acceptPopup();
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 
