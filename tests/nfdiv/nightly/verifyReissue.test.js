@@ -26,7 +26,7 @@ Scenario('Reissue - Digital ', async function (I) {
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AWAITING_SERVICE);
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);

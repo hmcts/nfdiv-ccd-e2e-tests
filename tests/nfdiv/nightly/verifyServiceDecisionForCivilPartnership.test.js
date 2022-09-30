@@ -28,7 +28,7 @@ Scenario('NFD - Civil Case ::Service Application , Service Payment and  Service 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(issueAosPack, states.AOS_AWAITING);
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
@@ -55,7 +55,7 @@ Scenario('NFD - Civil Case ::Service Application , Service Payment and  Service 
   await I.wait(7);
   await I.signOut();
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(5);

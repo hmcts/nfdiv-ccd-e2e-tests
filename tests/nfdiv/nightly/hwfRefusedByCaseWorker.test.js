@@ -2,7 +2,7 @@ const {createNFDCaseInCcd,updateNFDCaseInCcd} = require('../../../helpers/utils'
 const {user,states,events} = require('../../../common/constants');
 
 const assert = require('assert');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 
 let caseNumber;
 
@@ -16,8 +16,8 @@ Scenario('HWF Refused by Caseworker', async function (I) {
   const awaitingHWF = await updateNFDCaseInCcd(user.SOLS,caseNumber, events.SOLICITOR_SUBMIT_APPLICATION,'data/ccd-nfd-draft-accept-sot-and-use-hwf.json');
   verifyState(awaitingHWF, states.AWAITING_HWF);
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
 
@@ -30,7 +30,7 @@ Scenario('HWF Refused by Caseworker', async function (I) {
 
   console.log('~~~~~~~~~~~~~  Successfull HWF Refused by Caseworker ~~~~~');
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);

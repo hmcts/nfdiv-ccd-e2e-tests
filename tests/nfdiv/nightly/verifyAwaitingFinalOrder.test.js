@@ -65,7 +65,7 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
   await I.wait(10);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(7);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(7);

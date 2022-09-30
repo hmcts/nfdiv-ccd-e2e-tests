@@ -1,5 +1,4 @@
 const {paymentType,yesorno,divorceOrDissolution, states, stateDisplayName, events, user} = require('../../../common/constants');
-const testconfig = require('./../../config');
 const {createNFDCaseInCcd,getCaseDetailsFor, updateNFDCaseInCcd, updateRoleForCase, shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const testConfig = require('./../../config');
 const assert = require('assert');
@@ -41,7 +40,7 @@ Scenario('Caseworker updates solicitor org for app1', async (I) => {
   verifyState(submitAoS, states.HOLDING);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByCaseId(caseNumber);
@@ -63,7 +62,7 @@ Scenario('Caseworker updates solicitor org for app1', async (I) => {
   assert.strictEqual(app2Represented,'Yes');
   assert.strictEqual(app1SolOrg,'NFD E2E Test Solicitor Organisation Ltd');
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 Scenario('Caseworker removes solicitor org for app1', async (I) => {
 
@@ -94,7 +93,7 @@ Scenario('Caseworker removes solicitor org for app1', async (I) => {
   verifyState(submitAoS, states.HOLDING);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
@@ -117,6 +116,6 @@ Scenario('Caseworker removes solicitor org for app1', async (I) => {
   assert.strictEqual(app2SolOrg,'DivRespondentSolicitorFirm');
 
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 //Todo Caseworker adding solicitor org for app1 & app2

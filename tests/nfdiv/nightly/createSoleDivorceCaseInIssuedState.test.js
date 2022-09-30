@@ -20,7 +20,7 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(5);
 

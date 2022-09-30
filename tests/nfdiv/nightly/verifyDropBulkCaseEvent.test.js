@@ -63,7 +63,7 @@ Scenario('NFD - Verify Bulk Case ', async function (I) {
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
   // await I.wait(5);
-  // await I.amOnHomePage();
+  // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   // await I.wait(5);
   // await I.filterByBulkCaseReference(bulkCaseReferenceId);

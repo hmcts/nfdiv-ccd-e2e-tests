@@ -1,5 +1,5 @@
 const { paymentType,yesorno,events, user, states} = require('../../../common/constants');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 const {createNFDCaseInCcd, updateNFDCaseInCcd} = require('../../../helpers/utils');
 const assert = require('assert');
 
@@ -25,9 +25,9 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   const hwfAccepted = await updateNFDCaseInCcd(user.CW,caseNumber, events.CASEWORKER_HWF_APPLICATION_ACCEPTED,'data/ccd-nfd-hwf-accepted.json');
   verifyState(hwfAccepted, states.SUBMITTTED);
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(7);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
@@ -51,4 +51,4 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.checkState('Submitted','Update due date');
 
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);

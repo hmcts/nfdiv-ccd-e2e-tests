@@ -1,5 +1,5 @@
 const {paymentType,yesorno,divorceOrDissolution} = require('../../../common/constants');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 
 let caseNumber;
 
@@ -7,8 +7,8 @@ Feature('Create Sole Application ');
 
 Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
@@ -83,7 +83,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   // //Login as CaseWorker and Validate HWF Reference
   console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
 
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
 
@@ -119,12 +119,12 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
-xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();
@@ -234,5 +234,5 @@ xScenario('Dissolution Application with Documents, HWF accepted and Submit the C
 
   console.log('~~~~~~~~~~~~~  Case State now is AoS awaiting ~~~~~~~~~~~~ ');
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 

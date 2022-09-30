@@ -19,7 +19,7 @@ Scenario('Create General Email , Referral , Order', async (I) => {
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   // general Email
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(7);
   await I.shouldBeOnCaseListPage();

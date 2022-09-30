@@ -15,7 +15,8 @@ Feature('NFD - Bulk Case ');
 let caseNumber = '';
 
 Scenario.skip('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
 
   let  caseId_1 =  await createTestCaseHere(I);
@@ -44,7 +45,7 @@ Scenario.skip('Script - XUI Joint Divorce Case - upto Holding State', async (I) 
 
   // Login as CA with CaseType as 'NO_FAULT_DIVORCE_BulkAction' and check for BulkCase Created
   // await I.wait(5);
-  // await I.amOnHomePage();
+  // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   // await I.wait(5);
   // await I.filterByBulkCaseReference(bulkCaseReferenceId);

@@ -26,7 +26,7 @@ Scenario('NFD - Withdraw case moves state to Application withdrawn State', async
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AWAITING_SERVICE);
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(3);
@@ -38,6 +38,5 @@ Scenario('NFD - Withdraw case moves state to Application withdrawn State', async
   await I.checkNextStepForEvent('Withdraw');
   await I.submitWithdrawnCW(caseNumber);
   await I.checkStateAndEvent(stateDisplayName.WITHDRAWN, events.APPLICATION_WITHDRAWN);
-
 
 }).retry(testConfig.TestRetryScenarios);

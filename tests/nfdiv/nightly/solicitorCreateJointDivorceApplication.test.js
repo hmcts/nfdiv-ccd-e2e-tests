@@ -9,7 +9,7 @@ Feature('Joint Application - Divorce');
 
 xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
@@ -65,7 +65,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
@@ -80,7 +80,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   console.log('~~~~~~~~~~~~~  Respondent Solicitor Submit Joint Application Done ~~~~~~~~');
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
@@ -112,7 +112,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
   console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
   await I.shouldBeOnCaseListPage();

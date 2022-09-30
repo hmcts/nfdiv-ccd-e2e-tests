@@ -1,7 +1,7 @@
 const {createNFDCaseInCcd} =  require('../../../helpers/utils');
 const {yesorno,paymentType, states,events, divorceOrDissolution} =require('../../../common/constants');
 const assert = require('assert');
-const testconfig = require('./../../config');
+const testConfig = require('./../../config');
 
 let caseNumber;
 
@@ -13,8 +13,8 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '~~~ Case with CaseNumber ' + caseNumber + ' created in CCD ');
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.wait(5);
   await I.amOnPage('case-details/' + caseNumber);
@@ -40,4 +40,4 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
   // Save & SignOut
   console.log('~~~~~~~~~~~~~  Completed Successfull test for PBA Payment   ~~~~~~~~');
 
-}).retry(testconfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);

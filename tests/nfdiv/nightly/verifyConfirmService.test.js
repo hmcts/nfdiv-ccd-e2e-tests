@@ -26,7 +26,7 @@ Scenario('NFD - Move case to ConfirmService State', async function (I) {
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
 
-  // await I.amOnHomePage();
+  // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.wait(5);
   // await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   // await I.wait(3);

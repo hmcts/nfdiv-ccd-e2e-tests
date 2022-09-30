@@ -38,7 +38,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payme
   verifyState(submitAoS, states.HOLDING);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
@@ -74,7 +74,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   verifyState(submitAoS, states.HOLDING);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
@@ -85,7 +85,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.checkEventAndStateOnPageAndSignOut(states.AWAITING_GENERAL_CONSIDERATION, eventDisplayName.GENERAL_REFERRAL);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);

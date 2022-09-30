@@ -2,7 +2,6 @@ const {states, user, events, divorceOrDissolution} = require('../../../common/co
 const testConfig = require('./../../config');
 const {createNFDCaseInCcd,getCaseDetailsFor, updateNFDCaseInCcd, updateRoleForCase, shareCaseToRespondentSolicitor,getCaseDetailsAsSolFor} = require('../../../helpers/utils');
 const assert = require('assert');
-const testconfig = require('./../../config');
 
 let caseNumber;
 
@@ -53,8 +52,8 @@ Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
   //             'data/ccd-nfd-app1-solicitor-submit-application.json');
   //verifyState(applicant1SolSignAndSubmit,states.AWAITING_HWF);
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
 

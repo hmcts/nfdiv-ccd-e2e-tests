@@ -38,7 +38,7 @@ Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
   // verifyState(draftAoS, states.AOS_DRAFTED);
 
   //Draft AoS
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
@@ -58,9 +58,8 @@ Scenario('NFD - Verify Undisputed Aos chosen', async function (I) {
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
 
-  await I.amOnHomePage();
-  await I.wait(8);
-  await I.amOnHomePage();
+  await I.wait(5);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);
@@ -91,7 +90,7 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
   //Draft AoS
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
@@ -110,9 +109,8 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
   const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
 
-  await I.amOnHomePage();
   await I.wait(8);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber);

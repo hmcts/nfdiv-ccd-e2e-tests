@@ -9,7 +9,8 @@ Feature('Joint Application - Dissolution');
 
 Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+
   //await I.waitForValue('Sign in or create an account');
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
@@ -62,7 +63,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
@@ -77,7 +78,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   console.log('~~~~~~~~~~~~~  Respondent Solicitor Submit Joint Application Done ~~~~~~~~');
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(5);
@@ -111,7 +112,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   console.log('....... As Caseworker  Issue Joint Application');
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);

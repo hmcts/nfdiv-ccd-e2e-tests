@@ -44,7 +44,7 @@ xScenario(' A JointApplication case is part of a BulkList', async (I) => {
 
   // // TODO , not able to script the 'solicitor-submit-joint-application' as App1 Solicitor.
   //
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();

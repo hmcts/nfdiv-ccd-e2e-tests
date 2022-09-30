@@ -30,5 +30,6 @@ module.exports = {
   TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
   TestIdamClientSecret: process.env.IDAM_SECRET || '',
   TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
-  TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || ''
+  TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || '',
+  TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 30)
 };

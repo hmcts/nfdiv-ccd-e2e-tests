@@ -33,7 +33,7 @@ Scenario('NFD - Attach and Remove Scanned Documents Journey', async function (I)
   verifyState(submitAoS, states.HOLDING);
 
   await I.wait(5);
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);

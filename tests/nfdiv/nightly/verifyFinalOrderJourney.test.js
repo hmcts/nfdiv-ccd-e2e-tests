@@ -5,7 +5,6 @@ const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespon
 const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
-const testconfig = require('../../config');
 
 const verifyState = (eventResponse, state) => {
   assert.strictEqual(JSON.parse(eventResponse).state, state);
@@ -24,8 +23,8 @@ Feature('NFD - Create a single Case and move it to Final Order Pronounced');
 Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
 
-  await I.amOnHomePage();
-  await I.login(testconfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
   await I.fillCreateTestCaseFormAndSubmit();
   await I.fillCreateTestCase();
@@ -47,7 +46,7 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
   // TODO Refactor or Delete this  - as there is no bulkCaseReference created yet .
 
   // await I.wait(5);
-  // await I.amOnHomePage();
+  // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   // await I.wait(5);
   // await I.filterByBulkCaseReference(bulkCaseReferenceId);

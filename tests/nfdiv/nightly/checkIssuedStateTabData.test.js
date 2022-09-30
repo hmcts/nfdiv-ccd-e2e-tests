@@ -1,7 +1,7 @@
 const {createNFDCaseInCcd, updateNFDCaseInCcd} = require('../../../helpers/utils');
 const { reasonsForDivorce, signOut, states, events ,user} = require('../../../common/constants');
 const assert = require('assert');
-const TestConfig = require('./../../config');
+const testConfig = require('./../../config');
 
 const verifyContent = require('../../../data/tab-fields/nfdiv/application-issued-case-data.json');
 
@@ -29,8 +29,9 @@ Scenario('Checking Tab data when case has been Issued', async function (I) {
 
   // Verify all tab fields of Application Tab, Language,MarriageCert, Service Application
 
-  await I.amOnHomePage();
-  await I.login(TestConfig.TestEnvCWUser, TestConfig.TestEnvCWPassword);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(1);
   await I.amOnPage('cases/case-details/' + caseNumber);
   await I.wait(1);
@@ -48,4 +49,4 @@ Scenario('Checking Tab data when case has been Issued', async function (I) {
   // await I.validatePaymentTabData(verifyContent);
   // await I.validateLanguageTabData(reasonsForDivorce.SEPFIVEYRSDISPLAY, verifyContent);
   await I.click(signOut);
-}).retry(TestConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);

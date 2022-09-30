@@ -14,7 +14,7 @@ module.exports = {
     applicationTypeJoint: '#applicationType-jointApplication',
     divorce:'#divorceOrDissolution-divorce',
     dissolution:'#divorceOrDissolution-dissolution',
-    event: 'select[id="cc-event"]',
+    event: '#cc-event',
     stateOption: 'select[id="stateToTransitionApplicationTo"]',
     applicant1Represented: '#applicant1SolicitorRepresented_Yes',
     applicant2Represented: '#applicant2SolicitorRepresented_Yes',
@@ -32,28 +32,28 @@ module.exports = {
 
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(15);
-      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+      await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
+      await I.retry(5).selectOption('#cc-jurisdiction', 'Family Divorce');
     } else {
-      await I.wait(5);
-      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+      await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
+      await I.retry(5).selectOption('#cc-jurisdiction', 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(7);
+      await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }else{
-      await I.wait(5);
+      await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(7);
+      await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     else{
-      await I.wait(5);
+      // Apply: divorce or dissolution
+      await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
-      await I.wait(2);
     }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
@@ -105,16 +105,18 @@ module.exports = {
 
   async fillHowDoYouWantToApplyForDivorce(soleOrJoint,divorceOrCivil) {
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(60);
+      await I.wait(15);
     } else {
       await I.wait(5);
     }
 
     if(divorceOrCivil === divorceOrDissolution.DIVORCE) {
+      await I.wait(5);
       await I.retry(5).click(this.fields.divorce);
       console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Divorce Chosen');
     }else {
       console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
+      await I.wait(5);
       await I.retry(5).click(this.fields.dissolution);
     }
 

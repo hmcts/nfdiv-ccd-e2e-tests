@@ -41,7 +41,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   // tested as part of the shareACaseAndDraftUpdateSubmitAoS.test.js
 
   //Draft AoS
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);

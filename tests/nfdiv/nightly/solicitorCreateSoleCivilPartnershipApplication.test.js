@@ -9,7 +9,7 @@ Feature('Create Sole CP Case');
 
 Scenario('CP Case  Application with Documents, HWF and Case Issued', async (I) => {
 
-  await I.amOnHomePage();
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
