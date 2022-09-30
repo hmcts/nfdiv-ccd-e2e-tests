@@ -123,7 +123,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
 Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
-  await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
@@ -221,7 +221,7 @@ Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit t
   //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
   console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
 
-  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
+  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
   await I.shouldBeOnCaseListPage();
   await I.wait(7);

@@ -7,9 +7,10 @@ module.exports = {
 
   selectors: {
     caseLink: 'table tr:nth-last-child(1) a[href^="/cases/case-details/"]',
+    caseType: 'select[id="cc-case-type"]',
     jurisdictionSelect: '#wb-jurisdiction',
     caseTypeSelect: '#wb-case-type',
-    caseStateSelect: '#wb-case-state',
+    caseStateSelect: 'select[id="wb-case-state"]',
     rdcSelect: '#D8DivorceUnit',
     solicitorPaymentMethodSelect: '#SolPaymentHowToPay',
     urgentFilterYes: '#SolUrgentCase_Yes',
@@ -33,22 +34,22 @@ module.exports = {
   },
 
   async resetFilter(caseNumber) {
-    await I.waitIn;
-    await I.waitForElement(this.selectors.jurisdictionSelect);
-    await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
-    await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, currentCaseType);
-    await I.waitForElement(this.selectors.caseStateSelect);
-    await I.selectOption(this.selectors.caseStateSelect, 'Any');
-    // await I.fillField(this.fields.caseNumber, caseNumber);
-    await I.wait(3);
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
+
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
+
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-case-state', 'Any');
+
     if (testConfig.TestForCrossBrowser) {
+      await I.wait(5);
+    }else{
       await I.wait(5);
     }
     await I.click('Apply');
-    if (testConfig.TestForCrossBrowser) {
-      await I.wait(3);
-    }
+
   },
 
   async filterByCaseId(caseNumber) {
@@ -57,19 +58,21 @@ module.exports = {
       await I.wait(3);
     }
 
-    await I.waitForElement(this.selectors.jurisdictionSelect);
-    await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
-    await I.waitForElement(this.selectors.caseTypeSelect);
-    await I.selectOption(this.selectors.caseTypeSelect, 'New Law Case');
-    await I.waitForElement(this.selectors.caseStateSelect);
-    await I.selectOption(this.selectors.caseStateSelect, 'Any');
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
+
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
+
+    await I.wait(2);
+    await I.retry(5).selectOption('#wb-case-state', 'Any');
+
     await I.wait(5);
 
     if (testConfig.TestForCrossBrowser) {
       await I.wait(8);
     }
-
-    //await I.fillField(this.fields.caseNumber, caseNumber); // Does nt work
+    //await I.fillField(this.fields.caseNumber, caseNumber); // Does not work
     await I.wait(3);
     await I.click('Apply');
   },
