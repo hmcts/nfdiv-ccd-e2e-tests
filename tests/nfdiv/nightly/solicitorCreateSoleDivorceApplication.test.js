@@ -8,7 +8,7 @@ Feature('Create Sole Application ');
 Scenario('Divorce Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  await I.login(testConfig.TestEnvSolUser, testconfig.TestEnvSolPassword);
+  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
   await I.fillCreateCaseFormAndSubmit();

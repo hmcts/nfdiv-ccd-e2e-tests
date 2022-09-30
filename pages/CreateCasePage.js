@@ -33,26 +33,32 @@ module.exports = {
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
       await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption('#cc-jurisdiction', 'Family Divorce');
     } else {
       await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption('#cc-jurisdiction', 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {
       await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }else{
       await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }
     if (testConfig.TestForCrossBrowser) {
       await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     else{
       // Apply: divorce or dissolution
       await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -65,8 +71,11 @@ module.exports = {
     } else {
       await I.wait(8);
     }
-    await I.waitForText('Family Divorce');
-    await I.retry(5).selectOption(this.fields.jurisdiction, 'Family Divorce');
+
+    await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
+    await I.wait(5);
+    await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
+
     await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     await I.retry(5).selectOption(this.fields.event, 'Create test case');
     await I.waitForNavigationToComplete(this.fields.submit);

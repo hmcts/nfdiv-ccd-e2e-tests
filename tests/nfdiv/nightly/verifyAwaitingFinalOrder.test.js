@@ -13,7 +13,10 @@ let caseNumber;
 Feature('NFD - Sole Divorce Case in Awaiting FO State');
 
 // NOTE THIS TEST PASSES LOCALLY,but since it is a very long one going upto FinalOrderOverdue it fails on pipeline
+// but passes on local when pointing to AAT or your local Docker case-api (cftlib) .
+
 // Useful Test to reuse/amend , when creating TestData
+
 Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
