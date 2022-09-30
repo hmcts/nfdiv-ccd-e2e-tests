@@ -33,7 +33,7 @@ module.exports = {
     // await I.wait(6);
     // }
     await I.wait(6);
-    I.acceptPopup();
+    //I.acceptPopup();
     await I.waitForNavigationToComplete(this.fields.submit);
   },
 

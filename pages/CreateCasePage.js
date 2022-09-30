@@ -27,7 +27,7 @@ module.exports = {
   async clickCreateCase() {
     await I.waitForText('Create case');
     await I.click('Create case');
-
+    await I.wait(4);
   },
 
   async fillFormAndSubmit() {
@@ -51,8 +51,9 @@ module.exports = {
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     else{
-      await I.wait(8);
+      await I.wait(5);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
+      await I.wait(2);
     }
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
