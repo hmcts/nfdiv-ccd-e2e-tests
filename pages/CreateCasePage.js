@@ -33,12 +33,12 @@ module.exports = {
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
       await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
-      await I.wait(5);
-      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+      await I.wait(15);
+      await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     } else {
       await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
-      await I.wait(5);
-      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+      await I.wait(15);
+      await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {
