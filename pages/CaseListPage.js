@@ -53,8 +53,7 @@ module.exports = {
     }else{
       await I.wait(5);
     }
-    await I.click(this.selectors.applyFilterButton);
-
+    //await I.click(this.selectors.applyFilterButton);
 
   },
 
@@ -66,10 +65,13 @@ module.exports = {
       await I.wait(2);
     }
 
+    await I.waitForElement('#wb-jurisdiction', '20');
     await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
     await I.wait(2);
+    await I.waitForElement('#wb-case-type', '20');
     await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
     await I.wait(2);
+    await I.waitForElement('#wb-case-state', '20');
     await I.retry(5).selectOption('#wb-case-state', 'Any');
 
     await I.wait(5);
