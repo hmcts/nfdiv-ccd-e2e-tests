@@ -16,7 +16,8 @@ module.exports = {
     urgentFilterYes: '#SolUrgentCase_Yes',
     urgentFilterNo: '#SolUrgentCase_No',
     caseNumber:'#[CASE_REFERENCE]',
-    eventSummary: '#field-trigger-summary'
+    eventSummary: '#field-trigger-summary',
+    applyFilterButton: 'button[title="Apply Filter"]'
   },
   fields: {
     selectActionDropDown: 'select[id="next-step"]',
@@ -35,12 +36,16 @@ module.exports = {
 
   async resetFilter(caseNumber) {
     await I.wait(2);
+    await I.waitForElement('#wb-jurisdiction', '20');
     await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
 
     await I.wait(2);
+    await I.waitForElement('#wb-case-type', '20');
     await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
 
     await I.wait(2);
+    await I.waitForElement('#wb-case-state', '20');
+
     await I.retry(5).selectOption('#wb-case-state', 'Any');
 
     if (testConfig.TestForCrossBrowser) {
@@ -48,7 +53,8 @@ module.exports = {
     }else{
       await I.wait(5);
     }
-    await I.click('Apply');
+    await I.click(this.selectors.applyFilterButton);
+
 
   },
 
@@ -56,14 +62,13 @@ module.exports = {
 
     if (testConfig.TestForCrossBrowser) {
       await I.wait(3);
+    }else{
+      await I.wait(2);
     }
 
-    await I.wait(2);
     await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
-
     await I.wait(2);
     await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
-
     await I.wait(2);
     await I.retry(5).selectOption('#wb-case-state', 'Any');
 

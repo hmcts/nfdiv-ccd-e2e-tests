@@ -106,7 +106,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   //Login As CourtAdmin and Issue the Case ( ie Move case from Submitted State to Issued )
   console.log('....... Login as CourtAdmin And Issue the Case - ie Move case from Submitted to Issued............');
 
-  await I.login(testconfig.TestEnvCourtAdminUser, testconfig.TestEnvCourtAdminPassword);
+  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
   await I.shouldBeOnCaseListPage();
   await I.wait(7);
@@ -121,6 +121,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
 }).retry(testConfig.TestRetryScenarios);
 
+// covered in the solicitorCreateSoleCivilPartnershipApplication.test.js . To Delete.
 Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
@@ -198,7 +199,7 @@ Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit t
   //Login as CaseWorker and Validate HWF Reference
   console.log('~~~~~~~~~~~~~  Caseworker Login to Validate HWF Code ~~~~~~~~~~~~~');
 
-  await I.login(testconfig.TestEnvCWUser, testconfig.TestEnvCWPassword);
+  await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(10);
   await I.shouldBeOnCaseListPage();
 
