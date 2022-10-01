@@ -5,7 +5,7 @@ let caseNumber;
 
 Feature('XBrowser based  Sole Divorce Case');
 
-Scenario('Sole Divorce Application - at Submitted State', async (I) => {
+xScenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
@@ -65,4 +65,5 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
-}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
+//}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
