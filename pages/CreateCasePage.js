@@ -38,7 +38,7 @@ module.exports = {
     } else {
       await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
       await I.wait(5);
-      await I.retry(5).selectOption('#cc-jurisdiction', 'Family Divorce');
+      await I.retry(5).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {

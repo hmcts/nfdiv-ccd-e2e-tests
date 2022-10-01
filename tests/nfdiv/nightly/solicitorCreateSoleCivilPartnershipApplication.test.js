@@ -7,7 +7,7 @@ let caseNumber;
 
 Feature('Create Sole CP Case');
 
-Scenario('CP Case  Application with Documents, HWF and Case Issued', async (I) => {
+Scenario('CP Case with Documents, HWF and Case Issued', async (I) => {
 
   await I.amOnHomePage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
