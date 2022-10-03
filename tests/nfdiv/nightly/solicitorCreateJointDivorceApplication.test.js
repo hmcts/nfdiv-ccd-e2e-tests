@@ -7,11 +7,13 @@ let caseNumber;
 
 Feature('Joint Application - Divorce');
 
-xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
+Scenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
+
+  await I.wait(15);
 
   await I.fillCreateCaseFormAndSubmit();
   await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.

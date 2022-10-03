@@ -5,12 +5,17 @@ let caseNumber;
 
 Feature('XBrowser based  Sole Divorce Case');
 
-xScenario('Sole Divorce Application - at Submitted State', async (I) => {
+Scenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+
   await I.clickCreateCase();
+
+  await I.wait(15);
   await I.fillCreateCaseFormAndSubmit();
+
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
@@ -65,5 +70,5 @@ xScenario('Sole Divorce Application - at Submitted State', async (I) => {
   // No draft petition should be present , but Uploaded Docs should be present.
   await I.solAwaitingPaymentConfPageFormAndSubmit();
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
-//}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
-}).retry(testConfig.TestRetryScenarios);
+}).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
+//}).retry(testConfig.TestRetryScenarios);

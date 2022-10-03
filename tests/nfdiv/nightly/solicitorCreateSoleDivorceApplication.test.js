@@ -122,11 +122,12 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 }).retry(testConfig.TestRetryScenarios);
 
 // covered in the solicitorCreateSoleCivilPartnershipApplication.test.js . To Delete.
-Scenario.skip('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
+  await I.wait(15);
 
   await I.fillCreateCaseFormAndSubmit();
 

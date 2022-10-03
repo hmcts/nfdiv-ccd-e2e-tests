@@ -32,32 +32,31 @@ module.exports = {
 
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
-      await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
+      //await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
       await I.wait(15);
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     } else {
-      await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
       await I.wait(15);
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
 
     if (testConfig.TestForCrossBrowser) {
-      await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
+      //await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
       await I.wait(5);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }else{
-      await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
+      //await I.waitForText('New Law Case',testConfig.TestTimeToWaitForText);
       await I.wait(5);
       await I.retry(5).selectOption(this.fields.caseType, 'New Law Case');
     }
     if (testConfig.TestForCrossBrowser) {
-      await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
+      //await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
       await I.wait(5);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }
     else{
       // Apply: divorce or dissolution
-      await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
+      //await I.waitForText('Apply: divorce or dissolution',testConfig.TestTimeToWaitForText);
       await I.wait(5);
       await I.retry(5).selectOption(this.fields.event, 'Apply: divorce or dissolution');
     }

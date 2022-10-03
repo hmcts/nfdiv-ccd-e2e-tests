@@ -8,7 +8,7 @@ let caseNumber;
 Feature('Joint Application - Dissolution');
 
 // passes when run pointing to AAT or local docker, but fails randomly on the jurisdiciton selection.
-Scenario.skip('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
+Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
 
@@ -16,6 +16,7 @@ Scenario.skip('Dissolution Application (Joint) with PBA  upto Issue', async (I) 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.clickCreateCase();
 
+  await I.wait(15);
   await I.fillCreateCaseFormAndSubmit();
   await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DISSOLUTION); // 'Yes' for Sole, 'No' for Joint.
 
