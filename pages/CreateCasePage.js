@@ -8,7 +8,9 @@ module.exports = {
   fields: {
     jurisdiction: 'select[id="cc-jurisdiction"]',
     //jurisdictionSelect: '#cc-jurisdiction',
+    //jurisdictionSelect: 'select[id="cc-jurisdiction"]',
     jurisdictionSelect: 'select[id="cc-jurisdiction"]',
+
     caseType: 'select[id="cc-case-type"]',
     applicationTypeSole: '#applicationType-soleApplication',
     applicationTypeJoint: '#applicationType-jointApplication',
@@ -34,9 +36,12 @@ module.exports = {
     if (testConfig.TestForCrossBrowser) {
       //await I.waitForText('Family Divorce',testConfig.TestTimeToWaitForText);
       await I.wait(15);
+      I.waitForElement('select[id="cc-jurisdiction"]>option:nth-of-type(2)', '60');
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+
     } else {
       await I.wait(15);
+      I.waitForElement('select[id="cc-jurisdiction"]>option:nth-of-type(2)', '60');
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
 
