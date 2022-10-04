@@ -27,19 +27,20 @@ module.exports = {
   },
 
   async clickCreateCase() {
-    await I.waitForText('Create case');
+    await I.waitForText('Create case','60');
+    await I.wait(5);
     await I.click('Create case');
     await I.wait(4);
   },
 
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
-      await I.wait(15);
+      await I.wait(7);
       I.waitForElement('select[id="cc-jurisdiction"]>option:nth-of-type(1)', '60');
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
 
     } else {
-      await I.wait(15);
+      await I.wait(7);
       I.waitForElement('select[id="cc-jurisdiction"]>option:nth-of-type(1)', '60');
       await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
     }
