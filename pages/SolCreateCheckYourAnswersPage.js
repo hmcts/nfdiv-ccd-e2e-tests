@@ -16,6 +16,9 @@ module.exports = {
     prayerApp2: '#applicant2PrayerEndCivilPartnership-endCivilPartnership',
     prayerApp2Divorce:'#applicant2PrayerDissolveDivorce-dissolveDivorce',
     prayerApp2FinancialOrderThemselves:'#applicant2PrayerFinancialOrdersThemselves-financialOrdersThemselves',
+    prayerApp1: '#applicant1PrayerDissolveDivorce-dissolveDivorce',
+    prayerApp1FinancialOrderThemselves:'#applicant1PrayerFinancialOrdersThemselves-financialOrdersThemselves',
+    prayerApp1FinancialOrderChildren:'#applicant1PrayerFinancialOrdersChild-financialOrdersChild',
     statementOfTruthApp2: '#applicant2StatementOfTruth_Yes',
     statementOfTruthSolApp2: '#applicant2SolSignStatementOfTruth_Yes',
     solName: '#applicant2SolStatementOfReconciliationName',
@@ -46,6 +49,7 @@ module.exports = {
       // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
       await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/submit');
     }
+    //pause();
     await I.runAccessibilityTest();
     await I.see('Apply: divorce or dissolution');
     await I.see('Check your answers');
@@ -137,12 +141,17 @@ module.exports = {
     // await I.click(this.fields.courtService);
     await I.click(this.fields.solReconciliation);
     await I.click(this.fields.solReconciliationDiscussed);
-    if(union === divorceOrDissolution.DIVORCE) {
-      await I.click(this.fields.prayerDissolveDivorce);
-      console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Divorce Chosen');
-    }else {
-      console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Dissolution Chosen');
+    //pause();
+    if(union === divorceOrDissolution.DISSOLUTION) {
+
       await I.click(this.fields.prayerDissolveCivil);
+      console.log(' ...~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Dissolution Chosen');
+    }else {
+      console.log(' ....  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~   Divorce Chosen');
+      await I.click(this.fields.prayerApp1);
+      await I.click(this.fields.prayerApp1FinancialOrderThemselves);
+      await I.click(this.fields.prayerApp1FinancialOrderChildren);
+      //await I.click(this.fields.prayerDissolveCivil);
     }
     await I.click(this.fields.statementOfTruthApp1);
     await I.click(this.fields.statementOfTruthSolApp1);
