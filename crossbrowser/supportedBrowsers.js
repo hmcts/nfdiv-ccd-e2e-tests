@@ -14,18 +14,18 @@ const supportedBrowsers = {
       }
     }
   },
-  // safari: {
-  //   safari_mac: {
-  //     browserName: 'safari',
-  //     platformName: 'macOS 10.14',
-  //     browserVersion: 'latest',
-  //     'sauce:options': {
-  //       name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
-  //       seleniumVersion: '3.141.59',
-  //       screenResolution: '2360x1770'
-  //     }
-  //   }
-  // },
+  safari: {
+    safari_mac: {
+      browserName: 'safari',
+      platformName: 'macOS 10.14',
+      browserVersion: 'latest',
+      'sauce:options': {
+        name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
+        seleniumVersion: '3.141.59',
+        screenResolution: '2360x1770'
+      }
+    }
+  },
   chrome: {
     chrome_win_latest: {
       browserName: 'chrome',

@@ -1,6 +1,5 @@
 module.exports = {
   TestUrl: process.env.TEST_E2E_URL || 'https://manage-case.aat.platform.hmcts.net/',
-  //TestUrl: process.env.TEST_E2E_URL || 'https://localhost:3000/',
   TestManageOrgUrl: process.env.TEST_MO_E2E_URL || 'https://manage-org.aat.platform.hmcts.net/',
   TestEnv: process.env.RUNNING_ENV  || 'aat',
   TestShowBrowserWindow: process.env.SHOW_BROWSER_WINDOW || false,
@@ -27,7 +26,7 @@ module.exports = {
   TestForXUI: process.env.TESTS_FOR_XUI_SERVICE === 'true',
   TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY === 'true',
   TestS2SAuthSecret: process.env.SERVICE_AUTH_SECRET || '',
-  TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'true',
+  TestForCrossBrowser: process.env.TESTS_FOR_CROSS_BROWSER === 'false',
   TestIdamClientSecret: process.env.IDAM_SECRET || '',
   TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
   TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || '',
