@@ -31,6 +31,6 @@ module.exports = {
   TestSystemUser:process.env.SYSTEMUPDATE_USERNAME || '',
   TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || '',
   TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 30),
-  TestNFDSystemUser:process.env.IDAM_NFD_E2E_SYSTEMUPDATE_USERNAME || '',
-  TestNFDSystemUserPW:process.env.IDAM_NFD_E2E_SYSTEMUPDATE_PASSWORD || ''
+  TestSystemUser:process.env.NFD_E2E_SYSTEM_UPDATE_USERNAME || '',
+  TestSystemUserPW:process.env.NFD_E2E_SYSTEM_UPDATE_PASSWORD || ''
 };
