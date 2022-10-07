@@ -31,7 +31,10 @@ def secrets = [
     secret('idam-caseworker-username', 'CASEWORKER_USER_NAME'),
     secret('idam-caseworker-password', 'CASEWORKER_PASSWORD'),
     secret('idam-citizen-username', 'CITIZEN_USER_NAME'),
-    secret('idam-citizen-password', 'CITIZEN_PASSWORD')
+    secret('idam-citizen-password', 'CITIZEN_PASSWORD'),
+    secret('idam-nfd-e2e-test-system-update-username', 'NFD_E2E_SYSTEM_UPDATE_USERNAME'),
+    secret('idam-nfd-e2e-test-system-update-password', 'NFD_E2E_SYSTEM_UPDATE_PASSWORD')
+
   ]
 ]
 
