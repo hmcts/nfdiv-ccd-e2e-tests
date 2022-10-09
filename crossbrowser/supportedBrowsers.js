@@ -45,27 +45,28 @@ const supportedBrowsers = {
         screenResolution: '2360x1770'
       }
     }
-  },
-  firefox: {
-    firefox_win_latest: {
-      browserName: 'firefox',
-      platformName: LATEST_WINDOWS,
-      browserVersion: 'latest',
-      'sauce:options': {
-         name: 'NFD CCD E2E Tests - XUI: WIN_FIREFOX_LATEST',
-         screenResolution: '2560x1600'
-    }
-  },
-    firefox_mac_latest: {
-       browserName: 'firefox',
-       platformName: LATEST_MAC,
-       browserVersion: 'latest',
-       'sauce:options': {
-          name: 'NFD CCD E2E Tests - XUI: MAC_FIREFOX_LATEST',
-          screenResolution: '2360x1770'
-    }
   }
-  }
+  //,
+  // firefox: {
+  //   firefox_win_latest: {
+  //     browserName: 'firefox',
+  //     platformName: LATEST_WINDOWS,
+  //     browserVersion: 'latest',
+  //     'sauce:options': {
+  //        name: 'NFD CCD E2E Tests - XUI: WIN_FIREFOX_LATEST',
+  //        screenResolution: '2560x1600'
+  //   }
+  // },
+  //   firefox_mac_latest: {
+  //      browserName: 'firefox',
+  //      platformName: LATEST_MAC,
+  //      browserVersion: 'latest',
+  //      'sauce:options': {
+  //         name: 'NFD CCD E2E Tests - XUI: MAC_FIREFOX_LATEST',
+  //         screenResolution: '2360x1770'
+  //   }
+  // }
+  // }
 };
 
 module.exports = supportedBrowsers;
