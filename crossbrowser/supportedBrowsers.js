@@ -46,6 +46,8 @@ const supportedBrowsers = {
       }
     }
   },
+  }
+  //,
   // firefox: {
   //   firefox_win_latest: {
   //     browserName: 'firefox',

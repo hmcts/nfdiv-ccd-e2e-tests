@@ -123,6 +123,7 @@ const setupConfig = {
     //   browsers: getBrowserConfig('firefox')
     // }
     // ,
+    // },
     safari: {
       browsers: getBrowserConfig('safari')
     }
