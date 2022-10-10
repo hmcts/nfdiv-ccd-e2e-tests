@@ -45,6 +45,7 @@ const supportedBrowsers = {
         screenResolution: '2360x1770'
       }
     }
+  },
   }
   //,
   // firefox: {
