@@ -52,8 +52,8 @@ withNightlyPipeline("nodejs", product, component) {
     env.NODE_ENV = 'ci'
 
     loadVaultSecrets(secrets)
-    enableCrossBrowserTest()
-    enableFullFunctionalTest()
+    enableCrossBrowserTest(60)
+    enableFullFunctionalTest(90)
 
     after('fullFunctionalTest') {
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
