@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD Case - Verify Bailiff Journey for Divorce and CP cases');
 
-Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision and Bailiff Service ', async function (I) {
+Scenario.skip('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision and Bailiff Service ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
