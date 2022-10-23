@@ -2,243 +2,41 @@ const { Logger } = require('@hmcts/nodejs-logging');
 const requestModule = require('request-promise-native');
 const request = requestModule.defaults();
 
-
 const fs = require('fs');
 const testConfig = require('../tests/config.js');
-
+const {getOidcIdamToken} = require('./idam-utils.js');
 const logger = Logger.getLogger('helpers/utils.js');
-
 const env = testConfig.TestEnv;
 const months = ['Jan', 'Feb', 'Mar','Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 async function getUserToken() {
-
-  logger.info('~~~~~~~~~~~~~Getting CaseWorker User Token');
-
-  // Setup Details
-  const username = testConfig.TestEnvCWUser;
-  const password = testConfig.TestEnvCWPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = 'https://idam-api.aat.platform.hmcts.net';
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  logger.info('.........Getting CW  Token');
+  return getOidcIdamToken(testConfig.TestEnvCWUser,testConfig.TestEnvCWPassword);
 }
 
 async function getSystemUserToken() {
-
-  const username=testConfig.TestNFDE2ESystemUser;
-  const password=testConfig.TestNFDE2ESystemUserPW;
-
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  logger.info('.........Getting NFD E2E SystemUser Token');
+  return getOidcIdamToken(testConfig.TestNFDE2ESystemUser,testConfig.TestNFDE2ESystemUserPW);
 }
 
 async function getSolicitorUserToken() {
   logger.info('.........Getting Solicitor User Token');
-
-  // Setup Details
-  const username = testConfig.TestEnvSolUser;
-  const password = testConfig.TestEnvSolPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  return getOidcIdamToken(testConfig.TestEnvSolUser,testConfig.TestEnvSolPassword);
 }
 
 async function getCourtAdminUserToken() {
   logger.info('.........Getting CourtAdmin User Token');
-
-  // Setup Details
-  const username = testConfig.TestEnvCourtAdminUser;
-  const password = testConfig.TestEnvCourtAdminPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-    return Promise.reject(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  return getOidcIdamToken(testConfig.TestEnvCourtAdminUser,testConfig.TestEnvCourtAdminPassword);
 }
 
 async function getRespondentAdminSolicitorUserToken() {
-
-  logger.info('.........Getting Respondent AdminSolicitor User Token..........');
-
-  // Setup Details
-  const username = testConfig.TestEnvRespondentSolAdminUser;
-  const password = testConfig.TestEnvRespondentSolAdminPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-    return Promise.reject(err);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  logger.info('.........Getting Respondent Admin Solicitor User Token..........');
+  return getOidcIdamToken(testConfig.TestEnvRespondentSolAdminUser,testConfig.TestEnvRespondentSolAdminPassword);
 }
 
 async function getRespondentSolicitorUserToken() {
-  // Setup Details
-  const username = testConfig.TestEnvRespondentSolUser;
-  const password = testConfig.TestEnvRespondentSolPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  logger.info('.........Getting Respondent Solicitor User Token..........');
+  return getOidcIdamToken(testConfig.TestEnvRespondentSolUser,testConfig.TestEnvRespondentSolPassword);
 }
 
 async function getRespondentSolicitor2UserToken() {
@@ -281,42 +79,8 @@ async function getRespondentSolicitor2UserToken() {
 }
 
 async function getLegalAdvisorUserToken() {
-
   logger.info('.........Legal Advisor User Token ............');
-
-  // Setup Details
-  const username = testConfig.TestEnvLegalAdvisorUser;
-  const password = testConfig.TestEnvLegalAdvisorPassword;
-  const redirectUri = `https://div-pfe-${env}.service.core-compute-${env}.internal/authenticated`;
-  const idamClientSecret = testConfig.TestIdamClientSecret;
-
-  const idamBaseUrl = `https://idam-api.${env}.platform.hmcts.net`;
-
-  const idamCodePath = `/oauth2/authorize?response_type=code&client_id=divorce&redirect_uri=${redirectUri}`;
-
-  const codeResponse = await request.post({
-    uri: idamBaseUrl + idamCodePath,
-    headers: {
-      Authorization: 'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  }).catch(error => {
-    console.log(error);
-  });
-
-  const code = JSON.parse(codeResponse).code;
-
-  const idamAuthPath = `/oauth2/token?grant_type=authorization_code&client_id=divorce&client_secret=${idamClientSecret}&redirect_uri=${redirectUri}&code=${code}`;
-  const authTokenResponse = await request.post({
-    uri: idamBaseUrl + idamAuthPath,
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    }
-  });
-
-  logger.debug(JSON.parse(authTokenResponse)['access_token']);
-
-  return JSON.parse(authTokenResponse)['access_token'];
+  return getOidcIdamToken(testConfig.TestEnvLegalAdvisorUser,testConfig.TestEnvLegalAdvisorPassword);
 }
 
 //TODO this will eventually replace the multiple getUserTokenXXX() methods above
@@ -462,12 +226,8 @@ async function getManageOrgServiceToken() {
 async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data.json') {
 
   const authToken = await getSolicitorUserToken();
-  //const authToken = await getUserTokenFor(user.SOLS);
-
   const userId = await getUserId(authToken);
-
   const serviceToken = await getServiceToken(); // S2S Auth
-
 
   var ccdApiUrl;
   if(testConfig.TestUrl.includes('localhost')){
@@ -717,7 +477,6 @@ async function getAuthTokenFor(userLoggedIn) {
     authToken = await getLegalAdvisorUserToken();
   }
   if (userLoggedIn === 'SystemUser') {
-    console.log('....about to call the getSystemUserToken() ');
     authToken = await getSystemUserToken();
   }
 
@@ -859,6 +618,7 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   let authToken='';
   authToken = await getAuthTokenFor(userLoggedIn, authToken);
+
   const userId = await getUserId(authToken);
 
   const serviceToken = await getServiceToken();
@@ -891,8 +651,6 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   const startEventResponse = await request(startEventOptions);
 
-  //console.log( " ~~~~~~~~~~~~~~~Output of the GET call is " +  startEventResponse) ;
-
   const eventToken = JSON.parse(startEventResponse).token;
 
   var data =  fs.readFileSync(dataLocation).toString('utf8');
@@ -906,8 +664,6 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
 
   data = data.replace('sixWeeksAndOneDayInThePast',dateFinalOrderEligibleFrom);
   data = data.replace('threeMonthsAfterDateFinalOrderEligibleFrom',foEligibleToRespondentDate);
-
-  //console.log( "data .... after Replacement of dates is  is " + data);
 
   var saveBody = {
     data: JSON.parse(data),
@@ -930,6 +686,7 @@ async function updateFinalOrderDateForNFDCaseInCcd(userLoggedIn, caseId, eventId
     },
     body: JSON.stringify(saveBody)
   };
+
   const saveEventResponse = await request(saveEventOptions);
   return saveEventResponse;
 }

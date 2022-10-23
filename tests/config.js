@@ -32,5 +32,6 @@ module.exports = {
   TestSystemUserPW:process.env.SYSTEMUPDATE_PASSWORD || '',
   TestTimeToWaitForText: parseInt(process.env.E2E_TEST_TIME_TO_WAIT_FOR_TEXT || 30),
   TestNFDE2ESystemUser:process.env.NFD_E2E_SYSTEM_UPDATE_USERNAME || '',
-  TestNFDE2ESystemUserPW:process.env.NFD_E2E_SYSTEM_UPDATE_PASSWORD || ''
+  TestNFDE2ESystemUserPW:process.env.NFD_E2E_SYSTEM_UPDATE_PASSWORD || '',
+  IsCachingEnabled:true
 };

@@ -231,7 +231,8 @@ const events = {
   AOS_UNDISPUTED: 'AoS undisputed',
   AOS_DISPUTED: 'AoS disputed',
   NOTICE_OF_CHANGE: 'Notice of change',
-  REMOVE_SCANNED_DOCS:'Remove scanned document'
+  REMOVE_SCANNED_DOCS:'Remove scanned document',
+  CONDITIONAL_ORDER_PRONOUNCED: 'ConditionalOrderPronounced'
 };
 
 const serviceApplicationType = {

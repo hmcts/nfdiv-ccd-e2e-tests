@@ -93,7 +93,8 @@
     "puppeteer": "^5.4.1",
     "webdriverio": "^6.11.3",
     "lodash": "^4.17.21",
-    "concurrently": "^6.3.0"
+    "concurrently": "^6.3.0",
+    "node-cache": "^5.1.2"
   },
   "resolutions": {
     "axios": ">=0.21.1"
