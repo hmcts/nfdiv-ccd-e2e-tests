@@ -158,18 +158,13 @@ module.exports = {
     await I.fillField(this.fields.solNameApp1, 'Solicitor 1 Name');
     await I.fillField(this.fields.solFirmNameApp1, 'Solicitor 1 Firm name');
     await I.waitForNavigationToComplete(this.fields.submit);
-
-    // await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolPayment');
-    // await I.click(this.fields.PBAaccount);
-    // await I.waitForNavigationToComplete(this.fields.submit);
-
   },
 
   async JointIssueApplication(){
+    await I.wait(5);
     await I.waitInUrl('trigger/caseworker-issue-application/caseworker-issue-applicationissueApplication');
     await I.fillField(this.fields.placeOfMarriage, 'London');
     await I.fillField(this.fields.countryOfMarriage, 'UK');
-
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 };
