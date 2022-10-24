@@ -11,7 +11,8 @@ let caseNumber;
 
 Feature('NFD - Update Case in CCD ');
 
-Scenario('NFD - Update Case In CCD  ', async function (I) {
+// Useful for quickly updating a Case with data that is required. Skipping this as more for test data creation than a proper e2e one.
+Scenario.skip('NFD - Update Case In CCD  ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
