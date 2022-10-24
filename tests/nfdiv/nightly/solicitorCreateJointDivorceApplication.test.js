@@ -7,7 +7,7 @@ let caseNumber;
 
 Feature('Joint Application - Divorce');
 
-Scenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
+xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
