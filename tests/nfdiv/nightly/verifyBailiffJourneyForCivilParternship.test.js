@@ -12,7 +12,7 @@ let caseNumber;
 
 Feature('NFD Case - Verify Bailiff Journey for CP case');
 
-Scenario.skip('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
+Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-civil-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
@@ -64,4 +64,4 @@ Scenario.skip('NFD -CP Case -  Service Received , Service Payment, Bailiff Decis
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   assert.strictEqual('IssuedToBailiff',caseResponse.state);
 
-}).retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios).tag('@bailiff');
