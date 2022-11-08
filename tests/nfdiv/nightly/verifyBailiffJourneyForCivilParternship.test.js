@@ -64,4 +64,4 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   assert.strictEqual('IssuedToBailiff',caseResponse.state);
 
-}).retry(testConfig.TestRetryScenarios).tag('@bailiff');
+}).retry(testConfig.TestRetryScenarios).tag('@bailiff1');
