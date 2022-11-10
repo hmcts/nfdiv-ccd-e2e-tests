@@ -17,6 +17,10 @@ module.exports = {
     await I.see(state);
     await I.see(event);
     await I.wait(2);
+  },
+  async checkEventOnPage(event) {
+    await I.wait(7);
+    await I.see(event);
+    await I.wait(2);
   }
-
 };
