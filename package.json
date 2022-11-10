@@ -5,7 +5,7 @@
   "description": "",
   "scripts": {
     "test:test-e2e-standalone": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/solicitorCreateSoleDivorceApplication.test.js  -c ./ --steps",
-    "test:e2e-all": "SHOW_BROWSER_WINDOW=false NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run-workers 8 parallel --grep @bailiff run tests/nfdiv/nightly/*.test.js  -c ./ --steps",
+    "test:e2e-all": "SHOW_BROWSER_WINDOW=false NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run-workers 8 parallel --grep  run tests/nfdiv/nightly/*.test.js  -c ./ --steps",
     "pretest": "npm run create:type-definitions",
     "test:fullfunctional": "TESTS_FOR_ACCESSIBILITY='true' codeceptjs run-multiple parallel --steps  --grep @bailiff --reporter mochawesome",
     "test:gen-order": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/generalOrderReferralAndEmail.test.js  -c ./ --steps",
@@ -63,7 +63,7 @@
     "lint": "eslint .",
     "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser1' --reporter mocha-multi",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
-    "test:test-xb":"SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyBailiffJourney.test.js -c ./ --steps"
+    "test:test-xb":"SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyBailiffJourneyForCivilParternship.test.js -c ./  --steps --verbose "
   },
   "keywords": [],
   "author": "",

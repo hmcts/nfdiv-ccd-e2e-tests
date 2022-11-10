@@ -10,7 +10,7 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-Feature('NFD Case - Verify Bailiff Journey for CP case');
+Feature('NFD Case - Verify Bailiff Journey for CP case @bailiff');
 
 Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision and Bailiff Service ', async function (I) {
 
@@ -28,12 +28,12 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   verifyState(issueAosPack, states.AOS_AWAITING);
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  await I.wait(5);
+  //await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  await I.wait(3);
+  //await I.wait(3);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(5);
+  await I.amOnPage('/case-details/' + caseNumber,testConfig.TestTimeToWaitForText);
+  //await I.wait(5);
   await I.see('AoS awaiting');
   await I.see('Application issue');
   await I.checkNextStepForEvent('Service application received');
@@ -47,13 +47,27 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
   await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_REFERRAL, events.CONFIRM_SERVICE_PAYMENT);
+  await I.signOut();
+  // await I.wait(3);
+  // await I.checkNextStepForEvent('Make bailiff decision');
+  // await I.submitMakeBailiffDecision(caseNumber);
+  // await I.submitMakeBailiffDecisionCYA(caseNumber);
+  // await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
 
+  //Log in as Legal advisor to make decision
+  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(3);
-  await I.checkNextStepForEvent('Make bailiff decision');
+  await I.amOnPage('/case-details/' + caseNumber);
+  await I.wait(5);
+  await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
-  await I.checkState(stateDisplayName.AWAITING_BAILIFF_SERVICE, events.MAKE_BAILIFF_DECISION);
-
+  await I.checkEventOnPage(events.MAKE_BAILIFF_DECISION);
+  await I.signOut();
+  await I.wait(3);
+  await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
+  await I.wait(3);
+  await I.amOnPage('/case-details/' + caseNumber);
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);
@@ -64,4 +78,4 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   assert.strictEqual('IssuedToBailiff',caseResponse.state);
 
-}).retry(testConfig.TestRetryScenarios).tag('@bailiff1');
+}).retry(testConfig.TestRetryScenarios).tag('@bailiff');
