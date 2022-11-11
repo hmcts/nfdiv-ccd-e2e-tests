@@ -411,6 +411,10 @@ module.exports = function () {
     checkState: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkStateOnPage(state,event);
     },
+    checkEventOnPage: function(event){
+      return CaseworkerCheckStatAndEventPage.checkEventOnPage(event);
+
+    },
 
     checkEventAndStateOnPageAndSignOut: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
