@@ -75,8 +75,9 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
   await I.submitSoTConditionalOrderDetails();
   await I.submitConditionalOrder();
-  await I.checkStateAndEvent(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
+  await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
 
+  await I.wait(8);
   //Conditional Order - Do not Grant CO ->  Refusal Order ->  Get More Information ->  Marriage Certificate
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(3);
