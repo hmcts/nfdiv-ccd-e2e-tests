@@ -232,10 +232,10 @@ async function createNFDCaseAndFetchResponse(dataLocation = 'data/ccd-basic-data
   var ccdApiUrl;
   if(testConfig.TestUrl.includes('localhost')){
     ccdApiUrl = 'http://localhost:4452';
-    logger.info('Creating Case in Local Environment ...');
+    logger.info('Creating Case in Local Environment');
   }else{
+    logger.info(`Creating Case in Environment :: ${env}`);
     ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
-    logger.info('Creating Case in..'+{env} );
   }
 
   const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/solicitor-create-application/token`;
@@ -1070,13 +1070,13 @@ async function moveFromHoldingToAwaitingCO(dataLocation = 'data/await-co-data.js
   var ccdApiUrl='';
 
   if(testConfig.TestUrl.includes('localhost') ) {
+    console.log('.....using LOCAL  CCD API URL .....');
     ccdApiUrl = 'http://localhost:4452';
   }else{
+    console.log(`.....Environment is  :: ${env}`);
     ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   }
 
-
-  //const ccdApiUrl =`http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
   const ccdStartEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/event-triggers/${eventTypeId}/token`;
   const ccdSubmitEventPath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases/${caseId}/events`;
 
@@ -1239,8 +1239,7 @@ async function moveMultipleCasesToBulk(dataLocation = 'data/bulk-case-list-with-
   data = data.replace('replaceCaseId2',casesList[1]);
   data = data.replace('replaceCaseId3',casesList[2]);
 
-
-
+  console.log('dynamically replaced caseIds  '+casesList[0] , ',  '+ casesList[1] + ', ' +'and'+  casesList[2] );
 
   var saveBody = {
     event: {

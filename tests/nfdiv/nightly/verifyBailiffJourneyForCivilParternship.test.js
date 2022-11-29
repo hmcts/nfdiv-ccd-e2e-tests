@@ -25,7 +25,6 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
-  verifyState(issueAosPack, states.AOS_AWAITING);
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   //await I.wait(5);
