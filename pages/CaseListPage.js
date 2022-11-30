@@ -36,15 +36,15 @@ module.exports = {
 
   async resetFilter(caseNumber) {
     await I.wait(2);
-    await I.waitForElement('#wb-jurisdiction', '20');
+    await I.waitForElement('#wb-jurisdiction', testConfig.TestTimeToWaitForText);
     await I.retry(5).selectOption('#wb-jurisdiction', 'Family Divorce');
 
     await I.wait(2);
-    await I.waitForElement('#wb-case-type', '20');
+    await I.waitForElement('#wb-case-type', testConfig.TestTimeToWaitForText);
     await I.retry(5).selectOption('#wb-case-type', 'New Law Case');
 
     await I.wait(2);
-    await I.waitForElement('#wb-case-state', '20');
+    await I.waitForElement('#wb-case-state', testConfig.TestTimeToWaitForText);
 
     await I.retry(5).selectOption('#wb-case-state', 'Any');
 
