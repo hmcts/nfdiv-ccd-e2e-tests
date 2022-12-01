@@ -24,7 +24,7 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(5);
 
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);

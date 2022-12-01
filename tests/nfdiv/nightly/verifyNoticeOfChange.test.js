@@ -44,7 +44,7 @@ Scenario('Caseworker updates solicitor org for app1', async (I) => {
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(3);
 
   await I.checkNextStepForEvent('Notice of change');
@@ -97,7 +97,7 @@ Scenario('Caseworker removes solicitor org for app1', async (I) => {
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(3);
 
   await I.checkNextStepForEvent('Notice of change');

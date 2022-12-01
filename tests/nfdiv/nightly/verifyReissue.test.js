@@ -11,7 +11,8 @@ let caseNumber;
 
 Feature('Reissue Application');
 
-Scenario('Reissue - Digital ', async function (I) {
+// Duplicate ot verifyReissueDigital.test.js , TODO Check and Delete this test
+Scenario.skip('Reissue - Digital ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-case.json');
   console.log( '.....caseCreated in CCD , caseId is ==  ' + caseNumber);
@@ -31,7 +32,7 @@ Scenario('Reissue - Digital ', async function (I) {
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('Awaiting service');
   await I.see('Issue solicitor service pack');

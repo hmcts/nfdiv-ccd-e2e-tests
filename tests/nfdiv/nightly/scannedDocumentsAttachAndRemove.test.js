@@ -39,7 +39,7 @@ Scenario('NFD - Attach and Remove Scanned Documents Journey', async function (I)
   await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('Attach scanned docs');
 

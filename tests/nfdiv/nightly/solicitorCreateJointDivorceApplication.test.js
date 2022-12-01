@@ -73,7 +73,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Submit joint application');
   await I.submitDivJointApplication();
@@ -88,7 +88,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Sign and submit');
 
@@ -119,7 +119,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.wait(8);
   await I.shouldBeOnCaseListPage();
   await I.wait(7);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issue');
   await I.submitJointIssueApplication();

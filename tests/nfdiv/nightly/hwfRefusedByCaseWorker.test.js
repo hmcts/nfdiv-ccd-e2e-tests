@@ -19,7 +19,7 @@ Scenario('HWF Refused by Caseworker', async function (I) {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(events.HWF_REFUSED);
 

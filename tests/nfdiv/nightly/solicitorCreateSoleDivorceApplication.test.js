@@ -88,15 +88,10 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('HWF application accepted');
 
-  await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
-  await I.wait(8);
-
-  await I.checkNextStepForEvent('HWF application accepted');
   await I.hwfAccepted(caseNumber);
   await I.wait(2);
   await I.checkStateAndEvent('Submitted','HWF application accepted');
@@ -110,7 +105,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.wait(8);
   await I.shouldBeOnCaseListPage();
   await I.wait(7);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DIVORCE);
@@ -205,12 +200,12 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('HWF application accepted');
 
   await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(8);
 
   await I.checkNextStepForEvent('HWF application accepted');
@@ -227,7 +222,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
   await I.wait(8);
   await I.shouldBeOnCaseListPage();
   await I.wait(7);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.checkNextStepForEvent('Application issue');
   await I.fillIssueApplicationMarriageDetails(divorceOrDissolution.DISSOLUTION);

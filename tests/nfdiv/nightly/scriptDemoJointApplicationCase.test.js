@@ -50,7 +50,7 @@ xScenario(' A JointApplication case is part of a BulkList', async (I) => {
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Sign and submit');
   await I.submitSignAndSubmit(divorceOrDissolution.DIVORCE);

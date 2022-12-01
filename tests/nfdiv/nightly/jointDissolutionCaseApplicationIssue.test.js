@@ -71,7 +71,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent('Submit joint application');
   await I.submitJointApplication();
@@ -86,7 +86,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   // In Real time , this will be a CCD Async event which will move case from 'Awaiting applicant 2 response' to the
   // 'Applicant 2 Approved', but we trigger it manually here as it is easier to continue to test the  UI Flow as part of the Joint Journeys
@@ -120,7 +120,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.wait(5);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('Application issue');
   await I.submitJointIssueApplication();

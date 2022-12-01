@@ -91,7 +91,7 @@ Scenario('Caseworker validate HWF Reference and moves State to Application Submi
   await I.wait(3);
   await I.shouldBeOnCaseListPage();
   await I.wait(2);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(6);
 
   await I.selectHWFReferenceValidation();

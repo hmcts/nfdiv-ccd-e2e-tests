@@ -56,7 +56,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   //Log in as Legal advisor to make decision
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
@@ -66,7 +66,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.wait(3);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);

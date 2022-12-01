@@ -27,12 +27,12 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(issueAosPack, states.AOS_AWAITING);
 
-  await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.waitForText('AoS awaiting');
   await I.waitForText('Application issue');
@@ -55,7 +55,7 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
 
   //await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
@@ -68,7 +68,7 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   //Log in as Caseworker and issue the bailiff pack
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   //await I.wait(3);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(3);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);

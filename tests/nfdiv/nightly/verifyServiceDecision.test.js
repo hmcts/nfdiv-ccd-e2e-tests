@@ -33,7 +33,7 @@ Scenario.skip('NFD - Divorce Service Application , Service Payment and  Service 
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('AoS awaiting');
   await I.see('Application issue');

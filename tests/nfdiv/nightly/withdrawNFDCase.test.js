@@ -31,7 +31,7 @@ Scenario('NFD - Withdraw case moves state to Application withdrawn State', async
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(3);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('Awaiting service');
   await I.see('Issue solicitor service pack');

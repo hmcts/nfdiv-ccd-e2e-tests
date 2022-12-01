@@ -49,7 +49,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   // Draft CO
   await I.wait(5);
@@ -61,7 +61,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
 
   // Update CO
   await I.amOnPage('/case-details/'+caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
   await I.updateCOReviewAoS();

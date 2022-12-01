@@ -31,7 +31,7 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.wait(7);
   await I.shouldBeOnCaseListPage();
   await I.wait(5);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('Add note');
 

@@ -45,7 +45,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
@@ -86,7 +86,7 @@ xScenario('NFD - Share a Case and Draft AoS', async function (I) {
   // await I.submitAOSSotSolicitorDetails(caseNumber);
   // await I.submitAosCYA(caseNumber);
   // await I.wait(5);
-  // await I.amOnPage('/case-details/' + caseNumber);
+  // await I.amOnPage('/cases/case-details/' + caseNumber);
   // await I.wait(20);
   // await I.see('20 week holding period');
 

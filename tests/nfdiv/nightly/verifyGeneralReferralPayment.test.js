@@ -42,7 +42,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting General Referral Payme
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('General referral');
   await I.submitGeneralReferral();
@@ -78,7 +78,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('General referral');
   await I.submitGeneralReferralCW();
@@ -89,7 +89,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('General Consideration');
   await I.submitGeneralConsideration();
@@ -98,7 +98,7 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
   await I.filterByBulkCaseReference(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.checkNextStepForEvent('Request DWP disclosure');
   await I.submitRequestDWPDisclosure();

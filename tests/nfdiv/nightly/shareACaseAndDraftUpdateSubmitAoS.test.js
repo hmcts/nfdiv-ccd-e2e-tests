@@ -38,7 +38,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
@@ -67,7 +67,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   // await I.submitAOSSotSolicitorDetails(caseNumber);
   // await I.submitAosCYA(caseNumber);
   // await I.wait(5);
-  // await I.amOnPage('/case-details/' + caseNumber);
+  // await I.amOnPage('/cases/case-details/' + caseNumber);
   // await I.see('20 week holding period');
 
 }).retry(testConfig.TestRetryScenarios);
@@ -96,7 +96,7 @@ Scenario('Draft AoS - Respondent disagreed to claimed jurisdiction', async funct
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
