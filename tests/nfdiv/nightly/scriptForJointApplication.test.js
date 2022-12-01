@@ -55,7 +55,7 @@ Scenario('Script - XUI Joint Divorce Case - upto Holding State', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);

@@ -22,7 +22,7 @@ Scenario('Create General Email , Referral , Order', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(7);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 

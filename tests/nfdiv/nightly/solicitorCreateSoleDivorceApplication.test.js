@@ -85,7 +85,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
@@ -103,7 +103,7 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(7);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
@@ -197,7 +197,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
 
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
@@ -220,7 +220,7 @@ Scenario('Dissolution Application with Documents, HWF accepted and Submit the Ca
 
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(7);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);

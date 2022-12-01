@@ -70,7 +70,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
@@ -85,7 +85,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
 
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
@@ -117,7 +117,7 @@ xScenario('Joint Divorce application with PBA  and Issue the case ', async (I) =
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(8);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(7);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);

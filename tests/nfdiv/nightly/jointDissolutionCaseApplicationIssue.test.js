@@ -68,8 +68,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   await I.wait(10);
-  await I.shouldBeOnCaseListPage();
-
+  //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
@@ -84,7 +83,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(5);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
@@ -118,7 +117,7 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.wait(8);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);

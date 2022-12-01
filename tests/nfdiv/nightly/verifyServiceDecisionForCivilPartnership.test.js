@@ -59,7 +59,7 @@ Scenario('NFD - Civil Case ::Service Application , Service Payment and  Service 
   await I.wait(5);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(5);
-  await I.shouldBeOnCaseListPage();
+  //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
