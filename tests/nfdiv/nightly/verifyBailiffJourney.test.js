@@ -31,7 +31,7 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.waitForText('AoS awaiting');

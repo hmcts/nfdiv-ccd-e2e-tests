@@ -48,7 +48,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
   // Draft CO
@@ -82,7 +82,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(3);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/'+caseNumber);
   await I.wait(3);
   await I.checkNextStepForEvent(events.MAKE_A_DECISION);

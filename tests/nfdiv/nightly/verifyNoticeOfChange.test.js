@@ -43,7 +43,7 @@ Scenario('Caseworker updates solicitor org for app1', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(5);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(3);
 

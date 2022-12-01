@@ -32,7 +32,7 @@ Scenario('NFD - Civil Case ::Service Application , Service Payment and  Service 
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(5);
   await I.see('AoS awaiting');

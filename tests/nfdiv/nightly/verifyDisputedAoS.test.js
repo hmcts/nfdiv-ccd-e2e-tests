@@ -39,7 +39,7 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
@@ -58,7 +58,7 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
   await I.wait(8);
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.checkEventAndStateOnPageAndSignOut(states.TWENTY_WEEK_HOLDING_PERIOD, events.AOS_DISPUTED);
 

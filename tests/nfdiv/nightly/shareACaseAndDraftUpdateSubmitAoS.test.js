@@ -37,7 +37,7 @@ Scenario('NFD - Share a Case and Draft AoS', async function (I) {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
@@ -95,7 +95,7 @@ Scenario('Draft AoS - Respondent disagreed to claimed jurisdiction', async funct
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);;
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
 
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);

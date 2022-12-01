@@ -30,7 +30,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   //await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   //await I.wait(3);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/' + caseNumber,testConfig.TestTimeToWaitForText);
   //await I.wait(5);
   await I.see('AoS awaiting');

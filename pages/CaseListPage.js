@@ -54,7 +54,6 @@ module.exports = {
       await I.wait(5);
     }
     //await I.click(this.selectors.applyFilterButton);
-
   },
 
   async filterByCaseId(caseNumber) {

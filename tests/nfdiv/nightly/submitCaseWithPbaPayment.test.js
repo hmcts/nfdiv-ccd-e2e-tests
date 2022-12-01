@@ -15,7 +15,7 @@ Scenario('NFD - Submit Sole Divorce Case using PBA ', async function (I) {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.filterByCaseId(caseNumber);
+  //await I.filterByCaseId(caseNumber);
   await I.wait(5);
   await I.amOnPage('case-details/' + caseNumber);
   await I.wait(7);
