@@ -72,7 +72,7 @@ Scenario('NFD - Verify Bulk case pronounced', async function (I) {
   // await I.wait(7);
   // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   // await I.wait(7);
-  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  // //await I.filterByBulkCaseReference(bulkCaseReferenceId);
   // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   // //  await I.see('Case list 1');
   // //  await I.see('Bulk case list');

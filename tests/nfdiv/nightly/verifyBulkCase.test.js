@@ -66,7 +66,7 @@ Scenario('NFD - Verify Bulk Case ', async function (I) {
   // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   // await I.wait(5);
-  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  // //await I.filterByBulkCaseReference(bulkCaseReferenceId);
   // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   // await I.wait(5);
   // await I.checkStateAndEvent('Bulk case list created','Create bulk list');

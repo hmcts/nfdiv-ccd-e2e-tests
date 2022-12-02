@@ -48,7 +48,7 @@ Scenario.skip('Script - XUI Joint Divorce Case - upto Holding State', async (I) 
   // await I.amOnPage("/",testConfig.TestTimeToWaitForText);;
   // await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   // await I.wait(5);
-  // await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  // //await I.filterByBulkCaseReference(bulkCaseReferenceId);
   // await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   // //  await I.see('Case list 1');
   // //  await I.see('Bulk case list');

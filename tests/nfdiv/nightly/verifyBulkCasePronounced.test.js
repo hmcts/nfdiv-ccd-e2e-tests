@@ -68,7 +68,7 @@ Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(5);
-  await I.filterByBulkCaseReference(bulkCaseReferenceId);
+  //await I.filterByBulkCaseReference(bulkCaseReferenceId);
   await I.amOnPage('/case-details/' + bulkCaseReferenceId);
   await I.wait(7);
   await I.checkNextStepForEvent('Schedule cases for listing');
