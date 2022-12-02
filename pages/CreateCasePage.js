@@ -27,7 +27,7 @@ module.exports = {
   },
 
   async clickCreateCase() {
-    await I.waitForText('Create case','60');
+    await I.waitForText('Create case',testConfig.TestTimeToWaitForText);
     await I.wait(5);
     await I.click('Create case');
     await I.wait(4);
