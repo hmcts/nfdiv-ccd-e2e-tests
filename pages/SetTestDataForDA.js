@@ -2,7 +2,7 @@ const I = actor();
 const {eventDisplayName} = require('../common/constants');
 
 module.exports = {
-  
+
   fields: {
     selectActionDropDown: 'select[id="next-step"]',
     dnDateFieldText: 'Decree Nisi granted date',
@@ -17,7 +17,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitForElement(this.fields.selectActionDropDown);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.selectOption(this.fields.selectActionDropDown, eventDisplayName.TEST_EVENT_FOR_DA_DATA);
     await I.wait(1);
     await I.waitForNavigationToComplete(this.fields.submit);

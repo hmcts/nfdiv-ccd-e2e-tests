@@ -19,7 +19,7 @@ module.exports = {
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitor-create-applicationMarriageCertificateDetails');
     await I.waitForElement(this.fields.marriageDateDay);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.fillField(this.fields.marriageDateDay, '09');
     await I.fillField(this.fields.marriageDateMonth, '04');
     await I.fillField(this.fields.marriageDateYear, '2011');
@@ -37,7 +37,7 @@ module.exports = {
       unionUpperCase = union.toUpperCase();
       await I.waitInUrl('trigger/caseworker-issue-application/caseworker-issue-applicationissueApplication');
       await I.waitForElement(this.fields.marriageDateDay);
-      await I.runAccessibilityTest();
+      //////await I.runAccessibilityTest;
       await I.fillField(this.fields.marriageDateDay, '09');
       await I.fillField(this.fields.marriageDateMonth, '12');
       await I.fillField(this.fields.marriageDateYear, '2002');
@@ -48,7 +48,7 @@ module.exports = {
     }else if ( union === divorceOrDissolution.DISSOLUTION){
       await I.waitInUrl('trigger/caseworker-issue-application/caseworker-issue-applicationissueApplication');
       await I.waitForElement(this.fields.marriageDateDay);
-      await I.runAccessibilityTest();
+      ////await I.runAccessibilityTest;
       await I.fillField(this.fields.marriageDateDay, '09');
       await I.fillField(this.fields.marriageDateMonth, '12');
       await I.fillField(this.fields.marriageDateYear, '2002');

@@ -23,7 +23,7 @@ module.exports = {
   async fillSoTAndSoRDetails() {
     await I.waitInUrl('trigger/submit-aos/submit-aosApplicant2SolStatementOfTruth');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Statement of truth and reconciliation');
     await I.see('Review the answers in your Acknowledgement of Service below. If you wish to change any of your answers, please go back and use the \'Update AoS\' action');
     await I.see('Has the respondent read the application ?');
@@ -44,7 +44,7 @@ module.exports = {
     await I.see('Solicitor’s name');
     await I.see('Solicitor’s firm');
     await I.see('Additional Comments');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   },
@@ -55,7 +55,7 @@ module.exports = {
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     // await I.see(caseId);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.jurisdictionAgreeNo);
     await I.see('Reason respondent disagreed to claimed jurisdiction');
     await I.wait(2);
@@ -68,7 +68,7 @@ module.exports = {
     await I.wait(4);
     await I.see('Are there any other legal proceedings outside of England and Wales?');
     // await I.see(caseId);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.legalProceedingsExistsYes);
     await I.wait(2);
     await I.fillField(this.fields.legalProceedingsDescription,'legal proceedings description');
@@ -83,7 +83,7 @@ module.exports = {
     await I.see('Link to online petition');
     await I.see('Has the respondent read the application for divorce?');
     await I.see('Respondent agreed to claimed jurisdiction?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   },

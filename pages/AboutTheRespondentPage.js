@@ -33,7 +33,7 @@ module.exports = {
 
 
     await I.wait(1);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   }

@@ -50,7 +50,7 @@ module.exports = {
       await I.waitInUrl('/DIVORCE/NFD/solicitor-create-application/submit');
     }
     //pause();
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Apply: divorce or dissolution');
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');

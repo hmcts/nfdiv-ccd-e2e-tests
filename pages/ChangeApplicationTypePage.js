@@ -25,7 +25,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-update-application-type/caseworker-update-application-typeupdateApplicationType');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Change application type');
     await I.selectOption(this.fields.applicationType, 'Joint Application');
     await I.wait(2);
@@ -35,7 +35,7 @@ module.exports = {
   async updateApplicationTypeSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-update-application-type/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

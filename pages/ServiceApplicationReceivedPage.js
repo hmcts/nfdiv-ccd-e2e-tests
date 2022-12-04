@@ -20,7 +20,7 @@ module.exports = {
     await I.wait(1);
 
     await I.waitForElement(this.fields.applicationDate);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.fillField(this.fields.applicationDateDay, '11');
     await I.fillField(this.fields.applicationDateMonth, '02');
     await I.fillField(this.fields.applicationDateYear, '2021');

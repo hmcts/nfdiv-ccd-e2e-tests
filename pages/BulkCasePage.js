@@ -23,7 +23,7 @@ module.exports = {
   async submitLinkWithBulkCase(caseNumber){
     await I.waitInUrl('system-link-with-bulk-case/submit');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Link with bulk case');
     await I.waitForNavigationToComplete(this.fields.submit);
   }

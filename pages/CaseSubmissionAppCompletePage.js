@@ -7,7 +7,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     //await I.see('Before you submit');
     await I.see('What happens next');
     await I.see('Please continue to submit your application on the next screen');

@@ -38,7 +38,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-create-general-order/caseworker-create-general-orderCreateGeneralOrder');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.labelCreateGeneralOrderMsg);
     await I.fillField(this.fields.day, '24');
     await I.fillField(this.fields.month, '07');
@@ -61,7 +61,7 @@ module.exports = {
   async fillCya(caseId) {
     await I.waitInUrl('/trigger/caseworker-create-general-order/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.labelCreateGeneralOrderMsg);
     await I.see(this.fields.labelCheckYourAnswers);
     await I.see(this.fields.labelCheckInfoBelow);

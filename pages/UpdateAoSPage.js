@@ -23,7 +23,7 @@ module.exports = {
   async updateAoSContactDetails() {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Confirm solicitor contact details');
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
@@ -54,7 +54,7 @@ module.exports = {
     await I.see('Do you agree that the courts of England and Wales have jurisdiction?');
     await I.see('Respondent agreed to claimed jurisdiction?');
     // await I.see(caseId);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.see('Yes');
     await I.wait(2);

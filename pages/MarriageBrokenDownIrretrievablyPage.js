@@ -22,7 +22,7 @@ module.exports = {
       await I.waitForText('Has the applicant\'s civil partnership broken down irretrievably?');
     }
     // await I.waitForText('Has the applicant\'s marriage broken down irretrievably?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.marriageBrokenDownYes);
 
     await I.waitForNavigationToComplete(this.fields.submit);

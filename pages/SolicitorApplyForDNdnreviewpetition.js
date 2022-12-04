@@ -12,7 +12,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitorApplyForDNdnreviewpetition');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.petitionChangedYes);
     await I.fillField(this.fields.changeDetailsId, this.fields.changedDetailsValue);
     await I.click(this.fields.confirmPetitionYes);

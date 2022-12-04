@@ -30,7 +30,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-general-referral/caseworker-general-referralgeneralReferral');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.generalApplicationReferral);
     await I.wait(2);
     await I.click(this.fields.urgentReferralRequiredYes);
@@ -51,7 +51,7 @@ module.exports = {
   async submitGeneralReferral(caseId) {
     await I.waitInUrl('trigger/caseworker-general-referral/caseworker-general-referralgeneralReferral');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    //////await I.runAccessibilityTest;
     await I.click(this.fields.generalApplicationReferral);
     await I.click(this.fields.urgentReferralRequiredYes);
     await I.fillField(this.fields.generalReferralUrgentCaseReason, 'Urgent Reason description');

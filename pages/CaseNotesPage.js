@@ -25,7 +25,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('trigger/caseworker-add-note/caseworker-add-noteaddCaseNotes');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Add case notes');
     await I.fillField(this.fields.note, 'Adding case note for '+caseId);
     await I.wait(2);
@@ -35,7 +35,7 @@ module.exports = {
   async fillEventSummaryAndDetail(caseId) {
     await I.waitInUrl('trigger/caseworker-add-note/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

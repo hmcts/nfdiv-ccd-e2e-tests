@@ -20,7 +20,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('/trigger/caseworker-create-general-email/caseworker-create-general-emailcreateGeneralEmail');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.CreateGeneralEmail_Msg);
     await I.selectOption(this.fields.emailParties,'Other') ;
     await I.wait(2);
@@ -34,7 +34,7 @@ module.exports = {
   async fillEventSummaryAndDetail(caseId) {
     await I.waitInUrl('/trigger/caseworker-create-general-email/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.CreateGeneralEmail_Msg);
     await I.fillField(this.fields.eventSummary, 'event summary for '+caseId);
     await I.fillField(this.fields.eventDescription, 'event desc for '+caseId);
@@ -45,7 +45,7 @@ module.exports = {
   async cyaGeneralEmail() {
     await I.waitInUrl('/caseworker-create-general-email/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.CreateGeneralEmail_Msg);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');

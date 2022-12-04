@@ -14,7 +14,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitorCreateSolSOCSeparation');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.fillField(this.fields.d8MentalSepDay, '11');
     await I.fillField(this.fields.d8MentalSepMonth, '12');
     await I.fillField(this.fields.d8MentalSepYr, '2000');

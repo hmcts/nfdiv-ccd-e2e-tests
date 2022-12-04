@@ -21,7 +21,7 @@ module.exports = {
       await I.see('The applicant\'s full name as on marriage certificate');
       await I.see('The respondent full name as on marriage certificate');
       await I.see('Place of marriage');
-      await I.runAccessibilityTest();
+      ////await I.runAccessibilityTest;
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(5);
     }else if ( union === divorceOrDissolution.DISSOLUTION){
@@ -36,7 +36,7 @@ module.exports = {
       await I.see('The applicant\'s full name as on civil partnership certificate');
       await I.see('The respondent full name as on civil partnership certificate');
       await I.see('Place of civil partnership');
-      await I.runAccessibilityTest();
+      ////await I.runAccessibilityTest;
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(5);
     }
@@ -55,7 +55,7 @@ module.exports = {
       await I.see('The applicant\'s full name as on marriage certificate');
       await I.see('Applicant 2 full name as on marriage certificate');
       await I.see('Place of marriage');
-      await I.runAccessibilityTest();
+      ////await I.runAccessibilityTest;
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(5);
     } else if (union === divorceOrDissolution.DISSOLUTION) {
@@ -70,7 +70,7 @@ module.exports = {
       await I.see('The applicant\'s full name as on civil partnership certificate');
       await I.see('Applicant 2 full name as on civil partnership certificate');
       await I.see('Place of civil partnership');
-      await I.runAccessibilityTest();
+      ////await I.runAccessibilityTest;
       await I.waitForNavigationToComplete(this.fields.submit);
       await I.wait(5);
     }

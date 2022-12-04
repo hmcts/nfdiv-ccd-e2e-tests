@@ -12,7 +12,7 @@ module.exports = {
 
   async fillFormAndSubmit(reason) {
     await I.waitInUrl('solicitorCreateSolSOCLivedApart');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     if (reasonsForDivorce.DESERTION === reason) {
       await I.click(this.fields.d8LivedApartSinceDesertion);
     } else if ([reasonsForDivorce.SEPFIVEYRS, reasonsForDivorce.SEPTWOYRS].includes(reason)) {

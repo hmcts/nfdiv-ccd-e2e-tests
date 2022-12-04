@@ -11,7 +11,7 @@ module.exports = {
 
   async fillFormAndSubmit(reason) {
     await I.waitInUrl('solicitorCreateSolReasonForDivorce');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     if (reason === reasonsForDivorce.ADULTERY) {
       await I.selectOption(this.fields.fact, reasonsForDivorce.ADULTERYDISPLAY);
     } else if (reason === reasonsForDivorce.BEHAVIOUR) {

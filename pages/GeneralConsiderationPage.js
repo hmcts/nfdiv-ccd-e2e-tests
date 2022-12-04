@@ -11,7 +11,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('trigger/legal-advisor-general-consideration/legal-advisor-general-considerationgeneralConsiderationResponse');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.generalConsiderationApprove);
     await I.fillField(this.fields.generalConsiderationReason, 'Some details');
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -23,7 +23,7 @@ module.exports = {
   async submitGeneralReferral(caseId) {
     await I.waitInUrl('trigger/caseworker-general-referral/caseworker-general-referralgeneralReferral');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.generalApplicationReferral);
     await I.fillField(this.fields.day, '24');
     await I.fillField(this.fields.month, '07');
@@ -40,7 +40,7 @@ module.exports = {
   async submit(caseId) {
     await I.waitInUrl('trigger/caseworker-request-dwp-disclosure/submit');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForNavigationToComplete(this.fields.submit);
   }
 

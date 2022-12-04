@@ -16,7 +16,7 @@ module.exports = {
   async fillFormAndSubmit(caseId) {
     await I.waitInUrl('/trigger/caseworker-hwf-application-accepted/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.HWF_Message);
     await I.fillField(this.fields.hwfEventSummary, 'Event Summary for ' +caseId) ;
     await I.fillField(this.fields.hwfEventDescription, 'Event Description for ' +caseId);
@@ -26,7 +26,7 @@ module.exports = {
   async fillHwfRefusedEventNotes(caseId) {
     await I.waitInUrl('/trigger/caseworker-hwf-refused/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.HWF_Refused);
     await I.fillField(this.fields.hwfEventSummary, 'Event Summary for ' +caseId) ;
     await I.fillField(this.fields.hwfEventDescription, 'Event Description for ' +caseId);
@@ -36,7 +36,7 @@ module.exports = {
   async hwfAcceptedSaveAndContinue(caseId) {
     await I.waitInUrl('/trigger/caseworker-hwf-application-accepted/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see(this.fields.HWF_Message);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);

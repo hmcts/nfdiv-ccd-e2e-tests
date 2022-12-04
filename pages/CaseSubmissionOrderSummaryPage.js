@@ -11,7 +11,7 @@ module.exports = {
   async fillFormAndSubmit(paymentMethod) {
     await I.waitInUrl('solicitor-submit-application/solicitor-submit-applicationSolPaymentSummary');
     await I.waitForText('Sign and submit');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     if (paymentMethod === paymentType.FEE_ACCOUNT) {
       await I.see('Your fee account reference:');
     } else if (paymentMethod === paymentType.HWF) {

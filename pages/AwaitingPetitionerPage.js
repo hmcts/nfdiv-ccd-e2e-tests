@@ -14,7 +14,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);
     await I.waitForElement(this.fields.eventSummary);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForElement(this.fields.submit);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

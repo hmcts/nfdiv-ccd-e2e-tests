@@ -28,7 +28,7 @@ module.exports = {
   async fillFormAndSubmit(urgent, union) {
 
     await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
 
     if (urgent === yesorno.No) {
       await I.click(this.fields.caseUrgentNo);

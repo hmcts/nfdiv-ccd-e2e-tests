@@ -19,7 +19,7 @@ module.exports = {
     await I.wait(1);
 
     await I.waitForElement(this.fields.serviceApplicationPayment);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.selectOption(this.fields.serviceApplicationPayment, 'Help with Fees');
     await I.fillField(this.fields.helpWithFeesReferenceNumber, 'HWF-123-456');
     await I.waitForElement(this.fields.submit);

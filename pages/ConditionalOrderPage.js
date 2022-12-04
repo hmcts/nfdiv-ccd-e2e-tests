@@ -38,7 +38,7 @@ module.exports = {
     await I.wait(2);
     await I.waitInUrl('trigger/draft-conditional-order/draft-conditional-orderConditionalOrderReviewApplicant1');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Link to online application');
     await I.see('Is the information in this application still correct?');
     await I.click(this.fields.changeOrAddAnythingToApplication);
@@ -57,7 +57,7 @@ module.exports = {
 
   async draftConditionalOrderCYA() {
     await I.waitInUrl('/draft-conditional-order/submit');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.wait(2);
     await I.see('Check your answers');
     await I.see('Check the information below carefully.');

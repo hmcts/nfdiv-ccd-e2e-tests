@@ -29,7 +29,7 @@ module.exports = {
   async fillFormAndSubmit() {
 
     await I.waitInUrl('solicitor-create-applicationApplicant2ServiceDetails');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.applicant2SolicitorRepresented);
     await I.fillField(this.fields.applicant2SolicitorName, 'James and Co');
     await I.fillField(this.fields.applicant2SolicitorReference, '123645');
@@ -71,7 +71,7 @@ module.exports = {
 
   async fillFormForRepresentedRespondentAndSubmit() {
     await I.waitInUrl('solicitorCreateRespondentServiceDetails');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.applicant2SolicitorRepresented);
     await I.wait(1);
 
@@ -91,7 +91,7 @@ module.exports = {
 
   async fillFormForNotRepresentedRespondent(){
     await I.waitInUrl('solicitorCreateRespondentServiceDetails');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.applicant2SolicitorNotRepresented);
     await I.wait(1);
 

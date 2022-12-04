@@ -8,7 +8,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForElement(this.fields.existingLanguagePreferences);
     await I.click(this.fields.existingLanguagePreferences);
     await I.waitForNavigationToComplete(this.fields.submit);

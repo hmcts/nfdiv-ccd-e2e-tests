@@ -13,7 +13,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitorCreateSolSOCDesertion');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.desertionAgreedNo);
     await I.fillField(this.fields.reasonForDivorceDesertionDateDay, '11');
     await I.fillField(this.fields.reasonForDivorceDesertionDateMonth, '12');

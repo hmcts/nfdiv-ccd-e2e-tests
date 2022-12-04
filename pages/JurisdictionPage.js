@@ -12,7 +12,7 @@ module.exports = {
 
   async selectLegalActionsAndSubmit() {
     await I.waitForText('Jurisdiction - Apply for a divorce');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.legalConnections_1);
     await I.click(this.fields.legalConnections_2);
     await I.click(this.fields.legalConnections_3);

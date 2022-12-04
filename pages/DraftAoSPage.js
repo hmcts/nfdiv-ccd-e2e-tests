@@ -24,7 +24,7 @@ module.exports = {
   async fillConfirmContactDetails() {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolConfirmContactDetails');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     //await I.see('Confirm solicitor contact details');
     await I.fillField(this.fields.respSolicitorName, 'Porter & Co');
     await I.fillField(this.fields.respSolicitorPhone,'02031214214');
@@ -40,7 +40,7 @@ module.exports = {
     await I.wait(4);
     //await I.see('Review application');
     await I.see('View application');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.confirmReadPetitionYes);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
@@ -51,7 +51,7 @@ module.exports = {
     await I.wait(4);
     await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.continueWithoutDisputingTheDivorce);
     await I.see('Continue without disputing');
     await I.wait(2);
@@ -63,7 +63,7 @@ module.exports = {
     await I.wait(4);
     await I.see('The respondent can only dispute the application if: (one or more of the following)');
     await I.see('How do you want to respond?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Continue without disputing');
     await I.click(this.fields.continueWithDisputingTheDivorce);
     await I.wait(2);
@@ -75,7 +75,7 @@ module.exports = {
     await I.wait(4);
     await I.see('The applicant indicated the courts of England and Wales have jurisdiction because:');
     await I.see('Does the respondent agree the courts of England and Wales have jurisdiction?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.jurisdictionAgreeYes);
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
@@ -86,7 +86,7 @@ module.exports = {
     await I.wait(4);
     await I.see('The applicant indicated the courts of England and Wales have jurisdiction because:');
     await I.see('Does the respondent agree the courts of England and Wales have jurisdiction?');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.jurisdictionAgreeNo);
     await I.fillField(this.fields.reasonForNoJurisdiction,'Reason for no jurisdiction');
     await I.fillField(this.fields.whereIsYourLifeBased,'Sunny Australia');
@@ -97,7 +97,7 @@ module.exports = {
   async anyOtherLegalProceedings(caseId) {
     await I.waitInUrl('trigger/draft-aos/draft-aosApplicant2SolAosOtherProceedings');
     await I.see('Are there any other legal proceedings relating to the');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.click(this.fields.legalProceedingsExistsYes);
     await I.wait(2);
     await I.fillField(this.fields.legalProceedingsDescription,'legal proceedings description');
@@ -111,7 +111,7 @@ module.exports = {
     await I.see('How do you want to respond?');
     await I.see('Are there any other legal proceedings relating to the');
     await I.see('Provide details of the other legal proceedings');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.wait(2);
     await I.waitForNavigationToComplete(this.fields.submit);
   }

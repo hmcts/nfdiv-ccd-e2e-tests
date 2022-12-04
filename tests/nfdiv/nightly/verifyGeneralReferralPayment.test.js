@@ -104,6 +104,4 @@ Scenario('NFD - Creating a case and moving it to Awaiting DWP Response from Awai
   await I.submitRequestDWPDisclosure();
   await I.checkStateAndEvent(states.AWAITING_DWP_RESPONSE, eventDisplayName.REQUEST_DWP_DISCLOSURE);
 
-
-
 }).retry(testConfig.TestRetryScenarios);

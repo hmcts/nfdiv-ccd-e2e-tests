@@ -14,7 +14,7 @@ module.exports = {
   async fillFormAndSubmit() {
     await I.waitInUrl('trigger/caseworker-update-due-date/caseworker-update-due-dateupdateDueDate');
     await I.wait(2);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Update due date');
     await I.fillField(this.fields.day, '23');
     await I.fillField(this.fields.month, '07');
@@ -26,7 +26,7 @@ module.exports = {
   async submitUpdateDueDate(caseId) {
     await I.waitInUrl('trigger/caseworker-update-due-date/submit');
     await I.wait(4);
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(2);
   }

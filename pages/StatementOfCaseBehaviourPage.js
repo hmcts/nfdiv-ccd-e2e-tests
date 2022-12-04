@@ -10,7 +10,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitInUrl('solicitorCreateSolSOCBehaviour1');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.fillField(this.fields.behaviourDetails, 'My wife is abusing me');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(1);

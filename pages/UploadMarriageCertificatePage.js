@@ -13,7 +13,7 @@ module.exports = {
 
   async fillFormAndSubmit() {
     await I.waitInUrl('/solicitor-create-application/solicitor-create-applicationUploadSupportingDocuments');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.see('Upload your document');
     I.click(locate('.button').withText('Add new'));
     //const isAttachFileSupportedBrowser = !(await I.isMicrosoftEdgeOrSafariBrowser());
@@ -39,7 +39,7 @@ module.exports = {
 
   async notUploadingAnyDocuments() {
     await I.waitInUrl('/solicitor-create-application/solicitor-create-applicationUploadSupportingDocuments');
-    await I.runAccessibilityTest();
+    ////await I.runAccessibilityTest;
     await I.wait(3);
     await I.see('Applicant 1 uploaded documents (Optional)');
 
