@@ -140,6 +140,14 @@ module.exports = function () {
       return CreateCasePage.clickCreateCase();
     },
 
+    createCaseWithUrl: function(urlPath) {
+      return CreateCasePage.createCaseBasedWithUrl(urlPath);
+    },
+
+    createTestCaseWithUrl: function(urlPath) {
+      return CreateCasePage.createTestCaseWithUrl(urlPath);
+    },
+
     clickCreateList: function() {
       return CaseListPage.clickCreateList();
     },

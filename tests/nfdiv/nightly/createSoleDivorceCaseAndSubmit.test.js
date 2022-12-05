@@ -1,4 +1,4 @@
-const {paymentType,yesorno,divorceOrDissolution} = require('../../../common/constants');
+const {paymentType,yesorno,divorceOrDissolution, url} = require('../../../common/constants');
 const testConfig = require('./../../config');
 
 let caseNumber;
@@ -10,12 +10,11 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-
-  await I.clickCreateCase();
-
-  await I.wait(15);
-  await I.fillCreateCaseFormAndSubmit();
-
+  await I.wait(8);
+  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  //await I.clickCreateCase();
+  //await I.fillCreateCaseFormAndSubmit();
+  await I.wait(2);
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor

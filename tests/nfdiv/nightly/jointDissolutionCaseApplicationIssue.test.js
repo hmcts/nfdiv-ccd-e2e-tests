@@ -1,4 +1,4 @@
-const {paymentType,yesorno,divorceOrDissolution, user} = require('../../../common/constants');
+const {paymentType,yesorno,divorceOrDissolution, user, url} = require('../../../common/constants');
 const testConfig = require('./../../config');
 const {updateRoleForCase, shareCaseToRespondentSolicitor} = require('../../../helpers/utils');
 const assert = require('assert');
@@ -14,9 +14,12 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
 
   //await I.waitForValue('Sign in or create an account');
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.clickCreateCase();
+  //await I.clickCreateCase();
+  await I.wait(10);
+  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  await I.wait(5);
 
-  await I.wait(15);
+
   await I.fillCreateCaseFormAndSubmit();
   await I.fillSoleOrJointOptionForDivorce(yesorno.No, divorceOrDissolution.DISSOLUTION); // 'Yes' for Sole, 'No' for Joint.
 

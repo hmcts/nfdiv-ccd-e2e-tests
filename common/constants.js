@@ -20,6 +20,11 @@ const respondentUserPW='Testing123';
 
 const bulkCaseReferenceCaseType='NO_FAULT_DIVORCE_BulkAction';
 
+const url = {
+  HOW_DO_YOU_WANT_TO_APPLY:'/cases/case-create/DIVORCE/NFD/solicitor-create-application/solicitor-create-applicationhowDoYouWantToApplyForDivorce',
+  CREATE_TEST_URL:'/cases/case-create/DIVORCE/NFD/create-test-application/create-test-applicationCreate%20test%20case'
+};
+
 const divorceOrDissolution = {
   DIVORCE: 'Divorce',
   DISSOLUTION: 'Dissolution'
@@ -255,5 +260,6 @@ module.exports = {
   serviceApplicationType,
   currentCaseType,
   bulkCaseReferenceCaseType,
-  citizenUserPW
+  citizenUserPW,
+  url
 };

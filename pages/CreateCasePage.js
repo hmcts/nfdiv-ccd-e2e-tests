@@ -33,6 +33,24 @@ module.exports = {
     await I.wait(4);
   },
 
+  async createCaseBasedWithUrl(url) {
+    console.log('URL is ::'+ url );
+    await I.amOnPage(url);
+    await I.see('Divorce');
+    await I.see('Dissolution');
+    await I.wait(4);
+  },
+
+  async createTestCaseWithUrl(url) {
+    console.log('URL is ::'+ url );
+    await I.amOnPage(url);
+    await I.see('Create test case');
+    await I.see('Application type');
+    await I.see('Is applicant 1 represented');
+    await I.see('Is applicant 2 represented');
+    await I.wait(4);
+  },
+
   async fillFormAndSubmit() {
     if (testConfig.TestForCrossBrowser) {
       await I.wait(7);

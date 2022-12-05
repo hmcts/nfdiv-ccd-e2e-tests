@@ -1,6 +1,6 @@
 const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespondentSolicitor,moveFromHoldingToAwaitingCO,moveCaseToBulk,
   updateFinalOrderDateForNFDCaseInCcd,moveMultipleCasesToBulk} = require('../../../helpers/utils');
-const { soleOrJoint, states, events , user, stateDisplayName, eventDisplayName, yesorno, divorceOrDissolution} = require('../../../common/constants');
+const { soleOrJoint, states, events , user, stateDisplayName, eventDisplayName, yesorno, divorceOrDissolution, url} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -83,8 +83,9 @@ Scenario.skip('Script - XUI Joint Divorce Case - upto Holding State', async (I) 
 }).retry(testConfig.TestRetryScenarios);
 
 async function createTestCaseHere(I) {
-  await I.clickCreateCase();
-  await I.fillCreateTestCaseFormAndSubmit();
+  await I.wait(10);
+  await I.createTestCaseWithUrl(url.CREATE_TEST_URL);
+  await I.wait(5);
   await I.createTestCaseWith();
   caseNumber = await I.pressSubmit();
   caseNumber = caseNumber.toString();

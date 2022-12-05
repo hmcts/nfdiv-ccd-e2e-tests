@@ -1,4 +1,4 @@
-const {paymentType,yesorno,states,divorceOrDissolution} = require('../../../common/constants');
+const {paymentType,yesorno,states,divorceOrDissolution, url} = require('../../../common/constants');
 const {getCaseDetailsFor, getCaseDetailsAsSolFor} = require('../../../helpers/utils');
 const testConfig = require('./../../config');
 const assert = require('assert');
@@ -11,9 +11,13 @@ Scenario('CP Case with Documents, HWF and Case Issued', async (I) => {
 
   await I.amOnHomePage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.clickCreateCase();
-  await I.wait(15);
-  await I.fillCreateCaseFormAndSubmit();
+  // await I.clickCreateCase();
+  // await I.wait(15);
+  // await I.fillCreateCaseFormAndSubmit();
+
+  await I.wait(10);
+  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  await I.wait(5);
 
   // Sole &&  Dissolution
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes,divorceOrDissolution.DISSOLUTION);

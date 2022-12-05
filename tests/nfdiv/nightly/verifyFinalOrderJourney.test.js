@@ -2,7 +2,7 @@ const {createNFDCaseInCcd,updateNFDCaseInCcd,updateRoleForCase,shareCaseToRespon
   updateCaseInCcd,bulkCaseListSchedule,bulkCaseListPronounced,moveCaseToConditionalOderPronounced,
   updateFinalOrderDateForNFDCaseInCcd
 } = require('../../../helpers/utils');
-const { states, events , user, stateDisplayName, eventDisplayName} = require('../../../common/constants');
+const { states, events , user, stateDisplayName, eventDisplayName,url} = require('../../../common/constants');
 const assert = require('assert');
 const testConfig = require('./../../config');
 
@@ -25,8 +25,11 @@ Scenario('NFD - Verify Final Order pronounced', async function (I) {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.clickCreateCase();
-  await I.fillCreateTestCaseFormAndSubmit();
+  // await I.clickCreateCase();
+  // await I.fillCreateTestCaseFormAndSubmit();
+  await I.wait(10);
+  await I.createTestCaseWithUrl(url.CREATE_TEST_URL);
+  await I.wait(5);
   await I.fillCreateTestCase();
   caseNumber = await I.pressSubmit();
 
