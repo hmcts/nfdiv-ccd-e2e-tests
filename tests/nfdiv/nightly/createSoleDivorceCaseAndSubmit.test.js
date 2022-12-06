@@ -11,9 +11,9 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(8);
-  //await I.clickCreateCase();
-  // avoiding 'Create Case' click issue.
-  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+
+  await I.clickCreateCase();
+  await I.fillCreateCaseFormAndSubmit();
 
   await I.wait(2);
 
@@ -73,4 +73,3 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   await I.solAwaitingPaymentConfPageFormAndSubmit();
   console.log('~~~~~~~~~~~~~  Solicitor Submit Done ~~~~~~~~');
 }).tag('@crossbrowser').retry(testConfig.TestRetryScenarios);
-//}).retry(testConfig.TestRetryScenarios);
