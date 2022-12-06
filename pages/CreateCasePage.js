@@ -33,6 +33,12 @@ module.exports = {
     await I.wait(4);
   },
 
+  async useCaseFilterUrl() {
+    await I.amOnPage('/cases/case-filter');
+    await I.waitForText('Create case',testConfig.TestTimeToWaitForText);
+    await I.wait(5);
+  },
+
   async createCaseBasedWithUrl(url) {
     console.log('URL is ::'+ url );
     await I.amOnPage(url);

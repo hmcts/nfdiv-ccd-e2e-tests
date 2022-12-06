@@ -135,6 +135,10 @@ module.exports = function () {
       return CaseListPage.filterByCaseNumber(caseNum);
     },
 
+    createCaseUsingFilter: function() {
+      return CreateCasePage.useCaseFilterUrl();
+    },
+
 
     clickCreateCase: function() {
       return CreateCasePage.clickCreateCase();

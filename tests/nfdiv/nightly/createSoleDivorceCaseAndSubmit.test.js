@@ -11,14 +11,13 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
 
-  // await I.clickCreateCase();
-  // await I.fillCreateCaseFormAndSubmit();
-
-  await I.wait(10);
+  await I.wait(7);
+  await I.createCaseUsingFilter();
+  await I.wait(8);
+  //await I.fillCreateCaseFormAndSubmit();
   await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
-  await I.wait(5);
+  await I.wait(10);
 
-  // Divorce or Dissolution.
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
