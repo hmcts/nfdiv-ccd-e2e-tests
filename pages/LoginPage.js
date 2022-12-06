@@ -13,7 +13,7 @@ module.exports = {
     await I.wait(5);
     await I.fillField(this.fields.email, email);
     await I.fillField(this.fields.password, password);
-    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.waitForNavigationToComplete(this.fields.submit,testConfig.TestTimeToWaitForText);
     await I.wait(5);
     //await I.waitInUrl('/cases',testConfig.TestTimeToWaitForText);
   }
