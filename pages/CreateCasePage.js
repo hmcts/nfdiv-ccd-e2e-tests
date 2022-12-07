@@ -34,8 +34,8 @@ module.exports = {
   },
 
   async useCaseFilterUrl() {
-    await I.amOnPage('/cases/case-filter');
-    await I.waitForText('Create case',testConfig.TestTimeToWaitForText);
+    await I.amOnPage('/cases');
+    //await I.waitForText('Create case',testConfig.TestTimeToWaitForText);
     await I.wait(5);
   },
 
