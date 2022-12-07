@@ -11,10 +11,17 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
 
+  // Avoiding the 'Create Case' link route
+  // await I.wait(15);
+  // await I.createCaseUsingFilter();
+  // //await I.fillCreateCaseFormAndSubmit();
+  // await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  // await I.wait(10);
+
+  // Existing  way
+  await I.clickCreateCase();
   await I.wait(15);
-  //await I.createCaseUsingFilter();
-  //await I.fillCreateCaseFormAndSubmit();
-  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  await I.fillCreateCaseFormAndSubmit();
   await I.wait(10);
 
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
