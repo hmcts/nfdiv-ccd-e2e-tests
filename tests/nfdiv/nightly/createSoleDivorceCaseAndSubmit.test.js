@@ -11,9 +11,8 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
 
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
 
-  await I.wait(7);
-  await I.createCaseUsingFilter();
-  await I.wait(8);
+  await I.wait(15);
+  //await I.createCaseUsingFilter();
   //await I.fillCreateCaseFormAndSubmit();
   await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
   await I.wait(10);
