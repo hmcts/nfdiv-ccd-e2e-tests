@@ -9,13 +9,13 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  //Commenting out to check old way
+  // await I.wait(10);
+  // await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  // await I.wait(5);
 
-  await I.wait(10);
-  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
-  await I.wait(5);
-
-  //await I.clickCreateCase();
-  //await I.fillCreateCaseFormAndSubmit();
+  await I.clickCreateCase();
+  await I.fillCreateCaseFormAndSubmit();
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor

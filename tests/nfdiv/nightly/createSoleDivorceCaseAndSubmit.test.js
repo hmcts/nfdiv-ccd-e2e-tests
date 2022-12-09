@@ -18,7 +18,7 @@ Scenario('Sole Divorce Application - at Submitted State', async (I) => {
   // await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
   // await I.wait(10);
 
-  // Existing  way
+  // Creating case from Create Case link
   await I.clickCreateCase();
   await I.wait(15);
   await I.fillCreateCaseFormAndSubmit();
