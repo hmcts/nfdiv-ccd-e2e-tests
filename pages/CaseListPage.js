@@ -2,7 +2,6 @@ const {yesorno,currentCaseType,bulkCaseReferenceCaseType} = require('../common/c
 const I = actor();
 const testConfig = require('../tests/config');
 
-
 module.exports = {
 
   selectors: {
@@ -106,19 +105,17 @@ module.exports = {
   },
 
   async   clickNextStepForEvent(eventName){
-    await I.waitForElement(this.fields.selectActionDropDown);
+    await I.waitForElement(this.fields.selectActionDropDown,testConfig.TestTimeToWaitForText);
     await I.selectOption(this.fields.selectActionDropDown, eventName);
     await I.wait(3);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(8);
   },
 
-
-
   async urgentCaseFilter(urgent, state = 'Any', caseNum) {
-    await I.waitForElement(this.selectors.jurisdictionSelect);
+    await I.waitForElement(this.selectors.jurisdictionSelect,testConfig.TestTimeToWaitForText);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
-    await I.waitForElement(this.selectors.caseTypeSelect);
+    await I.waitForElement(this.selectors.caseTypeSelect,testConfig.TestTimeToWaitForText);
     await I.retry(5).selectOption(this.selectors.caseTypeSelect, 'Divorce case - v115.00');
     await I.waitForElement(this.selectors.caseStateSelect);
     await I.selectOption(this.selectors.caseStateSelect, state);
@@ -138,7 +135,7 @@ module.exports = {
   },
 
   async shouldBeAbleToFilterAndSearch(caseNum) {
-    await I.waitForElement(this.selectors.jurisdictionSelect);
+    await I.waitForElement(this.selectors.jurisdictionSelect,testConfig.TestTimeToWaitForText);
     await I.retry(5).selectOption(this.selectors.jurisdictionSelect, 'Family Divorce');
     await I.waitForElement(this.selectors.caseTypeSelect);
     await I.retry(5).selectOption(this.selectors.caseTypeSelect, currentCaseType);

@@ -36,6 +36,7 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.wait(7);
   await I.waitForText('AoS awaiting');
   await I.waitForText('Application issue');
+  await I.wait(30);
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceivedBailiff(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
@@ -56,7 +57,7 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
 
   //await I.wait(3);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(5);
+  await I.wait(20);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
@@ -69,8 +70,8 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   //await I.wait(3);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(3);
-  await I.checkNextStepForEvent('Issue bailiff pack');
+  await I.wait(20);
+  await I.checkNextStepForEvent('Issue bailiff pack',);
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);
   await I.wait(7);

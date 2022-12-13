@@ -1,4 +1,5 @@
 const I = actor();
+const testConfig = require('./../tests/config');
 
 module.exports = {
 
@@ -12,7 +13,7 @@ module.exports = {
   },
 
   async fillFormAndSubmit() {
-    await I.waitForElement(this.fields.selectActionDropDown);
+    await I.waitForElement(this.fields.selectActionDropDown,testConfig.TestTimeToWaitForText);
     await I.selectOption(this.fields.selectActionDropDown, 'Sign and submit');
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitForElement(this.fields.caseNumberDisplay);

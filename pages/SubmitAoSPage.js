@@ -1,4 +1,5 @@
 const I = actor();
+const testConfig = require('./../tests/config');
 
 module.exports = {
 

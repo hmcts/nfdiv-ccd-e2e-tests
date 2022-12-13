@@ -1,5 +1,7 @@
 const {yesorno, divorceOrDissolution} = require('../common/constants');
 const I = actor();
+const testConfig = require('./../tests/config');
+
 
 module.exports = {
 
@@ -27,7 +29,7 @@ module.exports = {
 
   async fillFormAndSubmit(urgent, union) {
 
-    await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth');
+    await I.waitInUrl('trigger/solicitor-submit-application/solicitor-submit-applicationSolStatementOfTruth',testConfig.TestTimeToWaitForText);
     ////await I.runAccessibilityTest;
 
     if (urgent === yesorno.No) {

@@ -35,12 +35,13 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   //await I.wait(5);
   await I.see('AoS awaiting');
   await I.see('Application issue');
+  await I.wait(20);
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceivedBailiff(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
-  await I.wait(3);
+  await I.wait(20);
   await I.checkNextStepForEvent('Confirm service payment');
   await I.submitServiceApplicationPaymentBailiff(caseNumber);
   await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
@@ -57,7 +58,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   await I.wait(3);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(5);
+  await I.wait(20);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
@@ -67,7 +68,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(3);
+  await I.wait(20);
   await I.checkNextStepForEvent('Issue bailiff pack');
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);
