@@ -15,6 +15,6 @@ module.exports = {
     await I.fillField(this.fields.password, password);
     //await I.waitForNavigationToComplete(this.fields.submit,testConfig.TestTimeToWaitForText);
     await I.click(this.fields.submit);
-    await I.waitInUrl('/cases',testConfig.TestTimeToWaitForText);
+    //await I.waitInUrl('/cases',testConfig.TestTimeToWaitForText);
   }
 };

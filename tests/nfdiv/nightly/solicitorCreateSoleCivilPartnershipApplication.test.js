@@ -11,7 +11,7 @@ Scenario('CP Case with Documents, HWF and Case Issued', async (I) => {
 
   await I.amOnHomePage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  // await I.clickCreateCase();
+  //await I.clickCreateCase();
   // await I.wait(15);
   // await I.fillCreateCaseFormAndSubmit();
 

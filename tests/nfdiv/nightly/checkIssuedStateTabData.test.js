@@ -32,9 +32,9 @@ Scenario('Checking Tab data when case has been Issued', async function (I) {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
 
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
-  await I.wait(1);
-  await I.amOnPage('cases/case-details/' + caseNumber);
-  await I.wait(1);
+  await I.wait(8);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
+  await I.wait(30);
   await I.validateApplicationTabData(reasonsForDivorce.SEPFIVEYRSDISPLAY, verifyContent);
 
   //Todo - finish writing this test(branch open)

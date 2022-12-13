@@ -46,13 +46,13 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
+  await I.wait(8);
   //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
+  await I.wait(30);
 
   // Draft CO
-  await I.wait(5);
   await I.checkNextStepForEvent(events.DRAFT_CONDITIONAL_ORDER);
   await I.draftConditionalOrderReviewAoS();
   await I.draftConditionalOrderReviewApplicant1Application();
@@ -84,10 +84,10 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
   //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/case-details/'+caseNumber);
-  await I.wait(3);
+  await I.wait(30);
   await I.checkNextStepForEvent(events.MAKE_A_DECISION);
   await I.conditionalOrderClarification();
-  await I.wait(3);
+  await I.wait(5);
 
   let caseResponse =  await getCaseDetailsFor(caseNumber);
   assert.strictEqual('AwaitingClarification',caseResponse.state);

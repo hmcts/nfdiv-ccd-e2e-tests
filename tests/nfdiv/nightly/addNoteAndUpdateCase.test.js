@@ -30,9 +30,8 @@ Scenario('Create General Email , Referral , Order and verify state and events', 
   await I.login(testConfig.TestEnvCWUser, testConfig.TestEnvCWPassword);
   await I.wait(7);
   //await I.shouldBeOnCaseListPage();
-  await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(5);
+  await I.wait(testConfig.TestTimeToWaitForText);
   await I.checkNextStepForEvent('Add note');
 
   // Add Case Note
