@@ -106,7 +106,7 @@ module.exports = {
 
   async   clickNextStepForEvent(eventName){
     await I.waitForElement(this.fields.selectActionDropDown,testConfig.TestTimeToWaitForText);
-    await I.selectOption(this.fields.selectActionDropDown, eventName);
+    await I.retry(10).selectOption(this.fields.selectActionDropDown, eventName);
     await I.wait(3);
     await I.waitForNavigationToComplete(this.fields.submit);
     await I.wait(8);
