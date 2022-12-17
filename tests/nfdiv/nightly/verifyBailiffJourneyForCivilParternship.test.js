@@ -25,17 +25,15 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   verifyState(hwfAccepted, states.SUBMITTTED);
 
   const issueAosPack = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
+  await I.wait(10);
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  //await I.wait(5);
+  await I.wait(8);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  //await I.wait(3);
-  //await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/' + caseNumber,testConfig.TestTimeToWaitForText);
-  //await I.wait(5);
-  await I.see('AoS awaiting');
-  await I.see('Application issue');
+  await I.wait(3);
+  await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(20);
+  await I.see('AoS awaiting');
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceivedBailiff(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
@@ -60,6 +58,7 @@ Scenario('NFD -CP Case -  Service Received , Service Payment, Bailiff Decision a
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(20);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
+  await I.wait(10);
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   await I.checkEventOnPage(events.MAKE_BAILIFF_DECISION);

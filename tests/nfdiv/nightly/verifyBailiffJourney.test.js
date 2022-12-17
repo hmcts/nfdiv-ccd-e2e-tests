@@ -31,46 +31,46 @@ Scenario('NFD -Divorce Case - Service Received,Service Payment,Bailiff Decision 
   await I.wait(5);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
   await I.wait(3);
-  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(7);
   await I.waitForText('AoS awaiting');
-  await I.waitForText('Application issue');
-  await I.wait(30);
+  await I.wait(15);
   await I.checkNextStepForEvent('Service application received');
   await I.submitServiceApplicationReceivedBailiff(caseNumber);
   await I.submitServiceApplicationReceivedCYA(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_SERVICE_PAYMENT, events.SERVICE_APPLICATION_RECEIVED);
 
-  await I.wait(3);
+  await I.wait(15);
   await I.checkNextStepForEvent('Confirm service payment');
   await I.submitServiceApplicationPaymentBailiff(caseNumber);
   await I.submitServiceApplicationPaymentCYABailiff(caseNumber);
   await I.submitServiceApplicationPaymentSubmitBailiff(caseNumber);
   await I.checkState(stateDisplayName.AWAITING_BAILIFF_REFERRAL, events.CONFIRM_SERVICE_PAYMENT);
   await I.signOut();
+  await I.wait(5);
 
-  //await I.wait(5);
-  //pause();
   //Log in as Legal advisor to make decision
-  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
 
-  //await I.wait(3);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
+  await I.wait(10);
+  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(20);
   await I.checkNextStepForEvent(events.MAKE_BAILIFF_DECISION);
   await I.submitMakeBailiffDecision(caseNumber);
   await I.submitMakeBailiffDecisionCYA(caseNumber);
   await I.wait(5);
-  //pause();
   await I.checkEventOnPage(events.MAKE_BAILIFF_DECISION);
   await I.signOut();
-  // await I.wait(3);
+
   //Log in as Caseworker and issue the bailiff pack
+  await I.wait(15);
+  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvCourtAdminUser, testConfig.TestEnvCourtAdminPassword);
-  //await I.wait(3);
+  await I.wait(10);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(20);
+  await I.wait(10);
   await I.checkNextStepForEvent('Issue bailiff pack',);
   await I.submitIssueBailiffPack(caseNumber);
   await I.submitIssueBailiffPackCYA(caseNumber);

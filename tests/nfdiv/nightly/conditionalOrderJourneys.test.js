@@ -45,10 +45,10 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   const awaitingConditionalOrder = await moveFromHoldingToAwaitingCO('data/await-co-data.json',caseNumber);
   assert.strictEqual(JSON.parse(awaitingConditionalOrder).state, 'AwaitingConditionalOrder');
 
+  await I.wait(10);
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   await I.wait(8);
-  //await I.filterByCaseId(caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(30);
 
@@ -60,9 +60,8 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.DRAFT_CO);
 
   // Update CO
-  await I.amOnPage('/case-details/'+caseNumber);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-
+  await I.wait(15);
   await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
   await I.updateCOReviewAoS();
   await I.updateCOReviewApplication();
@@ -70,21 +69,19 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.UPDATE_CONDITIONAL_ORDER);
 
   //Submit CO
-  await I.amOnPage('/case-details/'+caseNumber);
-  await I.wait(3);
+  await I.amOnPage('/cases/case-details/'+caseNumber);
+  await I.wait(15);
   await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
   await I.submitSoTConditionalOrderDetails();
   await I.submitConditionalOrder();
   await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
 
   await I.wait(8);
-  //Conditional Order - Do not Grant CO ->  Refusal Order ->  Get More Information ->  Marriage Certificate
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  await I.wait(3);
   await I.login(testConfig.TestEnvLegalAdvisorUser, testConfig.TestEnvLegalAdvisorPassword);
-  //await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/case-details/'+caseNumber);
-  await I.wait(30);
+  await I.wait(8);
+  await I.amOnPage('/cases/case-details/'+caseNumber);
+  await I.wait(15);
   await I.checkNextStepForEvent(events.MAKE_A_DECISION);
   await I.conditionalOrderClarification();
   await I.wait(5);

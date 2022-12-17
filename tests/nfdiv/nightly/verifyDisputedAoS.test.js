@@ -9,9 +9,7 @@ const verifyState = (eventResponse, state) => {
 
 let caseNumber;
 
-
 Feature('NFD - AoS - Disputed');
-
 
 Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
@@ -27,7 +25,6 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
   const awaitingService = await updateNFDCaseInCcd(user.CA,caseNumber, events.ISSUED_FROM_SUBMITTED,'data/ccd-update-place-of-marriage.json');
   verifyState(awaitingService, states.AOS_AWAITING);
-
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
   // const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
@@ -35,13 +32,15 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
+  await I.wait(10);
   //Draft AoS
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
   //await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/cases/case-details/' + caseNumber);
-
+  await I.wait(10);
+  await I.amOnPage('/cases/case-details/'+caseNumber);
+  //await I.refreshPage();
   await I.wait(15);
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
@@ -58,8 +57,10 @@ Scenario('NFD - Verify Disputed Aos chosen', async function (I) {
 
   await I.wait(8);
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
+  await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   //await I.filterByCaseId(caseNumber);
+  await I.wait(10);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(15);
   await I.checkEventAndStateOnPageAndSignOut(states.TWENTY_WEEK_HOLDING_PERIOD, events.AOS_DISPUTED);

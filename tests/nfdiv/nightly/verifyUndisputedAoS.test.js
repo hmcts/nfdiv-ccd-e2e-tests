@@ -29,25 +29,19 @@ Scenario('NFD - Verify Undisputed AoS Journey', async function (I) {
 
   const shareACase = await updateRoleForCase(user.RS,caseNumber,'APPTWOSOLICITOR');
 
-  // const caseSharedToRespSolicitor = await shareCaseToRespondentSolicitor(user.RSA,caseNumber);
-  // assert.strictEqual(JSON.parse(caseSharedToRespSolicitor).status_message, 'Roles [APPTWOSOLICITOR] from the organisation policies successfully assigned to the assignee.');
-
   console.log('~~~~~~~~~ Case with Id ' + caseNumber +' has been SUCCESSFULLY SHARED  to Respondent Solicitior');
 
-  // const draftAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.DRAFT_AOS,'data/ccd-draft-aos.json');
-  // verifyState(draftAoS, states.AOS_DRAFTED);
-
   //Draft AoS
+  await I.wait(10);
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvRespondentSolUser, testConfig.TestEnvRespondentSolPassword);
-  //await I.filterByCaseId(caseNumber);
+  await I.wait(10);
   await I.amOnPage('/cases/case-details/' + caseNumber);
   await I.wait(20);
   await I.checkNextStepForEvent(eventDisplayName.DRAFT_AOS);
   await I.draftAosContactDetails();
 
-  // here.....
   await I.draftAoSReview(caseNumber);
   await I.draftAoSDoYouAgree(caseNumber);
   await I.draftAoSDoNotAgreeCourts(caseNumber);
@@ -55,16 +49,8 @@ Scenario('NFD - Verify Undisputed AoS Journey', async function (I) {
   await I.draftAosCheckYourAnswers(caseNumber);
   await I.signOut();
   await I.wait(8);
-
-  const submitAoS = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
-
-  await I.wait(5);
-  await I.amOnPage('/',testConfig.TestTimeToWaitForText);
-  await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  //await I.filterByCaseId(caseNumber);
-  await I.amOnPage('/cases/case-details/' + caseNumber);
-  await I.wait(20);
-  await I.checkEventAndStateOnPageAndSignOut(states.TWENTY_WEEK_HOLDING_PERIOD, events.AOS_UNDISPUTED);
+  const response = await updateNFDCaseInCcd(user.RS,caseNumber, events.SUBMIT_AOS,'data/ccd-submit-aos.json');
+  // using verifyState to assert the state of the case
+  verifyState(response, states.HOLDING);
 
 }).retry(testConfig.TestRetryScenarios);
-
