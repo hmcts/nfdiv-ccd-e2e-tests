@@ -12,10 +12,14 @@ module.exports = {
     submit: 'button[type="submit"]'
   },
 
-  async fillFormAndSubmit() {
-    await I.waitForElement(this.fields.selectActionDropDown,testConfig.TestTimeToWaitForText);
+  async fillFormAndSubmit()
+  {
+
+    await I.waitForElement(this.fields.selectActionDropDown);
     await I.selectOption(this.fields.selectActionDropDown, 'Sign and submit');
-    await I.waitForNavigationToComplete(this.fields.submit);
+    await I.wait(5);
+    await I.retry(3).click(this.fields.submit);
+    //await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitForElement(this.fields.caseNumberDisplay);
     const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
     await I.wait(1);

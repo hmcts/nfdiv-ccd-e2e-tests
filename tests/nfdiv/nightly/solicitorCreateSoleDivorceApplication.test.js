@@ -11,11 +11,13 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
   //Commenting out to check old way
   await I.wait(10);
-  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
-  await I.wait(5);
+  await I.refreshPage();
+  //await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  //await I.wait(5);
+  //pause();
 
-  // await I.clickCreateCase();
-  // await I.fillCreateCaseFormAndSubmit();
+  await I.clickCreateCase();
+  await I.fillCreateCaseFormAndSubmit();
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes, divorceOrDissolution.DIVORCE); // 'Yes' for Sole, 'No' for Joint.
 
   // About Solicitor
@@ -121,16 +123,16 @@ Scenario('Divorce Application with Documents, HWF accepted and Submit the Case '
 }).retry(testConfig.TestRetryScenarios);
 
 // covered in the solicitorCreateSoleCivilPartnershipApplication.test.js . To Delete.
-Scenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
+xScenario('Dissolution Application with Documents, HWF accepted and Submit the Case ', async (I) => {
 
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
 
-  //await I.clickCreateCase();
-  //await I.fillCreateCaseFormAndSubmit();
+  await I.clickCreateCase();
+  await I.fillCreateCaseFormAndSubmit();
 
   await I.wait(8);
-  await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
+  //await I.createCaseWithUrl(url.HOW_DO_YOU_WANT_TO_APPLY);
 
   // Sole &&  Dissolution
   await I.fillSoleOrJointOptionForDivorce(yesorno.Yes,divorceOrDissolution.DISSOLUTION);

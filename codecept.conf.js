@@ -5,12 +5,14 @@ exports.config = {
   output: testConfig.TestOutputDir,
   helpers: {
     Puppeteer: {
-      waitForTimeout: 60000,
-      getPageTimeout: 60000,
+      waitForTimeout: 90000,
+      getPageTimeout: 90000,
+      setDefaultTimeout: 90000,
+      smartWait: 90000,
       url: testConfig.TestUrl,
       moUrl:testConfig.TestManageOrgUrl,
       show: testConfig.TestShowBrowserWindow,
-      waitForNavigation: ['domcontentloaded'],
+      waitForNavigation: ['networkidle2'],
       restart: true,
       keepCookies: false,
       keepBrowserState: false,
