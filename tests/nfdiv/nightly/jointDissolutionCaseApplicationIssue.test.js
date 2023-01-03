@@ -83,16 +83,16 @@ Scenario('Dissolution Application (Joint) with PBA  upto Issue', async (I) => {
   await I.amOnPage('/',testConfig.TestTimeToWaitForText);
   await I.wait(8);
   await I.login(testConfig.TestEnvSolUser, testConfig.TestEnvSolPassword);
-  await I.wait(5);
+
   //await I.shouldBeOnCaseListPage();
   await I.wait(5);
   await I.amOnPage('/cases/case-details/' + caseNumber);
-
+  await I.waitInUrl(caseNumber);
   // In Real time , this will be a CCD Async event which will move case from 'Awaiting applicant 2 response' to the
   // 'Applicant 2 Approved', but we trigger it manually here as it is easier to continue to test the  UI Flow as part of the Joint Journeys
-  await I.checkNextStepForEvent('Applicant 2 approve');
+  // await I.checkNextStepForEvent('Applicant 2 approve');
   //await I.submitApplicant2Approve();
-  await I.wait(5);
+  //await I.wait(5);
 
   // Staying as Sols - Do  Sign And Submit.
   await I.checkNextStepForEvent('Sign and submit');
