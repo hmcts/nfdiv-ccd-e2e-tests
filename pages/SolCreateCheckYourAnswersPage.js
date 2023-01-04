@@ -81,7 +81,7 @@ module.exports = {
     await I.waitForNavigationToComplete(this.fields.submit);
     // await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationHelpWithFeesPageForApplicant2');
     // await I.click(this.fields.hwfNo);
-    await I.waitForNavigationToComplete(this.fields.submit);
+    //await I.waitForNavigationToComplete(this.fields.submit);
     await I.waitInUrl('trigger/solicitor-submit-joint-application/solicitor-submit-joint-applicationcheckTheirAnswers');
     await I.click(this.fields.noCorrectionNeeded);
     await I.waitForNavigationToComplete(this.fields.submit);

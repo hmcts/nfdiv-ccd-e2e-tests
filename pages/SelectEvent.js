@@ -19,6 +19,7 @@ module.exports = {
   async signOut() {
     await I.wait(7);
     await I.click(signOut);
-    await I.wait(7);
+    await I.waitForElement('//input[@id="username"]');
+    //await I.wait(7);
   }
 };
