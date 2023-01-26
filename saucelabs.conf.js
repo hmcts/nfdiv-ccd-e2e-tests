@@ -2,8 +2,8 @@ const supportedBrowsers = require('./crossbrowser/supportedBrowsers.js');
 
 const testConfig = require('./tests/config');
 
-const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 45000;
-const smartWait = parseInt(process.env.SMART_WAIT) || 30000;
+//const waitForTimeout = parseInt(process.env.WAIT_FOR_TIMEOUT) || 90000;
+//const smartWait = parseInt(process.env.SMART_WAIT) || 90000;
 const browser = process.env.BROWSER_GROUP || 'chrome';
 const defaultSauceOptions = {
   //sauceSeleniumAddress: 'ondemand.eu-central-1.saucelabs.com:443/wd/hub',
@@ -54,9 +54,8 @@ const setupConfig = {
   'helpers': {
     WebDriver: {
       url: testConfig.TestUrl,
-      browser,
-      smartWait,
-      waitForTimeout,
+      waitForTimeout: 90000,
+      smartWait: 90000,
       cssSelectorsEnabled: 'true',
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
