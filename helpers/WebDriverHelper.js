@@ -9,7 +9,7 @@ class WebDriverHelper extends Helper {
     await Promise.resolve();
   }
 
-  async waitForNavigationToComplete(locator, webDriverWait=3) {
+  async waitForNavigationToComplete(locator, webDriverWait=5) {
     const helper = this.helpers.WebDriver;
 
     if (locator) {
@@ -17,8 +17,7 @@ class WebDriverHelper extends Helper {
       await helper.waitForClickable(locator, testConfig.TestTimeToWaitForText);
       await helper.click(locator);
     }
-    //added to add more wait
-    await helper.waitForNavigation();
+
     // so for ie11 / selenium webdriver this isn't that reliable,
     // is best combined with JSWaits amOnLoadedPage in next page
     await helper.wait(webDriverWait);
