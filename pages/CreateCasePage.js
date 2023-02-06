@@ -63,7 +63,7 @@ module.exports = {
     if (testConfig.TestForCrossBrowser) {
       await I.wait(7);
       I.waitForElement('select[id="cc-jurisdiction"]>option:nth-of-type(1)', testConfig.TestTimeToWaitForText);
-      await I.retry(9).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
+      await I.retry({retries:3,minTimeout:1000}).selectOption(this.fields.jurisdictionSelect, 'Family Divorce');
 
     } else {
       await I.wait(7);
