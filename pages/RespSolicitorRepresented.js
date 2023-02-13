@@ -34,7 +34,7 @@ module.exports = {
     await I.fillField(this.fields.applicant2SolicitorName, 'James and Co');
     await I.fillField(this.fields.applicant2SolicitorReference, '123645');
     await I.fillField(this.fields.applicant2SolicitorPhone, '02086425142');
-    await I.fillField(this.fields.applicant2SolicitorEmail, 'kasi.subramaniam@solirius.com');
+    await I.fillField(this.fields.applicant2SolicitorEmail, 'NFDe2eNightlytest@mailinator.com');
     await I.fillField(this.fields.applicant2SolicitorAddress, '101 Reede Road, RM10 8DU');
     await I.waitForElement(this.fields.searchOrganisation);
     await I.fillField(this.fields.searchOrganisation, 'DivRespondentSolicitorFirm');
