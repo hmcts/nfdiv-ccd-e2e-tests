@@ -42,7 +42,7 @@ module.exports = {
     // Same sex or oppositeSex Couple ?
     await I.click(this.fields.oppositeSex);
     await I.fillField(this.fields.applicant1_phoneNumber, '02086452154');
-    await I.fillField(this.fields.applicant1_email, 'kasi.subramaniam@solirius.com');
+    await I.fillField(this.fields.applicant1_email, 'NFDe2eNightlytest@mailinator.com');
 
     await I.click(this.fields.addressLine1_Building);
     await I.fillField(this.fields.addressLine1_Building, 'SW1A 1BJ');
