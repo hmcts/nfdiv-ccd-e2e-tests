@@ -27,7 +27,7 @@ module.exports = {
     await I.fillField(this.fields.solicitorsName, 'E2E TEST SOLICITOR NAME');
     await I.fillField(this.fields.referenceNumber, 'AWS11234');
     await I.fillField(this.fields.applicant1SolicitorPhone, '02086431254');
-    await I.fillField(this.fields.applicant1SolicitorEmail, 'kasi.subramaniam@hmcts.net');
+    await I.fillField(this.fields.applicant1SolicitorEmail, 'E2ENFDAppSolicitor@mailinator.com');
     await I.waitForElement(this.fields.applicant1SolicitorAgreeToReceiveEmail);
     await I.click(this.fields.applicant1SolicitorAgreeToReceiveEmail);
     await I.waitForElement(this.fields.searchOrganisation);
