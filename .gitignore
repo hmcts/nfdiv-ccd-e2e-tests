@@ -9,3 +9,13 @@ output
 steps.d.ts
 functional-output
 package-lock.json
+yarn-error.log
+
+# Yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
