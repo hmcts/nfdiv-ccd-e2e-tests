@@ -2,6 +2,7 @@
   "applicationType": "soleApplication",
   "labelContentApplicantsOrApplicant1s": "Applicant’s",
   "labelContentTheApplicant2UC": "The respondent",
+  "supplementaryCaseType": "NotApplicable",
   "labelContentGotMarriedOrFormedCivilPartnership": "got married",
   "applicant1SolicitorOrganisationPolicy": {
     "Organisation": {

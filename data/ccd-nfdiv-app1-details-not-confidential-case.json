@@ -2,6 +2,7 @@
   "applicant1ContactDetailsType": "private",
   "applicant2ContactDetailsType": "private",
   "applicationType": "soleApplication",
+  "supplementaryCaseType": "NotApplicable",
   "labelContentApplicantsOrApplicant1s": "Applicant’s",
   "labelContentTheApplicant2UC": "The respondent",
   "labelContentGotMarriedOrFormedCivilPartnership": "got married",

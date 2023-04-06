@@ -1,5 +1,8 @@
 {
   "applicationType": "soleApplication",
+  "supplementaryCaseType": "NotApplicable",
+  "supplementaryCaseType": "NotApplicable",
+  "supplementaryCaseType": "NotApplicable",
   "labelContentApplicantsOrApplicant1s": "Applicant’s",
   "labelContentTheApplicant2UC": "The respondent",
   "labelContentGotMarriedOrFormedCivilPartnership": "got married",

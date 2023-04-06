@@ -2,6 +2,7 @@
   "applicationType": "jointApplication",
   "labelContentApplicantsOrApplicant1s": "Applicant 1’s",
   "labelContentTheApplicant2UC": "Applicant 2",
+  "supplementaryCaseType": "NotApplicable",
   "applicant1ContactDetailsType": "public",
   "coApplicant2IsDrafted": "No",
   "labelContentGotMarriedOrFormedCivilPartnership": "got married",
