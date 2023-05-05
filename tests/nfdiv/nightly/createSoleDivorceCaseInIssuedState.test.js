@@ -34,7 +34,7 @@ Scenario('Sole Divorce Case  - at Issued State', async (I) => {
 
 //}).retry(testConfig.TestRetryScenarios);
 //skiped the xbrowser. TODO to move the data fixture out of the test .Fixture take more time and saucelab session is closed before test start.
-}).tag('@crossbrowser1').retry(testConfig.TestRetryScenarios);
+}).retry(testConfig.TestRetryScenarios);
 
 
 const verifyState = (eventResponse, state) => {
