@@ -76,7 +76,6 @@
     "request-promise-native": "^1.0.9"
   },
   "devDependencies": {
-    "@playwright/test": "^1.33.0",
     "@wdio/selenium-standalone-service": "^7.6.0",
     "codeceptjs": "^2.6.11",
     "concurrently": "^6.3.0",
