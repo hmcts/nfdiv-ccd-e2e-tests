@@ -1,7 +1,7 @@
 #!groovy
 properties([
   // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-        pipelineTriggers([cron('H 05 * * 1-5')]),
+        pipelineTriggers([cron('H 08 * * 1-5')]),
         parameters([
                 string(name: 'RUNNING_ENV', defaultValue: 'aat', description: 'Environment to test'),
                 string(name: 'XUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The URL you want to run solicitor tests against'),
