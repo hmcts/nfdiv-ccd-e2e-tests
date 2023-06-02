@@ -79,7 +79,9 @@ const states = {
   AWAITING_ALTERNATIVE_SERVICE:'AwaitingAlternativeService',
   ATTACH_SCAN_DOCS:'Attach scanned docs',
   REMOVE_SCANNED_DOCS:'Remove scanned document',
-  AWAITING_JOINT_CONDITIONAL_ORDER:'ConditionalOrderPending'
+  AWAITING_JOINT_CONDITIONAL_ORDER:'ConditionalOrderPending',
+  NEW_PAPERCASE:'NewPaperCase',
+  PAPERCASE_SUBMITTED : 'Submitted'
 };
 
 const stateDisplayName = {
@@ -237,7 +239,12 @@ const events = {
   AOS_DISPUTED: 'AoS disputed',
   NOTICE_OF_CHANGE: 'Notice of change',
   REMOVE_SCANNED_DOCS:'Remove scanned document',
-  CONDITIONAL_ORDER_PRONOUNCED: 'ConditionalOrderPronounced'
+  CONDITIONAL_ORDER_PRONOUNCED: 'ConditionalOrderPronounced',
+  CORRECT_PAPER_CASE: 'caseworker-correct-paper-case',
+  PROGRESS_PAPER_CASE: 'caseworker-progress-paper-case',
+  ATTACH_SCAN_DOCS: 'attachScannedDocs',
+  VERIFY_OFFLINE_DOC:'caseworker-offline-document-verified'
+
 };
 
 const serviceApplicationType = {

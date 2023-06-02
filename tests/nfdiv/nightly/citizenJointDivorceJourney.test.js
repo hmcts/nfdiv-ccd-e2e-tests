@@ -12,8 +12,8 @@ let soleOrApplicant1Response;
 let respondentOrApplicant2Response;
 
 Feature('JOINT Citizen Case');
-
-Scenario('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
+//Citizen journey are covered in NFD Frontend application
+Scenario.skip('Citizen Case - Joint - Divorce -  Submitted State ', async (I) => {
 
   // create new citizen user for each Test Run.
   soleOrApplicant1Response = await createCitizenUser();

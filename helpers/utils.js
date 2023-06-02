@@ -1654,6 +1654,62 @@ function formatDateToCcdDisplayDate(givenDate = new Date()) {
   let formattedDate = givenDate.getDate() + ' ' + months[givenDate.getMonth()] + ' ' + givenDate.getFullYear();
   return formattedDate;
 };
+async function createNFDPaperCaseInCCD(dataLocation='data/ccd-nfdiv-createPaperCase.json'){
+
+  const authToken = await getCourtAdminUserToken();
+  const userId = await getUserId(authToken);
+  const serviceToken = await getServiceToken(); // S2S Auth
+
+  var ccdApiUrl;
+  if(testConfig.TestUrl.includes('localhost')){
+    ccdApiUrl = 'http://localhost:4452';
+    logger.info('Creating Case in Local Environment');
+  }else{
+    logger.info(`Creating Case in Environment :: ${env}`);
+    ccdApiUrl = `http://ccd-data-store-api-${env}.service.core-compute-${env}.internal`;
+  }
+
+  const ccdStartCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/event-triggers/create-paper-case/token`;
+  const ccdSaveCasePath = `/caseworkers/${userId}/jurisdictions/DIVORCE/case-types/NFD/cases`;
+
+  const startCaseOptions = {
+    method: 'GET',
+    uri: ccdApiUrl + ccdStartCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    }
+  };
+
+  const startCaseResponse = await request(startCaseOptions);
+
+  const eventToken = JSON.parse(startCaseResponse).token;
+  console.log( 'data file: ' + dataLocation);
+  var data = fs.readFileSync(dataLocation);
+  var saveBody = {
+    event: {
+      id: 'create-paper-case'
+    },
+    data: JSON.parse(data),
+    event_token: eventToken
+  };
+
+  const saveCaseOptions = {
+    method: 'POST',
+    uri: ccdApiUrl + ccdSaveCasePath,
+    headers: {
+      'Authorization': `Bearer ${authToken}`,
+      'ServiceAuthorization': `Bearer ${serviceToken}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(saveBody)
+  };
+
+  const saveCaseResponse =  await request(saveCaseOptions);
+  const caseId = JSON.parse(saveCaseResponse).id;
+  return caseId;
+}
 
 module.exports = {
   createCaseInCcd,
@@ -1686,6 +1742,7 @@ module.exports = {
   getCitizenCaseDetails,
   soleCitizenApp2DraftAoS,
   soleCitizenApp2UpdateApplication,
-  soleCitizenApp2SubmitAoS
+  soleCitizenApp2SubmitAoS,
+  createNFDPaperCaseInCCD
 
 };

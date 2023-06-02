@@ -22,5 +22,10 @@ module.exports = {
     await I.wait(7);
     await I.see(event);
     await I.wait(2);
+  },
+  async checkApplicantTab(type){
+    await I.click('#mat-tab-label-0-1');
+    await I.wait(4);
+    await I.see(type);
   }
 };

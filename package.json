@@ -59,9 +59,9 @@
     "test:bailiff-civil": "SHOW_BROWSER_WINDOW=yes NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true yarn node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/verifyBailiffJourneyForCivilParternship.test.js -c ./ --steps",
     "create:type-definitions": "codeceptjs def",
     "lint": "eslint .",
-    "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@skipXbro' --reporter mocha-multi",
+    "test-crossbrowser-e2e": "NODE_PATH=. codeceptjs run-multiple ${BROWSER_GROUP:-'--all'} -c saucelabs.conf.js --plugins retryFailedStep --steps --grep '@crossbrowser' --reporter mocha-multi",
     "test:crossbrowser": "./bin/run-crossbrowser-tests.sh",
-    "test:test-xb": "SHOW_BROWSER_WINDOW=false NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true yarn node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/solicitorCreateSoleDivorceApplication.test.js -c ./  --steps --verbose "
+    "test:test-xb": "SHOW_BROWSER_WINDOW=false NODE_PATH=. E2E_AUTO_DELAY_ENABLED=true yarn node ./node_modules/codeceptjs/bin/codecept.js run tests/nfdiv/nightly/createSoleJSPaperCase.js -c ./  --steps --verbose "
   },
   "keywords": [],
   "author": "",
