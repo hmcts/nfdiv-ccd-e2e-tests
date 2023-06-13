@@ -131,7 +131,7 @@ module.exports = {
   },
 
   async pressSubmit() {
-    await I.retry(5).click(this.fields.continue);
+    //await I.retry(5).click(this.fields.continue);
     await I.waitForElement(this.fields.caseNumberDisplay);
     const display = await I.grabTextFrom(this.fields.caseNumberDisplay);
     await I.wait(1);

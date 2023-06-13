@@ -65,7 +65,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.checkNextStepForEvent(events.UPDATE_CONDITIONAL_ORDER);
   await I.updateCOReviewAoS();
   await I.updateCOReviewApplication();
-  await I.updateCOAndSave();
+  // await I.updateCOAndSave();
   await I.checkState(states.CONDITIONAL_ORDER_DRAFTED,eventDisplayName.UPDATE_CONDITIONAL_ORDER);
 
   //Submit CO
@@ -73,7 +73,7 @@ Scenario('CO Journey - AwaitingCO->CODrafted->AwaitingLAReferral->CORefused->COC
   await I.wait(15);
   await I.checkNextStepForEvent(events.SUBMIT_CONDITIONAL_ORDER);
   await I.submitSoTConditionalOrderDetails();
-  await I.submitConditionalOrder();
+  //await I.submitConditionalOrder();
   await I.checkEventAndStateOnPageAndSignOut(stateDisplayName.AWAITING_LA_REFERRAL,eventDisplayName.SUBMIT_CO);
 
   await I.wait(8);

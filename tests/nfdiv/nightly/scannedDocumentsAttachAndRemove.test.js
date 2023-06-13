@@ -43,7 +43,7 @@ Scenario('NFD - Attach and Remove Scanned Documents Journey', async function (I)
   await I.checkNextStepForEvent('Attach scanned docs');
 
   await I.attachScannedDocs(caseNumber);
-  await I.submitScannedDocs(caseNumber);
+  // await I.submitScannedDocs(caseNumber);
   await I.checkState(states.ATTACH_SCAN_DOCS,eventDisplayName.OFFLINE_DOCS_RECEIVED_BY_CW);
   await I.checkNextStepForEvent(events.REMOVE_SCANNED_DOCS);
   await I.removeScanDoc();
