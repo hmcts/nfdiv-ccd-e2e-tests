@@ -28,7 +28,7 @@ module.exports = {
     await I.wait(2);
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
     await I.fillField(this.fields.respSolicitorPhone,'02031241245');
-    await I.fillField(this.fields.respSolicitorEmail,'kasi.subramaniam@solirius.com');
+    await I.fillField(this.fields.respSolicitorEmail,'NFDe2eNightlytest@mailinator.com');
     await I.wait(3);
     await I.click(this.fields.acceptServiceCheckBoxYes);
     await I.wait(2);
@@ -81,7 +81,7 @@ module.exports = {
     await I.waitInUrl('trigger/update-aos/update-aosApplicant2SolConfirmContactDetails');
     await I.fillField(this.fields.respSolicitorName,'Respondent Name');
     await I.fillField(this.fields.respSolicitorPhone,'02031241245');
-    await I.fillField(this.fields.respSolicitorEmail,'kasi.subramaniam@solirius.com');
+    await I.fillField(this.fields.respSolicitorEmail,'NFDe2eNightlytest@mailinator.com');
     await I.wait(2);
     await I.click(this.fields.acceptServiceCheckBoxYes);
     await I.wait(2);

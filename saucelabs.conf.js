@@ -78,7 +78,7 @@ const setupConfig = {
       retries: 1
     },
     autoDelay: {
-      enabled: testConfig.TestAutoDelayEnabled,
+      enabled: true,
       delayAfter: 2000
     },
     screenshotOnFail: {
