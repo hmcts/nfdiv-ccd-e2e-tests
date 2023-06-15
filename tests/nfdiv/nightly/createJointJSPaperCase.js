@@ -17,9 +17,9 @@ Feature('NFD- create Paper Case until FO granded');
 
 // Useful Test to reuse/amend , when creating TestData
 
-xScenario('NFD - create Paper Case', async function (I) {
+Scenario('NFD - create Paper Case', async function (I) {
 
-  await createNFDPaperCaseInCCD('data/ccd-nfdiv-createPaperCase.json');
+  caseNumber = await createNFDPaperCaseInCCD('data/ccd-nfdiv-createPaperCase.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
   let state;
   //  //update the correct paper case event
@@ -38,7 +38,7 @@ xScenario('NFD - create Paper Case', async function (I) {
   state = await updateNFDCaseInCcd(user.CA,caseNumber, events.VERIFY_OFFLINE_DOC,'data/ccd-jointD84.json');
   //verifyState(state, states.AOS_AWAITING);
   // //Legal advisor decision
-  // const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
+  const listedAwaitingPronouncement = await updateNFDCaseInCcd(user.LAD,caseNumber, events.LEGAL_ADVISOR_MAKE_DECISION,'data/ccd-la-make-decision.json');
   // //verifyState(listedAwaitingPronouncement, states.AWAITING_PRONOUNCEMENT);
 }).retry(testConfig.TestRetryScenarios);
 

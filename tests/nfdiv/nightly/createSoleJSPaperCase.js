@@ -18,7 +18,7 @@ Feature('NFD- create Paper Case until FO granded');
 
 // Useful Test to reuse/amend , when creating TestData
 
-xScenario('NFD - Scripts Sole JS Paper Case', async function (I) {
+Scenario('NFD - Scripts Sole JS Paper Case', async function (I) {
   //caseNumber ='1685089209222531';
   caseNumber = await createNFDPaperCaseInCCD('data/ccd-nfdiv-createPaperCase.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);
