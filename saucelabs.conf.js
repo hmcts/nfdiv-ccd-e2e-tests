@@ -75,7 +75,7 @@ const setupConfig = {
   plugins: {
     retryFailedStep: {
       enabled: true,
-      retries: 1
+      retries: 3
     },
     autoDelay: {
       enabled: true,
