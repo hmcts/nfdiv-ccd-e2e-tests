@@ -8,6 +8,7 @@ exports.config = {
       waitForTimeout: 90000,
       getPageTimeout: 90000,
       setDefaultTimeout: 90000,
+      retry:2,
       smartWait: 90000,
       url: testConfig.TestUrl,
       moUrl:testConfig.TestManageOrgUrl,
@@ -24,7 +25,7 @@ exports.config = {
           'height': 960
         },
         args: [
-        //  '--headless',
+          '--headless',
           '--disable-gpu',
           '--no-sandbox',
           '--allow-running-insecure-content',
@@ -60,7 +61,7 @@ exports.config = {
   bootstrap: false,
   multiple: {
     'parallel': {
-      'chunks': 2
+      'chunks': 3
     }
   },
   mocha: {
