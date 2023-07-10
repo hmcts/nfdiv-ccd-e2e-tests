@@ -54,9 +54,8 @@ const setupConfig = {
   'helpers': {
     WebDriver: {
       url: testConfig.TestUrl,
-      browser,
-      smartWait,
-      waitForTimeout,
+      waitForTimeout: 90000,
+      smartWait: 90000,
       cssSelectorsEnabled: 'true',
       host: 'ondemand.eu-central-1.saucelabs.com',
       port: 80,
@@ -76,10 +75,10 @@ const setupConfig = {
   plugins: {
     retryFailedStep: {
       enabled: true,
-      retries: 3
+      retries: 2
     },
     autoDelay: {
-      enabled: testConfig.TestAutoDelayEnabled,
+      enabled: true,
       delayAfter: 2000
     },
     screenshotOnFail: {
