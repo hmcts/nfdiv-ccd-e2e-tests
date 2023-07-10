@@ -11,7 +11,7 @@ const verifyState = (eventResponse, state) => {
 let caseNumber;
 let state;
 
-Feature('NFD- create Paper Case until FO granded');
+Feature.skip('NFD- create Paper Case until FO granded');
 
 // NOTE THIS TEST PASSES LOCALLY,but since it is a very long one going upto FinalOrderOverdue it fails on pipeline
 // but passes on local when pointing to AAT or your local Docker case-api (cftlib) .
