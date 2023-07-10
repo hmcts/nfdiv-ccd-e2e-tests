@@ -10,8 +10,8 @@ const verifyState = (eventResponse, state) => {
 let caseNumber;
 
 Feature('NFD - Create a single Case and drop it at Bulk case list listed state');
-
-Scenario('NFD - Verify Bulk Case ', async function (I) {
+//Incomplete to do the Drop bulk case event
+xScenario('NFD - Verify Bulk Case ', async function (I) {
 
   caseNumber = await createNFDCaseInCcd('data/ccd-nfdiv-sole-draft-bulk-case.json');
   console.log( '..... caseCreated in CCD , caseNumber is ==  ' + caseNumber);

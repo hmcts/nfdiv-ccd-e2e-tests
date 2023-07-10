@@ -10,7 +10,7 @@ const verifyState = (eventResponse, state) => {
 };
 
 let caseNumber;
-
+//InComplete
 Feature('Application Issued - Check the Labels and Content present on the Application Tab of the CaseHistory Page.');
 
 Scenario('Checking Tab data when case has been Issued', async function (I) {

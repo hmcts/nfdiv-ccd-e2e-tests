@@ -11,7 +11,7 @@ const verifyState = (eventResponse, state) => {
 let caseNumber;
 
 Feature('NFD - Create a single Case and move it to bulk case pronounced state');
-
+//Duplicate with verifyAwaitingFinalOrder.test.js
 // Always passes on local , and fails on pipeline. Will re run this on regression ,but not on pipeline
 // TODO possibly refactor this large test into 2 smaller parts ( with help of scripts instead of UI Flow ) -  to see if this can be a solution.
 Scenario.skip('NFD - Verify Bulk case pronounced', async function (I) {

@@ -1,0 +1,23 @@
+{
+        "scannedDocuments": [
+            {
+                "id": "038916f4-ddd9-42dd-a2be-c341aaef91f1",
+                "value": {
+                    "url": {
+                        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/c722c813-e5a3-4c1b-ac24-a4c99cfdb61f",
+                        "document_filename": "D10.pdf",
+                        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/c722c813-e5a3-4c1b-ac24-a4c99cfdb61f/binary"
+                    },
+                    "type": "form",
+                    "subtype": "D10",
+                    "fileName": "AOSAnswer",
+                    "scannedDate": "2023-03-06T00:00:00.000",
+                    "deliveryDate": "2023-03-06T00:00:00.000",
+                    "controlNumber": "111111",
+                    "exceptionRecordReference": "Aos Answer"
+                }
+            }
+        ],
+        "scannedSubtypeReceived": "D10",
+        "evidenceHandled": "Yes"
+ }

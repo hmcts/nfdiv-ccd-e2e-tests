@@ -73,6 +73,8 @@ const FinalOrderPage = require('./pages/FinalOrderPage.js');
 const GeneralConsiderationPage = require('./pages/GeneralConsiderationPage.js');
 const NoticeOfChangePage = require('./pages/NoticeOfChangePage');
 const ScanDocumentsPage = require('./pages/ScanDocumentsPage');
+const ProgressPaperCase=require('./pages/ProgressPaperCase.js');
+const SummaryPage=require('./pages/SummaryPage.js');
 
 const validateApplicationTabData = require ('./tabs/nfdiv/validateApplicationTabData');
 const validatePetitionTabData = require ('./tabs/validatePetitionTabData');
@@ -417,6 +419,9 @@ module.exports = function () {
     // TODO refactor to generic name checkStateAndEvent
     checkStateAndEvent: function(state, event){
       return CaseworkerCheckStatAndEventPage.checkEventAndStateOnPageAndSignOut(state,event);
+    },
+    checkApplicantTab: function(type){
+      return CaseworkerCheckStatAndEventPage.checkApplicantTab(type);
     },
 
     // TODO checkState and checkStateAndEvent to be refactored .
@@ -937,6 +942,13 @@ module.exports = function () {
 
     removeScanDoc: function() {
       return ScanDocumentsPage.removeScanDocument();
+    },
+    progressPaperCase:function(){
+      return ProgressPaperCase.fillFormAndSubmit();
+    },
+    summaryPage:function(){
+      return SummaryPage.fillFormAndSubmit();
     }
+
   });
 };

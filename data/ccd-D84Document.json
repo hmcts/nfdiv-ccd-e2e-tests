@@ -1,0 +1,23 @@
+  {
+         "scannedDocuments": [
+            {
+                "id": "42b79c20-d069-46eb-92e0-d9edc1668c4a",
+                "value": {
+                    "url": {
+                        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/08bd71de-e14c-47e1-ba2c-b853b1500147",
+                        "document_filename": "D84.pdf",
+                        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/08bd71de-e14c-47e1-ba2c-b853b1500147/binary"
+                    },
+                    "type": "form",
+                    "subtype": "D84",
+                    "fileName": "D84",
+                    "scannedDate": "2023-03-05T00:00:00.000",
+                    "deliveryDate": "2023-03-05T00:00:00.000",
+                    "controlNumber": "11111",
+                    "exceptionRecordReference": "3456789"
+                }
+            }
+        ],
+        "scannedSubtypeReceived": "D84",
+        "evidenceHandled": "Yes"
+  }
