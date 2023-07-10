@@ -9,7 +9,7 @@ class WebDriverHelper extends Helper {
     await Promise.resolve();
   }
 
-  async waitForNavigationToComplete(locator, webDriverWait=7) {
+  async waitForNavigationToComplete(locator, webDriverWait=5) {
     const helper = this.helpers.WebDriver;
 
     if (locator) {
