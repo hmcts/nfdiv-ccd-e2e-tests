@@ -21,7 +21,6 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
-        seleniumVersion: '3.141.59',
         screenResolution: '2360x1770'
       }
     }
