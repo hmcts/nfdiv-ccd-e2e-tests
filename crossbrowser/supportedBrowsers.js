@@ -1,4 +1,4 @@
-const LATEST_MAC = 'macOS 12.6';
+const LATEST_MAC = 'macOS 12';
 const LATEST_WINDOWS = 'Windows 10';
 
 /* eslint-disable */
