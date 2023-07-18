@@ -31,7 +31,7 @@ module.exports = {
     await I.waitForElement(this.fields.applicant1SolicitorAgreeToReceiveEmail);
     await I.click(this.fields.applicant1SolicitorAgreeToReceiveEmail);
     await I.waitForElement(this.fields.searchOrganisation);
-    await I.fillField(this.fields.searchOrganisation, 'NFD');
+    await I.fillField(this.fields.searchOrganisation, 'NFD solicitor Organisation');
     await I.waitForElement(this.fields.OrgResultTable);
     await I.scrollTo(this.fields.OrgSelectLink);
     await I.click(this.fields.OrgSelectLink);
