@@ -1,4 +1,4 @@
-const LATEST_MAC = 'macOS 10.15';
+const LATEST_MAC = 'macOS 12.6';
 const LATEST_WINDOWS = 'Windows 10';
 
 /* eslint-disable */
@@ -17,7 +17,7 @@ const supportedBrowsers = {
   safari: {
     safari_mac: {
       browserName: 'safari',
-      platformName: 'macOS 10.14',
+      platformName: LATEST_MAC,
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
