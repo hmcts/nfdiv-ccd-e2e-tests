@@ -1,5 +1,6 @@
-const LATEST_MAC = 'macOS 12';
+const LATEST_MAC = 'macOS 10.15';
 const LATEST_WINDOWS = 'Windows 10';
+
 
 /* eslint-disable */
 const supportedBrowsers = {
@@ -21,6 +22,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
+        seleniumVersion: '3.141.59',
         screenResolution: '2360x1770'
       }
     }
