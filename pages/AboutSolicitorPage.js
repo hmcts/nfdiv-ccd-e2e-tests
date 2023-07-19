@@ -33,7 +33,7 @@ module.exports = {
     await I.waitForElement(this.fields.searchOrganisation);
     await I.fillField(this.fields.searchOrganisation, 'NFD solicitor Organisation');
     await I.waitForElement(this.fields.OrgResultTable);
-    await I.scrollTo(this.fields.OrgSelectLink);
+    // await I.scrollTo(this.fields.OrgSelectLink);
     await I.click(this.fields.OrgSelectLink);
     await I.waitForNavigationToComplete(this.fields.submit);
 
