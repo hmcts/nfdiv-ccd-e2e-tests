@@ -22,7 +22,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_SAFARI',
-        screenResolution: '2560x1770'
+        screenResolution: '1376x1032'
       }
     }
   },
@@ -42,7 +42,7 @@ const supportedBrowsers = {
       browserVersion: 'latest',
       'sauce:options': {
         name: 'NFD CCD E2E Tests - XUI: MAC_CHROME_LATEST',
-        screenResolution: '2360x1770'
+        screenResolution: '1376x1032'
       }
     }
   },
