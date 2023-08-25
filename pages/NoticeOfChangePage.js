@@ -31,11 +31,11 @@ module.exports = {
     await I.click(this.fields.areTheyDigital);
     await I.fillField(this.fields.newSolName, 'App1 Solicitor Name');
     await I.fillField(this.fields.newSolPhoneNum, '022871653482');
-    await I.fillField(this.fields.newSolEmail, 'solicitorApp1@mailinator.com');
+    await I.fillField(this.fields.newSolEmail, 'divorce_as_respondent_solicitor01@mailinator.com');
     await I.wait(3);
     await I.click(this.fields.orgSelectUnLink);
     await I.wait(3);
-    await I.fillField(this.fields.searchOrganisation, 'NFD E2E');
+    await I.fillField(this.fields.searchOrganisation, 'DivRespondentSolicitorFirm');
     await I.waitForElement(this.fields.orgResultTable);
     await I.click(this.fields.orgSelectLink);
     await I.waitForNavigationToComplete(this.fields.submit);
