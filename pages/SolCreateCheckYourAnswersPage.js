@@ -43,7 +43,14 @@ module.exports = {
     var unionUpperCase;
     if(union === divorceOrDissolution.DIVORCE){
       unionUpperCase = union.toUpperCase();
-      await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
+      const isSafariBrowser = await I.isSafariBrowser();
+      if (isSafariBrowser) {
+        await I.wait(5);
+        await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
+      } else {
+        await I.wait(1);
+        await I.waitInUrl(`/${unionUpperCase}/NFD/solicitor-create-application/submit`);
+      }
     }else if ( union === divorceOrDissolution.DISSOLUTION){
       unionUpperCase = union.toUpperCase();
       // the switch to DISSOLUTION is not present in the URL Yet , but when done it will be a quick change.
