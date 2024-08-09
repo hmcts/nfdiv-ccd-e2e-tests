@@ -1713,12 +1713,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-google@npm:^0.9.1":
-  version: 0.9.1
-  resolution: "eslint-config-google@npm:0.9.1"
+"eslint-config-google@npm:^0.14.0":
+  version: 0.14.0
+  resolution: "eslint-config-google@npm:0.14.0"
   peerDependencies:
-    eslint: ">=4.1.1"
-  checksum: cfb6ef3c4acc2c164a67bc724ffec02ec7a0ca93a7f40c2a87939fcff7945cc7ef6607fc320af08cd496b27c80ccbae87a48d50344574a52849ee9754f4b9b58
+    eslint: ">=5.16.0"
+  checksum: 52ad84c0df2d33703024e5b7fd73a9a1b2a87413d25cee1826c891b3f8fba89f9188f3c5ed6d57b4315851c6a3c82847cc9f6c747278bf4395341f9ad79ed0d0
   languageName: node
   linkType: hard
 
@@ -3622,7 +3622,7 @@ __metadata:
     concurrently: ^6.3.0
     cross-env: ^5.2.1
     eslint: ^4.19.1
-    eslint-config-google: ^0.9.1
+    eslint-config-google: ^0.14.0
     eslint-plugin-mocha: ^5.0.0
     html_codesniffer: ^2.5.1
     lodash: ^4.17.21
