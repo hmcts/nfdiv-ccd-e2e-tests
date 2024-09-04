@@ -1,62 +1,64 @@
-#!groovy
-properties([
-  // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
-        pipelineTriggers([cron('H 08 * * 1-5')]),
-        parameters([
-                string(name: 'RUNNING_ENV', defaultValue: 'aat', description: 'Environment to test'),
-                string(name: 'XUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The URL you want to run solicitor tests against'),
-        ])
-])
+// TEMPORARILY DISABLED UNTIL TESTS HAVE BEEN UPDATED (NFDIV-4316)
 
-@Library("Infrastructure") _
+// #!groovy
+// properties([
+//   // H allow predefined but random minute see https://en.wikipedia.org/wiki/Cron#Non-standard_characters
+//         pipelineTriggers([cron('H 08 * * 1-5')]),
+//         parameters([
+//                 string(name: 'RUNNING_ENV', defaultValue: 'aat', description: 'Environment to test'),
+//                 string(name: 'XUI_URL_TO_TEST', defaultValue: 'https://manage-case.aat.platform.hmcts.net/', description: 'The URL you want to run solicitor tests against'),
+//         ])
+// ])
 
-String product = "nfdiv"
-String component = "ccd-e2e-tests"
+// @Library("Infrastructure") _
 
-def secrets = [
-  'nfdiv-${env}': [
-    secret('idam-solicitor-username', 'PROF_USER_EMAIL'),
-    secret('idam-solicitor-password', 'PROF_USER_PASSWORD'),
-    secret('idam-respondent-solicitor-admin-username', 'CCD_CASEWORKER_E2E_EMAIL'),
-    secret('idam-respondent-solicitor-admin-password', 'CCD_CASEWORKER_E2E_PASSWORD'),
-    secret('idam-respondent-solicitor-1-username', 'RESPONDENT_SOLICITOR_1_USERNAME'),
-    secret('idam-respondent-solicitor-1-password', 'RESPONDENT_SOLICITOR_1_PASSWORD'),
-    secret('idam-systemupdate-username', 'SYSTEMUPDATE_USERNAME'),
-    secret('idam-systemupdate-password', 'SYSTEMUPDATE_PASSWORD'),
-    secret('idam-legal-advisor-username', 'LEGAL_ADVISOR_USERNAME'),
-    secret('idam-legal-advisor-password', 'LEGAL_ADVISOR_PASSWORD'),
-    secret('s2s-case-api-secret', 'SERVICE_AUTH_SECRET'),
-    secret('idam-secret', 'IDAM_SECRET'),
-    secret('idam-solicitor-username', 'SOLICITOR_USER_NAME'),
-    secret('idam-solicitor-password', 'SOLICITOR_PASSWORD'),
-    secret('idam-test-caseworker-username', 'CASEWORKER_USER_NAME'),
-    secret('idam-test-caseworker-password', 'CASEWORKER_PASSWORD'),
-    secret('idam-citizen-username', 'CITIZEN_USER_NAME'),
-    secret('idam-citizen-password', 'CITIZEN_PASSWORD'),
-    secret('idam-nfd-e2e-test-system-update-username', 'NFD_E2E_SYSTEM_UPDATE_USERNAME'),
-    secret('idam-nfd-e2e-test-system-update-password', 'NFD_E2E_SYSTEM_UPDATE_PASSWORD')
+// String product = "nfdiv"
+// String component = "ccd-e2e-tests"
 
-  ]
-]
+// def secrets = [
+//   'nfdiv-${env}': [
+//     secret('idam-solicitor-username', 'PROF_USER_EMAIL'),
+//     secret('idam-solicitor-password', 'PROF_USER_PASSWORD'),
+//     secret('idam-respondent-solicitor-admin-username', 'CCD_CASEWORKER_E2E_EMAIL'),
+//     secret('idam-respondent-solicitor-admin-password', 'CCD_CASEWORKER_E2E_PASSWORD'),
+//     secret('idam-respondent-solicitor-1-username', 'RESPONDENT_SOLICITOR_1_USERNAME'),
+//     secret('idam-respondent-solicitor-1-password', 'RESPONDENT_SOLICITOR_1_PASSWORD'),
+//     secret('idam-systemupdate-username', 'SYSTEMUPDATE_USERNAME'),
+//     secret('idam-systemupdate-password', 'SYSTEMUPDATE_PASSWORD'),
+//     secret('idam-legal-advisor-username', 'LEGAL_ADVISOR_USERNAME'),
+//     secret('idam-legal-advisor-password', 'LEGAL_ADVISOR_PASSWORD'),
+//     secret('s2s-case-api-secret', 'SERVICE_AUTH_SECRET'),
+//     secret('idam-secret', 'IDAM_SECRET'),
+//     secret('idam-solicitor-username', 'SOLICITOR_USER_NAME'),
+//     secret('idam-solicitor-password', 'SOLICITOR_PASSWORD'),
+//     secret('idam-test-caseworker-username', 'CASEWORKER_USER_NAME'),
+//     secret('idam-test-caseworker-password', 'CASEWORKER_PASSWORD'),
+//     secret('idam-citizen-username', 'CITIZEN_USER_NAME'),
+//     secret('idam-citizen-password', 'CITIZEN_PASSWORD'),
+//     secret('idam-nfd-e2e-test-system-update-username', 'NFD_E2E_SYSTEM_UPDATE_USERNAME'),
+//     secret('idam-nfd-e2e-test-system-update-password', 'NFD_E2E_SYSTEM_UPDATE_PASSWORD')
 
-static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
-  [ $class: 'AzureKeyVaultSecret',
-    secretType: 'Secret',
-    name: secretName,
-    version: '',
-    envVariable: envVar
-  ]
-}
+//   ]
+// ]
 
-withNightlyPipeline("nodejs", product, component) {
-    env.TEST_E2E_URL = params.XUI_URL_TO_TEST
-    env.NODE_ENV = 'ci'
+// static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+//   [ $class: 'AzureKeyVaultSecret',
+//     secretType: 'Secret',
+//     name: secretName,
+//     version: '',
+//     envVariable: envVar
+//   ]
+// }
 
-    loadVaultSecrets(secrets)
-    enableCrossBrowserTest(60)
-    enableFullFunctionalTest(120)
+// withNightlyPipeline("nodejs", product, component) {
+//     env.TEST_E2E_URL = params.XUI_URL_TO_TEST
+//     env.NODE_ENV = 'ci'
 
-    afterAlways('fullFunctionalTest') {
-        steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
-    }
-}
+//     loadVaultSecrets(secrets)
+//     enableCrossBrowserTest(60)
+//     enableFullFunctionalTest(120)
+
+//     afterAlways('fullFunctionalTest') {
+//         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'functional-output/**/*'
+//     }
+// }
